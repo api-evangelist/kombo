@@ -7,10 +7,10 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Embedded iPaaS
-  - Unified API
-  - HRIS
   - ATS
+  - Embedded iPaaS
+  - HRIS
+  - Unified API
 url: >-
   https://raw.githubusercontent.com/api-evangelist/kombo/refs/heads/main/apis.yml
 created: '2026-03-16'
@@ -25,10 +25,10 @@ apis:
       handling data normalization and authentication.
     humanURL: https://www.kombo.dev
     tags:
-      - Unified API
-      - HRIS
       - ATS
+      - HRIS
       - Payroll
+      - Unified API
     properties:
       - type: Documentation
         url: https://docs.kombo.dev
