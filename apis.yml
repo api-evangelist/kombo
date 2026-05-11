@@ -119,6 +119,11 @@ common:
     url: mailto:support@kombo.dev
   - type: GitHub Organization
     url: https://github.com/kombo-api
+integrations:
+  - name: Microsoft Entra ID
+  - name: Google Workspace
+  - name: SCIM
+  - name: SFTP
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
