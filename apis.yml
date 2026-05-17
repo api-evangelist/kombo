@@ -36,7 +36,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.kombo.dev
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.kombo.dev/getting-started
       - type: OpenAPI
         url: https://api.kombo.dev/openapi.json
@@ -117,7 +117,7 @@ common:
     url: https://security.kombo.dev
   - type: Support
     url: mailto:support@kombo.dev
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/kombo-api
 integrations:
   - name: Microsoft Entra ID
