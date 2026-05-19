@@ -1,0 +1,164 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kombo API — Kombo Connect
+  description: 'Kombo API — Kombo Connect. 3 operations. Lead operation: Activate integration (optional). Self-contained Naftiko
+    capability covering one Kombo business surface.'
+  tags:
+  - Kombo
+  - Kombo Connect
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KOMBO_API_KEY: KOMBO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kombo-kombo-connect
+    baseUri: https://api.kombo.dev/v1
+    description: Kombo API — Kombo Connect business capability. Self-contained, no shared references.
+    resources:
+    - name: connect-activate-integration
+      path: /connect/activate-integration
+      operations:
+      - name: postconnectactivateintegration
+        method: POST
+        description: Activate integration (optional)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: connect-create-link
+      path: /connect/create-link
+      operations:
+      - name: postconnectcreatelink
+        method: POST
+        description: Create connection link
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: connect-integration-by-token-token
+      path: /connect/integration-by-token/{token}
+      operations:
+      - name: getconnectintegrationbytokentoken
+        method: GET
+        description: Get integration by token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          description: GET /connect/integration-by-token/:token Parameter
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.KOMBO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: kombo-kombo-connect-rest
+    port: 8080
+    description: REST adapter for Kombo API — Kombo Connect. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/connect/activate-integration
+      name: connect-activate-integration
+      description: REST surface for connect-activate-integration.
+      operations:
+      - method: POST
+        name: postconnectactivateintegration
+        description: Activate integration (optional)
+        call: kombo-kombo-connect.postconnectactivateintegration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connect/create-link
+      name: connect-create-link
+      description: REST surface for connect-create-link.
+      operations:
+      - method: POST
+        name: postconnectcreatelink
+        description: Create connection link
+        call: kombo-kombo-connect.postconnectcreatelink
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connect/integration-by-token/{token}
+      name: connect-integration-by-token-token
+      description: REST surface for connect-integration-by-token-token.
+      operations:
+      - method: GET
+        name: getconnectintegrationbytokentoken
+        description: Get integration by token
+        call: kombo-kombo-connect.getconnectintegrationbytokentoken
+        with:
+          token: rest.token
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kombo-kombo-connect-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kombo API — Kombo Connect. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: activate-integration-optional
+      description: Activate integration (optional)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-kombo-connect.postconnectactivateintegration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-connection-link
+      description: Create connection link
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-kombo-connect.postconnectcreatelink
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-integration-token
+      description: Get integration by token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-kombo-connect.getconnectintegrationbytokentoken
+      with:
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.

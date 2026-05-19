@@ -1,0 +1,931 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kombo API — Custom Endpoints
+  description: 'Kombo API — Custom Endpoints. 18 operations. Lead operation: Add a job to be synced. Self-contained Naftiko
+    capability covering one Kombo business surface.'
+  tags:
+  - Kombo
+  - Custom Endpoints
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KOMBO_API_KEY: KOMBO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kombo-custom-endpoints
+    baseUri: https://api.kombo.dev/v1
+    description: Kombo API — Custom Endpoints business capability. Self-contained, no shared references.
+    resources:
+    - name: ats-custom-avionte-synced-jobs
+      path: /ats/custom/avionte/synced-jobs
+      operations:
+      - name: postatscustomaviontesyncedjobs
+        method: POST
+        description: Add a job to be synced
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: ats-custom-avionte-synced-jobs-job_remote_id
+      path: /ats/custom/avionte/synced-jobs/{job_remote_id}
+      operations:
+      - name: deleteatscustomaviontesyncedjobsjobremoteid
+        method: DELETE
+        description: Remove a job from sync
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: job_remote_id
+          in: path
+          type: string
+          description: DELETE /ats/custom/avionte/synced-jobs/:job_remote_id Parameter
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: custom-datev-available-documents
+      path: /custom/datev/available-documents
+      operations:
+      - name: getcustomdatevavailabledocuments
+        method: GET
+        description: Retrieve available documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: period
+          in: query
+          type: string
+          description: Provide the period in the format YYYY-MM-DD for which to check for available documents.
+          required: true
+    - name: custom-datev-check-document-permission
+      path: /custom/datev/check-document-permission
+      operations:
+      - name: getcustomdatevcheckdocumentpermission
+        method: GET
+        description: Verify service is enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+    - name: custom-datev-check-eau-permission
+      path: /custom/datev/check-eau-permission
+      operations:
+      - name: getcustomdatevcheckeaupermission
+        method: GET
+        description: Verify service is enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+    - name: custom-datev-check-write-permission
+      path: /custom/datev/check-write-permission
+      operations:
+      - name: getcustomdatevcheckwritepermission
+        method: GET
+        description: Verify service is enabled
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+    - name: custom-datev-data-pushes
+      path: /custom/datev/data-pushes
+      operations:
+      - name: getcustomdatevdatapushes
+        method: GET
+        description: Get DATEV data pushes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+    - name: custom-datev-download-document
+      path: /custom/datev/download-document
+      operations:
+      - name: postcustomdatevdownloaddocument
+        method: POST
+        description: Download Payroll Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: custom-datev-eau-requests-eau_id
+      path: /custom/datev/eau-requests/{eau_id}
+      operations:
+      - name: getcustomdateveaurequestseauid
+        method: GET
+        description: Query the status of the eAU request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: eau_id
+          in: path
+          type: string
+          description: GET /custom/datev/eau-requests/:eau_id Parameter
+          required: true
+    - name: custom-datev-employees-employee_id-compensations
+      path: /custom/datev/employees/{employee_id}/compensations
+      operations:
+      - name: putcustomdatevemployeesemployeeidcompensations
+        method: PUT
+        description: Set DATEV compensations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: employee_id
+          in: path
+          type: string
+          description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system
+            by prefixing it with `remote:` (e.g., `remote:12312`)
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: custom-datev-employees-employee_id-download-document
+      path: /custom/datev/employees/{employee_id}/download-document
+      operations:
+      - name: postcustomdatevemployeesemployeeiddownloaddocument
+        method: POST
+        description: Download Payroll Document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: employee_id
+          in: path
+          type: string
+          description: POST /custom/datev/employees/:employee_id/download-document Parameter
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: custom-datev-employees-employee_id-eau-requests
+      path: /custom/datev/employees/{employee_id}/eau-requests
+      operations:
+      - name: postcustomdatevemployeesemployeeideaurequests
+        method: POST
+        description: Create eAU Request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: employee_id
+          in: path
+          type: string
+          description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system
+            by prefixing it with `remote:` (e.g., `remote:12312`)
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: custom-datev-employees-employee_id-prepare-payroll
+      path: /custom/datev/employees/{employee_id}/prepare-payroll
+      operations:
+      - name: putcustomdatevemployeesemployeeidpreparepayroll
+        method: PUT
+        description: Prepare DATEV Payroll
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: employee_id
+          in: path
+          type: string
+          description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system
+            by prefixing it with `remote:` (e.g., `remote:12312`)
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: custom-datev-passthrough
+      path: /custom/datev/passthrough
+      operations:
+      - name: postcustomdatevpassthrough
+        method: POST
+        description: Write raw DATEV ASCII file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: custom-datev-push-data-general
+      path: /custom/datev/push-data/general
+      operations:
+      - name: postcustomdatevpushdatageneral
+        method: POST
+        description: Push general data to DATEV
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: custom-datev-push-data-payroll
+      path: /custom/datev/push-data/payroll
+      operations:
+      - name: postcustomdatevpushdatapayroll
+        method: POST
+        description: Push payroll data to DATEV
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: custom-datev-system-information
+      path: /custom/datev/system-information
+      operations:
+      - name: getcustomdatevsysteminformation
+        method: GET
+        description: Get DATEV system information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+    - name: custom-silae-employees-employee_id-payroll-supplements
+      path: /custom/silae/employees/{employee_id}/payroll-supplements
+      operations:
+      - name: postcustomsilaeemployeesemployeeidpayrollsupplements
+        method: POST
+        description: Write Payroll Supplement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: employee_id
+          in: path
+          type: string
+          description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system
+            by prefixing it with `remote:` (e.g., `remote:12312`)
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.KOMBO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: kombo-custom-endpoints-rest
+    port: 8080
+    description: REST adapter for Kombo API — Custom Endpoints. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/ats/custom/avionte/synced-jobs
+      name: ats-custom-avionte-synced-jobs
+      description: REST surface for ats-custom-avionte-synced-jobs.
+      operations:
+      - method: POST
+        name: postatscustomaviontesyncedjobs
+        description: Add a job to be synced
+        call: kombo-custom-endpoints.postatscustomaviontesyncedjobs
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ats/custom/avionte/synced-jobs/{job-remote-id}
+      name: ats-custom-avionte-synced-jobs-job-remote-id
+      description: REST surface for ats-custom-avionte-synced-jobs-job_remote_id.
+      operations:
+      - method: DELETE
+        name: deleteatscustomaviontesyncedjobsjobremoteid
+        description: Remove a job from sync
+        call: kombo-custom-endpoints.deleteatscustomaviontesyncedjobsjobremoteid
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          job_remote_id: rest.job_remote_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/available-documents
+      name: custom-datev-available-documents
+      description: REST surface for custom-datev-available-documents.
+      operations:
+      - method: GET
+        name: getcustomdatevavailabledocuments
+        description: Retrieve available documents
+        call: kombo-custom-endpoints.getcustomdatevavailabledocuments
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          period: rest.period
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/check-document-permission
+      name: custom-datev-check-document-permission
+      description: REST surface for custom-datev-check-document-permission.
+      operations:
+      - method: GET
+        name: getcustomdatevcheckdocumentpermission
+        description: Verify service is enabled
+        call: kombo-custom-endpoints.getcustomdatevcheckdocumentpermission
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/check-eau-permission
+      name: custom-datev-check-eau-permission
+      description: REST surface for custom-datev-check-eau-permission.
+      operations:
+      - method: GET
+        name: getcustomdatevcheckeaupermission
+        description: Verify service is enabled
+        call: kombo-custom-endpoints.getcustomdatevcheckeaupermission
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/check-write-permission
+      name: custom-datev-check-write-permission
+      description: REST surface for custom-datev-check-write-permission.
+      operations:
+      - method: GET
+        name: getcustomdatevcheckwritepermission
+        description: Verify service is enabled
+        call: kombo-custom-endpoints.getcustomdatevcheckwritepermission
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/data-pushes
+      name: custom-datev-data-pushes
+      description: REST surface for custom-datev-data-pushes.
+      operations:
+      - method: GET
+        name: getcustomdatevdatapushes
+        description: Get DATEV data pushes
+        call: kombo-custom-endpoints.getcustomdatevdatapushes
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/download-document
+      name: custom-datev-download-document
+      description: REST surface for custom-datev-download-document.
+      operations:
+      - method: POST
+        name: postcustomdatevdownloaddocument
+        description: Download Payroll Document
+        call: kombo-custom-endpoints.postcustomdatevdownloaddocument
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/eau-requests/{eau-id}
+      name: custom-datev-eau-requests-eau-id
+      description: REST surface for custom-datev-eau-requests-eau_id.
+      operations:
+      - method: GET
+        name: getcustomdateveaurequestseauid
+        description: Query the status of the eAU request
+        call: kombo-custom-endpoints.getcustomdateveaurequestseauid
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          eau_id: rest.eau_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/employees/{employee-id}/compensations
+      name: custom-datev-employees-employee-id-compensations
+      description: REST surface for custom-datev-employees-employee_id-compensations.
+      operations:
+      - method: PUT
+        name: putcustomdatevemployeesemployeeidcompensations
+        description: Set DATEV compensations
+        call: kombo-custom-endpoints.putcustomdatevemployeesemployeeidcompensations
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          employee_id: rest.employee_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/employees/{employee-id}/download-document
+      name: custom-datev-employees-employee-id-download-document
+      description: REST surface for custom-datev-employees-employee_id-download-document.
+      operations:
+      - method: POST
+        name: postcustomdatevemployeesemployeeiddownloaddocument
+        description: Download Payroll Document
+        call: kombo-custom-endpoints.postcustomdatevemployeesemployeeiddownloaddocument
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          employee_id: rest.employee_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/employees/{employee-id}/eau-requests
+      name: custom-datev-employees-employee-id-eau-requests
+      description: REST surface for custom-datev-employees-employee_id-eau-requests.
+      operations:
+      - method: POST
+        name: postcustomdatevemployeesemployeeideaurequests
+        description: Create eAU Request
+        call: kombo-custom-endpoints.postcustomdatevemployeesemployeeideaurequests
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          employee_id: rest.employee_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/employees/{employee-id}/prepare-payroll
+      name: custom-datev-employees-employee-id-prepare-payroll
+      description: REST surface for custom-datev-employees-employee_id-prepare-payroll.
+      operations:
+      - method: PUT
+        name: putcustomdatevemployeesemployeeidpreparepayroll
+        description: Prepare DATEV Payroll
+        call: kombo-custom-endpoints.putcustomdatevemployeesemployeeidpreparepayroll
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          employee_id: rest.employee_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/passthrough
+      name: custom-datev-passthrough
+      description: REST surface for custom-datev-passthrough.
+      operations:
+      - method: POST
+        name: postcustomdatevpassthrough
+        description: Write raw DATEV ASCII file
+        call: kombo-custom-endpoints.postcustomdatevpassthrough
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/push-data/general
+      name: custom-datev-push-data-general
+      description: REST surface for custom-datev-push-data-general.
+      operations:
+      - method: POST
+        name: postcustomdatevpushdatageneral
+        description: Push general data to DATEV
+        call: kombo-custom-endpoints.postcustomdatevpushdatageneral
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/push-data/payroll
+      name: custom-datev-push-data-payroll
+      description: REST surface for custom-datev-push-data-payroll.
+      operations:
+      - method: POST
+        name: postcustomdatevpushdatapayroll
+        description: Push payroll data to DATEV
+        call: kombo-custom-endpoints.postcustomdatevpushdatapayroll
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/datev/system-information
+      name: custom-datev-system-information
+      description: REST surface for custom-datev-system-information.
+      operations:
+      - method: GET
+        name: getcustomdatevsysteminformation
+        description: Get DATEV system information
+        call: kombo-custom-endpoints.getcustomdatevsysteminformation
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom/silae/employees/{employee-id}/payroll-supplements
+      name: custom-silae-employees-employee-id-payroll-supplements
+      description: REST surface for custom-silae-employees-employee_id-payroll-supplements.
+      operations:
+      - method: POST
+        name: postcustomsilaeemployeesemployeeidpayrollsupplements
+        description: Write Payroll Supplement
+        call: kombo-custom-endpoints.postcustomsilaeemployeesemployeeidpayrollsupplements
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          employee_id: rest.employee_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kombo-custom-endpoints-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kombo API — Custom Endpoints. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: add-job-be-synced
+      description: Add a job to be synced
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-custom-endpoints.postatscustomaviontesyncedjobs
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-job-sync
+      description: Remove a job from sync
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kombo-custom-endpoints.deleteatscustomaviontesyncedjobsjobremoteid
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        job_remote_id: tools.job_remote_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-available-documents
+      description: Retrieve available documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-custom-endpoints.getcustomdatevavailabledocuments
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        period: tools.period
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: verify-service-is-enabled
+      description: Verify service is enabled
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-custom-endpoints.getcustomdatevcheckdocumentpermission
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: verify-service-is-enabled-2
+      description: Verify service is enabled
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-custom-endpoints.getcustomdatevcheckeaupermission
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: verify-service-is-enabled-3
+      description: Verify service is enabled
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-custom-endpoints.getcustomdatevcheckwritepermission
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-datev-data-pushes
+      description: Get DATEV data pushes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-custom-endpoints.getcustomdatevdatapushes
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-payroll-document
+      description: Download Payroll Document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-custom-endpoints.postcustomdatevdownloaddocument
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: query-status-eau-request
+      description: Query the status of the eAU request
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-custom-endpoints.getcustomdateveaurequestseauid
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        eau_id: tools.eau_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: set-datev-compensations
+      description: Set DATEV compensations
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kombo-custom-endpoints.putcustomdatevemployeesemployeeidcompensations
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        employee_id: tools.employee_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-payroll-document-2
+      description: Download Payroll Document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-custom-endpoints.postcustomdatevemployeesemployeeiddownloaddocument
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        employee_id: tools.employee_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-eau-request
+      description: Create eAU Request
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-custom-endpoints.postcustomdatevemployeesemployeeideaurequests
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        employee_id: tools.employee_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: prepare-datev-payroll
+      description: Prepare DATEV Payroll
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kombo-custom-endpoints.putcustomdatevemployeesemployeeidpreparepayroll
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        employee_id: tools.employee_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: write-raw-datev-ascii-file
+      description: Write raw DATEV ASCII file
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-custom-endpoints.postcustomdatevpassthrough
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: push-general-data-datev
+      description: Push general data to DATEV
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-custom-endpoints.postcustomdatevpushdatageneral
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: push-payroll-data-datev
+      description: Push payroll data to DATEV
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-custom-endpoints.postcustomdatevpushdatapayroll
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-datev-system-information
+      description: Get DATEV system information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-custom-endpoints.getcustomdatevsysteminformation
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: write-payroll-supplement
+      description: Write Payroll Supplement
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-custom-endpoints.postcustomsilaeemployeesemployeeidpayrollsupplements
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        employee_id: tools.employee_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,2327 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Kombo API — Unified HRIS API
+  description: 'Kombo API — Unified HRIS API. 31 operations. Lead operation: Get absence types. Self-contained Naftiko capability
+    covering one Kombo business surface.'
+  tags:
+  - Kombo
+  - Unified HRIS API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    KOMBO_API_KEY: KOMBO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: kombo-unified-hris-api
+    baseUri: https://api.kombo.dev/v1
+    description: Kombo API — Unified HRIS API business capability. Self-contained, no shared references.
+    resources:
+    - name: hris-absence-types
+      path: /hris/absence-types
+      operations:
+      - name: gethrisabsencetypes
+        method: GET
+        description: Get absence types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+    - name: hris-absences
+      path: /hris/absences
+      operations:
+      - name: gethrisabsences
+        method: GET
+        description: Get absences
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: date_from
+          in: query
+          type: string
+          description: Filter for all the absences that either start _or_ haven't ended yet on/after this day. If you imagine
+            a calendar displaying absences, this defines the left-mos
+        - name: date_until
+          in: query
+          type: string
+          description: Filter for absences that start on or before this day (but might continue after). If you imagine a calendar
+            displaying absences, this defines the right-most visi
+        - name: type_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of absence type IDs.
+        - name: employee_id
+          in: query
+          type: string
+          description: Filter by a specific employee using their ID.
+        - name: time_from
+          in: query
+          type: string
+          description: '**(⚠️ Deprecated - Use the `date_from` filter instead.)** Filter for absences that either start after
+            or start before and end after a certain time.'
+        - name: time_until
+          in: query
+          type: string
+          description: '**(⚠️ Deprecated - Use the `date_until` filter instead.)** Filter for absences that start before a
+            certain time.'
+      - name: posthrisabsences
+        method: POST
+        description: Create absence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-absences-absence_id
+      path: /hris/absences/{absence_id}
+      operations:
+      - name: deletehrisabsencesabsenceid
+        method: DELETE
+        description: Delete absence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: absence_id
+          in: path
+          type: string
+          description: The Kombo ID of the absence
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-employee-document-categories
+      path: /hris/employee-document-categories
+      operations:
+      - name: gethrisemployeedocumentcategories
+        method: GET
+        description: Get employee document categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+    - name: hris-employee-skill-assignments
+      path: /hris/employee-skill-assignments
+      operations:
+      - name: gethrisemployeeskillassignments
+        method: GET
+        description: Get employee skill assignments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: employee_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of employee IDs.
+        - name: skill_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of skill IDs.
+      - name: posthrisemployeeskillassignments
+        method: POST
+        description: Create employee skill assignment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-employee-skill-assignments-employee_skill_assignment_id
+      path: /hris/employee-skill-assignments/{employee_skill_assignment_id}
+      operations:
+      - name: patchhrisemployeeskillassignmentsemployeeskillassignmentid
+        method: PATCH
+        description: Update employee skill assignment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: employee_skill_assignment_id
+          in: path
+          type: string
+          description: The ID of the employee skill assignment
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletehrisemployeeskillassignmentsemployeeskillassignmentid
+        method: DELETE
+        description: Delete employee skill assignment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: employee_skill_assignment_id
+          in: path
+          type: string
+          description: The ID of the employee skill assignment
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-employees
+      path: /hris/employees
+      operations:
+      - name: gethrisemployees
+        method: GET
+        description: Get employees
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: employment_status
+          in: query
+          type: string
+          description: '**(⚠️ Deprecated - Use the `employment_statuses` filter instead.)** Filter by the `employment_status`
+            field.'
+        - name: employment_statuses
+          in: query
+          type: string
+          description: 'Filter by a comma-separated list of `ACTIVE`, `PENDING`, `INACTIVE`, `LEAVE` '
+        - name: group_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of group IDs. We will only return employees that are members of _any_
+            of the groups.
+        - name: legal_entity_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of legal entity IDs. We will only return employees that are members
+            of _any_ of the legal entities.
+        - name: work_location_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of work location IDs. We will only return employees who are at _any_
+            of the work locations.
+        - name: work_emails
+          in: query
+          type: string
+          description: Filter by a comma-separated list of work emails. We will only return employees who have _any_ of the
+            work emails. The format of the emails is case-insensitive.
+        - name: personal_emails
+          in: query
+          type: string
+          description: Filter by a comma-separated list of personal emails. We will only return employees who have _any_ of
+            the personal emails. The format of the emails is case-insen
+        - name: custom_fields
+          in: query
+          type: string
+          description: A JSON string with a single key-value pair like {"fieldKey":"fieldValue"} to filter employees by a
+            specific custom field value. Note that the value must be a st
+      - name: posthrisemployees
+        method: POST
+        description: '[DEPRECATED] Create employee'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-employees-form
+      path: /hris/employees/form
+      operations:
+      - name: gethrisemployeesform
+        method: GET
+        description: Get employee form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+      - name: posthrisemployeesform
+        method: POST
+        description: Create employee with form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-employees-employee_id
+      path: /hris/employees/{employee_id}
+      operations:
+      - name: patchhrisemployeesemployeeid
+        method: PATCH
+        description: Update employee
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: employee_id
+          in: path
+          type: string
+          description: The ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote
+            system by prefixing it with `remote:` (e.g., `remote:12312
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-employees-employee_id-documents
+      path: /hris/employees/{employee_id}/documents
+      operations:
+      - name: posthrisemployeesemployeeiddocuments
+        method: POST
+        description: Add document to employee
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: employee_id
+          in: path
+          type: string
+          description: POST /hris/employees/:employee_id/documents Parameter
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-employments
+      path: /hris/employments
+      operations:
+      - name: gethrisemployments
+        method: GET
+        description: Get employments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+    - name: hris-groups
+      path: /hris/groups
+      operations:
+      - name: gethrisgroups
+        method: GET
+        description: Get groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: types
+          in: query
+          type: string
+          description: 'Filter by a comma-separated list of group types: `DEPARTMENT`, `TEAM`, `COST_CENTER`, or `null` to
+            filter groups without a type. '
+        - name: name_contains
+          in: query
+          type: string
+          description: Filter by the `name` field. Can be used to find a group by keywords present in the group name.
+    - name: hris-legal-entities
+      path: /hris/legal-entities
+      operations:
+      - name: gethrislegalentities
+        method: GET
+        description: Get legal entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: name_contains
+          in: query
+          type: string
+          description: Filter by the `name` field. Can be used to find a legal entity by keywords present in the legal entity
+            name.
+    - name: hris-locations
+      path: /hris/locations
+      operations:
+      - name: gethrislocations
+        method: GET
+        description: Get work locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: name_contains
+          in: query
+          type: string
+          description: Filter by the `name` field. Can be used to find a location by keywords present in the location name.
+    - name: hris-performance-review-cycles
+      path: /hris/performance-review-cycles
+      operations:
+      - name: gethrisperformancereviewcycles
+        method: GET
+        description: Get performance review cycles
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+    - name: hris-performance-reviews
+      path: /hris/performance-reviews
+      operations:
+      - name: gethrisperformancereviews
+        method: GET
+        description: Get performance reviews
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: types
+          in: query
+          type: string
+          description: 'Filter by a comma-separated list of `MANAGER`, `DIRECT_REPORT`, `PEER`, `SELF`  '
+        - name: review_cycle_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of review cycle IDs.
+        - name: reviewee_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of reviewee IDs.
+    - name: hris-provisioning-groups-group_id-diff
+      path: /hris/provisioning-groups/{group_id}/diff
+      operations:
+      - name: posthrisprovisioninggroupsgroupiddiff
+        method: POST
+        description: Get provisioning diff
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: group_id
+          in: path
+          type: string
+          description: ID of the provisioning group (currently only `default` is allowed).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-provisioning-groups-group_id-setup-links
+      path: /hris/provisioning-groups/{group_id}/setup-links
+      operations:
+      - name: posthrisprovisioninggroupsgroupidsetuplinks
+        method: POST
+        description: Create provisioning setup link (deprecated)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: group_id
+          in: path
+          type: string
+          description: ID of the provisioning group (currently only `default` is allowed).
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-skills
+      path: /hris/skills
+      operations:
+      - name: gethrisskills
+        method: GET
+        description: Get skills
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: name_contains
+          in: query
+          type: string
+          description: Filter by the `name` field. Can be used to find a skills by keywords present in the skill name.
+      - name: posthrisskills
+        method: POST
+        description: Create skill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-skills-skill_id
+      path: /hris/skills/{skill_id}
+      operations:
+      - name: patchhrisskillsskillid
+        method: PATCH
+        description: Update skill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: skill_id
+          in: path
+          type: string
+          description: The ID of the skill
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: deletehrisskillsskillid
+        method: DELETE
+        description: Delete skill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: skill_id
+          in: path
+          type: string
+          description: The ID of the skill
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: hris-staffing-entities
+      path: /hris/staffing-entities
+      operations:
+      - name: gethrisstaffingentities
+        method: GET
+        description: Get staffing entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: model_types
+          in: query
+          type: string
+          description: 'Filter by a comma-separated list of `JOB`, `POSITION`, `REQUISITION`  '
+        - name: statuses
+          in: query
+          type: string
+          description: 'Filter by a comma-separated list of `OPEN_LIMITED`, `OPEN_UNLIMITED`, `PENDING`, `FROZEN`, `FILLED`,
+            `CLOSED`  '
+    - name: hris-teams
+      path: /hris/teams
+      operations:
+      - name: gethristeams
+        method: GET
+        description: Get teams (deprecated)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+    - name: hris-time-off-balances
+      path: /hris/time-off-balances
+      operations:
+      - name: gethristimeoffbalances
+        method: GET
+        description: Get time off balances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: employee_id
+          in: query
+          type: string
+          description: Filter by a specific employee using their ID.
+    - name: hris-timesheets
+      path: /hris/timesheets
+      operations:
+      - name: gethristimesheets
+        method: GET
+        description: Get timesheets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Integration-Id
+          in: header
+          type: string
+          description: ID of the integration you want to interact with.
+          required: true
+        - name: cursor
+          in: query
+          type: string
+          description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the
+            previous page response.
+        - name: page_size
+          in: query
+          type: string
+          description: The number of results to return per page. Maximum is 250.
+        - name: updated_after
+          in: query
+          type: string
+          description: Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records
+            where either the record itself **OR** its nested data ha
+        - name: include_deleted
+          in: query
+          type: string
+          description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted
+            entries too.
+        - name: ignore_unsupported_filters
+          in: query
+          type: string
+          description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead
+            of filtering out all results.
+        - name: ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        - name: remote_ids
+          in: query
+          type: string
+          description: Filter by a comma-separated list of remote IDs.
+        - name: employee_id
+          in: query
+          type: string
+          description: Returns timesheets for a specific employee.
+        - name: started_before
+          in: query
+          type: string
+          description: Return timesheets whose start time is before the given timestamp.
+        - name: started_after
+          in: query
+          type: string
+          description: Return timesheets whose start time is on or after the given timestamp.
+        - name: ended_before
+          in: query
+          type: string
+          description: Return timesheets whose end time is on or before the given timestamp.
+        - name: ended_after
+          in: query
+          type: string
+          description: Return timesheets whose end time is on or after the given timestamp.
+    authentication:
+      type: bearer
+      token: '{{env.KOMBO_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: kombo-unified-hris-api-rest
+    port: 8080
+    description: REST adapter for Kombo API — Unified HRIS API. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/hris/absence-types
+      name: hris-absence-types
+      description: REST surface for hris-absence-types.
+      operations:
+      - method: GET
+        name: gethrisabsencetypes
+        description: Get absence types
+        call: kombo-unified-hris-api.gethrisabsencetypes
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/absences
+      name: hris-absences
+      description: REST surface for hris-absences.
+      operations:
+      - method: GET
+        name: gethrisabsences
+        description: Get absences
+        call: kombo-unified-hris-api.gethrisabsences
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          date_from: rest.date_from
+          date_until: rest.date_until
+          type_ids: rest.type_ids
+          employee_id: rest.employee_id
+          time_from: rest.time_from
+          time_until: rest.time_until
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: posthrisabsences
+        description: Create absence
+        call: kombo-unified-hris-api.posthrisabsences
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/absences/{absence-id}
+      name: hris-absences-absence-id
+      description: REST surface for hris-absences-absence_id.
+      operations:
+      - method: DELETE
+        name: deletehrisabsencesabsenceid
+        description: Delete absence
+        call: kombo-unified-hris-api.deletehrisabsencesabsenceid
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          absence_id: rest.absence_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/employee-document-categories
+      name: hris-employee-document-categories
+      description: REST surface for hris-employee-document-categories.
+      operations:
+      - method: GET
+        name: gethrisemployeedocumentcategories
+        description: Get employee document categories
+        call: kombo-unified-hris-api.gethrisemployeedocumentcategories
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/employee-skill-assignments
+      name: hris-employee-skill-assignments
+      description: REST surface for hris-employee-skill-assignments.
+      operations:
+      - method: GET
+        name: gethrisemployeeskillassignments
+        description: Get employee skill assignments
+        call: kombo-unified-hris-api.gethrisemployeeskillassignments
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          employee_ids: rest.employee_ids
+          skill_ids: rest.skill_ids
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: posthrisemployeeskillassignments
+        description: Create employee skill assignment
+        call: kombo-unified-hris-api.posthrisemployeeskillassignments
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/employee-skill-assignments/{employee-skill-assignment-id}
+      name: hris-employee-skill-assignments-employee-skill-assignment-id
+      description: REST surface for hris-employee-skill-assignments-employee_skill_assignment_id.
+      operations:
+      - method: PATCH
+        name: patchhrisemployeeskillassignmentsemployeeskillassignmentid
+        description: Update employee skill assignment
+        call: kombo-unified-hris-api.patchhrisemployeeskillassignmentsemployeeskillassignmentid
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          employee_skill_assignment_id: rest.employee_skill_assignment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletehrisemployeeskillassignmentsemployeeskillassignmentid
+        description: Delete employee skill assignment
+        call: kombo-unified-hris-api.deletehrisemployeeskillassignmentsemployeeskillassignmentid
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          employee_skill_assignment_id: rest.employee_skill_assignment_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/employees
+      name: hris-employees
+      description: REST surface for hris-employees.
+      operations:
+      - method: GET
+        name: gethrisemployees
+        description: Get employees
+        call: kombo-unified-hris-api.gethrisemployees
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          employment_status: rest.employment_status
+          employment_statuses: rest.employment_statuses
+          group_ids: rest.group_ids
+          legal_entity_ids: rest.legal_entity_ids
+          work_location_ids: rest.work_location_ids
+          work_emails: rest.work_emails
+          personal_emails: rest.personal_emails
+          custom_fields: rest.custom_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: posthrisemployees
+        description: '[DEPRECATED] Create employee'
+        call: kombo-unified-hris-api.posthrisemployees
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/employees/form
+      name: hris-employees-form
+      description: REST surface for hris-employees-form.
+      operations:
+      - method: GET
+        name: gethrisemployeesform
+        description: Get employee form
+        call: kombo-unified-hris-api.gethrisemployeesform
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: posthrisemployeesform
+        description: Create employee with form
+        call: kombo-unified-hris-api.posthrisemployeesform
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/employees/{employee-id}
+      name: hris-employees-employee-id
+      description: REST surface for hris-employees-employee_id.
+      operations:
+      - method: PATCH
+        name: patchhrisemployeesemployeeid
+        description: Update employee
+        call: kombo-unified-hris-api.patchhrisemployeesemployeeid
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          employee_id: rest.employee_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/employees/{employee-id}/documents
+      name: hris-employees-employee-id-documents
+      description: REST surface for hris-employees-employee_id-documents.
+      operations:
+      - method: POST
+        name: posthrisemployeesemployeeiddocuments
+        description: Add document to employee
+        call: kombo-unified-hris-api.posthrisemployeesemployeeiddocuments
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          employee_id: rest.employee_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/employments
+      name: hris-employments
+      description: REST surface for hris-employments.
+      operations:
+      - method: GET
+        name: gethrisemployments
+        description: Get employments
+        call: kombo-unified-hris-api.gethrisemployments
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/groups
+      name: hris-groups
+      description: REST surface for hris-groups.
+      operations:
+      - method: GET
+        name: gethrisgroups
+        description: Get groups
+        call: kombo-unified-hris-api.gethrisgroups
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          types: rest.types
+          name_contains: rest.name_contains
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/legal-entities
+      name: hris-legal-entities
+      description: REST surface for hris-legal-entities.
+      operations:
+      - method: GET
+        name: gethrislegalentities
+        description: Get legal entities
+        call: kombo-unified-hris-api.gethrislegalentities
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          name_contains: rest.name_contains
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/locations
+      name: hris-locations
+      description: REST surface for hris-locations.
+      operations:
+      - method: GET
+        name: gethrislocations
+        description: Get work locations
+        call: kombo-unified-hris-api.gethrislocations
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          name_contains: rest.name_contains
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/performance-review-cycles
+      name: hris-performance-review-cycles
+      description: REST surface for hris-performance-review-cycles.
+      operations:
+      - method: GET
+        name: gethrisperformancereviewcycles
+        description: Get performance review cycles
+        call: kombo-unified-hris-api.gethrisperformancereviewcycles
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/performance-reviews
+      name: hris-performance-reviews
+      description: REST surface for hris-performance-reviews.
+      operations:
+      - method: GET
+        name: gethrisperformancereviews
+        description: Get performance reviews
+        call: kombo-unified-hris-api.gethrisperformancereviews
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          types: rest.types
+          review_cycle_ids: rest.review_cycle_ids
+          reviewee_ids: rest.reviewee_ids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/provisioning-groups/{group-id}/diff
+      name: hris-provisioning-groups-group-id-diff
+      description: REST surface for hris-provisioning-groups-group_id-diff.
+      operations:
+      - method: POST
+        name: posthrisprovisioninggroupsgroupiddiff
+        description: Get provisioning diff
+        call: kombo-unified-hris-api.posthrisprovisioninggroupsgroupiddiff
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          group_id: rest.group_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/provisioning-groups/{group-id}/setup-links
+      name: hris-provisioning-groups-group-id-setup-links
+      description: REST surface for hris-provisioning-groups-group_id-setup-links.
+      operations:
+      - method: POST
+        name: posthrisprovisioninggroupsgroupidsetuplinks
+        description: Create provisioning setup link (deprecated)
+        call: kombo-unified-hris-api.posthrisprovisioninggroupsgroupidsetuplinks
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          group_id: rest.group_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/skills
+      name: hris-skills
+      description: REST surface for hris-skills.
+      operations:
+      - method: GET
+        name: gethrisskills
+        description: Get skills
+        call: kombo-unified-hris-api.gethrisskills
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          name_contains: rest.name_contains
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: posthrisskills
+        description: Create skill
+        call: kombo-unified-hris-api.posthrisskills
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/skills/{skill-id}
+      name: hris-skills-skill-id
+      description: REST surface for hris-skills-skill_id.
+      operations:
+      - method: PATCH
+        name: patchhrisskillsskillid
+        description: Update skill
+        call: kombo-unified-hris-api.patchhrisskillsskillid
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          skill_id: rest.skill_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletehrisskillsskillid
+        description: Delete skill
+        call: kombo-unified-hris-api.deletehrisskillsskillid
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          skill_id: rest.skill_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/staffing-entities
+      name: hris-staffing-entities
+      description: REST surface for hris-staffing-entities.
+      operations:
+      - method: GET
+        name: gethrisstaffingentities
+        description: Get staffing entities
+        call: kombo-unified-hris-api.gethrisstaffingentities
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          model_types: rest.model_types
+          statuses: rest.statuses
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/teams
+      name: hris-teams
+      description: REST surface for hris-teams.
+      operations:
+      - method: GET
+        name: gethristeams
+        description: Get teams (deprecated)
+        call: kombo-unified-hris-api.gethristeams
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/time-off-balances
+      name: hris-time-off-balances
+      description: REST surface for hris-time-off-balances.
+      operations:
+      - method: GET
+        name: gethristimeoffbalances
+        description: Get time off balances
+        call: kombo-unified-hris-api.gethristimeoffbalances
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          employee_id: rest.employee_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/timesheets
+      name: hris-timesheets
+      description: REST surface for hris-timesheets.
+      operations:
+      - method: GET
+        name: gethristimesheets
+        description: Get timesheets
+        call: kombo-unified-hris-api.gethristimesheets
+        with:
+          X-Integration-Id: rest.X-Integration-Id
+          cursor: rest.cursor
+          page_size: rest.page_size
+          updated_after: rest.updated_after
+          include_deleted: rest.include_deleted
+          ignore_unsupported_filters: rest.ignore_unsupported_filters
+          ids: rest.ids
+          remote_ids: rest.remote_ids
+          employee_id: rest.employee_id
+          started_before: rest.started_before
+          started_after: rest.started_after
+          ended_before: rest.ended_before
+          ended_after: rest.ended_after
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: kombo-unified-hris-api-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Kombo API — Unified HRIS API. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-absence-types
+      description: Get absence types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisabsencetypes
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-absences
+      description: Get absences
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisabsences
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        date_from: tools.date_from
+        date_until: tools.date_until
+        type_ids: tools.type_ids
+        employee_id: tools.employee_id
+        time_from: tools.time_from
+        time_until: tools.time_until
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-absence
+      description: Create absence
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-unified-hris-api.posthrisabsences
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-absence
+      description: Delete absence
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kombo-unified-hris-api.deletehrisabsencesabsenceid
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        absence_id: tools.absence_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-employee-document-categories
+      description: Get employee document categories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisemployeedocumentcategories
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-employee-skill-assignments
+      description: Get employee skill assignments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisemployeeskillassignments
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        employee_ids: tools.employee_ids
+        skill_ids: tools.skill_ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-employee-skill-assignment
+      description: Create employee skill assignment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-unified-hris-api.posthrisemployeeskillassignments
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-employee-skill-assignment
+      description: Update employee skill assignment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.patchhrisemployeeskillassignmentsemployeeskillassignmentid
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        employee_skill_assignment_id: tools.employee_skill_assignment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-employee-skill-assignment
+      description: Delete employee skill assignment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kombo-unified-hris-api.deletehrisemployeeskillassignmentsemployeeskillassignmentid
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        employee_skill_assignment_id: tools.employee_skill_assignment_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-employees
+      description: Get employees
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisemployees
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        employment_status: tools.employment_status
+        employment_statuses: tools.employment_statuses
+        group_ids: tools.group_ids
+        legal_entity_ids: tools.legal_entity_ids
+        work_location_ids: tools.work_location_ids
+        work_emails: tools.work_emails
+        personal_emails: tools.personal_emails
+        custom_fields: tools.custom_fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deprecated-create-employee
+      description: '[DEPRECATED] Create employee'
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-unified-hris-api.posthrisemployees
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-employee-form
+      description: Get employee form
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisemployeesform
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-employee-form
+      description: Create employee with form
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-unified-hris-api.posthrisemployeesform
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-employee
+      description: Update employee
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.patchhrisemployeesemployeeid
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        employee_id: tools.employee_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-document-employee
+      description: Add document to employee
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-unified-hris-api.posthrisemployeesemployeeiddocuments
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        employee_id: tools.employee_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-employments
+      description: Get employments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisemployments
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-groups
+      description: Get groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisgroups
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        types: tools.types
+        name_contains: tools.name_contains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-legal-entities
+      description: Get legal entities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrislegalentities
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        name_contains: tools.name_contains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-work-locations
+      description: Get work locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrislocations
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        name_contains: tools.name_contains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-performance-review-cycles
+      description: Get performance review cycles
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisperformancereviewcycles
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-performance-reviews
+      description: Get performance reviews
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisperformancereviews
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        types: tools.types
+        review_cycle_ids: tools.review_cycle_ids
+        reviewee_ids: tools.reviewee_ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-provisioning-diff
+      description: Get provisioning diff
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: kombo-unified-hris-api.posthrisprovisioninggroupsgroupiddiff
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        group_id: tools.group_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-provisioning-setup-link-deprecated
+      description: Create provisioning setup link (deprecated)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-unified-hris-api.posthrisprovisioninggroupsgroupidsetuplinks
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        group_id: tools.group_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-skills
+      description: Get skills
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisskills
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        name_contains: tools.name_contains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-skill
+      description: Create skill
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: kombo-unified-hris-api.posthrisskills
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-skill
+      description: Update skill
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.patchhrisskillsskillid
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        skill_id: tools.skill_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-skill
+      description: Delete skill
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: kombo-unified-hris-api.deletehrisskillsskillid
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        skill_id: tools.skill_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-staffing-entities
+      description: Get staffing entities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethrisstaffingentities
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        model_types: tools.model_types
+        statuses: tools.statuses
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-teams-deprecated
+      description: Get teams (deprecated)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethristeams
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-time-off-balances
+      description: Get time off balances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethristimeoffbalances
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        employee_id: tools.employee_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-timesheets
+      description: Get timesheets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: kombo-unified-hris-api.gethristimesheets
+      with:
+        X-Integration-Id: tools.X-Integration-Id
+        cursor: tools.cursor
+        page_size: tools.page_size
+        updated_after: tools.updated_after
+        include_deleted: tools.include_deleted
+        ignore_unsupported_filters: tools.ignore_unsupported_filters
+        ids: tools.ids
+        remote_ids: tools.remote_ids
+        employee_id: tools.employee_id
+        started_before: tools.started_before
+        started_after: tools.started_after
+        ended_before: tools.ended_before
+        ended_after: tools.ended_after
+      outputParameters:
+      - type: object
+        mapping: $.
