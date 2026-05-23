@@ -1,0 +1,150 @@
+{
+  "operationId": "PostAiApplyUnifiedApiJobsJobIdApplications",
+  "method": "POST",
+  "path": "/ai-apply/unified-api/jobs/{job_id}/applications",
+  "summary": "Create application",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "candidate": {
+          "first_name": "Frank",
+          "last_name": "Doe",
+          "company": "Acme Inc.",
+          "title": "Head of Integrations",
+          "email_address": "frank.doe@example.com",
+          "phone_number": "+1-541-754-3010",
+          "gender": "MALE",
+          "salary_expectations": {
+            "amount": 100000,
+            "period": "YEAR"
+          },
+          "availability_date": "2021-01-01",
+          "location": {
+            "city": "New York",
+            "zip_code": "10016",
+            "state": "NY",
+            "country": "US"
+          }
+        },
+        "stage_id": "8x3YKRDcuRnwShdh96ShBNn1",
+        "attachments": [
+          {
+            "name": "Frank Doe CV.txt",
+            "data": "SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=",
+            "type": "CV",
+            "content_type": "text/plain"
+          }
+        ],
+        "screening_question_answers": [
+          {
+            "question_id": "3phFBNXRweGnDmsU9o2vdPuQ",
+            "answer": "Yes"
+          },
+          {
+            "question_id": "EYJjhMQT3LtVKXnTbnRT8s6U",
+            "answer": [
+              "GUzE666zfyjeoCJX6A8n7wh6",
+              "5WPHzzKAv8cx97KtHRUV96U8",
+              "7yZfKGzWigXxxRTygqAfHvyE"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "H77fDF8uvEzGNPRubiz5DvQ7",
+          "remote_id": "32",
+          "outcome": "PENDING",
+          "rejection_reason_name": null,
+          "rejected_at": null,
+          "current_stage_id": "5J7L4b48wBfffYwek9Az9pkM",
+          "job_id": "H5daSm8e85Dmvmne3wLeCPhX",
+          "candidate_id": "26vafvWSRmbhNcxJYqjCzuJg",
+          "screening_question_answers": [],
+          "custom_fields": {},
+          "integration_fields": [],
+          "remote_url": "https://example.com/applications/32",
+          "changed_at": "2022-08-07T14:01:29.196Z",
+          "remote_deleted_at": null,
+          "remote_created_at": "2022-04-02T00:00:00.000Z",
+          "remote_updated_at": "2022-04-04T00:00:00.000Z",
+          "remote_data": null,
+          "current_stage": {
+            "id": "5J7L4b48wBfffYwek9Az9pkM",
+            "name": "Interview",
+            "remote_id": "5",
+            "index": 2
+          },
+          "job": {
+            "id": "H5daSm8e85Dmvmne3wLeCPhX",
+            "name": "Head of Integrations",
+            "remote_id": "1"
+          },
+          "candidate": {
+            "id": "26vafvWSRmbhNcxJYqjCzuJg",
+            "remote_id": "32",
+            "first_name": "John",
+            "last_name": "Doe",
+            "company": "Acme, Inc.",
+            "title": "Head of Marketing",
+            "confidential": false,
+            "source": "Employee Referral",
+            "phone_numbers": [
+              {
+                "phone_number": "+1-541-754-3010",
+                "type": "HOME"
+              }
+            ],
+            "email_addresses": [
+              {
+                "email_address": "john.doe@example.com",
+                "type": "PRIVATE"
+              }
+            ],
+            "social_media": [
+              {
+                "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                "type": "YOUTUBE",
+                "username": null
+              }
+            ],
+            "location": {
+              "city": "Berlin",
+              "country": "DE",
+              "raw": "Berlin, Germany",
+              "state": "Berlin",
+              "street_1": "Lohm\u00fchlenstra\u00dfe 65",
+              "street_2": null,
+              "zip_code": "12435"
+            },
+            "custom_fields": {},
+            "integration_fields": [],
+            "remote_url": "https://example.com/candidates/32",
+            "remote_created_at": "2022-04-02T00:00:00.000Z",
+            "remote_updated_at": "2022-04-04T00:00:00.000Z",
+            "remote_data": null,
+            "changed_at": "2022-04-04T00:00:00.000Z",
+            "remote_deleted_at": null,
+            "tags": [
+              {
+                "id": "7DHDky9zk4qnWkycuuQjFXNh",
+                "name": "Fast Learner",
+                "remote_id": "1"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

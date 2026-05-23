@@ -1,0 +1,47 @@
+{
+  "operationId": "PostLmsCoursesBulk",
+  "method": "POST",
+  "path": "/lms/courses/bulk",
+  "summary": "Upsert courses",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "items": [
+          {
+            "origin_id": "course-1",
+            "course": {
+              "type": "EXTERNAL",
+              "title": "Building LMS integrations with Kombo",
+              "description": "Learn how to build and integrate Learning Management System (LMS) integrations with Kombo. This course covers the unified LMS API, course management, user enrollment, progress tracking, and best practices for building robust LMS connectors.",
+              "course_url": "https://docs.kombo.dev/lms/introduction",
+              "thumbnail_url": "https://kombo.dev/images/courses/lms-integrations-thumbnail.png",
+              "duration": 45,
+              "languages": [
+                "en",
+                "de-CH"
+              ]
+            }
+          },
+          {
+            "origin_id": "course-2",
+            "course": {
+              "type": "EXTERNAL",
+              "title": "Introduction to TypeScript",
+              "description": "Learn one of the most popular programming languages of the recent years quickly and efficiently. Results guaranteed!",
+              "course_url": "https://example.com",
+              "thumbnail_url": "https://example.com/images/thumbnail.jpg",
+              "duration": 60,
+              "languages": [
+                "en-US",
+                "pl-PL"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

@@ -1,0 +1,14 @@
+{
+  "operationId": "DeleteAtsCustomAvionteSyncedJobsJobRemoteId",
+  "method": "DELETE",
+  "path": "/ats/custom/avionte/synced-jobs/{job_remote_id}",
+  "summary": "Remove a job from sync",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {}
+    }
+  ],
+  "responseExamples": []
+}

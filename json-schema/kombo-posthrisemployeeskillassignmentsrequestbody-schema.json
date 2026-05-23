@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisEmployeeSkillAssignmentsRequestBody",
+  "title": "PostHrisEmployeeSkillAssignmentsRequestBody",
+  "type": "object",
+  "properties": {
+    "employee_id": {
+      "type": "string",
+      "description": "The ID of the employee"
+    },
+    "skill_id": {
+      "type": "string",
+      "description": "The ID of the skill"
+    },
+    "current_level": {
+      "type": "string",
+      "description": "The current skill level of the employee"
+    }
+  },
+  "required": [
+    "employee_id",
+    "skill_id"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisEmployeesParameterEmploymentStatus",
+  "title": "GetHrisEmployeesParameterEmploymentStatus",
+  "type": "string",
+  "enum": [
+    "ACTIVE",
+    "PENDING",
+    "INACTIVE",
+    "LEAVE"
+  ],
+  "description": "**(\u26a0\ufe0f Deprecated - Use the `employment_statuses` filter instead.)** Filter by the `employment_status` field."
+}

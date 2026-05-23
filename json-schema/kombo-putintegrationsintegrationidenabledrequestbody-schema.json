@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PutIntegrationsIntegrationIdEnabledRequestBody",
+  "title": "PutIntegrationsIntegrationIdEnabledRequestBody",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "boolean",
+      "description": "The desired state of the integration (e.g., `true` for enabled, `false` for disabled)."
+    }
+  },
+  "required": [
+    "value"
+  ]
+}

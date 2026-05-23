@@ -1,0 +1,409 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisEmployeesRequestBody",
+  "title": "PostHrisEmployeesRequestBody",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "description": "The first name of the employee."
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The last name of the employee."
+    },
+    "work_email": {
+      "type": "string",
+      "description": "The email address of the employee to be created. For tools where the personal email address is required, we map this input to the personal email. This is documented on a per-tool basis.",
+      "format": "email"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "MALE",
+        "FEMALE",
+        "NON_BINARY",
+        "NOT_SPECIFIED"
+      ],
+      "description": "The gender of the employee."
+    },
+    "job_title": {
+      "type": "string",
+      "description": "The title of the position this person is working in."
+    },
+    "home_address": {
+      "type": "object",
+      "properties": {
+        "street_1": {
+          "type": "string"
+        },
+        "street_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zip_code": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "The uppercase two-letter ISO country (e.g., `DE`). For systems that use codes in formats other than `ISO 3166-1 alpha-2`, Kombo transforms the ISO Codes to the appropriate value."
+        }
+      },
+      "description": "The employee's home address."
+    },
+    "date_of_birth": {
+      "description": "The employee's date of birth. This is a plain date (i.e., `yyyy-MM-dd`), all time information is discarded.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "mobile_phone_number": {
+      "type": "string"
+    },
+    "home_phone_number": {
+      "type": "string"
+    },
+    "nationality": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "The uppercase two-letter ISO country (e.g., `DE`). For systems that use codes in formats other than `ISO 3166-1 alpha-2`, Kombo transforms the ISO Codes to the appropriate value."
+    },
+    "start_date": {
+      "description": "Start date of the employee. Also considered to be the hire date. This is a plain date (i.e., `yyyy-MM-dd`), all time information is discarded.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "legal_entity_id": {
+      "type": "string",
+      "description": "The Kombo ID of the legal entity the employee should be in. This field is required for certain integrations."
+    },
+    "location_id": {
+      "type": "string",
+      "description": "The Kombo ID of the location the employee should be in. This field is required for certain integrations."
+    },
+    "remote_fields": {
+      "type": "object",
+      "properties": {
+        "humaans": {
+          "type": "object",
+          "properties": {
+            "employee": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Fields that we will pass through to Humaans `Employee` object."
+            }
+          },
+          "description": "Fields specific to Humaans."
+        },
+        "hibob": {
+          "type": "object",
+          "properties": {
+            "employee": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Fields that we will pass through to HiBob's `Person` endpoint."
+            }
+          },
+          "description": "Fields specific to HiBob."
+        },
+        "sympa": {
+          "type": "object",
+          "properties": {
+            "GenericNewHire": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Fields that we will pass through to Sympa's `Employee` object."
+            }
+          },
+          "description": "Fields specific to Sympa."
+        },
+        "silae": {
+          "type": "object",
+          "properties": {
+            "siret": {
+              "type": "string",
+              "description": "The siret of the company. The siret can be found as the remote ID of a Silae legal entity."
+            },
+            "employee": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Fields that we will passed through to Silae `Employee` object."
+            },
+            "employment": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Fields that we will passed through to Silae `Employment` object."
+            }
+          },
+          "description": "Fields specific to Silae."
+        },
+        "peoplehr": {
+          "type": "object",
+          "properties": {
+            "job_role_effective_date": {
+              "description": "The effective date of the employee's current role. This is a plain date (i.e., `yyyy-MM-dd`), all time information is discarded.",
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+              "externalDocs": {
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+              }
+            },
+            "department": {
+              "type": "string"
+            }
+          },
+          "description": "Fields specific to PeopleHR."
+        },
+        "zohopeople": {
+          "type": "object",
+          "properties": {
+            "employee_id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "A personnel code used to identify individuals working for the business."
+            }
+          },
+          "description": "Fields specific to Zoho People."
+        },
+        "workday": {
+          "type": "object",
+          "properties": {
+            "job_requisition_id": {
+              "type": "string",
+              "description": "Workday job requisition ID of that the employee should be hired for. Provide either this or `position_id`."
+            },
+            "position_id": {
+              "type": "string",
+              "description": "Workday position ID of that the employee should be hired to. Provide either this or `job_requisition_id`."
+            },
+            "ssn": {
+              "type": "string",
+              "description": "The social security number of the employee."
+            },
+            "bank_account": {
+              "type": "object",
+              "properties": {
+                "iban": {
+                  "type": "string"
+                },
+                "bic": {
+                  "type": "string"
+                },
+                "bank_name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "iban",
+                "bic",
+                "bank_name"
+              ],
+              "description": "The employee's bank account."
+            }
+          },
+          "description": "Fields specific to Workday."
+        },
+        "deel": {
+          "type": "object",
+          "properties": {
+            "candidate_id": {
+              "type": "string",
+              "description": "The unique identifier of the candidate in the ATS."
+            },
+            "candidate_link": {
+              "type": "string",
+              "description": "The link to the candidate's profile in the ATS."
+            }
+          },
+          "required": [
+            "candidate_id",
+            "candidate_link"
+          ],
+          "description": "Fields specific to Deel."
+        },
+        "bamboohr": {
+          "type": "object",
+          "properties": {
+            "employee": {
+              "type": "object",
+              "additionalProperties": true,
+              "description": "Fields that we will pass through to BambooHR `Employee` object."
+            }
+          },
+          "description": "Fields specific to BambooHR."
+        },
+        "oracle": {
+          "type": "object",
+          "properties": {
+            "group_id": {
+              "type": "string",
+              "description": "The business unit group ID for which the employee should be created. It can be found as a group with the type `null`."
+            },
+            "department_id": {
+              "type": "string",
+              "description": "The department group ID for which the employee should be created. It can be found as a group with the type `DEPARTMENT`."
+            }
+          },
+          "required": [
+            "group_id",
+            "department_id"
+          ],
+          "description": "Fields specific to Oracle HCM."
+        },
+        "adpworkforcenow": {
+          "type": "object",
+          "properties": {
+            "onboarding_template_code": {
+              "type": "string",
+              "description": "The onboarding template to be used for the created employee. View the possible values in the Kombo dashboard by clicking on the ADP Workforce Now integration and viewing the field report in the settings tab."
+            },
+            "applicant_payroll_profile_group_code": {
+              "type": "string",
+              "description": "The payroll group code (a.k.a. \"Company Code\") to be used for the created employee. View the possible values in the Kombo dashboard by clicking on the ADP Workforce Now integration and viewing the field report in the settings tab."
+            },
+            "manager_position_id": {
+              "type": "string",
+              "description": "The position ID of the employment of the manager. Available as mappable custom field on employments. Not the employment ID or employment remote ID!"
+            },
+            "home_organization_unit_code": {
+              "type": "string",
+              "description": "The remote id of a Kombo group with type \"DEPARTMENT\" that will be used as the employee's home department."
+            },
+            "personal_email": {
+              "type": "string",
+              "description": "The personal email for the employee."
+            }
+          },
+          "required": [
+            "onboarding_template_code",
+            "applicant_payroll_profile_group_code"
+          ],
+          "description": "Fields specific to ADP Workforce Now."
+        },
+        "azuread": {
+          "type": "object",
+          "properties": {
+            "password": {
+              "type": "string",
+              "description": "Azure / entra requires a password to be set when creating a user. The user has to use the password on his initial sign-in and will be forced to change the password once signed in."
+            }
+          },
+          "required": [
+            "password"
+          ],
+          "description": "Fields specific to Azure AD/Entra ID."
+        },
+        "paycor": {
+          "type": "object",
+          "properties": {
+            "paygroupRemoteId": {
+              "type": "string",
+              "description": "[REQUIRED] Remote ID of a Kombo Group with type \"COST_CENTER\""
+            },
+            "departmentRemoteId": {
+              "type": "string",
+              "description": "[REQUIRED] Remote ID of a Kombo Group with type \"DEPARTMENT\""
+            }
+          },
+          "required": [
+            "paygroupRemoteId",
+            "departmentRemoteId"
+          ],
+          "description": "Fields specific to Paycor."
+        },
+        "planday": {
+          "type": "object",
+          "properties": {
+            "department_remote_id": {
+              "type": "string",
+              "description": "The remote ID of the department for which the employee should be assigned to. It can be found as a group with the type `DEPARTMENT`."
+            }
+          },
+          "required": [
+            "department_remote_id"
+          ],
+          "description": "Fields specific to PlanDay."
+        },
+        "dayforce": {
+          "type": "object",
+          "properties": {
+            "social_security_number": {
+              "type": "string",
+              "description": "The social security number of the employee"
+            },
+            "pay_type": {
+              "type": "string",
+              "description": "The pay type of the employee. This needs to be a valid XRefCode from Dayforce."
+            },
+            "pay_class": {
+              "type": "string",
+              "description": "The pay class of the employee. This needs to be a valid XRefCode from Dayforce."
+            },
+            "pay_group": {
+              "type": "string",
+              "description": "The pay group of the employee. This needs to be a valid XRefCode from Dayforce."
+            },
+            "base_rate": {
+              "type": "number",
+              "format": "double",
+              "minimum": -1.7976931348623157e+308,
+              "description": "The base rate of the employee."
+            },
+            "role": {
+              "type": "string",
+              "description": "The role of the employee. This needs to be a valid XRefCode from Dayforce."
+            },
+            "location": {
+              "type": "string",
+              "description": "The location of the employee. This needs to be a valid XRefCode from Dayforce."
+            },
+            "department": {
+              "type": "string",
+              "description": "The department of the employee. This needs to be a valid XRefCode from Dayforce."
+            },
+            "job": {
+              "type": "string",
+              "description": "The job of the employee. This needs to be a valid XRefCode from Dayforce."
+            },
+            "country": {
+              "type": "string",
+              "description": "The country of the employee. This needs to be a valid XRefCode from Dayforce."
+            }
+          },
+          "required": [
+            "social_security_number",
+            "pay_type",
+            "pay_class",
+            "pay_group",
+            "base_rate",
+            "role",
+            "location",
+            "department",
+            "job",
+            "country"
+          ],
+          "description": "Fields specific to Dayforce."
+        }
+      },
+      "description": "Additional fields that we will pass through to specific HRIS systems."
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name"
+  ]
+}

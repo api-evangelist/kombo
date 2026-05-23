@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssessmentOrderReceivedWebhookPayload",
+  "title": "AssessmentOrderReceivedWebhookPayload",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this webhook event"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "assessment:order-received"
+      ],
+      "description": "Type of the webhook event"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the assessment order."
+        },
+        "package_id": {
+          "type": "string",
+          "description": "The identifier of the assessment package."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "OPEN",
+            "COMPLETED",
+            "CANCELLED",
+            "REJECTED"
+          ],
+          "description": "The current status of the assessment order."
+        },
+        "integration_id": {
+          "type": "string",
+          "description": "The unique identifier of the integration."
+        },
+        "candidate": {
+          "type": "object",
+          "properties": {
+            "remote_id": {
+              "type": "string",
+              "nullable": true,
+              "description": "The candidate's identifier in the integrated system."
+            },
+            "email": {
+              "type": "string",
+              "description": "The candidate's email address.",
+              "format": "email"
+            },
+            "first_name": {
+              "type": "string",
+              "nullable": true,
+              "description": "The candidate's first name."
+            },
+            "last_name": {
+              "type": "string",
+              "nullable": true,
+              "description": "The candidate's last name."
+            },
+            "phone": {
+              "type": "string",
+              "nullable": true,
+              "description": "The candidate's phone number."
+            }
+          },
+          "required": [
+            "remote_id",
+            "email",
+            "first_name",
+            "last_name",
+            "phone"
+          ],
+          "additionalProperties": false,
+          "description": "Information about the candidate taking the assessment."
+        },
+        "application": {
+          "type": "object",
+          "properties": {
+            "remote_id": {
+              "type": "string",
+              "nullable": true,
+              "description": "The application's identifier in the integrated system."
+            }
+          },
+          "required": [
+            "remote_id"
+          ],
+          "additionalProperties": false,
+          "description": "Information about the job application."
+        },
+        "job": {
+          "type": "object",
+          "properties": {
+            "remote_id": {
+              "type": "string",
+              "nullable": true,
+              "description": "The job's identifier in the integrated system."
+            },
+            "name": {
+              "type": "string",
+              "nullable": true,
+              "description": "The job title."
+            },
+            "job_code": {
+              "type": "string",
+              "nullable": true,
+              "description": "The human readable job code. Some systems expose this as the Requisition Code/ID."
+            },
+            "description": {
+              "type": "string",
+              "nullable": true,
+              "description": "Description of the job. This field is usually returned as HTML."
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "street_1": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "If we can parse the address data, this field contains the first part of the street information."
+                },
+                "street_2": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "city": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "state": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "zip_code": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "country": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "Contains the ISO2 country code if possible. If not, it contains the original value."
+                },
+                "raw": {
+                  "type": "string",
+                  "nullable": true,
+                  "description": "If we have address data, this is filled with the raw address string."
+                }
+              },
+              "additionalProperties": false,
+              "nullable": true,
+              "description": "The job location information."
+            },
+            "hiring_team": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "remote_id": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The team member's identifier in the integrated system."
+                  },
+                  "email": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The team member's email address."
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The team member's first name."
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "The team member's last name."
+                  },
+                  "hiring_team_roles": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "RECRUITER",
+                        "HIRING_MANAGER"
+                      ]
+                    },
+                    "description": "Array of the roles of the user for this specific job."
+                  }
+                },
+                "required": [
+                  "remote_id",
+                  "email",
+                  "first_name",
+                  "last_name",
+                  "hiring_team_roles"
+                ],
+                "additionalProperties": false,
+                "description": "A member of the hiring team."
+              },
+              "description": "The hiring team allows you to provision users into your system who can access the job and its applications."
+            }
+          },
+          "required": [
+            "remote_id",
+            "name",
+            "job_code",
+            "description",
+            "location",
+            "hiring_team"
+          ],
+          "additionalProperties": false,
+          "description": "Information about the job posting."
+        }
+      },
+      "required": [
+        "id",
+        "package_id",
+        "status",
+        "integration_id",
+        "candidate",
+        "application",
+        "job"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "data"
+  ],
+  "additionalProperties": false
+}

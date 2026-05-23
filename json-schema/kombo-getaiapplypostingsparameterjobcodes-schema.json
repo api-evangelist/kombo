@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAiApplyPostingsParameterJobCodes",
+  "title": "GetAiApplyPostingsParameterJobCodes",
+  "type": "string",
+  "description": "Filter by a comma-separated list of job codes such as `ACME_13,ACME_14`."
+}

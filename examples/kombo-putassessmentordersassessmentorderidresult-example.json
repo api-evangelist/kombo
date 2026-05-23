@@ -1,0 +1,44 @@
+{
+  "operationId": "PutAssessmentOrdersAssessmentOrderIdResult",
+  "method": "PUT",
+  "path": "/assessment/orders/{assessment_order_id}/result",
+  "summary": "Update order result",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "COMPLETED",
+        "score": 90,
+        "max_score": 100,
+        "result_url": "https://example.com",
+        "completed_at": "2023-04-04T00:00:00.000Z",
+        "attributes": [
+          {
+            "type": "TEXT",
+            "label": "Role fit",
+            "value": "Excellent"
+          },
+          {
+            "type": "SUB_RESULT",
+            "id": "<YOUR_INTERNAL_ID_OF_THE_TEST>",
+            "label": "Personality test",
+            "score": {
+              "value": 97,
+              "max": 100
+            },
+            "status": "COMPLETED"
+          }
+        ],
+        "attachments": [
+          {
+            "name": "Assessment Report.pdf",
+            "data": "SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=",
+            "content_type": "application/pdf"
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

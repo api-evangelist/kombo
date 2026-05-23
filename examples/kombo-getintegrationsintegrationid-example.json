@@ -1,0 +1,78 @@
+{
+  "operationId": "GetIntegrationsIntegrationId",
+  "method": "GET",
+  "path": "/integrations/{integration_id}",
+  "summary": "Get integration details",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "factorial:8d1hpPsbjxUkoCoa1veLZGe5",
+          "tool": {
+            "id": "factorial",
+            "label": "Factorial",
+            "internal_label": null,
+            "logo_url": "https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg",
+            "icon_url": "https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg"
+          },
+          "category": "HRIS",
+          "status": "ACTIVE",
+          "setup_status": "COMPLETED",
+          "end_user": {
+            "organization_name": "Acme",
+            "creator_email": "example-integration-creator@acme.com",
+            "origin_id": "2DQJAUtSzzzKP9buDTvUvPk3"
+          },
+          "scope_config": {
+            "id": "B1hu5NGyhdjSq5X3hxEz4bAN",
+            "name": "Anonymous Scopes"
+          },
+          "data_expired_at": null,
+          "created_at": "2022-08-07T14:01:29.196Z",
+          "beta": false,
+          "read_models": [
+            {
+              "id": "hris_employees",
+              "label": "Employees",
+              "is_available": true,
+              "coverage_status": "SUPPORTED",
+              "scope_config_setting": "ENABLED",
+              "opted_out_by_customer": false,
+              "fields": [
+                {
+                  "id": "date_of_birth",
+                  "is_available": false,
+                  "coverage_status": "SUPPORTED",
+                  "scope_config_setting": "OPTIONAL",
+                  "opted_out_by_customer": true
+                }
+              ]
+            }
+          ],
+          "write_actions": [
+            {
+              "id": "hris_create_employee",
+              "label": "Create employee",
+              "is_available": true,
+              "coverage_status": "SUPPORTED",
+              "scope_config_setting": "ENABLED",
+              "opted_out_by_customer": false,
+              "fields": [
+                {
+                  "id": "first_name",
+                  "is_available": true,
+                  "coverage_status": "SUPPORTED"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

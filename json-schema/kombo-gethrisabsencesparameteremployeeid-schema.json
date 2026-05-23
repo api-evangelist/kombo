@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisAbsencesParameterEmployeeId",
+  "title": "GetHrisAbsencesParameterEmployeeId",
+  "type": "string",
+  "description": "Filter by a specific employee using their ID."
+}

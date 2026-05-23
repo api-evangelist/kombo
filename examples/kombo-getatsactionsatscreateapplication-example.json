@@ -1,0 +1,44 @@
+{
+  "operationId": "GetAtsActionsAtsCreateApplication",
+  "method": "GET",
+  "path": "/ats/actions/ats_create_application",
+  "summary": "",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "attachment_restrictions": {
+            "total_size_bytes": 20000000,
+            "types": {
+              "CV": {
+                "is_supported": true,
+                "min_amount": 1,
+                "max_amount": 1,
+                "max_file_size_bytes": 10000000,
+                "accepted_mime_types": [
+                  "application/pdf",
+                  "application/msword"
+                ]
+              },
+              "COVER_LETTER": {
+                "is_supported": true,
+                "min_amount": 0,
+                "max_amount": null,
+                "max_file_size_bytes": null,
+                "accepted_mime_types": null
+              },
+              "OTHER": {
+                "is_supported": false
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

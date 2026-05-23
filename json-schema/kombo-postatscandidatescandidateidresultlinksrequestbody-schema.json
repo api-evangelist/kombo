@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAtsCandidatesCandidateIdResultLinksRequestBody",
+  "title": "PostAtsCandidatesCandidateIdResultLinksRequestBody",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "If the system allows us to display a display name for the link, we will use this label."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the link."
+    },
+    "details": {
+      "type": "object",
+      "properties": {
+        "custom_field_name_prefix": {
+          "type": "string",
+          "description": "That will be added to the attribute labels if they are used for custom fields. If you specify `Acme:` as the prefix, the custom field will be named `Acme: Score`. Putting in the name of your company/product is a good idea."
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "The name of the attribute"
+              },
+              "value": {
+                "type": "string",
+                "description": "The value of the attribute"
+              }
+            },
+            "required": [
+              "key",
+              "value"
+            ]
+          }
+        }
+      },
+      "required": [
+        "custom_field_name_prefix",
+        "attributes"
+      ],
+      "description": "Additional details with attributes that will be added to the result. This can be percentages, scores, or any text.\n\nWe generally recommend using short attribute keys and a short custom_field_name_prefix to avoid overflowing the ATS UI."
+    },
+    "remote_fields": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "icims": {
+              "type": "object",
+              "properties": {
+                "assessment_package_id": {
+                  "type": "string",
+                  "description": "The package ID of the assessment that the result link will be added to."
+                }
+              },
+              "description": "Fields specific to iCIMS."
+            },
+            "oracle": {
+              "type": "object",
+              "properties": {
+                "override_document_category": {
+                  "type": "string",
+                  "enum": [
+                    "IRC_CANDIDATE_RESUME",
+                    "IRC_CANDIDATE_COVERLETTER",
+                    "MISC",
+                    "IRC_INTERNAL"
+                  ],
+                  "description": "Allows you to override the document category for the url. (Default: MISC)"
+                },
+                "multi_post_to_all_current_applications": {
+                  "type": "boolean",
+                  "description": "If true, the result link will be posted to all current applications for the candidate."
+                }
+              },
+              "description": "Fields specific to Oracle."
+            }
+          },
+          "description": "Additional fields that we will pass through to specific ATS systems."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "greenhouse": {
+              "type": "object",
+              "properties": {
+                "post_headers": {
+                  "type": "object",
+                  "properties": {
+                    "On-Behalf-Of": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "ID of the the user that will show up as having performed the action in Greenhouse. We already pass a value by default, but you can use this to override it."
+                    }
+                  },
+                  "description": "Headers we will pass with `POST` requests to Greenhouse."
+                }
+              },
+              "description": "Fields specific to Greenhouse."
+            },
+            "workable": {
+              "type": "object",
+              "properties": {
+                "on_behalf_of_user_remote_id": {
+                  "type": "string",
+                  "description": "The remote ID of the user that will be displayed in the UI as the one that performed the action."
+                }
+              },
+              "description": "Workable specific remote fields for ATS actions."
+            }
+          },
+          "description": "Additional fields that we will pass through to specific ATS systems."
+        }
+      ],
+      "description": "Additional fields that we will pass through to specific ATS systems."
+    }
+  },
+  "required": [
+    "label",
+    "url"
+  ]
+}

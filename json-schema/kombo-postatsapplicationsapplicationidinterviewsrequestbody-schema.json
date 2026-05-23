@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAtsApplicationsApplicationIdInterviewsRequestBody",
+  "title": "PostAtsApplicationsApplicationIdInterviewsRequestBody",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the interview"
+    },
+    "start_time": {
+      "type": "string",
+      "description": "The start time of the interview"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "The end time of the interview"
+    },
+    "interviewer_user_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The IDs of the interviewers"
+    },
+    "organizer_user_id": {
+      "type": "string",
+      "description": "The ID of the organizer"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "PHYSICAL",
+            "VIRTUAL"
+          ]
+        },
+        "address": {
+          "type": "string",
+          "description": "The address of the interview"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    }
+  },
+  "required": [
+    "title",
+    "start_time",
+    "end_time",
+    "interviewer_user_ids",
+    "organizer_user_id",
+    "location"
+  ]
+}

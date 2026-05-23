@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAiApplyUnifiedApiJobsJobIdApplicationsParameterJobId",
+  "title": "PostAiApplyUnifiedApiJobsJobIdApplicationsParameterJobId",
+  "type": "string",
+  "description": "The Kombo ID or Remote ID of the Job this candidate should apply for. If you want to use the ID of the integrated system (remote_id) you need to prefix the id with \"remote:\". You can use the remote ID if you do not want to sync jobs."
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PutCustomDatevEmployeesEmployeeIdPreparePayrollRequestBody",
+  "title": "PutCustomDatevEmployeesEmployeeIdPreparePayrollRequestBody",
+  "type": "object",
+  "properties": {
+    "payroll_run": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+          "externalDocs": {
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+          }
+        }
+      },
+      "required": [
+        "date"
+      ]
+    },
+    "hourly_payments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hours": {
+            "type": "number",
+            "format": "double",
+            "minimum": -1.7976931348623157e+308,
+            "description": "Number of hours this employee has worked."
+          },
+          "lohnart": {
+            "type": "number",
+            "format": "double",
+            "minimum": -1.7976931348623157e+308,
+            "description": "The \"Lohnart\" (payment-type) in DATEV. Make sure a Lohnart is selected that actually supports hours."
+          }
+        },
+        "required": [
+          "hours",
+          "lohnart"
+        ]
+      },
+      "description": "Add entries for all the hourly calculated supplements here. For example you can write \"Overtime\" or \"Work on Holidays\" (in hours here). Unfortunately, DATEV doens't allow showing a lable for the entries."
+    },
+    "fixed_payments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "minimum": -1.7976931348623157e+308
+          },
+          "lohnart": {
+            "type": "number",
+            "format": "double",
+            "minimum": -1.7976931348623157e+308,
+            "description": "The \"Lohnart\" (payment-type) in DATEV. Make sure a Lohnart is selected that actually supports fixed payments (no hourly modifier)."
+          }
+        },
+        "required": [
+          "amount",
+          "lohnart"
+        ]
+      },
+      "description": "Add entries for all the fixed supplements here. For example you can write \"Bonuses\" (in Euros here). Unfortunately, DATEV doens't allow showing a lable for the entries."
+    },
+    "custom_lodas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "minimum": -1.7976931348623157e+308,
+            "description": "This amount value will be mapped to Datev \"Wert\" field."
+          },
+          "lohnart": {
+            "type": "number",
+            "format": "double",
+            "minimum": -1.7976931348623157e+308,
+            "description": "Choose a valid Lodas Lohnart."
+          },
+          "bearbeitungsschluessel": {
+            "type": "number",
+            "format": "double",
+            "minimum": -1.7976931348623157e+308,
+            "description": "Choose a valid Lodas Bearbeitungsschl\u00fcssel. We list the valid Bearbeitungsschl\u00fcssel [here](https://storage.googleapis.com/kombo-assets/integrations/datev/lodas_bs.json)."
+          }
+        },
+        "required": [
+          "amount",
+          "lohnart",
+          "bearbeitungsschluessel"
+        ]
+      },
+      "default": [],
+      "description": "Add custom entries to the DATEV Lodas Standard Erfassungstabelle."
+    }
+  },
+  "required": [
+    "payroll_run",
+    "hourly_payments",
+    "fixed_payments"
+  ]
+}

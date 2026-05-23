@@ -1,0 +1,29 @@
+{
+  "operationId": "PutAssessmentPackages",
+  "method": "PUT",
+  "path": "/assessment/packages",
+  "summary": "Set packages",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "packages": [
+          {
+            "id": "1001",
+            "type": "SKILLS_TEST",
+            "name": "TypeScript",
+            "description": "TypeScript coding skills assessments"
+          },
+          {
+            "id": "1002",
+            "type": "VIDEO_INTERVIEW",
+            "name": "Video Interview",
+            "description": "Video interview to assess communication skills"
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

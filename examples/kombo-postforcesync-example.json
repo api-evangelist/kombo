@@ -1,0 +1,22 @@
+{
+  "operationId": "PostForceSync",
+  "method": "POST",
+  "path": "/force-sync",
+  "summary": "Trigger sync",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "already_queued": false,
+          "sync_id": "119ihtp91nA3dqRFiV67nXS6",
+          "type": "DELTA"
+        }
+      }
+    }
+  ]
+}

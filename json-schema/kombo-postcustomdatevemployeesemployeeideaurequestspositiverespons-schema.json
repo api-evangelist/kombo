@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCustomDatevEmployeesEmployeeIdEauRequestsPositiveResponse",
+  "title": "PostCustomDatevEmployeesEmployeeIdEauRequestsPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "eau_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "eau_id"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "description": "These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console."
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "warnings"
+  ]
+}

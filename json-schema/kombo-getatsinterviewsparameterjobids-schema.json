@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsInterviewsParameterJobIds",
+  "title": "GetAtsInterviewsParameterJobIds",
+  "type": "string",
+  "description": "Filter by a comma-separated list of job IDs. We will only return interviews for applications associated with any of these jobs."
+}

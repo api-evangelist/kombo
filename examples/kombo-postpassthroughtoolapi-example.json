@@ -1,0 +1,48 @@
+{
+  "operationId": "PostPassthroughToolApi",
+  "method": "POST",
+  "path": "/passthrough/{tool}/{api}",
+  "summary": "Send passthrough request",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "method": "GET",
+        "path": "/company/employees"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "url": "https://api.personio.de/v1/company/employees",
+          "status": 200,
+          "headers": {
+            "content-type": "application/json"
+          },
+          "data": {
+            "success": true,
+            "data": [
+              {
+                "id": 123,
+                "first_name": "John",
+                "last_name": "Doe"
+              }
+            ]
+          }
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

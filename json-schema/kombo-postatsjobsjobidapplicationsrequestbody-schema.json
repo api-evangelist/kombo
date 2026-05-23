@@ -1,0 +1,1045 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAtsJobsJobIdApplicationsRequestBody",
+  "title": "PostAtsJobsJobIdApplicationsRequestBody",
+  "type": "object",
+  "properties": {
+    "stage_id": {
+      "type": "string",
+      "description": "Stage this candidate should be in. If left out, the default stage for this job will be used. You can obtain the possible `stage_id`s from the `get-jobs` endpoint."
+    },
+    "candidate": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "description": "The first name of the candidate."
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The last name of the candidate."
+        },
+        "email_address": {
+          "type": "string",
+          "description": "The primary email address this application will be created with.",
+          "format": "email"
+        },
+        "additional_email_addresses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "PERSONAL",
+                  "WORK",
+                  "OTHER"
+                ]
+              },
+              "email_address": {
+                "type": "string",
+                "format": "email"
+              }
+            },
+            "required": [
+              "type",
+              "email_address"
+            ]
+          }
+        },
+        "company": {
+          "type": "string",
+          "description": "The company where the candidate is currently working."
+        },
+        "title": {
+          "type": "string",
+          "description": "The current job title of the candidate."
+        },
+        "phone_number": {
+          "type": "string",
+          "description": "The phone number of the candidate."
+        },
+        "additional_phone_numbers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "PERSONAL",
+                  "WORK",
+                  "OTHER"
+                ]
+              },
+              "phone_number": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "phone_number"
+            ]
+          }
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$",
+              "description": "The uppercase two-letter ISO country (e.g., `DE`). For systems that use codes in formats other than `ISO 3166-1 alpha-2`, Kombo transforms the ISO Codes to the appropriate value."
+            },
+            "state": {
+              "type": "string"
+            },
+            "street_1": {
+              "type": "string"
+            },
+            "zip_code": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "country"
+          ],
+          "description": "The location of the candidate."
+        },
+        "gender": {
+          "type": "string",
+          "enum": [
+            "MALE",
+            "FEMALE",
+            "OTHER"
+          ],
+          "description": "The gender of the candidate. Must be one of `MALE`, `FEMALE`, or `OTHER`."
+        },
+        "availability_date": {
+          "description": "The date the candidate is available to start working.",
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+          "externalDocs": {
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+          }
+        },
+        "salary_expectations": {
+          "type": "object",
+          "properties": {
+            "period": {
+              "type": "string",
+              "enum": [
+                "MONTH",
+                "YEAR"
+              ],
+              "description": "The period of the salary expectations. Must be one of `MONTH` or `YEAR`."
+            },
+            "amount": {
+              "type": "number",
+              "format": "double",
+              "minimum": -1.7976931348623157e+308,
+              "description": "The amount of the salary expectations."
+            }
+          },
+          "required": [
+            "period",
+            "amount"
+          ],
+          "description": "The salary expectations of the applicant. We will automatically convert the amount to a format that is suitable for the ATS you are using. For example, if you are using monthly salary expectations, we will convert the amount to a yearly salary if the ATS expects yearly salary expectations."
+        },
+        "social_links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "url"
+            ]
+          },
+          "default": [],
+          "description": "A list of social media links of the candidate. The links must be valid URLs."
+        }
+      },
+      "required": [
+        "first_name",
+        "last_name",
+        "email_address"
+      ]
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system."
+          },
+          "content_type": {
+            "type": "string",
+            "pattern": "^[\\w.-]+\\/[\\w.-]+$",
+            "description": "Content/MIME type of the file (e.g., `application/pdf`).\n\nIf you provide `data`, this is required. If you provide `data_url`, this is optional and we'll attempt to use the `Content-Type` header of the response.\n\n**Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it's easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types))."
+          },
+          "data_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.\n\nIf you're using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).\n\n**Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases."
+          },
+          "data": {
+            "type": "string",
+            "description": "Base64-encoded contents of the file you want to upload.\n\n**Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "CV",
+              "COVER_LETTER",
+              "OTHER"
+            ],
+            "description": "Type of the attachment in the ATS. This may affect where the uploaded file will be shown in your customer's system."
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "default": [],
+      "description": "Array of the attachments you would like to upload. The first CV in the attachments will be treated as the resume of the candidate when the tool allows previewing a resume."
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the source (e.g., `\"Example Job Board\"`)."
+        },
+        "unified_key": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "description": "**(\u26a0\ufe0f Deprecated - Use [automatic source writing](/ats/features/application-attribution#automatic-attribution) instead)** Optional source information that will be attached to the candidate. If\nyou're a job board or recruiting service, you can use this to make sure your\ncustomers can see which candidates came from you.\n\nThis is deprecated because writing sources requires users to do some setup in most ATSs."
+    },
+    "sourced_by": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "The Kombo ID or Remote ID of the User. Use the Kombo ID directly, or prefix the remote ID with \"remote:\" to reference the user by their ID in the remote system."
+        }
+      },
+      "required": [
+        "user_id"
+      ],
+      "description": "Credit the recruiter or team member who sourced this candidate.\n\nWhile the `source` field tracks the channel/platform (e.g., \"Awesome Jobboard\"), the `sourced_by` field tracks the individual person responsible for finding the candidate."
+    },
+    "gdpr_consent": {
+      "type": "object",
+      "properties": {
+        "expires_at": {
+          "description": "Until when the candidate has granted the company they're applying to permission to process their personal data.",
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+          "externalDocs": {
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+          }
+        },
+        "given": {
+          "type": "boolean",
+          "description": "Whether the candidate has given consent."
+        }
+      },
+      "description": "Optional GDPR consent information required in some jurisdictions (like the Czech Republic or Slovakia)."
+    },
+    "remote_fields": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "successfactors": {
+              "type": "object",
+              "properties": {
+                "Candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to SuccessFactor's `Candidate` object."
+                },
+                "JobApplication": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to SuccessFactor's `JobApplication` object."
+                },
+                "copyJobApplicationAttachments": {
+                  "type": "boolean",
+                  "description": "If set to true, we will copy custom attachments from the JobApplication to the Candidate."
+                },
+                "update_existing_candidate": {
+                  "type": [
+                    "boolean",
+                    "null"
+                  ],
+                  "description": "When the candidate already exists, whether to update the Candidate with the remote fields found under the Candidate entity."
+                }
+              },
+              "description": "Fields specific to SAP SuccessFactors."
+            },
+            "personio": {
+              "type": "object",
+              "properties": {
+                "application": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Personio's `application` object."
+                }
+              },
+              "description": "Fields specific to Personio."
+            },
+            "talentsoft": {
+              "type": "object",
+              "properties": {
+                "applicant": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to TalentSoft's `applicant` object."
+                },
+                "application": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to TalentSoft's `application` object."
+                }
+              },
+              "description": "Fields specific to TalentSoft."
+            },
+            "teamtailor": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Teamtailor's `Candidate` object."
+                },
+                "application": {
+                  "type": "object",
+                  "properties": {
+                    "attributes": {
+                      "type": "object",
+                      "additionalProperties": true,
+                      "description": "Fields that we will pass through to Teamtailor's attributes section `Job application` object."
+                    }
+                  }
+                }
+              }
+            },
+            "greenhouse": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Greenhouse's `Candidate` object."
+                },
+                "application": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Greenhouse's `Application` object."
+                }
+              },
+              "description": "Fields specific to Greenhouse."
+            },
+            "lever": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Lever's `Candidate` object. Note: make sure to submit the keys and values in the correct form data format."
+                }
+              },
+              "description": "Fields specific to Lever."
+            },
+            "workable": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Workable's `Candidate` object."
+                }
+              },
+              "description": "Fields specific to Workable."
+            },
+            "workday": {
+              "type": "object",
+              "properties": {
+                "Candidate_Data": {
+                  "type": "object",
+                  "properties": {
+                    "Name_Detail_Data": {
+                      "type": "object",
+                      "properties": {
+                        "Middle_Name": {
+                          "type": "string",
+                          "description": "The candidate's middle name"
+                        },
+                        "Social_Suffix_Reference": {
+                          "type": "object",
+                          "properties": {
+                            "Predefined_Name_Component_ID": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Predefined_Name_Component_ID"
+                          ],
+                          "description": "The WID of the social suffix reference for the candidate"
+                        }
+                      }
+                    },
+                    "Language_Reference": {
+                      "type": "object",
+                      "properties": {
+                        "WID": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "WID"
+                      ],
+                      "description": "Used to set the candidate's primary language"
+                    },
+                    "Job_Application_Data": {
+                      "type": "object",
+                      "properties": {
+                        "Job_Applied_To_Data": {
+                          "type": "object",
+                          "properties": {
+                            "Global_Personal_Information_Data": {
+                              "type": "object",
+                              "properties": {
+                                "Date_of_Birth": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Resume_Data": {
+                          "type": "object",
+                          "properties": {
+                            "Education_Data": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "School_Name": {
+                                    "type": "string"
+                                  },
+                                  "First_Year_Attended": {
+                                    "type": "number",
+                                    "format": "double",
+                                    "minimum": -1.7976931348623157e+308
+                                  },
+                                  "Last_Year_Attended": {
+                                    "type": "number",
+                                    "format": "double",
+                                    "minimum": -1.7976931348623157e+308
+                                  },
+                                  "Field_of_Study_Reference": {
+                                    "type": "object",
+                                    "properties": {
+                                      "WID": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "WID"
+                                    ]
+                                  },
+                                  "Degree_Reference": {
+                                    "type": "object",
+                                    "properties": {
+                                      "WID": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "WID"
+                                    ]
+                                  },
+                                  "Grade_Average": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "Skill_Data": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "Skill_Name": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "Language_Data": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "Language_Reference": {
+                                    "type": "object",
+                                    "properties": {
+                                      "WID": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "Language": {
+                                    "type": "object",
+                                    "properties": {
+                                      "Native": {
+                                        "type": "boolean"
+                                      },
+                                      "Language_Ability": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "Language_Ability_Data": {
+                                              "type": "object",
+                                              "properties": {
+                                                "Language_Proficiency_Reference": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "WID": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "WID"
+                                                  ]
+                                                },
+                                                "Language_Ability_Type_Reference": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "WID": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "WID"
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "Language_Ability"
+                                    ]
+                                  }
+                                }
+                              }
+                            },
+                            "Experience_Data": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "Company_Name": {
+                                    "type": "string"
+                                  },
+                                  "Title": {
+                                    "type": "string"
+                                  },
+                                  "Location": {
+                                    "type": "string"
+                                  },
+                                  "Start_Date": {
+                                    "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+                                    "externalDocs": {
+                                      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                                    }
+                                  },
+                                  "End_Date": {
+                                    "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+                                    "externalDocs": {
+                                      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                                    }
+                                  },
+                                  "Currently_Work_Here": {
+                                    "type": "boolean"
+                                  },
+                                  "Description": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "Company_Name",
+                                  "Title",
+                                  "Start_Date"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Contact_Data": {
+                      "type": "object",
+                      "properties": {
+                        "Location_Data": {
+                          "type": "object",
+                          "properties": {
+                            "Address_Line_1": {
+                              "type": "string"
+                            },
+                            "Address_Line_2": {
+                              "type": "string"
+                            },
+                            "Region_Subdivision_1": {
+                              "type": "string"
+                            },
+                            "Country_Region_Reference": {
+                              "type": "object",
+                              "properties": {
+                                "Country_Region_ID": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "Country_Region_ID"
+                              ]
+                            },
+                            "Country_City_Reference": {
+                              "type": "object",
+                              "properties": {
+                                "WID": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "WID"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Worker_Reference": {
+                      "type": "object",
+                      "properties": {
+                        "WID": {
+                          "type": "string"
+                        },
+                        "Employee_ID": {
+                          "type": "string"
+                        }
+                      },
+                      "description": "Reference to the Worker (employee) to link the candidate to. Provide either WID or Employee_ID."
+                    }
+                  }
+                },
+                "Override_Source_Reference_WID": {
+                  "type": "string",
+                  "description": "Used to override the automatic source WID."
+                }
+              },
+              "description": "Fields specific to Workday. The remote fields schema follows the documentation at https://community.workday.com/sites/default/files/file-hosting/productionapi/Recruiting/v43.0/Put_Candidate.html. Only defined fields are supported, if you need additional field support please reach out to Kombo support."
+            },
+            "zohorecruit": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Zoho Recruit's `Candidate` object."
+                }
+              },
+              "description": "Fields specific to Zoho Recruit."
+            },
+            "bullhorn": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Bullhorn's `Candidate` object."
+                },
+                "job_submission": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Bullhorn's `JobSubmission` object."
+                }
+              },
+              "description": "Fields specific to Bullhorn."
+            },
+            "smartrecruiters": {
+              "type": "object",
+              "properties": {
+                "candidate_with_questions": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "**(\u26a0\ufe0f Deprecated - Use the `candidate` field instead.)** Fields that we will pass through to the SmartRecruiters's `Candidate` object when created with screening question answers. This API is used: https://developers.smartrecruiters.com/reference/createcandidate-1"
+                },
+                "candidate_without_questions": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "**(\u26a0\ufe0f Deprecated - Use the `candidate` field instead.)** Fields that we will pass through to the SmartRecruiters's `Candidate` object when created with screening question answers. This API is used: https://developers.smartrecruiters.com/reference/candidatesaddtojob-1"
+                },
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to the SmartRecruiters's `Candidate` object. This API is used: https://developers.smartrecruiters.com/reference/createcandidate-1"
+                },
+                "consent_decisions": {
+                  "type": "object",
+                  "properties": {
+                    "SINGLE": {
+                      "type": "boolean"
+                    },
+                    "SMART_RECRUIT": {
+                      "type": "boolean"
+                    },
+                    "SMART_CRM": {
+                      "type": "boolean"
+                    },
+                    "SMART_MESSAGE_SMS": {
+                      "type": "boolean"
+                    },
+                    "SMART_MESSAGE_WHATSAPP": {
+                      "type": "boolean"
+                    }
+                  },
+                  "description": "The consent decisions for the candidate. SmartRecruiters supports two consent models: 'Single' (use the `SINGLE` key) and 'Separated' (use `SMART_RECRUIT`, `SMART_CRM`, `SMART_MESSAGE_SMS`, and/or `SMART_MESSAGE_WHATSAPP` keys). When this field is provided, it takes precedence over the `gdpr_consent` field for the `consentDecisions` property. See: https://developers.smartrecruiters.com/docs/partners-post-an-application"
+                }
+              },
+              "description": "Fields specific to SmartRecruiters."
+            },
+            "talentadore": {
+              "type": "object",
+              "properties": {
+                "applications": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to the Talentadore's when creating applications."
+                }
+              },
+              "description": "Fields specific to Talentadore."
+            },
+            "guidecom": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to GuideCom's `Candidate` object."
+                }
+              },
+              "description": "Fields specific to GuideCom."
+            },
+            "dvinci": {
+              "type": "object",
+              "properties": {
+                "application": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to d.vinci's application object. This API is used: https://static.dvinci-easy.com/files/d.vinci%20application-apply-api.html#jobs__id__applyApi_post"
+                },
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to d.vinci's candidate/application payload as top-level fields (e.g., dateOfBirth)."
+                }
+              },
+              "description": "Fields specific to d.vinci."
+            },
+            "hrworks": {
+              "type": "object",
+              "properties": {
+                "jobApplication": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to HRWorks's `Job Application` object. This API is used: https://developers.hrworks.de/docs/hrworks-api-v2/53021f035f62d-post-job-applications"
+                }
+              },
+              "description": "Fields specific to GuideCom."
+            },
+            "jobylon": {
+              "type": "object",
+              "properties": {
+                "application": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "The `message` field of Jobylon's create application endpoint's request body."
+                    }
+                  },
+                  "description": "Fields that we will pass through to Jobylon's create application [endpoint](https://developer.jobylon.com/push-api-and-webhooks#-xL0v)'s request body."
+                }
+              },
+              "description": "Fields specific to Jobylon."
+            },
+            "avature": {
+              "type": "object",
+              "properties": {
+                "workflow": {
+                  "type": "object",
+                  "properties": {
+                    "step": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "The ID of the workflow step to assign to the candidate."
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ]
+                    }
+                  }
+                }
+              },
+              "description": "Fields specific to Avature."
+            },
+            "recruitee": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "properties": {
+                    "cover_letter_text": {
+                      "type": "string",
+                      "description": "The cover letter text as a string. This will be visible on the main candidate page. Can be provided together with the `cover_letter` attachment, which will end up in a separate `file` section."
+                    }
+                  }
+                }
+              },
+              "description": "Fields specific to Recruitee."
+            },
+            "rexx": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Rexx's application form fields."
+                }
+              },
+              "description": "Fields specific to Rexx."
+            },
+            "umantis": {
+              "type": "object",
+              "properties": {
+                "person": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Abacus Umantis's \"Create a person\" endpoint's `attributes` when creating a candidate."
+                }
+              },
+              "description": "Fields specific to Abacus Umantis."
+            },
+            "piloga": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "properties": {
+                    "street": {
+                      "type": "string",
+                      "description": "The street address of the candidate."
+                    }
+                  },
+                  "description": "Additional candidate fields for P&I Loga that will be mapped to the application form."
+                }
+              },
+              "description": "Fields specific to P&I Loga."
+            },
+            "pinpoint": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "Fields that we will pass through to Pinpoint's `Candidate` object."
+                }
+              },
+              "description": "Fields specific to Pinpoint."
+            },
+            "covetorest": {
+              "type": "object",
+              "properties": {
+                "candidate": {
+                  "type": "object",
+                  "properties": {
+                    "mandant": {
+                      "type": "number",
+                      "format": "double",
+                      "minimum": -1.7976931348623157e+308,
+                      "description": "The mandant field for the candidate in Coveto."
+                    }
+                  },
+                  "description": "Additional candidate fields that will be passed to the Coveto candidate creation."
+                }
+              },
+              "description": "Fields specific to Coveto REST."
+            }
+          },
+          "description": "Additional fields that we will pass through to specific ATS systems."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "greenhouse": {
+              "type": "object",
+              "properties": {
+                "post_headers": {
+                  "type": "object",
+                  "properties": {
+                    "On-Behalf-Of": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "ID of the the user that will show up as having performed the action in Greenhouse. We already pass a value by default, but you can use this to override it."
+                    }
+                  },
+                  "description": "Headers we will pass with `POST` requests to Greenhouse."
+                }
+              },
+              "description": "Fields specific to Greenhouse."
+            },
+            "workable": {
+              "type": "object",
+              "properties": {
+                "on_behalf_of_user_remote_id": {
+                  "type": "string",
+                  "description": "The remote ID of the user that will be displayed in the UI as the one that performed the action."
+                }
+              },
+              "description": "Workable specific remote fields for ATS actions."
+            }
+          },
+          "description": "Additional fields that we will pass through to specific ATS systems."
+        }
+      ],
+      "description": "Additional fields that we will pass through to specific ATS systems."
+    },
+    "screening_question_answers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question_id": {
+            "type": "string",
+            "description": "ID of the question returned by the Kombo API. We'll report a warning in the logs if the question can't be found on the job."
+          },
+          "answer": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "Answer to a `TEXT` question or the option ID of the answer to a `SINGLE_SELECT` question."
+              },
+              {
+                "type": "boolean",
+                "description": "Answer to a `BOOLEAN` question."
+              },
+              {
+                "type": "number",
+                "format": "double",
+                "minimum": -1.7976931348623157e+308,
+                "description": "Answer to a `NUMBER` question."
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Answer to a `MULTI_SELECT` question. The array elements are the IDs of the selected options."
+              },
+              {
+                "description": "Answer to a `DATE` question as an ISO 8601 date string.",
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+                "externalDocs": {
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system."
+                  },
+                  "content_type": {
+                    "type": "string",
+                    "pattern": "^[\\w.-]+\\/[\\w.-]+$",
+                    "description": "Content/MIME type of the file (e.g., `application/pdf`).\n\nIf you provide `data`, this is required. If you provide `data_url`, this is optional and we'll attempt to use the `Content-Type` header of the response.\n\n**Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it's easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types))."
+                  },
+                  "data_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.\n\nIf you're using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).\n\n**Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases."
+                  },
+                  "data": {
+                    "type": "string",
+                    "description": "Base64-encoded contents of the file you want to upload.\n\n**Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases."
+                  }
+                },
+                "required": [
+                  "name"
+                ],
+                "description": "Answer to a `FILE` question."
+              }
+            ],
+            "description": "Answer to a question. This will be validated based on the question format and throw an error if the answer is invalid. Here is a description of each question type and the required answer format:\n\n`TEXT` - Simply provide a \"string\" answer.\n\n`SINGLE_SELECT` - Provide the ID of the answer as a string.\n\n`MULTI_SELECT` - Provide a string array containing the question IDs of the selected options.\n\n`BOOLEAN` - Either `true` or `false`.\n\n`NUMBER` - A number.\n\n`DATE` - Provide the answer as an ISO 8601 date string.\n\n`FILE` - Please select Option 6 in the dropdown above to see the required format."
+          }
+        },
+        "required": [
+          "question_id",
+          "answer"
+        ]
+      },
+      "description": "Array of answers to screening questions. Currently, not all question types are supported, and unsupported ones will not be submitted.\n\nThe available questions for a job can be retrieved from the get jobs endpoint. The answers will be validated based on the format of the questions. Make sure to follow this schema to avoid errors.",
+      "examples": [
+        [
+          {
+            "question_id": "D8yPrjXXvA2XeBksTmrVvKSn",
+            "answer": "Yes"
+          }
+        ]
+      ]
+    }
+  },
+  "required": [
+    "candidate"
+  ]
+}

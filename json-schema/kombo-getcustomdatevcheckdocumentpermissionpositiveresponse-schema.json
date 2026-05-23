@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCustomDatevCheckDocumentPermissionPositiveResponse",
+  "title": "GetCustomDatevCheckDocumentPermissionPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "ready": {
+              "type": "boolean"
+            },
+            "documents_granted": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "ready",
+            "documents_granted"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "ready": {
+              "type": "boolean"
+            },
+            "error": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "ready",
+            "error"
+          ]
+        }
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "description": "These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console."
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "warnings"
+  ]
+}

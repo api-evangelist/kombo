@@ -1,0 +1,21 @@
+{
+  "operationId": "PostAtsCandidatesCandidateIdAttachments",
+  "method": "POST",
+  "path": "/ats/candidates/{candidate_id}/attachments",
+  "summary": "Add attachment to candidate",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "attachment": {
+          "name": "Frank Doe CV.txt",
+          "data": "SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=",
+          "type": "CV",
+          "content_type": "text/plain"
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

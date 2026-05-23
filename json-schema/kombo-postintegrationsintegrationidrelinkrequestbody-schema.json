@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostIntegrationsIntegrationIdRelinkRequestBody",
+  "title": "PostIntegrationsIntegrationIdRelinkRequestBody",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "it",
+        "es"
+      ],
+      "default": "en",
+      "description": "Language of the connection flow UI."
+    },
+    "scope_config_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Specify a scope config which the integration will start using once the reconnection flow has been completed.\n\nThis can be useful if you want to update the permissions of an integration, but only want the change to take effect once the user has updated their API credentials to prevent sync issues."
+    },
+    "link_type": {
+      "type": "string",
+      "enum": [
+        "EMBEDDED",
+        "MAGIC_LINK"
+      ],
+      "default": "EMBEDDED",
+      "description": "The type of link you want to create. `EMBEDDED` is for the [embedded flow](../guides/connect/embedded-flow) using the Kombo Connect SDK (these links are valid for 1 hour) and `MAGIC_LINK` is for [magic links](../guides/connect/magic-links) which you send out manually to customers (there are valid for 1 year).\n\nThis defaults to `EMBEDDED`, which is our recommended method of implementing the connection flow for a seamless user experience."
+    }
+  }
+}

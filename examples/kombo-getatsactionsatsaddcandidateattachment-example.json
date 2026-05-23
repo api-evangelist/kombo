@@ -1,0 +1,37 @@
+{
+  "operationId": "GetAtsActionsAtsAddCandidateAttachment",
+  "method": "GET",
+  "path": "/ats/actions/ats_add_candidate_attachment",
+  "summary": "",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "attachment_restrictions": {
+            "types": {
+              "CV": {
+                "is_supported": false
+              },
+              "COVER_LETTER": {
+                "is_supported": false
+              },
+              "OTHER": {
+                "is_supported": true,
+                "max_file_size_bytes": 10485760,
+                "accepted_mime_types": [
+                  "application/pdf",
+                  "application/msword"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

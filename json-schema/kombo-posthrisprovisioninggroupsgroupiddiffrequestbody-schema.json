@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisProvisioningGroupsGroupIdDiffRequestBody",
+  "title": "PostHrisProvisioningGroupsGroupIdDiffRequestBody",
+  "type": "object",
+  "properties": {
+    "provisioned_users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "origin_id": {
+            "type": "string",
+            "description": "_Your_ ID for this user (_not_ an ID retrieved from Kombo)."
+          },
+          "email": {
+            "type": "string",
+            "description": "This user's email address.",
+            "format": "email"
+          }
+        },
+        "required": [
+          "origin_id",
+          "email"
+        ]
+      },
+      "description": "Array of the already provisioned users in your system."
+    },
+    "options": {
+      "type": "object",
+      "properties": {
+        "employee_fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "id",
+              "remote_id",
+              "first_name",
+              "last_name",
+              "groups",
+              "avatar",
+              "work_location_id",
+              "legal_entity_id"
+            ]
+          },
+          "description": "The employee fields relevant for your use case."
+        }
+      },
+      "required": [
+        "employee_fields"
+      ],
+      "description": "Options to customize what we return."
+    }
+  },
+  "required": [
+    "provisioned_users",
+    "options"
+  ]
+}

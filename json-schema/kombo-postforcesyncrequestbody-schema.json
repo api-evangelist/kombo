@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostForceSyncRequestBody",
+  "title": "PostForceSyncRequestBody",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "FULL",
+        "DELTA"
+      ],
+      "default": "FULL",
+      "description": "The type of the triggered sync."
+    }
+  }
+}

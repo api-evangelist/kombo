@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCustomDatevDataPushesPositiveResponse",
+  "title": "GetCustomDatevDataPushesPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "data_pushes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "GENERAL",
+                  "PAYROLL"
+                ],
+                "description": "Type of the executed data push."
+              },
+              "created_at": {
+                "description": "Date when the push-data endpoint was called.",
+                "type": "string",
+                "format": "date-time",
+                "externalDocs": {
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                }
+              },
+              "upload_jobs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "file_name": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "string",
+                      "enum": [
+                        "FAILED",
+                        "UPLOADED",
+                        "IMPORTED",
+                        "CORRUPTED",
+                        "DELETED",
+                        "AUTO_DELETED"
+                      ],
+                      "description": "If we were not able to send the file to DATEV, we will set the state \"FAILED\". The other values are synced from DATEV for the respective import jobs."
+                    },
+                    "file": {
+                      "type": "string",
+                      "description": "Actual content of the file."
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "file_name",
+                    "state",
+                    "file"
+                  ]
+                },
+                "description": "List of all the submitted files. This can include multiple files if data was edited for multiple months."
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "created_at",
+              "upload_jobs"
+            ]
+          }
+        }
+      },
+      "required": [
+        "data_pushes"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

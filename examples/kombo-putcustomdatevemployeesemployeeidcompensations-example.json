@@ -1,0 +1,29 @@
+{
+  "operationId": "PutCustomDatevEmployeesEmployeeIdCompensations",
+  "method": "PUT",
+  "path": "/custom/datev/employees/{employee_id}/compensations",
+  "summary": "Set DATEV compensations",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "effective_date": "2022-12-01",
+        "compensations": [
+          {
+            "amount": 4500,
+            "currency": "EUR",
+            "period": "MONTH",
+            "lohnart": 200
+          },
+          {
+            "amount": 30,
+            "currency": "EUR",
+            "period": "HOUR"
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

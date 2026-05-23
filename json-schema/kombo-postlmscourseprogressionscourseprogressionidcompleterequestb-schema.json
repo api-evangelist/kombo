@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostLmsCourseProgressionsCourseProgressionIdCompleteRequestBody",
+  "title": "PostLmsCourseProgressionsCourseProgressionIdCompleteRequestBody",
+  "type": "object",
+  "properties": {
+    "completed_at": {
+      "description": "Date when the user completed the course revision. Defaults to the current date if not provided.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "score": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "format": "int64",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Score the user achieved for the course, as an integer between 0 and 100 (inclusive)."
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "operationId": "GetAtsApplicationsApplicationIdAttachments",
+  "method": "GET",
+  "path": "/ats/applications/{application_id}/attachments",
+  "summary": "Get application attachments",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "results": [
+            {
+              "type": "CV",
+              "id": "EYJjhMQT3LtVKXnTbnRT8s6U",
+              "remote_id": "GUzE666zfyjeoCJX6A8n7wh6",
+              "data_url": "https://resources.kombo.dev/7yZfKGzWigXxxRTygqAfHvyE",
+              "file_name": "Frank Doe CV.pdf",
+              "content_type": "application/x-pdf",
+              "remote_created_at": null,
+              "remote_updated_at": null
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

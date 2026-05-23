@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationStateChangedWebhookPayload",
+  "title": "IntegrationStateChangedWebhookPayload",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this webhook event"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "integration-state-changed"
+      ],
+      "description": "Type of the webhook event"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "integration_tool": {
+          "type": "string",
+          "description": "The name of the integrated tool (e.g., \"personio\", \"greenhouse\")."
+        },
+        "integration_id": {
+          "type": "string",
+          "description": "The unique identifier of the integration."
+        },
+        "integration_category": {
+          "type": "string",
+          "enum": [
+            "HRIS",
+            "ATS",
+            "ASSESSMENT",
+            "LMS"
+          ],
+          "description": "The category of the integration (HRIS, ATS, ASSESSMENT, or LMS)."
+        },
+        "end_user": {
+          "type": "object",
+          "properties": {
+            "organization_name": {
+              "type": "string",
+              "description": "The name of the organization that owns the integration."
+            },
+            "creator_email": {
+              "type": "string",
+              "nullable": true,
+              "description": "The email address of the user who created the integration.",
+              "format": "email"
+            },
+            "origin_id": {
+              "type": "string",
+              "nullable": true,
+              "description": "The unique identifier of the organization in the integrated system."
+            }
+          },
+          "required": [
+            "organization_name",
+            "creator_email",
+            "origin_id"
+          ],
+          "additionalProperties": false,
+          "description": "Information about the end user who created the integration."
+        },
+        "qa_status": {
+          "type": "string",
+          "enum": [
+            "PENDING",
+            "FAILED",
+            "PASSED"
+          ],
+          "description": "The quality assurance status of the integration."
+        },
+        "setup_status": {
+          "type": "string",
+          "enum": [
+            "INCOMPLETE",
+            "FINAL_SYNC_PENDING",
+            "COMPLETED"
+          ],
+          "description": "The current status of an integration that has filtering, field mapping features or required setup steps."
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "INVALID",
+            "INACTIVE"
+          ],
+          "description": "The current state of the integration."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the integration state was last updated."
+        }
+      },
+      "required": [
+        "integration_tool",
+        "integration_id",
+        "integration_category",
+        "end_user",
+        "qa_status",
+        "setup_status",
+        "state",
+        "updated_at"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "data"
+  ],
+  "additionalProperties": false
+}

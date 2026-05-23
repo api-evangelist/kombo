@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PatchHrisSkillsSkillIdParameterSkillId",
+  "title": "PatchHrisSkillsSkillIdParameterSkillId",
+  "type": "string",
+  "description": "The ID of the skill"
+}

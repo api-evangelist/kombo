@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAssessmentOrdersOpenPositiveResponse",
+  "title": "GetAssessmentOrdersOpenPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The unique identifier of the assessment order.",
+                "examples": [
+                  "B5KQKhAgTv6ZwzrfAbqbhipd"
+                ]
+              },
+              "package_id": {
+                "type": "string",
+                "description": "The identifier of the assessment package.",
+                "examples": [
+                  "typescript_test"
+                ]
+              },
+              "candidate": {
+                "type": "object",
+                "properties": {
+                  "remote_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The candidate's identifier in the integrated system.",
+                    "examples": [
+                      "12345"
+                    ]
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The candidate's email address.",
+                    "examples": [
+                      "john.doe@gmail.com"
+                    ],
+                    "format": "email"
+                  },
+                  "first_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The candidate's first name.",
+                    "examples": [
+                      "John"
+                    ]
+                  },
+                  "last_name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The candidate's last name.",
+                    "examples": [
+                      "Doe"
+                    ]
+                  },
+                  "phone": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The candidate's phone number.",
+                    "examples": [
+                      "+1 123 456 7890"
+                    ]
+                  }
+                },
+                "required": [
+                  "remote_id",
+                  "email",
+                  "first_name",
+                  "last_name",
+                  "phone"
+                ],
+                "description": "Information about the candidate taking the assessment."
+              },
+              "application": {
+                "type": "object",
+                "properties": {
+                  "remote_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The application's identifier in the integrated system.",
+                    "examples": [
+                      "54321"
+                    ]
+                  }
+                },
+                "required": [
+                  "remote_id"
+                ],
+                "description": "Information about the job application."
+              },
+              "job": {
+                "type": "object",
+                "properties": {
+                  "remote_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The job's identifier in the integrated system.",
+                    "examples": [
+                      "67890"
+                    ]
+                  },
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The job title.",
+                    "examples": [
+                      "Bottle Opener"
+                    ]
+                  },
+                  "job_code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The human readable job code. Some systems expose this as the Requisition Code/ID.",
+                    "examples": [
+                      "BO-2024-01"
+                    ]
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Description of the job. This field is usually returned as HTML.",
+                    "examples": [
+                      "<p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>"
+                    ]
+                  },
+                  "location": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "street_1": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "If we can parse the address data, this field contains the first part of the street information."
+                      },
+                      "street_2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "city": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "state": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "zip_code": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "country": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Contains the ISO2 country code if possible. If not, it contains the original value."
+                      },
+                      "raw": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "If we have address data, this is filled with the raw address string."
+                      }
+                    },
+                    "description": "The job location information."
+                  },
+                  "hiring_team": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "remote_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "The team member's identifier in the integrated system.",
+                          "examples": [
+                            "78901"
+                          ]
+                        },
+                        "email": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "The team member's email address.",
+                          "examples": [
+                            "jane.doe@gmail.com"
+                          ]
+                        },
+                        "first_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "The team member's first name.",
+                          "examples": [
+                            "Jane"
+                          ]
+                        },
+                        "last_name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "The team member's last name.",
+                          "examples": [
+                            "Doe"
+                          ]
+                        },
+                        "hiring_team_roles": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "RECRUITER",
+                              "HIRING_MANAGER"
+                            ],
+                            "examples": [
+                              "RECRUITER"
+                            ]
+                          },
+                          "description": "Array of the roles of the user for this specific job.",
+                          "examples": [
+                            [
+                              "RECRUITER"
+                            ]
+                          ]
+                        }
+                      },
+                      "required": [
+                        "remote_id",
+                        "email",
+                        "first_name",
+                        "last_name",
+                        "hiring_team_roles"
+                      ],
+                      "description": "A member of the hiring team."
+                    },
+                    "description": "The hiring team allows you to provision users into your system who can access the job and its applications."
+                  }
+                },
+                "required": [
+                  "remote_id",
+                  "name",
+                  "job_code",
+                  "description",
+                  "location",
+                  "hiring_team"
+                ],
+                "description": "Information about the job posting."
+              }
+            },
+            "required": [
+              "id",
+              "package_id",
+              "candidate",
+              "application",
+              "job"
+            ],
+            "examples": [
+              {
+                "id": "B5KQKhAgTv6ZwzrfAbqbhipd",
+                "package_id": "typescript_test",
+                "candidate": {
+                  "remote_id": "12345",
+                  "email": "john.doe@gmail.com",
+                  "first_name": "John",
+                  "last_name": "Doe",
+                  "phone": "+1 123 456 7890"
+                },
+                "application": {
+                  "remote_id": "54321"
+                },
+                "job": {
+                  "remote_id": "67890",
+                  "name": "Bottle Opener",
+                  "job_code": "BO-2024-01",
+                  "description": "<p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>",
+                  "location": {
+                    "street_1": "Lohm\u00fchlenstra\u00dfe 65",
+                    "street_2": null,
+                    "city": "Berlin",
+                    "state": "Berlin",
+                    "zip_code": "12435",
+                    "country": "DE",
+                    "raw": "Berlin, Germany"
+                  },
+                  "hiring_team": [
+                    {
+                      "remote_id": "78901",
+                      "email": "jane.doe@gmail.com",
+                      "first_name": "Jane",
+                      "last_name": "Doe",
+                      "hiring_team_roles": [
+                        "RECRUITER"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "next",
+        "results"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

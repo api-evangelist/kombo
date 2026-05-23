@@ -1,0 +1,16 @@
+{
+  "operationId": "PostAtsCustomAvionteSyncedJobs",
+  "method": "POST",
+  "path": "/ats/custom/avionte/synced-jobs",
+  "summary": "Add a job to be synced",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "job_remote_id": "12345"
+      }
+    }
+  ],
+  "responseExamples": []
+}

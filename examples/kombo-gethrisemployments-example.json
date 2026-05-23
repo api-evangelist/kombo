@@ -1,0 +1,39 @@
+{
+  "operationId": "GetHrisEmployments",
+  "method": "GET",
+  "path": "/hris/employments",
+  "summary": "Get employments",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "next": "eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=",
+          "results": [
+            {
+              "id": "12vpXR7BeqYNWDShXRgsonnm",
+              "remote_id": "859",
+              "employee_id": "26vafvWSRmbhNcxJYqjCzuJg",
+              "job_title": "Social Media Marketer",
+              "pay_rate": 85000,
+              "pay_period": "YEAR",
+              "pay_frequency": "SEMIMONTHLY",
+              "employment_type": "FULL_TIME",
+              "pay_currency": "EUR",
+              "effective_date": "2021-01-30T00:00:00.000Z",
+              "changed_at": "2022-08-07T14:01:29.196Z",
+              "remote_deleted_at": null,
+              "remote_data": null,
+              "custom_fields": {},
+              "integration_fields": []
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

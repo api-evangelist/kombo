@@ -1,0 +1,29 @@
+{
+  "operationId": "PostHrisProvisioningGroupsGroupIdSetupLinks",
+  "method": "POST",
+  "path": "/hris/provisioning-groups/{group_id}/setup-links",
+  "summary": "Create provisioning setup link (deprecated)",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "language": "en"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "url": "https://connect.kombo.dev/v1/setup?token=GinuMJCpUQ9xdpLmD2ocw8qdiK3qiPCizDCv754EXri2vAX4",
+          "expires_at": "2023-10-11T12:00:00.000Z"
+        }
+      }
+    }
+  ]
+}

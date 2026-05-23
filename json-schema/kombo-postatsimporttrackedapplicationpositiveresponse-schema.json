@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAtsImportTrackedApplicationPositiveResponse",
+  "title": "PostAtsImportTrackedApplicationPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 24,
+          "maxLength": 24,
+          "pattern": "^[1-9A-HJ-NP-Za-km-z]+$"
+        },
+        "tracked_at": {
+          "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "externalDocs": {
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+          }
+        },
+        "imported_id": {
+          "type": "object",
+          "properties": {
+            "erecruiter": {
+              "discriminator": {
+                "propertyName": "id_type"
+              },
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id_type": {
+                      "type": "string",
+                      "const": "application_and_job_remote_ids",
+                      "description": "Uses the `Api/Applications/ByJob/{jobId}` endpoint to retrieve the relevant application based on the job ID."
+                    },
+                    "application_remote_id": {
+                      "type": "string"
+                    },
+                    "job_remote_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_type",
+                    "application_remote_id",
+                    "job_remote_id"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "id_type": {
+                      "type": "string",
+                      "const": "application_and_candidate_remote_ids",
+                      "description": "Uses the `Api/Applications/{applicantId}` endpoint to retrieve the relevant application based on the candidate ID."
+                    },
+                    "candidate_remote_id": {
+                      "type": "string"
+                    },
+                    "application_remote_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_type",
+                    "candidate_remote_id",
+                    "application_remote_id"
+                  ]
+                }
+              ]
+            },
+            "successfactors": {
+              "discriminator": {
+                "propertyName": "id_type"
+              },
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id_type": {
+                      "type": "string",
+                      "const": "application_remote_id",
+                      "description": "Uses the `/JobApplication` ODATA endpoint to retrieve the relevant application based on the application ID."
+                    },
+                    "application_remote_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_type",
+                    "application_remote_id"
+                  ]
+                }
+              ]
+            },
+            "recruitee": {
+              "discriminator": {
+                "propertyName": "id_type"
+              },
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id_type": {
+                      "type": "string",
+                      "const": "placement_id",
+                      "description": "Uses the `/candidates` endpoint to retrieve all candidates, to find the relevant application based on the placement ID."
+                    },
+                    "placement_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_type",
+                    "placement_id"
+                  ]
+                }
+              ]
+            },
+            "greenhouse": {
+              "discriminator": {
+                "propertyName": "id_type"
+              },
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id_type": {
+                      "type": "string",
+                      "const": "application_id",
+                      "description": "Uses the `/applications/{id}` endpoint to retrieve the application."
+                    },
+                    "application_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_type",
+                    "application_id"
+                  ]
+                }
+              ]
+            },
+            "onlyfy": {
+              "discriminator": {
+                "propertyName": "id_type"
+              },
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id_type": {
+                      "type": "string",
+                      "const": "application_id",
+                      "description": "Uses the `/v1/application/{id}` endpoint to retrieve the application."
+                    },
+                    "application_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_type",
+                    "application_id"
+                  ]
+                }
+              ]
+            },
+            "smartrecruiters": {
+              "discriminator": {
+                "propertyName": "id_type"
+              },
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id_type": {
+                      "type": "string",
+                      "const": "candidate_and_job_remote_ids",
+                      "description": "Uses the `/candidates/{candidateId}/jobs/{jobId}` endpoint to retrieve the application."
+                    },
+                    "candidate_remote_id": {
+                      "type": "string"
+                    },
+                    "job_remote_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_type",
+                    "candidate_remote_id",
+                    "job_remote_id"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "tracked_at",
+        "imported_id"
+      ],
+      "examples": [
+        {
+          "id": "5wdtQtJei2oVhJKya2V1KZLM",
+          "tracked_at": "2025-02-11T15:37:37.000Z",
+          "imported_id": {
+            "successfactors": {
+              "id_type": "application_remote_id",
+              "application_remote_id": "1224042"
+            }
+          }
+        }
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "description": "These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console."
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "warnings"
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisAbsencesRequestBody",
+  "title": "PostHrisAbsencesRequestBody",
+  "type": "object",
+  "properties": {
+    "employee_id": {
+      "type": "string",
+      "description": "The ID of the employee in Kombo or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+    },
+    "absence_type_id": {
+      "type": "string",
+      "description": "The ID of the absence type in Kombo (not its `remote_id`)."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "REQUESTED",
+        "APPROVED"
+      ],
+      "description": "The state that the absence should be created in. Some tools may approve absences automatically if they were created for an absence type that does not require approval.",
+      "default": "REQUESTED"
+    },
+    "start_date": {
+      "description": "The date that the absence starts. This is a plain date (i.e., `yyyy-MM-dd`), with all time information discarded.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "end_date": {
+      "description": "When the absence ends.The date that the absence ends. This is a plain date (i.e., `yyyy-MM-dd`), with all time information discarded.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "start_half_day": {
+      "type": "boolean",
+      "description": "`true` if the absence should start in the middle of the day.",
+      "default": false
+    },
+    "end_half_day": {
+      "type": "boolean",
+      "description": "`true` if the absence should end in the middle of the day.",
+      "default": false
+    },
+    "amount": {
+      "type": "number",
+      "format": "double",
+      "minimum": 0,
+      "description": "The amount of time of the absence. Specifying this also requires specifying `unit`. This is supported by very few tools."
+    },
+    "unit": {
+      "type": "string",
+      "enum": [
+        "HOURS",
+        "DAYS"
+      ],
+      "description": "The time unit of the `amount` value. Specifying this also requires specifying `amount`."
+    },
+    "employee_note": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A note describing the reason for this absence."
+    },
+    "start_time": {
+      "type": "string",
+      "pattern": "^(?:2[0-3]|[01]?\\d):[0-5]?\\d(:[0-5]?\\d)?$",
+      "description": "The time of when the absence begins. Follows the format `HH:mm` or `HH:mm:ss` (e.g., `14:45:15`). If `start_time` is specified, `end_time` has to be specified as well."
+    },
+    "end_time": {
+      "type": "string",
+      "pattern": "^(?:2[0-3]|[01]?\\d):[0-5]?\\d(:[0-5]?\\d)?$",
+      "description": "The time of when the absence ends. Follows the format `HH:mm` or `HH:mm:ss` (e.g., `14:45:15`). If `end_time` is specified, `start_time` has to be specified as well."
+    },
+    "remote_fields": {
+      "type": "object",
+      "properties": {
+        "a3innuvanomina": {
+          "type": "object",
+          "properties": {
+            "benefit_type_id": {
+              "type": "string",
+              "enum": [
+                "Delegated Payment",
+                "No Right to Benefit",
+                "Direct payment"
+              ],
+              "description": "Required for illness absences. Benefit type: Delegated Payment, No Right to Benefit, or Direct payment."
+            }
+          },
+          "description": "Fields specific to A3 Innuva N\u00f3mina."
+        },
+        "adpworkforcenow": {
+          "type": "object",
+          "properties": {
+            "employment_id": {
+              "type": "string",
+              "description": "[Required] The employment ID of the employee that the absence will be added to."
+            },
+            "paid_leave": {
+              "type": "boolean",
+              "description": "Whether the absence is paid or not."
+            }
+          },
+          "description": "Fields specific to ADP Workforce Now."
+        }
+      },
+      "description": "Additional fields that we will pass through to specific HRIS systems."
+    }
+  },
+  "required": [
+    "employee_id",
+    "absence_type_id",
+    "start_date",
+    "end_date",
+    "employee_note"
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetToolsCategoryPositiveResponse",
+  "title": "GetToolsCategoryPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "internal_label": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Internal label that can help you debug specific variants of the integration. Only show the `label` to your users."
+              },
+              "assets": {
+                "type": "object",
+                "properties": {
+                  "logo_url": {
+                    "type": "string"
+                  },
+                  "icon_url": {
+                    "type": "string"
+                  },
+                  "icon_black_url": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "logo_url",
+                  "icon_url",
+                  "icon_black_url"
+                ]
+              },
+              "paid_api_details_markdown": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Markdown formatted text that describes details about the paid API. `null` if the tool is not paid."
+              },
+              "fast_track_details_markdown": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Markdown formatted text that describes details about the fast track process. `null` if the fast track process is not available."
+              },
+              "partner_only_details_markdown": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Markdown formatted text that describes partnership requirements. `null` if the tool does not require a partnership."
+              },
+              "connection_guide_url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "URL to the connection guide for this tool. `null` if no connection guide is available."
+              },
+              "coverage": {
+                "type": "object",
+                "properties": {
+                  "read_models": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "ID of the model (e.g. hris_employees)."
+                        },
+                        "label": {
+                          "type": "string",
+                          "description": "Label of the model (e.g. Employees)."
+                        },
+                        "coverage_status": {
+                          "type": "string",
+                          "enum": [
+                            "SUPPORTED",
+                            "UNSUPPORTED",
+                            "NOT_IMPLEMENTED",
+                            "UNKNOWN"
+                          ],
+                          "description": "The status of a datapoint of an integrated tool:\n\n- `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.\n- `UNSUPPORTED`: the tool does not support the datapoint.\n- `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).\n- `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it's availability in the tool."
+                        },
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "Key of the field in the model (e.g. first_name)."
+                              },
+                              "coverage_status": {
+                                "type": "string",
+                                "enum": [
+                                  "SUPPORTED",
+                                  "UNSUPPORTED",
+                                  "NOT_IMPLEMENTED",
+                                  "UNKNOWN"
+                                ],
+                                "description": "The status of a datapoint of an integrated tool:\n\n- `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.\n- `UNSUPPORTED`: the tool does not support the datapoint.\n- `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).\n- `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it's availability in the tool."
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "coverage_status"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "label",
+                        "coverage_status",
+                        "fields"
+                      ],
+                      "description": "List of models we can read for this tool."
+                    }
+                  },
+                  "write_actions": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        },
+                        "coverage_status": {
+                          "type": "string",
+                          "enum": [
+                            "SUPPORTED",
+                            "UNSUPPORTED",
+                            "NOT_IMPLEMENTED",
+                            "UNKNOWN"
+                          ],
+                          "description": "The status of a datapoint of an integrated tool:\n\n- `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.\n- `UNSUPPORTED`: the tool does not support the datapoint.\n- `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).\n- `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it's availability in the tool."
+                        },
+                        "fields": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "Key of the input field (e.g. `candidate.first_name`)."
+                              },
+                              "coverage_status": {
+                                "type": "string",
+                                "enum": [
+                                  "SUPPORTED",
+                                  "UNSUPPORTED",
+                                  "NOT_IMPLEMENTED",
+                                  "UNKNOWN"
+                                ],
+                                "description": "The status of a datapoint of an integrated tool:\n\n- `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.\n- `UNSUPPORTED`: the tool does not support the datapoint.\n- `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).\n- `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it's availability in the tool."
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "coverage_status"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "label",
+                        "coverage_status",
+                        "fields"
+                      ],
+                      "description": "List of supported write actions for this tool."
+                    }
+                  },
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        },
+                        "coverage_status": {
+                          "type": "string",
+                          "enum": [
+                            "SUPPORTED",
+                            "UNSUPPORTED",
+                            "NOT_IMPLEMENTED",
+                            "UNKNOWN"
+                          ],
+                          "description": "The status of a datapoint of an integrated tool:\n\n- `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.\n- `UNSUPPORTED`: the tool does not support the datapoint.\n- `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).\n- `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it's availability in the tool."
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "label",
+                        "coverage_status"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "read_models",
+                  "write_actions",
+                  "features"
+                ],
+                "description": "This describes the supported models and actions of this tool."
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "internal_label",
+              "assets",
+              "paid_api_details_markdown",
+              "fast_track_details_markdown",
+              "partner_only_details_markdown",
+              "connection_guide_url",
+              "coverage"
+            ]
+          }
+        }
+      },
+      "required": [
+        "tools"
+      ],
+      "examples": [
+        {
+          "tools": [
+            {
+              "id": "factorial",
+              "label": "Factorial",
+              "internal_label": null,
+              "assets": {
+                "logo_url": "https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg",
+                "icon_url": "https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg",
+                "icon_black_url": "https://storage.googleapis.com/kombo-assets/integrations/factorial/icon-black.svg"
+              },
+              "paid_api_details_markdown": null,
+              "fast_track_details_markdown": null,
+              "partner_only_details_markdown": null,
+              "connection_guide_url": "https://help.kombo.dev/hc/en-us/articles/18743884123409-Factorial-HR-How-do-I-link-my-account",
+              "coverage": {
+                "read_models": [
+                  {
+                    "id": "hris_employees",
+                    "label": "Employees",
+                    "coverage_status": "SUPPORTED",
+                    "fields": [
+                      {
+                        "id": "date_of_birth",
+                        "coverage_status": "SUPPORTED"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "hris_teams",
+                    "label": "Groups",
+                    "coverage_status": "UNSUPPORTED",
+                    "fields": [
+                      {
+                        "id": "parent_id",
+                        "coverage_status": "UNSUPPORTED"
+                      }
+                    ]
+                  }
+                ],
+                "write_actions": [
+                  {
+                    "id": "hris_create_employee",
+                    "label": "Create employee",
+                    "coverage_status": "SUPPORTED",
+                    "fields": [
+                      {
+                        "id": "first_name",
+                        "coverage_status": "SUPPORTED"
+                      }
+                    ]
+                  }
+                ],
+                "features": [
+                  {
+                    "id": "automatic_source_writing",
+                    "label": "Automatic Source Writing",
+                    "coverage_status": "SUPPORTED"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

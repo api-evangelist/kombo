@@ -1,0 +1,21 @@
+{
+  "operationId": "PostHrisEmployeesEmployeeIdDocuments",
+  "method": "POST",
+  "path": "/hris/employees/{employee_id}/documents",
+  "summary": "Add document to employee",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "category_id": "3Cjwu7nA7pH5cX5X1NAPmb7M",
+        "document": {
+          "name": "Frank Doe Employment Contract.txt",
+          "data": "SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=",
+          "content_type": "text/plain"
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisGroupsParameterNameContains",
+  "title": "GetHrisGroupsParameterNameContains",
+  "type": "string",
+  "description": "Filter by the `name` field. Can be used to find a group by keywords present in the group name."
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsCandidatesParameterJobIds",
+  "title": "GetAtsCandidatesParameterJobIds",
+  "type": "string",
+  "description": "Filter by a comma-separated list of job IDs. We will only return candidates that have applied to _any_ of the jobs."
+}

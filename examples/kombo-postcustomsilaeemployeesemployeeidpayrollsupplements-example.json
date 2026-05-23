@@ -1,0 +1,18 @@
+{
+  "operationId": "PostCustomSilaeEmployeesEmployeeIdPayrollSupplements",
+  "method": "POST",
+  "path": "/custom/silae/employees/{employee_id}/payroll-supplements",
+  "summary": "Write Payroll Supplement",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "supplement_code": "200",
+        "effective_date": "2024-01-14",
+        "element_amount": 6
+      }
+    }
+  ],
+  "responseExamples": []
+}

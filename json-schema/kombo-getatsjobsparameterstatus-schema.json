@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsJobsParameterStatus",
+  "title": "GetAtsJobsParameterStatus",
+  "type": "string",
+  "enum": [
+    "OPEN",
+    "CLOSED",
+    "DRAFT",
+    "ARCHIVED"
+  ],
+  "description": "**(\u26a0\ufe0f Deprecated - Use the `statuses` filter instead.)** Filter by the `status` field. Can be used to find a job based on its status."
+}

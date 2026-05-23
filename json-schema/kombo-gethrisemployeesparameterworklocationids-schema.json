@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisEmployeesParameterWorkLocationIds",
+  "title": "GetHrisEmployeesParameterWorkLocationIds",
+  "type": "string",
+  "description": "Filter by a comma-separated list of work location IDs. We will only return employees who are at _any_ of the work locations."
+}

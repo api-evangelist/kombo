@@ -1,0 +1,33 @@
+{
+  "operationId": "PostAtsCandidatesCandidateIdTags",
+  "method": "POST",
+  "path": "/ats/candidates/{candidate_id}/tags",
+  "summary": "Add tag to candidate",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "tag": {
+          "name": "Excellent Fit"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {},
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisEmployeesFormRequestBody",
+  "title": "PostHrisEmployeesFormRequestBody",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/components/schemas/Schema3"
+    }
+  },
+  "required": [
+    "properties"
+  ]
+}

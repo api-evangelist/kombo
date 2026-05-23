@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationDeletedWebhookPayload",
+  "title": "IntegrationDeletedWebhookPayload",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this webhook event"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "integration-deleted"
+      ],
+      "description": "Type of the webhook event"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier of the deleted integration."
+        },
+        "tool": {
+          "type": "string",
+          "description": "The name of the integrated tool."
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "HRIS",
+            "ATS",
+            "ASSESSMENT",
+            "LMS"
+          ],
+          "description": "The category of the integration."
+        },
+        "end_user": {
+          "type": "object",
+          "properties": {
+            "organization_name": {
+              "type": "string",
+              "description": "The name of the organization that owns the integration."
+            },
+            "creator_email": {
+              "type": "string",
+              "nullable": true,
+              "description": "The email address of the user who created the integration.",
+              "format": "email"
+            },
+            "origin_id": {
+              "type": "string",
+              "nullable": true,
+              "description": "The unique identifier of the organization in the integrated system."
+            }
+          },
+          "required": [
+            "organization_name",
+            "creator_email",
+            "origin_id"
+          ],
+          "additionalProperties": false,
+          "description": "Information about the end user who created the integration."
+        },
+        "deleted_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the integration was deleted."
+        }
+      },
+      "required": [
+        "id",
+        "tool",
+        "category",
+        "end_user",
+        "deleted_at"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "data"
+  ],
+  "additionalProperties": false
+}

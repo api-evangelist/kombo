@@ -1,0 +1,32 @@
+{
+  "operationId": "PostAtsApplicationsApplicationIdReject",
+  "method": "POST",
+  "path": "/ats/applications/{application_id}/reject",
+  "summary": "Reject application",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "rejection_reason_id": "3PJ8PZhZZa1eEdd2DtPNtVup",
+        "note": "Candidate was a great culture fit but didn't bring the hard skills we need."
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {},
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

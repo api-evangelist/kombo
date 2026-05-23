@@ -1,0 +1,20 @@
+name: Kombo Domain Vocabulary
+provider: Kombo
+providerId: kombo
+description: Tag-derived vocabulary for the Kombo API surface; sourced from openapi/ tags.
+terms:
+- term: General
+- term: Kombo Connect
+  description: Endpoints for Kombo Connect, our end-user-facing flow for setting up new integrations.
+- term: Unified HRIS API
+  description: Unified endpoints to access all the HR concepts you might need.
+- term: Unified ATS API
+  description: Unified endpoints to access all the ATS concepts you might need.
+- term: Unified ATS (Assessment & Background Check) API
+  description: Unified endpoints to operate Assessments and Background Checks for many applicant tracking systems.
+- term: Unified LMS API
+  description: Unified endpoints to access all the LMS concepts you might need.
+- term: AI Apply
+  description: Endpoints for AI-powered job application features.
+- term: Custom Endpoints
+  description: Custom integration-specific endpoints.

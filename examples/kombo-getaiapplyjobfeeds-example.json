@@ -1,0 +1,26 @@
+{
+  "operationId": "GetAiApplyJobFeeds",
+  "method": "GET",
+  "path": "/ai-apply/job-feeds",
+  "summary": "Get job feeds",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "results": [
+            {
+              "id": "mK7pQw9xNvEr2LdY5sGh8TcZ",
+              "label": "Standard Acquisition Services LLC"
+            }
+          ],
+          "next": null
+        }
+      }
+    }
+  ]
+}

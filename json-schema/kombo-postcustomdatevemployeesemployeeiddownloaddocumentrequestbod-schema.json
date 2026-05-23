@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCustomDatevEmployeesEmployeeIdDownloadDocumentRequestBody",
+  "title": "PostCustomDatevEmployeesEmployeeIdDownloadDocumentRequestBody",
+  "type": "object",
+  "properties": {
+    "accounting_month": {
+      "description": "The month to request the document for.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "document_type": {
+      "type": "string",
+      "enum": [
+        "AANB",
+        "ABEG",
+        "BUBE",
+        "DAWE",
+        "KBNW",
+        "KOST",
+        "KOTR",
+        "LKTO",
+        "LOBN",
+        "LJOE",
+        "LOJE",
+        "LOJO",
+        "LOPE",
+        "LOPN",
+        "LOPS",
+        "LORE",
+        "LOWE",
+        "LSTA",
+        "LSTB",
+        "LSTE",
+        "PDAT",
+        "PFAN",
+        "PRZA",
+        "SBNW",
+        "SVNW",
+        "WEAN",
+        "ZABR",
+        "ZAKF",
+        "ZAUW"
+      ],
+      "description": "Brutto/Netto (LOBN)\n\nLohnsteuerbescheinigung (german/english) (LSTB/LSTE)\n\nSV-Nachweis (SVNW)\n\nA1-Bescheinigung (ABEG)\n\nAntragsbest\u00e4tigung A1-Bescheinigung (AANB)\n\nBuchungsbeleg (BUBE)\n\nLohnjournal (german/english) (LOJO/LJOE)\n\nLohnsteueranmeldung (LSTA)\n\nBeitragsnachweis (KBNW)\n\nBeitragsnachweis-Erl\u00e4uterung (SBNW)\n\n\u00dcbersicht Zahlungen (ZAKF)\n\nD\u00dc Zahlungen (PRZA)\n\nBarauszahlungswerte (ZABR)\n\n\u00dcberzahlungen-Werte (ZAUW)\n\nPersonalkosten\u00fcbersicht (german/english) (LOPS/LOPE)\n\nKostenstellenwerte (KOST)\n\nKostentr\u00e4gerwerte (KOTR)\n\nLohnartenwerte einfach/erweitert (LOWE/LOPN)\n\nLohnkonto (LKTO)\n\nPersonalreport (LORE)\n\nMitarbeiterstammdaten (PDAT)\n\nPf\u00e4ndungswerte (PFAN)\n\nDarlehenswerte (DAWE)\n\nWertguthaben je Arbeitnehmer (WEAN)"
+    }
+  },
+  "required": [
+    "accounting_month",
+    "document_type"
+  ],
+  "description": "The data to request an electronic certificate of incapacity for work (eAU).",
+  "examples": [
+    {
+      "accounting_month": "2001-12-01",
+      "document_type": "LOJE"
+    },
+    {
+      "accounting_month": "2001-12-01",
+      "document_type": "LSTB"
+    }
+  ]
+}

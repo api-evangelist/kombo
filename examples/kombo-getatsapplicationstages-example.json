@@ -1,0 +1,30 @@
+{
+  "operationId": "GetAtsApplicationStages",
+  "method": "GET",
+  "path": "/ats/application-stages",
+  "summary": "Get application stages",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "next": "eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=",
+          "results": [
+            {
+              "id": "5J7L4b48wBfffYwek9Az9pkM",
+              "remote_id": "32",
+              "name": "Initial Screening",
+              "remote_data": null,
+              "changed_at": "2022-08-07T14:01:29.196Z",
+              "remote_deleted_at": null
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

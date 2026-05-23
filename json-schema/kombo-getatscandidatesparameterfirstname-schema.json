@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsCandidatesParameterFirstName",
+  "title": "GetAtsCandidatesParameterFirstName",
+  "type": "string",
+  "description": "Filter candidates by first name. This filter is case-insensitive and matches the exact first name. Fuzzy matching might be enabled in the future, so consider this for your implementation."
+}

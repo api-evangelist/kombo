@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SyncFinishedWebhookPayload",
+  "title": "SyncFinishedWebhookPayload",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this webhook event"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "sync-finished"
+      ],
+      "description": "Type of the webhook event"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "sync_id": {
+          "type": "string",
+          "description": "The unique identifier of the sync operation."
+        },
+        "sync_state": {
+          "type": "string",
+          "description": "The final state of the sync operation (e.g., `SUCCEEDED`, `FAILED`)."
+        },
+        "sync_started_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the sync operation started."
+        },
+        "sync_ended_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the sync operation completed."
+        },
+        "sync_duration_seconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Duration of the sync operation in seconds."
+        },
+        "integration_id": {
+          "type": "string",
+          "description": "The unique identifier of the integration."
+        },
+        "integration_tool": {
+          "type": "string",
+          "description": "The name of the integrated tool (e.g., \"personio\", \"greenhouse\")."
+        },
+        "integration_category": {
+          "type": "string",
+          "enum": [
+            "HRIS",
+            "ATS",
+            "ASSESSMENT",
+            "LMS"
+          ],
+          "description": "The category of the integration (HRIS, ATS, ASSESSMENT, or LMS)."
+        },
+        "end_user": {
+          "type": "object",
+          "properties": {
+            "organization_name": {
+              "type": "string",
+              "description": "The name of the organization that owns the integration."
+            },
+            "creator_email": {
+              "type": "string",
+              "nullable": true,
+              "description": "The email address of the user who created the integration.",
+              "format": "email"
+            },
+            "origin_id": {
+              "type": "string",
+              "nullable": true,
+              "description": "The unique identifier of the organization in the integrated system."
+            }
+          },
+          "required": [
+            "organization_name",
+            "creator_email",
+            "origin_id"
+          ],
+          "additionalProperties": false,
+          "description": "Information about the end user who created the integration."
+        },
+        "log_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to view detailed logs for the operation."
+        }
+      },
+      "required": [
+        "sync_id",
+        "sync_state",
+        "sync_started_at",
+        "sync_ended_at",
+        "sync_duration_seconds",
+        "integration_id",
+        "integration_tool",
+        "integration_category",
+        "end_user",
+        "log_url"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "data"
+  ],
+  "additionalProperties": false
+}

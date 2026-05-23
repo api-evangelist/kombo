@@ -1,0 +1,17 @@
+{
+  "operationId": "PostIntegrationsIntegrationIdSetupLink",
+  "method": "POST",
+  "path": "/integrations/{integration_id}/setup-link",
+  "summary": "Create Setup Flow link",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "language": "en",
+        "link_type": "EMBEDDED"
+      }
+    }
+  ],
+  "responseExamples": []
+}

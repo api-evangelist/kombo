@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisEmployeesParameterCustomFields",
+  "title": "GetHrisEmployeesParameterCustomFields",
+  "type": "string",
+  "description": "A JSON string with a single key-value pair like {\"fieldKey\":\"fieldValue\"} to filter employees by a specific custom field value. Note that the value must be a string, number, boolean or null and the key must be a valid custom field key. Custom fields with a value of type array or object are not supported."
+}

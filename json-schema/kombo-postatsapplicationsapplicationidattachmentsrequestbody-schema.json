@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAtsApplicationsApplicationIdAttachmentsRequestBody",
+  "title": "PostAtsApplicationsApplicationIdAttachmentsRequestBody",
+  "type": "object",
+  "properties": {
+    "attachment": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system."
+        },
+        "content_type": {
+          "type": "string",
+          "pattern": "^[\\w.-]+\\/[\\w.-]+$",
+          "description": "Content/MIME type of the file (e.g., `application/pdf`).\n\nIf you provide `data`, this is required. If you provide `data_url`, this is optional and we'll attempt to use the `Content-Type` header of the response.\n\n**Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it's easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types))."
+        },
+        "data_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.\n\nIf you're using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).\n\n**Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases."
+        },
+        "data": {
+          "type": "string",
+          "description": "Base64-encoded contents of the file you want to upload.\n\n**Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "CV",
+            "COVER_LETTER",
+            "OTHER"
+          ],
+          "description": "Type of the attachment in the ATS. This may affect where the uploaded file will be shown in your customer's system."
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    "remote_fields": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "oracle": {
+              "type": "object",
+              "properties": {
+                "override_document_category": {
+                  "type": "string",
+                  "enum": [
+                    "IRC_CANDIDATE_RESUME",
+                    "IRC_CANDIDATE_COVERLETTER",
+                    "MISC",
+                    "IRC_INTERNAL"
+                  ],
+                  "description": "Allows you to override the document category for the attachment."
+                },
+                "multi_post_to_all_current_applications": {
+                  "type": "boolean",
+                  "description": "If true, the attachment will be posted to all current applications for the candidate."
+                }
+              },
+              "description": "Oracle specific remote fields for the attachment."
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "greenhouse": {
+              "type": "object",
+              "properties": {
+                "post_headers": {
+                  "type": "object",
+                  "properties": {
+                    "On-Behalf-Of": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "ID of the the user that will show up as having performed the action in Greenhouse. We already pass a value by default, but you can use this to override it."
+                    }
+                  },
+                  "description": "Headers we will pass with `POST` requests to Greenhouse."
+                }
+              },
+              "description": "Fields specific to Greenhouse."
+            },
+            "workable": {
+              "type": "object",
+              "properties": {
+                "on_behalf_of_user_remote_id": {
+                  "type": "string",
+                  "description": "The remote ID of the user that will be displayed in the UI as the one that performed the action."
+                }
+              },
+              "description": "Workable specific remote fields for ATS actions."
+            }
+          },
+          "description": "Additional fields that we will pass through to specific ATS systems."
+        }
+      ]
+    }
+  },
+  "required": [
+    "attachment"
+  ]
+}

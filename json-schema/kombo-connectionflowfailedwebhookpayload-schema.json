@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConnectionFlowFailedWebhookPayload",
+  "title": "ConnectionFlowFailedWebhookPayload",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this webhook event"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "connection-flow-failed"
+      ],
+      "description": "Type of the webhook event"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "integration_tool": {
+          "type": "string",
+          "description": "The name of the integrated tool (e.g., \"personio\", \"greenhouse\")."
+        },
+        "integration_category": {
+          "type": "string",
+          "enum": [
+            "HRIS",
+            "ATS",
+            "ASSESSMENT",
+            "LMS"
+          ],
+          "description": "The category of the integration (HRIS, ATS, ASSESSMENT, or LMS)."
+        },
+        "end_user": {
+          "type": "object",
+          "properties": {
+            "organization_name": {
+              "type": "string",
+              "description": "The name of the organization that owns the integration."
+            },
+            "creator_email": {
+              "type": "string",
+              "nullable": true,
+              "description": "The email address of the user who created the integration.",
+              "format": "email"
+            },
+            "origin_id": {
+              "type": "string",
+              "nullable": true,
+              "description": "The unique identifier of the organization in the integrated system."
+            }
+          },
+          "required": [
+            "organization_name",
+            "creator_email",
+            "origin_id"
+          ],
+          "additionalProperties": false,
+          "description": "Information about the end user who created the integration."
+        },
+        "log_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to view detailed logs for the operation."
+        }
+      },
+      "required": [
+        "integration_tool",
+        "integration_category",
+        "end_user",
+        "log_url"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "data"
+  ],
+  "additionalProperties": false
+}

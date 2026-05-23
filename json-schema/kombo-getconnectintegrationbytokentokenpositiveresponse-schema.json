@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetConnectIntegrationByTokenTokenPositiveResponse",
+  "title": "GetConnectIntegrationByTokenTokenPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "tool": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "end_user_origin_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "end_user_organization_name": {
+          "type": "string"
+        },
+        "end_user_email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(?!\\.)(?!.*\\.\\.)([\\w'+-.]*)[\\w+-]@([\\da-z][\\da-z-]*\\.)+[a-z]{2,}$"
+        },
+        "setup_status": {
+          "type": "string",
+          "enum": [
+            "INCOMPLETE",
+            "FINAL_SYNC_PENDING",
+            "COMPLETED"
+          ],
+          "description": "The setup_status is used in conjunction with the filtering and field mapping features. If these are enabled in the connection flow, the integration will start in an \"INCOMPLETE\" state and move to \"COMPLETE\" once all steps are finished.\n\n- `INCOMPLETE`: Setup is still in progress. Some steps aren\u2019t finished, so no data is available yet. Syncs only run as needed for setup.\n- `FINAL_SYNC_PENDING`: Setup is complete, and the final sync is running. Data will be available after this sync is done.\n- `COMPLETED`: Setup is fully finished, and the integration is ready to use."
+        }
+      },
+      "required": [
+        "tool",
+        "id",
+        "end_user_origin_id",
+        "end_user_organization_name",
+        "end_user_email",
+        "setup_status"
+      ],
+      "examples": [
+        {
+          "tool": "personio",
+          "id": "personio:CBNMt7dSNCzBdnRTx87dev4E",
+          "end_user_origin_id": "36123",
+          "end_user_organization_name": "Acme, Inc.",
+          "end_user_email": "user@example.com",
+          "setup_status": "COMPLETED"
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

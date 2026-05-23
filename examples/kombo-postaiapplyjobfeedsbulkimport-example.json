@@ -1,0 +1,13 @@
+{
+  "operationId": "postAiApplyJobFeedsBulkImport",
+  "method": "POST",
+  "path": "/ai-apply/job-feeds/{job_feed_id}/bulk-import",
+  "summary": "Bulk import job postings",
+  "requestExamples": [
+    {
+      "contentType": "application/x-ndjson",
+      "example": "{\"url\":\"https://careers.acme.com/job/1\",\"career_site_label\":\"ACME Corp\"}\n{\"url\":\"https://careers.acme.com/job/2\",\"career_site_label\":\"ACME Corp\",\"job_code\":\"ENG-123\"}"
+    }
+  ],
+  "responseExamples": []
+}

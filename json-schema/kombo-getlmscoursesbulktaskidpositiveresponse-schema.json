@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetLmsCoursesBulkTaskIdPositiveResponse",
+  "title": "GetLmsCoursesBulkTaskIdPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "discriminator": {
+        "propertyName": "status"
+      },
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string",
+              "description": "An ISO 8601 timestamp of when the task was created."
+            },
+            "status": {
+              "type": "string",
+              "const": "PENDING",
+              "description": "Indicates the task is still being processed."
+            },
+            "completed_at": {
+              "type": "null",
+              "description": "Always `null` while the task is pending."
+            }
+          },
+          "required": [
+            "task_id",
+            "created_at",
+            "status",
+            "completed_at"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string",
+              "description": "An ISO 8601 timestamp of when the task was created."
+            },
+            "status": {
+              "type": "string",
+              "const": "COMPLETED",
+              "description": "Indicates the task has finished successfully."
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "discriminator": {
+                  "propertyName": "status"
+                },
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "origin_id": {
+                        "type": "string",
+                        "description": "A unique identifier for this item in the batch, used to correlate results."
+                      },
+                      "status": {
+                        "type": "string",
+                        "const": "SUCCEEDED"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "The Kombo ID of the course."
+                          }
+                        },
+                        "required": [
+                          "id"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "origin_id",
+                      "status",
+                      "data"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "origin_id": {
+                        "type": "string",
+                        "description": "A unique identifier for this item in the batch, used to correlate results."
+                      },
+                      "status": {
+                        "type": "string",
+                        "const": "FAILED"
+                      },
+                      "error": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "enum": [
+                              "PLATFORM.RATE_LIMIT_EXCEEDED",
+                              "PLATFORM.CONCURRENCY_LIMIT_EXCEEDED",
+                              "PLATFORM.INTEGRATION_NOT_FOUND",
+                              "PLATFORM.INPUT_INVALID",
+                              "PLATFORM.UNKNOWN_ERROR",
+                              "PLATFORM.IP_NOT_WHITELISTED",
+                              "PLATFORM.AUTHENTICATION_INVALID",
+                              "PLATFORM.TASK_TIMED_OUT",
+                              "INTEGRATION.PERMISSION_MISSING",
+                              "INTEGRATION.AUTHENTICATION_INVALID",
+                              "INTEGRATION.QA_FAILED",
+                              "INTEGRATION.SETUP_SYNC_PENDING",
+                              "INTEGRATION.SETUP_INCOMPLETE",
+                              "INTEGRATION.INACTIVE",
+                              "INTEGRATION.MODEL_NOT_AVAILABLE",
+                              "INTEGRATION.MODEL_DISABLED",
+                              "INTEGRATION.ACTION_NOT_AVAILABLE",
+                              "INTEGRATION.ACTION_DISABLED",
+                              "REMOTE.SERVICE_UNAVAILABLE",
+                              "REMOTE.RATE_LIMIT_EXCEEDED",
+                              "REMOTE.INPUT_INVALID",
+                              "REMOTE.UNKNOWN_HTTP_ERROR",
+                              "HRIS.EMPLOYEE_ALREADY_EXISTS",
+                              "ATS.JOB_CLOSED",
+                              "ATS.APPLICATION_ALREADY_EXISTS",
+                              "LMS.COURSE_UPDATE_NOT_SUPPORTED",
+                              "AI_APPLY.JOB_FEED_IMPORT_ALREADY_RUNNING",
+                              "AI_APPLY.JOB_FEED_IMPORT_TIMED_OUT"
+                            ]
+                          },
+                          "title": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "log_url": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "code",
+                          "title",
+                          "message",
+                          "log_url"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "origin_id",
+                      "status",
+                      "error"
+                    ]
+                  }
+                ]
+              },
+              "description": "The results of the completed task, containing one entry per item in the original request."
+            },
+            "completed_at": {
+              "description": "An ISO 8601 timestamp of when the task was completed.",
+              "type": "string",
+              "format": "date-time",
+              "externalDocs": {
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+              }
+            }
+          },
+          "required": [
+            "task_id",
+            "created_at",
+            "status",
+            "data",
+            "completed_at"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "task_id": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string",
+              "description": "An ISO 8601 timestamp of when the task was created."
+            },
+            "status": {
+              "type": "string",
+              "const": "FAILED",
+              "description": "Indicates the task failed before it could process all items."
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "PLATFORM.RATE_LIMIT_EXCEEDED",
+                    "PLATFORM.CONCURRENCY_LIMIT_EXCEEDED",
+                    "PLATFORM.INTEGRATION_NOT_FOUND",
+                    "PLATFORM.INPUT_INVALID",
+                    "PLATFORM.UNKNOWN_ERROR",
+                    "PLATFORM.IP_NOT_WHITELISTED",
+                    "PLATFORM.AUTHENTICATION_INVALID",
+                    "PLATFORM.TASK_TIMED_OUT",
+                    "INTEGRATION.PERMISSION_MISSING",
+                    "INTEGRATION.AUTHENTICATION_INVALID",
+                    "INTEGRATION.QA_FAILED",
+                    "INTEGRATION.SETUP_SYNC_PENDING",
+                    "INTEGRATION.SETUP_INCOMPLETE",
+                    "INTEGRATION.INACTIVE",
+                    "INTEGRATION.MODEL_NOT_AVAILABLE",
+                    "INTEGRATION.MODEL_DISABLED",
+                    "INTEGRATION.ACTION_NOT_AVAILABLE",
+                    "INTEGRATION.ACTION_DISABLED",
+                    "REMOTE.SERVICE_UNAVAILABLE",
+                    "REMOTE.RATE_LIMIT_EXCEEDED",
+                    "REMOTE.INPUT_INVALID",
+                    "REMOTE.UNKNOWN_HTTP_ERROR",
+                    "HRIS.EMPLOYEE_ALREADY_EXISTS",
+                    "ATS.JOB_CLOSED",
+                    "ATS.APPLICATION_ALREADY_EXISTS",
+                    "LMS.COURSE_UPDATE_NOT_SUPPORTED",
+                    "AI_APPLY.JOB_FEED_IMPORT_ALREADY_RUNNING",
+                    "AI_APPLY.JOB_FEED_IMPORT_TIMED_OUT"
+                  ]
+                },
+                "title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "log_url": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "code",
+                "title",
+                "message",
+                "log_url"
+              ],
+              "description": "Details about why the task failed."
+            },
+            "completed_at": {
+              "description": "An ISO 8601 timestamp of when the task failed.",
+              "type": "string",
+              "format": "date-time",
+              "externalDocs": {
+                "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+              }
+            }
+          },
+          "required": [
+            "task_id",
+            "created_at",
+            "status",
+            "error",
+            "completed_at"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

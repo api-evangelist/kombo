@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsRequestBody",
+  "title": "PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsRequestBody",
+  "type": "object",
+  "properties": {
+    "supplement_code": {
+      "type": "string",
+      "description": "The ID code of the supplement that you want to add to Silae."
+    },
+    "effective_date": {
+      "description": "Date from which the submitted supplement should be active.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "element_amount": {
+      "type": "number",
+      "format": "double",
+      "minimum": -1.7976931348623157e+308,
+      "description": "The amount of the supplement if it requires a number."
+    },
+    "element_string": {
+      "type": "string",
+      "description": "The string of the supplement if it requires a string."
+    }
+  },
+  "required": [
+    "supplement_code",
+    "effective_date"
+  ]
+}

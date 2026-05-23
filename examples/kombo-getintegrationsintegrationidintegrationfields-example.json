@@ -1,0 +1,32 @@
+{
+  "operationId": "GetIntegrationsIntegrationIdIntegrationFields",
+  "method": "GET",
+  "path": "/integrations/{integration_id}/integration-fields",
+  "summary": "Get integration fields",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "results": [
+            {
+              "id": "FFpTK47GhXnU6QAopPq2bdos",
+              "key": "tax_id",
+              "model": "hris_employees",
+              "type": "DEFAULT",
+              "label": "Tax ID",
+              "is_passthrough_enabled": true,
+              "is_writable": false
+            }
+          ],
+          "next_cursor": null,
+          "next": null
+        }
+      }
+    }
+  ]
+}

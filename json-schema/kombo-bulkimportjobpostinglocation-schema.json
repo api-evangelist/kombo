@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BulkImportJobPostingLocation",
+  "title": "BulkImportJobPostingLocation",
+  "type": "object",
+  "description": "The location of the job posting",
+  "properties": {
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code",
+      "example": "US"
+    },
+    "postal_code": {
+      "type": "string",
+      "description": "Postal/ZIP code",
+      "example": "94115"
+    }
+  },
+  "required": [
+    "country"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsJobsParameterVisibilities",
+  "title": "GetAtsJobsParameterVisibilities",
+  "type": "string",
+  "description": "Filter by a comma-separated list of `PUBLIC`, `INTERNAL`, `UNLISTED`, `CONFIDENTIAL`  \n\nLeave this blank to get results matching all values."
+}

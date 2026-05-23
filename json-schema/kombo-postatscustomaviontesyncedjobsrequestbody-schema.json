@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAtsCustomAvionteSyncedJobsRequestBody",
+  "title": "PostAtsCustomAvionteSyncedJobsRequestBody",
+  "type": "object",
+  "properties": {
+    "job_remote_id": {
+      "type": "string",
+      "pattern": "^\\d+$"
+    }
+  },
+  "required": [
+    "job_remote_id"
+  ]
+}

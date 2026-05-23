@@ -1,0 +1,41 @@
+{
+  "operationId": "GetCustomDatevAvailableDocuments",
+  "method": "GET",
+  "path": "/custom/datev/available-documents",
+  "summary": "Retrieve available documents",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "results": [
+            {
+              "document_type": "LOBN",
+              "available_for_employees": [
+                {
+                  "id": "8Xi6iZrwusZqJmDGXs49GBmJ",
+                  "remote_id": "123456"
+                }
+              ],
+              "is_company_document": false
+            },
+            {
+              "document_type": "LOJO",
+              "available_for_employees": [],
+              "is_company_document": true
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

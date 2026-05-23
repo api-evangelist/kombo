@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostLmsCourseProgressionsCourseProgressionIdCompleteParameterCourseProgressionId",
+  "title": "PostLmsCourseProgressionsCourseProgressionIdCompleteParameterCourseProgressionId",
+  "type": "string",
+  "description": "The ID of the course progression in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+}

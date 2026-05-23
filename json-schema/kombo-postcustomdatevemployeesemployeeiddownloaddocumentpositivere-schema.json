@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCustomDatevEmployeesEmployeeIdDownloadDocumentPositiveResponse",
+  "title": "PostCustomDatevEmployeesEmployeeIdDownloadDocumentPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "data_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL to download the document from."
+        },
+        "file_name": {
+          "type": "string"
+        },
+        "content_type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "data_url",
+        "file_name",
+        "content_type"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "description": "These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console."
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "warnings"
+  ]
+}

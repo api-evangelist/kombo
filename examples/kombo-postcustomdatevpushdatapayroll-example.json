@@ -1,0 +1,30 @@
+{
+  "operationId": "PostCustomDatevPushDataPayroll",
+  "method": "POST",
+  "path": "/custom/datev/push-data/payroll",
+  "summary": "Push payroll data to DATEV",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "files": [
+            {
+              "name": "EXTF_Bewegungsdaten.csv",
+              "content": "EXTF;700;21;Bewegungsdaten;..."
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

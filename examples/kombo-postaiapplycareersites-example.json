@@ -1,0 +1,29 @@
+{
+  "operationId": "PostAiApplyCareerSites",
+  "method": "POST",
+  "path": "/ai-apply/career-sites",
+  "summary": "Create a career site",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "label": "Acme Inc. California"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "mK7pQw9xNvEr2LdY5sGh8TcZ",
+          "label": "Acme Inc. California"
+        }
+      }
+    }
+  ]
+}

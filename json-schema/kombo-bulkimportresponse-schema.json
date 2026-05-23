@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BulkImportResponse",
+  "title": "BulkImportResponse",
+  "type": "object",
+  "description": "Response from the bulk import endpoint",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "success"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "integer",
+          "description": "Number of new job postings created"
+        },
+        "processed": {
+          "type": "integer",
+          "description": "Number of job postings processed"
+        },
+        "archived": {
+          "type": "integer",
+          "description": "Number of job postings archived (not included in this import)"
+        }
+      },
+      "required": [
+        "created",
+        "processed",
+        "archived"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ],
+  "example": {
+    "status": "success",
+    "data": {
+      "created": 150,
+      "processed": 197,
+      "archived": 10
+    }
+  }
+}

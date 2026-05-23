@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsApplicationsParameterOutcomes",
+  "title": "GetAtsApplicationsParameterOutcomes",
+  "type": "string",
+  "description": "Filter by a comma-separated list of `PENDING`, `HIRED`, `DECLINED` \n* `PENDING`: The application is still being processed. \n* `HIRED`: The candidate was hired. \n* `DECLINED`: The candidate was declined. \n \n\nLeave this blank to get results matching all values."
+}

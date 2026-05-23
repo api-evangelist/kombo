@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisSkillsRequestBody",
+  "title": "PostHrisSkillsRequestBody",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the skill"
+    },
+    "levels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of available skill levels (e.g., [\"Beginner\", \"Intermediate\", \"Advanced\"])"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

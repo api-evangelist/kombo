@@ -1,0 +1,147 @@
+{
+  "operationId": "PostAiApplyPostingsPostingIdInquire",
+  "method": "POST",
+  "path": "/ai-apply/postings/{posting_id}/inquire",
+  "summary": "Inquire about a job posting and the application f\u2026",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {}
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "application_form": [
+            {
+              "block_type": "SECTION",
+              "label": "Personal Information",
+              "children": [
+                {
+                  "block_type": "QUESTION",
+                  "question_id": "6VrjehyBk685vubNydiR1hSn",
+                  "label": "First name",
+                  "description": null,
+                  "required": true,
+                  "category": null,
+                  "question_type": "TEXT",
+                  "unified_key": "FIRST_NAME",
+                  "options": null,
+                  "display_when": null
+                },
+                {
+                  "block_type": "QUESTION",
+                  "question_id": "Hjsapofs69cx2iAu6MtTfhoh",
+                  "label": "Last name",
+                  "description": null,
+                  "required": true,
+                  "category": null,
+                  "question_type": "TEXT",
+                  "unified_key": "LAST_NAME",
+                  "options": null,
+                  "display_when": null
+                }
+              ]
+            },
+            {
+              "block_type": "QUESTION",
+              "question_id": "EKaumKPGjeA97cb8ystMmkCe",
+              "label": "What is your desired working location?",
+              "description": "Select your preferred work arrangement",
+              "required": true,
+              "category": null,
+              "question_type": "SINGLE_SELECT",
+              "unified_key": null,
+              "options": [
+                {
+                  "id": "BsnL4pAhNQc26uSc4JopTP3P",
+                  "label": "Remote",
+                  "unified_key": null
+                },
+                {
+                  "id": "8T4fcKgzLxbKFUo4saXaoMTG",
+                  "label": "On-site",
+                  "unified_key": null
+                },
+                {
+                  "id": "2cJDK3dq4WNjovohSG7dSpfd",
+                  "label": "Hybrid",
+                  "unified_key": null
+                }
+              ],
+              "display_when": null
+            },
+            {
+              "block_type": "QUESTION",
+              "question_id": "2H26BKTbDn2ygN2GfEcCsUP8",
+              "label": "What timezone are you in?",
+              "description": "This helps us schedule meetings at convenient times",
+              "required": true,
+              "category": null,
+              "question_type": "TEXT",
+              "unified_key": null,
+              "options": null,
+              "display_when": {
+                "question_id": "EKaumKPGjeA97cb8ystMmkCe",
+                "answer_equals": "BsnL4pAhNQc26uSc4JopTP3P"
+              }
+            },
+            {
+              "block_type": "QUESTION",
+              "question_id": "AdM1EuwBKE4pz94SSRHMgmba",
+              "label": "Which office would you prefer?",
+              "description": null,
+              "required": true,
+              "category": null,
+              "question_type": "SINGLE_SELECT",
+              "unified_key": null,
+              "options": [
+                {
+                  "id": "EHCqUb5E6xzfjnfHT2LEgmM7",
+                  "label": "San Francisco",
+                  "unified_key": null
+                },
+                {
+                  "id": "5RbHT73StFM5tHdF3aVr4do1",
+                  "label": "New York",
+                  "unified_key": null
+                },
+                {
+                  "id": "F4rRwGTNeLQZV5VLwstERpsT",
+                  "label": "London",
+                  "unified_key": null
+                }
+              ],
+              "display_when": {
+                "question_id": "EKaumKPGjeA97cb8ystMmkCe",
+                "answer_equals": "8T4fcKgzLxbKFUo4saXaoMTG"
+              }
+            },
+            {
+              "block_type": "QUESTION",
+              "question_id": "FuVZvF26NueKcN46o5euHeGx",
+              "label": "How many days per week would you like to work in the office?",
+              "description": null,
+              "required": true,
+              "category": null,
+              "question_type": "NUMBER",
+              "unified_key": null,
+              "options": null,
+              "display_when": {
+                "question_id": "EKaumKPGjeA97cb8ystMmkCe",
+                "answer_equals": "2cJDK3dq4WNjovohSG7dSpfd"
+              }
+            }
+          ],
+          "submission_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        }
+      }
+    }
+  ]
+}

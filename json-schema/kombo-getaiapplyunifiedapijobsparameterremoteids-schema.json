@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAiApplyUnifiedApiJobsParameterRemoteIds",
+  "title": "GetAiApplyUnifiedApiJobsParameterRemoteIds",
+  "type": "string",
+  "description": "This parameter exists for backwards compatibility with Kombo's unified API. Supplying a comma-separated list of remote IDs such as `32,33` will return no jobs because AI Apply does not interface with a remote system that issues remote IDs."
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisEmployeesParameterLegalEntityIds",
+  "title": "GetHrisEmployeesParameterLegalEntityIds",
+  "type": "string",
+  "description": "Filter by a comma-separated list of legal entity IDs. We will only return employees that are members of _any_ of the legal entities."
+}

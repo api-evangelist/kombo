@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAtsCandidatesCandidateIdTagsParameterCandidateId",
+  "title": "PostAtsCandidatesCandidateIdTagsParameterCandidateId",
+  "type": "string",
+  "description": "The Kombo ID of the candidate you want to add the tag to."
+}

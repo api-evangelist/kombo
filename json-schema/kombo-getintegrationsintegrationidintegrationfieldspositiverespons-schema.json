@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetIntegrationsIntegrationIdIntegrationFieldsPositiveResponse",
+  "title": "GetIntegrationsIntegrationIdIntegrationFieldsPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The unique ID of the field."
+              },
+              "key": {
+                "type": "string",
+                "description": "The key of the field in the remote system."
+              },
+              "model": {
+                "type": "string",
+                "description": "The model the field is associated with."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "DEFAULT",
+                  "CUSTOM"
+                ],
+                "description": "The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key."
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The label of the field in the remote system."
+              },
+              "is_passthrough_enabled": {
+                "type": "boolean",
+                "description": "Whether the field is included in the integrations_fields array of the corresponding model."
+              },
+              "is_writable": {
+                "type": "boolean",
+                "const": false,
+                "description": "This field is related to a deprecated feature and means nothing, but is kept for backwards compatibility."
+              }
+            },
+            "required": [
+              "id",
+              "key",
+              "model",
+              "type",
+              "label",
+              "is_passthrough_enabled",
+              "is_writable"
+            ],
+            "examples": [
+              {
+                "id": "9suhxJU83Kon4kPTS47837uE",
+                "key": "tax_id",
+                "model": "hris_employees",
+                "type": "DEFAULT",
+                "label": "Tax ID",
+                "is_passthrough_enabled": true,
+                "is_writable": false
+              }
+            ]
+          }
+        },
+        "next_cursor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "**(\u26a0\ufe0f Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages."
+        },
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages."
+        }
+      },
+      "required": [
+        "results",
+        "next_cursor",
+        "next"
+      ],
+      "examples": [
+        {
+          "results": [
+            {
+              "id": "FFpTK47GhXnU6QAopPq2bdos",
+              "key": "tax_id",
+              "model": "hris_employees",
+              "type": "DEFAULT",
+              "label": "Tax ID",
+              "is_passthrough_enabled": true,
+              "is_writable": false
+            }
+          ],
+          "next_cursor": null,
+          "next": null
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

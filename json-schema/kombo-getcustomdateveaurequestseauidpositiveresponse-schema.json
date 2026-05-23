@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCustomDatevEauRequestsEauIdPositiveResponse",
+  "title": "GetCustomDatevEauRequestsEauIdPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "raw": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "description": "DATEV source system system (LuG or LODAS)."
+            },
+            "start_work_incapacity": {
+              "type": "string",
+              "description": "2022-01-13"
+            },
+            "collaboration_identifier": {
+              "type": "string",
+              "description": "Internal DATEV identifier."
+            },
+            "feedbacks_from_health_insurance": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "guid": {
+                    "type": "string",
+                    "description": "The unique identifier of the feedback."
+                  },
+                  "contact_person": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "properties": {
+                      "gender_contact_person": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "enum": [
+                          "M",
+                          "F",
+                          "X",
+                          "D"
+                        ],
+                        "description": "[DEPRECATED] Gender of the contact person. M (male), W (female), X (unknown), D (divers)."
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Name of the contact person."
+                      },
+                      "telephone": {
+                        "type": "string",
+                        "description": "Telephone number of the contact person."
+                      },
+                      "fax": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Fax number of the contact person."
+                      },
+                      "email": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Email address of the contact person."
+                      },
+                      "name1_health_insurance": {
+                        "type": "string",
+                        "description": "Name of the health insurance."
+                      },
+                      "name2_health_insurance": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "[DEPRECATED] Second part of the health insurance name."
+                      },
+                      "name3_health_insurance": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "[DEPRECATED] Third part of the health insurance name."
+                      },
+                      "postal_code": {
+                        "type": "string",
+                        "description": "Postal code of the contact person."
+                      },
+                      "city": {
+                        "type": "string",
+                        "description": "City of the contact person."
+                      },
+                      "street": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "Street of the contact person."
+                      },
+                      "house_number": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "House number of the contact person."
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "telephone",
+                      "fax",
+                      "email",
+                      "name1_health_insurance",
+                      "postal_code",
+                      "city",
+                      "street",
+                      "house_number"
+                    ]
+                  },
+                  "incapacity_for_work": {
+                    "type": "object",
+                    "properties": {
+                      "start_work_incapacity_employer": {
+                        "type": "string",
+                        "description": "yyyy-MM-dd date provided in the initial request."
+                      },
+                      "start_work_incapacity_au": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "yyyy-MM-dd start date of the AU."
+                      },
+                      "end_work_incapacity_au": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "yyyy-MM-dd expected end date of the AU."
+                      },
+                      "actual_end_work_incapacity_au": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "yyyy-MM-dd actual end date after the hospitalization report was received."
+                      },
+                      "date_of_diagnosis": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "yyyy-MM-dd date of diagnosis"
+                      },
+                      "flag_current_work_incapacity": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "format": "double",
+                        "minimum": -1.7976931348623157e+308,
+                        "description": "Flag: 0 = unknown\nFlag: 1 = Health insurance not responsible\nFlag: 2 = incapacity for work\nFlag: 3 = hospitalisation\nFlag: 4 = eAU or hospitalisation-report is not existing\nFlag: 5 = rehabilitation prevention\nFlag: 6 = inpatient hospital treatment\nFlag: 7 = in verification\nFlag: 8 = other evidence available\nFlag: 9 = forwarding procedure"
+                      },
+                      "accident_at_work": {
+                        "type": "boolean",
+                        "description": "If the accident is a work accident according to \u00a7 295 Para. 1 SGB V."
+                      },
+                      "assignment_accident_insurance_doctor": {
+                        "type": "boolean",
+                        "description": "Indication of whether the insured person has been assigned to the accident insurance doctor."
+                      },
+                      "other_accident": {
+                        "type": "boolean",
+                        "description": "If the accident is the result of another accident according to \u00a7 295 Para. 1 SGB V."
+                      },
+                      "start_hospitalisation": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "[DEPRECATED] yyyy-MM-dd start date of the hospitalization."
+                      },
+                      "end_hospitalisation": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "[DEPRECATED] yyyy-MM-dd end date of the actual hospitalization."
+                      },
+                      "initial_certificate": {
+                        "type": "boolean",
+                        "description": "Whether the certificate is initial or a follow up certificate."
+                      },
+                      "automatic_feedback_until": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "yyyy-MM-dd date until the health insurance will update this requests status."
+                      }
+                    },
+                    "required": [
+                      "start_work_incapacity_employer",
+                      "start_work_incapacity_au",
+                      "end_work_incapacity_au",
+                      "date_of_diagnosis",
+                      "flag_current_work_incapacity",
+                      "accident_at_work",
+                      "assignment_accident_insurance_doctor",
+                      "other_accident",
+                      "initial_certificate",
+                      "automatic_feedback_until"
+                    ]
+                  },
+                  "error_block_list": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "origin": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Origin of the error. (Health insurance or DATEV)"
+                        },
+                        "error_number": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Error code"
+                        },
+                        "error_text": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Human readable description of the error."
+                        },
+                        "error_value": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Erroneous value in case of a validation error. (e.g. date)"
+                        }
+                      },
+                      "required": [
+                        "origin",
+                        "error_number",
+                        "error_text",
+                        "error_value"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "guid",
+                  "contact_person",
+                  "incapacity_for_work",
+                  "error_block_list"
+                ]
+              }
+            }
+          },
+          "required": [
+            "source",
+            "start_work_incapacity",
+            "feedbacks_from_health_insurance"
+          ]
+        }
+      },
+      "required": [
+        "raw"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "description": "These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console."
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "warnings"
+  ]
+}

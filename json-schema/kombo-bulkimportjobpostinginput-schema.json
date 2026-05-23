@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BulkImportJobPostingInput",
+  "title": "BulkImportJobPostingInput",
+  "type": "object",
+  "description": "A single job posting entry in the NDJSON stream",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the job posting to parse",
+      "example": "https://careers.acme.com/jobs/fullstack-engineer-14102"
+    },
+    "career_site_label": {
+      "type": "string",
+      "description": "Label of the career site to group this posting under. Career sites are automatically created if they do not exist.",
+      "example": "ACME Corp Careers"
+    },
+    "job_code": {
+      "type": "string",
+      "description": "Optional job code to associate with the posting",
+      "example": "ENG-123"
+    },
+    "location": {
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/BulkImportJobPostingLocation"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "The location of the job. When omitted, existing location is preserved. Pass null to explicitly clear."
+    }
+  },
+  "required": [
+    "url",
+    "career_site_label"
+  ]
+}

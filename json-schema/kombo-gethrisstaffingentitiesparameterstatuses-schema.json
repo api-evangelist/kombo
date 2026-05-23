@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisStaffingEntitiesParameterStatuses",
+  "title": "GetHrisStaffingEntitiesParameterStatuses",
+  "type": "string",
+  "description": "Filter by a comma-separated list of `OPEN_LIMITED`, `OPEN_UNLIMITED`, `PENDING`, `FROZEN`, `FILLED`, `CLOSED`  \n\nLeave this blank to get results matching all values."
+}

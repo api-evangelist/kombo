@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAiApplyJobFeedsRequestBody",
+  "title": "PostAiApplyJobFeedsRequestBody",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The label of the job feed"
+    }
+  },
+  "required": [
+    "label"
+  ]
+}

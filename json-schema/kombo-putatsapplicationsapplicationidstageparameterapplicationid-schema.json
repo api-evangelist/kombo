@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PutAtsApplicationsApplicationIdStageParameterApplicationId",
+  "title": "PutAtsApplicationsApplicationIdStageParameterApplicationId",
+  "type": "string",
+  "description": "The Kombo ID of the application you want to move to a different stage."
+}

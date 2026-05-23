@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostLmsCourseProgressionsRequestBody",
+  "title": "PostLmsCourseProgressionsRequestBody",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "The ID of the user in Kombo or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+    },
+    "course_revision_id": {
+      "type": "string",
+      "description": "The ID of the revision in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+    }
+  },
+  "required": [
+    "user_id",
+    "course_revision_id"
+  ]
+}

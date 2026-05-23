@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetLmsCourseProgressionsParameterCourseIds",
+  "title": "GetLmsCourseProgressionsParameterCourseIds",
+  "type": "string",
+  "description": "Filter by a comma-separated list of course IDs. We will only return progressions for revisions that belong to _any_ of the courses."
+}

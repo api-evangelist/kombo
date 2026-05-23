@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsUsersParameterEmails",
+  "title": "GetAtsUsersParameterEmails",
+  "type": "string",
+  "description": "Filter by a comma-separated list of emails. We will only return users who have _any_ of the emails. The format of the emails is case-insensitive."
+}

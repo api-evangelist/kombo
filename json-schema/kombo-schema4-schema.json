@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Schema4",
+  "title": "Schema4",
+  "oneOf": [
+    {
+      "type": "string"
+    },
+    {
+      "type": "number",
+      "format": "double",
+      "minimum": -1.7976931348623157e+308
+    },
+    {
+      "type": "boolean"
+    },
+    {
+      "$ref": "#/components/schemas/Schema5"
+    },
+    {
+      "$ref": "#/components/schemas/Schema6"
+    }
+  ]
+}

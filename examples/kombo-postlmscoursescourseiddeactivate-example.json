@@ -1,0 +1,71 @@
+{
+  "operationId": "PostLmsCoursesCourseIdDeactivate",
+  "method": "POST",
+  "path": "/lms/courses/{course_id}/deactivate",
+  "summary": "Deactivate course",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {}
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "26vafvWSRmbhNcxJYqjCzuJg",
+          "remote_id": "32",
+          "provider_id": "7xPdr68N8kG9EzLwjsN9xyz",
+          "origin_id": "course-123",
+          "remote_created_at": "2022-08-07T14:01:29.196Z",
+          "remote_deleted_at": null,
+          "changed_at": "2022-08-07T14:01:29.196Z",
+          "remote_data": null,
+          "custom_fields": null,
+          "integration_fields": [],
+          "provider": {
+            "id": "7xPdr68N8kG9EzLwjsN9xyz",
+            "remote_id": "provider-12345",
+            "name": "Kombo Academy"
+          },
+          "revisions": [
+            {
+              "id": "3KMdr68N8kG9EzLwjsN9aoz",
+              "remote_id": "revision-12345",
+              "course_id": "26vafvWSRmbhNcxJYqjCzuJg",
+              "title": "Building LMS integrations with Kombo",
+              "description": "Learn how to build and integrate Learning Management System (LMS) integrations with Kombo. This course covers the unified LMS API, course management, user enrollment, progress tracking, and best practices for building robust LMS connectors.",
+              "remote_url": "https://learning.acme.com/courses/building-integrations/v1",
+              "status": "ACTIVE",
+              "remote_created_at": "2022-08-07T14:01:29.196Z",
+              "remote_deleted_at": null,
+              "changed_at": "2022-08-07T14:01:29.196Z",
+              "remote_data": null,
+              "custom_fields": null,
+              "integration_fields": [],
+              "skill_assignments": [
+                {
+                  "skill": {
+                    "id": "4EeSSSd9Fr8iiW9mPKmjEVWK",
+                    "remote_id": "skill-123",
+                    "name": "LMS Integration"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

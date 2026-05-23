@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisEmployeesParameterEmploymentStatuses",
+  "title": "GetHrisEmployeesParameterEmploymentStatuses",
+  "type": "string",
+  "description": "Filter by a comma-separated list of `ACTIVE`, `PENDING`, `INACTIVE`, `LEAVE` \n* `ACTIVE`: the employee is **actively employed** \n* `PENDING`: the employee is **not actively employed yet** (but they signed their contract or are part of an onboarding process) \n* `INACTIVE`: a full-time employee is no longer employed, or, for a contract worker when their contract runs out \n* `LEAVE`: the employee is still employed but **currently on leave** (note that not all HR systems support this status \u2014 use our absences API for detailed information) \n \n\nLeave this blank to get results matching all values."
+}

@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataChangedWebhookPayload",
+  "title": "DataChangedWebhookPayload",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for this webhook event"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "data-changed"
+      ],
+      "description": "Type of the webhook event"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "integration_id": {
+          "type": "string",
+          "description": "The unique identifier of the integration."
+        },
+        "integration_tool": {
+          "type": "string",
+          "description": "The name of the integrated tool (e.g., \"personio\", \"greenhouse\")."
+        },
+        "integration_category": {
+          "type": "string",
+          "enum": [
+            "HRIS",
+            "ATS",
+            "ASSESSMENT",
+            "LMS"
+          ],
+          "description": "The category of the integration (HRIS, ATS, ASSESSMENT, or LMS)."
+        },
+        "changed_models": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": [
+                  "hris_legal_entities",
+                  "hris_locations",
+                  "hris_employees",
+                  "hris_absence_types",
+                  "hris_absences",
+                  "hris_employments",
+                  "hris_teams",
+                  "hris_time_off_balances",
+                  "hris_timesheets",
+                  "hris_employee_document_categories",
+                  "hris_performance_reviews",
+                  "hris_performance_review_cycles",
+                  "hris_staffing_entities",
+                  "ats_users",
+                  "ats_jobs",
+                  "ats_job_postings",
+                  "ats_candidates",
+                  "ats_application_stages",
+                  "ats_applications",
+                  "ats_screening_questions",
+                  "ats_tags",
+                  "ats_interviews",
+                  "ats_offers",
+                  "ats_rejection_reasons",
+                  "ats_roles",
+                  "lms_users",
+                  "lms_course_providers",
+                  "lms_skills",
+                  "lms_courses",
+                  "lms_course_revisions",
+                  "lms_course_progressions",
+                  "hris_join_employees_teams",
+                  "hris_join_staffing_entities_locations",
+                  "hris_join_staffing_entities_legal_entities",
+                  "hris_join_staffing_entities_groups",
+                  "ats_join_candidates_tags",
+                  "ats_join_jobs_application_stages",
+                  "ats_join_jobs_screening_questions",
+                  "ats_join_user_job_role_assignments",
+                  "ats_join_jobs_users",
+                  "ats_join_users_roles",
+                  "ats_join_interviews_users",
+                  "lms_join_revisions_skills"
+                ],
+                "description": "The name of the Kombo model or connection that changed."
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "additionalProperties": false,
+            "description": "A model or connection that has changed in the integration."
+          },
+          "description": "List of data models and connections for which one or more records were created, updated, or deleted."
+        }
+      },
+      "required": [
+        "integration_id",
+        "integration_tool",
+        "integration_category",
+        "changed_models"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "data"
+  ],
+  "additionalProperties": false
+}

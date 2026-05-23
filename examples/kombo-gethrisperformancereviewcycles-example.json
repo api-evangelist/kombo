@@ -1,0 +1,31 @@
+{
+  "operationId": "GetHrisPerformanceReviewCycles",
+  "method": "GET",
+  "path": "/hris/performance-review-cycles",
+  "summary": "Get performance review cycles",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "next": "eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=",
+          "results": [
+            {
+              "id": "4B9bKBpX5tnwjiG93TAqF7ci",
+              "remote_id": "1",
+              "name": "2025 Annual Performance Review Cycle",
+              "review_period_start_date": "2025-01-01T00:00:00.000Z",
+              "changed_at": "2022-08-07T14:01:29.196Z",
+              "remote_deleted_at": null,
+              "remote_data": null
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

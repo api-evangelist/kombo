@@ -1,0 +1,48 @@
+{
+  "operationId": "PostHrisEmployeesForm",
+  "method": "POST",
+  "path": "/hris/employees/form",
+  "summary": "Create employee with form",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "properties": {
+          "firstName": "John",
+          "startDate": "2025-01-01",
+          "workLocation": {
+            "site": "8e422bf8cav",
+            "keyNumbers": [
+              142,
+              525,
+              63
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "26vafvWSRmbhNcxJYqjCzuJg",
+          "remote_id": "12345",
+          "prehire": {
+            "remote_id": null
+          }
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

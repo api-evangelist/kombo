@@ -1,0 +1,33 @@
+{
+  "operationId": "DeleteHrisSkillsSkillId",
+  "method": "DELETE",
+  "path": "/hris/skills/{skill_id}",
+  "summary": "Delete skill",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "28KMdr68N8kG9EzLwjsN9aoz",
+          "remote_id": "238476582",
+          "name": "TypeScript Programming",
+          "description": "The ability understand and write TypeScript code.",
+          "ordered_levels": [
+            "Proficiency Level 1",
+            "Proficiency Level 2",
+            "Proficiency Level 3",
+            "Proficiency Level 4",
+            "Proficiency Level 5"
+          ],
+          "changed_at": "2022-08-07T14:01:29.196Z",
+          "remote_deleted_at": "2022-08-07T14:01:29.196Z",
+          "remote_data": null
+        }
+      }
+    }
+  ]
+}

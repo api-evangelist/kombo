@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PutCustomDatevEmployeesEmployeeIdPreparePayrollParameterEmployeeId",
+  "title": "PutCustomDatevEmployeesEmployeeIdPreparePayrollParameterEmployeeId",
+  "type": "string",
+  "description": "ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+}

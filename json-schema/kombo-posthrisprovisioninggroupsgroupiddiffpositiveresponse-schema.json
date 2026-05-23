@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisProvisioningGroupsGroupIdDiffPositiveResponse",
+  "title": "PostHrisProvisioningGroupsGroupIdDiffPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "object",
+          "properties": {
+            "to_provision": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "pattern": "^(?!\\.)(?!.*\\.\\.)([\\w'+-.]*)[\\w+-]@([\\da-z][\\da-z-]*\\.)+[a-z]{2,}$",
+                    "description": "The email address of the user."
+                  },
+                  "employee": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "remote_id": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "first_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "last_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "groups": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "remote_id": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "name": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "remote_id",
+                            "name"
+                          ]
+                        }
+                      },
+                      "avatar": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "work_location_id": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "legal_entity_id": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "description": "The field of the underlying employee (which ones are included depends on the `employee_fields` array you supplied)."
+                  }
+                },
+                "required": [
+                  "email",
+                  "employee"
+                ]
+              },
+              "description": "The users we've found in the HR systems who match the provisioning filters but haven't been provisioned in your system yet."
+            },
+            "to_deprovision": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "origin_id": {
+                    "type": "string",
+                    "description": "_Your_ ID for this user (that you submitted through `origin_id`)."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The email address of the user.",
+                    "format": "email"
+                  }
+                },
+                "required": [
+                  "origin_id",
+                  "email"
+                ]
+              },
+              "description": "The users who've been provisioned in your system but couldn't be found in the HR system or don't match the provisioning filters."
+            },
+            "already_provisioned": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "origin_id": {
+                    "type": "string",
+                    "description": "_Your_ ID for this user (that you submitted through `origin_id`)."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The email address of the user.",
+                    "format": "email"
+                  },
+                  "employee": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "remote_id": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "first_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "last_name": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "groups": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string"
+                            },
+                            "remote_id": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "name": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "remote_id",
+                            "name"
+                          ]
+                        }
+                      },
+                      "avatar": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "work_location_id": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "legal_entity_id": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "description": "The field of the underlying employee (which ones are included depends on the `employee_fields` array you supplied)."
+                  }
+                },
+                "required": [
+                  "origin_id",
+                  "email",
+                  "employee"
+                ]
+              },
+              "description": "The users who are in the HR system and match the provisioning filters but have already been provisioned in your system."
+            }
+          },
+          "required": [
+            "to_provision",
+            "to_deprovision",
+            "already_provisioned"
+          ]
+        }
+      },
+      "required": [
+        "users"
+      ],
+      "description": "The users to provision, deprovision, and optionally update."
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

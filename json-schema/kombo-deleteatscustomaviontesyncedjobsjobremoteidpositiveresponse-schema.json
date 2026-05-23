@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeleteAtsCustomAvionteSyncedJobsJobRemoteIdPositiveResponse",
+  "title": "DeleteAtsCustomAvionteSyncedJobsJobRemoteIdPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

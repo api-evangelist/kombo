@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisProvisioningGroupsGroupIdSetupLinksPositiveResponse",
+  "title": "PostHrisProvisioningGroupsGroupIdSetupLinksPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The setup link URL to pass to the Kombo Connect SDK."
+        },
+        "expires_at": {
+          "description": "When this link expires.",
+          "type": "string",
+          "format": "date-time",
+          "externalDocs": {
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+          }
+        }
+      },
+      "required": [
+        "url",
+        "expires_at"
+      ],
+      "examples": [
+        {
+          "url": "https://connect.kombo.dev/v1/setup?token=GinuMJCpUQ9xdpLmD2ocw8qdiK3qiPCizDCv754EXri2vAX4",
+          "expires_at": "2023-10-11T12:00:00.000Z"
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

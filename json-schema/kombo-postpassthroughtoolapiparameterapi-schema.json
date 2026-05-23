@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostPassthroughToolApiParameterApi",
+  "title": "PostPassthroughToolApiParameterApi",
+  "type": "string",
+  "description": "The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs."
+}

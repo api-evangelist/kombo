@@ -1,0 +1,23 @@
+{
+  "operationId": "PostCustomDatevPassthrough",
+  "method": "POST",
+  "path": "/custom/datev/passthrough",
+  "summary": "Write raw DATEV ASCII file",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {},
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

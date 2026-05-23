@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PutCustomDatevEmployeesEmployeeIdCompensationsRequestBody",
+  "title": "PutCustomDatevEmployeesEmployeeIdCompensationsRequestBody",
+  "type": "object",
+  "properties": {
+    "effective_date": {
+      "description": "Date from which the submitted compensations should be valid. Please note that it might not be possible to set compensations for the past if the payroll was already run.",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "compensations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "minimum": -1.7976931348623157e+308,
+            "description": "The amount that this employee will be paid."
+          },
+          "currency": {
+            "type": "string",
+            "const": "EUR",
+            "description": "The currency in which the employee gets paid. Currently, only euro is supported as integrated systems only work with Euro."
+          },
+          "period": {
+            "type": "string",
+            "enum": [
+              "HOUR",
+              "MONTH"
+            ],
+            "description": "The period for which the specified amount is paid. Currently, integrated systems only support \"HOUR\" and \"MONTH\"."
+          },
+          "lohnart": {
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1,
+            "maximum": 9999,
+            "description": "The Lohnart that should be used for this compensation. If not specified, the default Lohnart that was requested in the connection flow will be used. Generally Lohnart is only available for monthly compensations."
+          }
+        },
+        "required": [
+          "amount",
+          "currency",
+          "period"
+        ]
+      }
+    }
+  },
+  "required": [
+    "effective_date",
+    "compensations"
+  ]
+}

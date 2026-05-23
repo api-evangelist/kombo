@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAiApplyApplicationsParameterJobPostingIds",
+  "title": "GetAiApplyApplicationsParameterJobPostingIds",
+  "type": "string",
+  "description": "Filter by a comma-separated list of job posting IDs such as `89V6GEKpdZwqbxQz59n1ftFb,kcGHREEXCMF26Yhpuyh1gDVE`."
+}

@@ -1,0 +1,27 @@
+{
+  "operationId": "PostCustomDatevDownloadDocument",
+  "method": "POST",
+  "path": "/custom/datev/download-document",
+  "summary": "Download Payroll Document",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "accounting_month": "2001-12-01",
+        "document_type": "LOJE",
+        "employee_id": null
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "example2",
+      "example": {
+        "accounting_month": "2001-12-01",
+        "document_type": "LSTB",
+        "employee_id": "remote:200"
+      }
+    }
+  ],
+  "responseExamples": []
+}

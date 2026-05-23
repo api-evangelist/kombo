@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAiApplyCareerSitesRequestBody",
+  "title": "PostAiApplyCareerSitesRequestBody",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "The label of the career site"
+    }
+  },
+  "required": [
+    "label"
+  ]
+}

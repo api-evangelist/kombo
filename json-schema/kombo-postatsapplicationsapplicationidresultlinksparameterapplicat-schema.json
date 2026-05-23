@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAtsApplicationsApplicationIdResultLinksParameterApplicationId",
+  "title": "PostAtsApplicationsApplicationIdResultLinksParameterApplicationId",
+  "type": "string",
+  "description": "The Kombo ID of the application you want to create the link for."
+}

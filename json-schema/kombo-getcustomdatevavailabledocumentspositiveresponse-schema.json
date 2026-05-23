@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCustomDatevAvailableDocumentsPositiveResponse",
+  "title": "GetCustomDatevAvailableDocumentsPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "document_type": {
+                "type": "string",
+                "description": "The document's type."
+              },
+              "available_for_employees": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "remote_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "remote_id"
+                  ]
+                },
+                "description": "List of employees this document is available for."
+              },
+              "is_company_document": {
+                "type": "boolean",
+                "description": "Is true if the document is a company document."
+              }
+            },
+            "required": [
+              "document_type",
+              "available_for_employees",
+              "is_company_document"
+            ]
+          }
+        }
+      },
+      "required": [
+        "results"
+      ],
+      "examples": [
+        {
+          "results": [
+            {
+              "document_type": "LOBN",
+              "available_for_employees": [
+                {
+                  "id": "8Xi6iZrwusZqJmDGXs49GBmJ",
+                  "remote_id": "123456"
+                }
+              ],
+              "is_company_document": false
+            },
+            {
+              "document_type": "LOJO",
+              "available_for_employees": [],
+              "is_company_document": true
+            }
+          ]
+        }
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "description": "These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console."
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "warnings"
+  ]
+}

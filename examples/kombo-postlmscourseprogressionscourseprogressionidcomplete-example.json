@@ -1,0 +1,59 @@
+{
+  "operationId": "PostLmsCourseProgressionsCourseProgressionIdComplete",
+  "method": "POST",
+  "path": "/lms/course-progressions/{course_progression_id}/complete",
+  "summary": "Complete course",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "completed_at": "2024-04-15",
+        "score": 93
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "26vafvWSRmbhNcxJYqjCzuJg",
+          "remote_id": "progress-12345",
+          "user_id": "7xPdr68N8kG9EzLwjsN9xyz",
+          "course_revision_id": "3KMdr68N8kG9EzLwjsN9aoz",
+          "status": "COMPLETED",
+          "enrolled_at": "2022-08-07T14:01:29.196Z",
+          "completed_at": "2022-08-07T14:01:29.196Z",
+          "changed_at": "2022-08-07T14:01:29.196Z",
+          "remote_deleted_at": null,
+          "remote_data": null,
+          "user": {
+            "id": "26vafvWSRmbhNcxJYqjCzuJg",
+            "remote_id": "32",
+            "first_name": "Sarah",
+            "last_name": "Johnson",
+            "work_email": "sarah.johnson@example.com"
+          },
+          "course_revision": {
+            "id": "3KMdr68N8kG9EzLwjsN9aoz",
+            "remote_id": "revision-12345",
+            "title": "Building LMS integrations with Kombo",
+            "course": {
+              "id": "26vafvWSRmbhNcxJYqjCzuJg",
+              "remote_id": "32"
+            }
+          }
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

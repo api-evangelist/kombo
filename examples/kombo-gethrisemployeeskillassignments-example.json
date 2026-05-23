@@ -1,0 +1,28 @@
+{
+  "operationId": "GetHrisEmployeeSkillAssignments",
+  "method": "GET",
+  "path": "/hris/employee-skill-assignments",
+  "summary": "Get employee skill assignments",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "next": "eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=",
+          "results": [
+            {
+              "id": "8AvRLpxwY5J6pGxfY6fUD81Z",
+              "employee_id": "26vafvWSRmbhNcxJYqjCzuJg",
+              "skill_id": "28KMdr68N8kG9EzLwjsN9aoz",
+              "current_level": "Proficiency Level 1"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

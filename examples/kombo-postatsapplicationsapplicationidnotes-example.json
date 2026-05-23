@@ -1,0 +1,32 @@
+{
+  "operationId": "PostAtsApplicationsApplicationIdNotes",
+  "method": "POST",
+  "path": "/ats/applications/{application_id}/notes",
+  "summary": "Add note to application",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "content": "A new message from the candidate is available in YourChat!",
+        "content_type": "PLAIN_TEXT"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {},
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsRolesParameterScopes",
+  "title": "GetAtsRolesParameterScopes",
+  "type": "string",
+  "description": "Filter by a comma-separated list of `SYSTEM`, `JOB` \n* `SYSTEM`: System-wide roles that apply globally (e.g., an \"Admin\" role). \n* `JOB`: Job-scoped roles that apply to specific jobs (e.g., a \"Hiring Manager\" role). \n \n\nLeave this blank to get results matching all values."
+}

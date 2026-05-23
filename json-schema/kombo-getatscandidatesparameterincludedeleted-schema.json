@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsCandidatesParameterIncludeDeleted",
+  "title": "GetAtsCandidatesParameterIncludeDeleted",
+  "type": "string",
+  "enum": [
+    "true",
+    "false"
+  ],
+  "default": "false",
+  "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+}

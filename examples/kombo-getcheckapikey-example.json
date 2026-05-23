@@ -1,0 +1,21 @@
+{
+  "operationId": "GetCheckApiKey",
+  "method": "GET",
+  "path": "/check-api-key",
+  "summary": "Check API key",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "environment_id": "2Uev1YUTqLFdvMPD3Jtrg2FX",
+          "customer_id": "2Uev1YUTqLFdvMPD3Jtrg2FX"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "operationId": "GetConnectIntegrationByTokenToken",
+  "method": "GET",
+  "path": "/connect/integration-by-token/{token}",
+  "summary": "Get integration by token",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "tool": "personio",
+          "id": "personio:CBNMt7dSNCzBdnRTx87dev4E",
+          "end_user_origin_id": "36123",
+          "end_user_organization_name": "Acme, Inc.",
+          "end_user_email": "user@example.com",
+          "setup_status": "COMPLETED"
+        }
+      }
+    }
+  ]
+}

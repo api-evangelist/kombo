@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsCandidatesParameterEmail",
+  "title": "GetAtsCandidatesParameterEmail",
+  "type": "string",
+  "description": "Filter the candidates based on an email address. When set, returns only the candidates where the given `email` is in `email_addresses`. This filter is case-insensitive.",
+  "format": "email"
+}

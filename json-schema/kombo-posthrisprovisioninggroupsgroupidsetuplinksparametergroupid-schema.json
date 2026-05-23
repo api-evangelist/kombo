@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisProvisioningGroupsGroupIdSetupLinksParameterGroupId",
+  "title": "PostHrisProvisioningGroupsGroupIdSetupLinksParameterGroupId",
+  "type": "string",
+  "description": "ID of the provisioning group (currently only `default` is allowed)."
+}

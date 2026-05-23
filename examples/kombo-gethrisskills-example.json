@@ -1,0 +1,38 @@
+{
+  "operationId": "GetHrisSkills",
+  "method": "GET",
+  "path": "/hris/skills",
+  "summary": "Get skills",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "next": "eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=",
+          "results": [
+            {
+              "id": "28KMdr68N8kG9EzLwjsN9aoz",
+              "remote_id": "238476582",
+              "name": "TypeScript Programming",
+              "description": "The ability understand and write TypeScript code.",
+              "ordered_levels": [
+                "Proficiency Level 1",
+                "Proficiency Level 2",
+                "Proficiency Level 3",
+                "Proficiency Level 4",
+                "Proficiency Level 5"
+              ],
+              "changed_at": "2022-08-07T14:01:29.196Z",
+              "remote_deleted_at": null,
+              "remote_data": null
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

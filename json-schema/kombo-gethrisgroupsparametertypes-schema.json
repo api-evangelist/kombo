@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisGroupsParameterTypes",
+  "title": "GetHrisGroupsParameterTypes",
+  "type": "string",
+  "description": "Filter by a comma-separated list of group types: `DEPARTMENT`, `TEAM`, `COST_CENTER`, or `null` to filter groups without a type. \n\nLeave this blank to get results matching all values."
+}

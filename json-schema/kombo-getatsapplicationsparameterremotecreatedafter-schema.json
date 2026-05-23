@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsApplicationsParameterRemoteCreatedAfter",
+  "title": "GetAtsApplicationsParameterRemoteCreatedAfter",
+  "description": "Filter applications by the day they were created in the remote system. This allows you to get applications that were created on or after a certain day.",
+  "type": "string",
+  "format": "date-time",
+  "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+  "externalDocs": {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+  }
+}

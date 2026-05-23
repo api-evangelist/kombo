@@ -1,0 +1,34 @@
+{
+  "operationId": "PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldId",
+  "method": "PATCH",
+  "path": "/integrations/{integration_id}/integration-fields/{integration_field_id}",
+  "summary": "Updates an integration fields passthrough setting",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "enable_passthrough": true
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "9suhxJU83Kon4kPTS47837uE",
+          "key": "tax_id",
+          "model": "hris_employees",
+          "type": "DEFAULT",
+          "label": "Tax ID",
+          "is_passthrough_enabled": true,
+          "is_writable": false
+        }
+      }
+    }
+  ]
+}

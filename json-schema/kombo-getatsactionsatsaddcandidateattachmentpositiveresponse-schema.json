@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsActionsAtsAddCandidateAttachmentPositiveResponse",
+  "title": "GetAtsActionsAtsAddCandidateAttachmentPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "attachment_restrictions": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "types": {
+              "type": "object",
+              "properties": {
+                "CV": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "is_supported": {
+                          "type": "boolean",
+                          "const": true
+                        },
+                        "max_file_size_bytes": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "format": "double",
+                          "minimum": -1.7976931348623157e+308,
+                          "description": "The maximum file size in bytes. If null, we don't have information about the maximum file size."
+                        },
+                        "accepted_mime_types": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The accepted mime types. If null, we don't have information about the accepted mime types."
+                        }
+                      },
+                      "required": [
+                        "is_supported",
+                        "max_file_size_bytes",
+                        "accepted_mime_types"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "is_supported": {
+                          "type": "boolean",
+                          "const": false
+                        }
+                      },
+                      "required": [
+                        "is_supported"
+                      ]
+                    }
+                  ],
+                  "description": "Specific attachment type restrictions for CV."
+                },
+                "COVER_LETTER": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "is_supported": {
+                          "type": "boolean",
+                          "const": true
+                        },
+                        "max_file_size_bytes": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "format": "double",
+                          "minimum": -1.7976931348623157e+308,
+                          "description": "The maximum file size in bytes. If null, we don't have information about the maximum file size."
+                        },
+                        "accepted_mime_types": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The accepted mime types. If null, we don't have information about the accepted mime types."
+                        }
+                      },
+                      "required": [
+                        "is_supported",
+                        "max_file_size_bytes",
+                        "accepted_mime_types"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "is_supported": {
+                          "type": "boolean",
+                          "const": false
+                        }
+                      },
+                      "required": [
+                        "is_supported"
+                      ]
+                    }
+                  ],
+                  "description": "Specific attachment type restrictions for COVER_LETTER."
+                },
+                "OTHER": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "is_supported": {
+                          "type": "boolean",
+                          "const": true
+                        },
+                        "max_file_size_bytes": {
+                          "type": [
+                            "number",
+                            "null"
+                          ],
+                          "format": "double",
+                          "minimum": -1.7976931348623157e+308,
+                          "description": "The maximum file size in bytes. If null, we don't have information about the maximum file size."
+                        },
+                        "accepted_mime_types": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "The accepted mime types. If null, we don't have information about the accepted mime types."
+                        }
+                      },
+                      "required": [
+                        "is_supported",
+                        "max_file_size_bytes",
+                        "accepted_mime_types"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "is_supported": {
+                          "type": "boolean",
+                          "const": false
+                        }
+                      },
+                      "required": [
+                        "is_supported"
+                      ]
+                    }
+                  ],
+                  "description": "Specific attachment type restrictions for OTHER."
+                }
+              },
+              "required": [
+                "CV",
+                "COVER_LETTER",
+                "OTHER"
+              ]
+            }
+          },
+          "required": [
+            "types"
+          ],
+          "description": "Restrictions with attachment types that we know about. If this is null, we don't have information which types are supported."
+        }
+      },
+      "examples": [
+        {
+          "attachment_restrictions": {
+            "types": {
+              "CV": {
+                "is_supported": false
+              },
+              "COVER_LETTER": {
+                "is_supported": false
+              },
+              "OTHER": {
+                "is_supported": true,
+                "max_file_size_bytes": 10485760,
+                "accepted_mime_types": [
+                  "application/pdf",
+                  "application/msword"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

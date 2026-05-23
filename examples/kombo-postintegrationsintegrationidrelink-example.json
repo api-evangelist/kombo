@@ -1,0 +1,18 @@
+{
+  "operationId": "PostIntegrationsIntegrationIdRelink",
+  "method": "POST",
+  "path": "/integrations/{integration_id}/relink",
+  "summary": "Create reconnection link",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "language": "en",
+        "scope_config_id": "9Pv6aCFwNDEzPNmwjSsY9SQx",
+        "link_type": "EMBEDDED"
+      }
+    }
+  ],
+  "responseExamples": []
+}

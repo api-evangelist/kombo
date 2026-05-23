@@ -1,0 +1,159 @@
+{
+  "operationId": "PostAtsCandidates",
+  "method": "POST",
+  "path": "/ats/candidates",
+  "summary": "Create candidate",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "candidate": {
+          "first_name": "Frank",
+          "last_name": "Doe",
+          "company": "Acme Inc.",
+          "title": "Head of Integrations",
+          "email_address": "frank.doe@example.com",
+          "phone_number": "+1-541-754-3010",
+          "gender": "MALE",
+          "salary_expectations": {
+            "amount": 100000,
+            "period": "YEAR"
+          },
+          "availability_date": "2021-01-01",
+          "location": {
+            "city": "New York",
+            "country": "US",
+            "state": "NY"
+          },
+          "social_links": [
+            {
+              "url": "https://www.linkedin.com/in/frank-doe-123456789/"
+            },
+            {
+              "url": "https://twitter.com/frankdoe"
+            }
+          ]
+        },
+        "application": {
+          "job_id": "BDpgnpZ148nrGh4mYHNxJBgx",
+          "stage_id": "8x3YKRDcuRnwShdh96ShBNn1"
+        },
+        "attachments": [
+          {
+            "name": "Frank Doe CV.txt",
+            "data": "SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=",
+            "type": "CV",
+            "content_type": "text/plain"
+          }
+        ],
+        "screening_question_answers": [
+          {
+            "question_id": "3phFBNXRweGnDmsU9o2vdPuQ",
+            "answer": "Yes"
+          },
+          {
+            "question_id": "EYJjhMQT3LtVKXnTbnRT8s6U",
+            "answer": [
+              "GUzE666zfyjeoCJX6A8n7wh6",
+              "5WPHzzKAv8cx97KtHRUV96U8",
+              "7yZfKGzWigXxxRTygqAfHvyE"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "26vafvWSRmbhNcxJYqjCzuJg",
+          "remote_id": "32",
+          "first_name": "John",
+          "last_name": "Doe",
+          "company": "Acme, Inc.",
+          "title": "Head of Marketing",
+          "confidential": false,
+          "source": "Employee Referral",
+          "phone_numbers": [
+            {
+              "phone_number": "+1-541-754-3010",
+              "type": "HOME"
+            }
+          ],
+          "email_addresses": [
+            {
+              "email_address": "john.doe@example.com",
+              "type": "PRIVATE"
+            }
+          ],
+          "social_media": [
+            {
+              "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+              "type": "YOUTUBE",
+              "username": null
+            }
+          ],
+          "location": {
+            "city": "Berlin",
+            "country": "DE",
+            "raw": "Berlin, Germany",
+            "state": "Berlin",
+            "street_1": "Lohm\u00fchlenstra\u00dfe 65",
+            "street_2": null,
+            "zip_code": "12435"
+          },
+          "custom_fields": {},
+          "integration_fields": [],
+          "remote_url": "https://app.greenhouse.io/people/32",
+          "remote_created_at": "2022-04-02T00:00:00.000Z",
+          "remote_updated_at": "2022-04-04T00:00:00.000Z",
+          "remote_data": null,
+          "changed_at": "2022-04-04T00:00:00.000Z",
+          "remote_deleted_at": null,
+          "applications": [
+            {
+              "id": "H77fDF8uvEzGNPRubiz5DvQ7",
+              "remote_id": "32",
+              "outcome": "HIRED",
+              "rejection_reason_name": null,
+              "rejected_at": null,
+              "remote_url": "https://app.greenhouse.io/applications/32",
+              "changed_at": "2022-04-04T00:00:00.000Z",
+              "remote_created_at": "2022-04-02T00:00:00.000Z",
+              "remote_updated_at": "2022-04-04T00:00:00.000Z",
+              "current_stage": {
+                "id": "5J7L4b48wBfffYwek9Az9pkM",
+                "name": "Initial Screening",
+                "remote_id": "32",
+                "index": 2
+              },
+              "job": {
+                "id": "H5daSm8e85Dmvmne3wLeCPhX",
+                "name": "Backend Engineer",
+                "remote_id": "32"
+              }
+            }
+          ],
+          "tags": [
+            {
+              "id": "26vafvWSRmbhNcxJYqjCzuJg",
+              "name": "High Potential",
+              "remote_id": "32"
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

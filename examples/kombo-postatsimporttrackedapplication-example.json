@@ -1,0 +1,44 @@
+{
+  "operationId": "PostAtsImportTrackedApplication",
+  "method": "POST",
+  "path": "/ats/import-tracked-application",
+  "summary": "Import tracked application",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "tracked_at": "2024-04-12T14:33:47.000Z",
+        "successfactors": {
+          "id_type": "application_remote_id",
+          "application_remote_id": "1224042"
+        }
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "5wdtQtJei2oVhJKya2V1KZLM",
+          "tracked_at": "2025-02-11T15:37:37.000Z",
+          "imported_id": {
+            "successfactors": {
+              "id_type": "application_remote_id",
+              "application_remote_id": "1224042"
+            }
+          }
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

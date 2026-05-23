@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAssessmentPackagesPositiveResponse",
+  "title": "GetAssessmentPackagesPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "packages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "updated_at": {
+                "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "externalDocs": {
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                }
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "BEHAVIORAL",
+                  "VIDEO_INTERVIEW",
+                  "SKILLS_TEST",
+                  "BACKGROUND_CHECK",
+                  "REFERENCE_CHECK"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "description",
+              "updated_at",
+              "type"
+            ]
+          }
+        }
+      },
+      "required": [
+        "packages"
+      ],
+      "examples": [
+        {
+          "packages": [
+            {
+              "id": "1001",
+              "name": "TypeScript",
+              "description": "TypeScript coding skills assessments",
+              "updated_at": "2023-06-29T18:47:40.890Z",
+              "type": "SKILLS_TEST"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

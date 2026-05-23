@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsApplicationsApplicationIdAttachmentsParameterApplicationId",
+  "title": "GetAtsApplicationsApplicationIdAttachmentsParameterApplicationId",
+  "type": "string",
+  "description": "The Kombo ID of the application you want to obtain attachments for."
+}

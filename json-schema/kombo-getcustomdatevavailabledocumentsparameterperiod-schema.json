@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCustomDatevAvailableDocumentsParameterPeriod",
+  "title": "GetCustomDatevAvailableDocumentsParameterPeriod",
+  "type": "string",
+  "description": "Provide the period in the format YYYY-MM-DD for which to check for available documents."
+}

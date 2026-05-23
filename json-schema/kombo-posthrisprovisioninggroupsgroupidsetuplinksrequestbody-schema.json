@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostHrisProvisioningGroupsGroupIdSetupLinksRequestBody",
+  "title": "PostHrisProvisioningGroupsGroupIdSetupLinksRequestBody",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "en",
+        "de",
+        "fr",
+        "it",
+        "es"
+      ],
+      "default": "en",
+      "description": "Language of the UI. Please note that the provisioning setup UI is _not_ translated yet but we're working on it and setting this already will make sure the translations appear once released."
+    }
+  }
+}

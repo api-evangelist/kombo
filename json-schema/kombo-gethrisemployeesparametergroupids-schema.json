@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisEmployeesParameterGroupIds",
+  "title": "GetHrisEmployeesParameterGroupIds",
+  "type": "string",
+  "description": "Filter by a comma-separated list of group IDs. We will only return employees that are members of _any_ of the groups."
+}

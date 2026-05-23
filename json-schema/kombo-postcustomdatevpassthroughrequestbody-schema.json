@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostCustomDatevPassthroughRequestBody",
+  "title": "PostCustomDatevPassthroughRequestBody",
+  "type": "object",
+  "properties": {
+    "file_content": {
+      "type": "string",
+      "minLength": 1
+    },
+    "accounting_month": {
+      "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "target_system": {
+      "type": "string",
+      "enum": [
+        "LODAS",
+        "LuG"
+      ]
+    },
+    "file_type": {
+      "type": "string",
+      "enum": [
+        "STAMMDATEN",
+        "BEWEGUNGSDATEN"
+      ]
+    },
+    "file_name": {
+      "type": "string",
+      "examples": [
+        "Stammdaten.txt"
+      ]
+    }
+  },
+  "required": [
+    "file_content",
+    "accounting_month",
+    "target_system",
+    "file_type",
+    "file_name"
+  ]
+}

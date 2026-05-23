@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsJobsParameterEmploymentTypes",
+  "title": "GetAtsJobsParameterEmploymentTypes",
+  "type": "string",
+  "description": "Filter by a comma-separated list of `FULL_TIME`, `PART_TIME`, `CONTRACT`, `SEASONAL`, `INTERNSHIP`  \n\nLeave this blank to get results matching all values."
+}

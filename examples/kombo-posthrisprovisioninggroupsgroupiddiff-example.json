@@ -1,0 +1,28 @@
+{
+  "operationId": "PostHrisProvisioningGroupsGroupIdDiff",
+  "method": "POST",
+  "path": "/hris/provisioning-groups/{group_id}/diff",
+  "summary": "Get provisioning diff",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "provisioned_users": [
+          {
+            "origin_id": "your_id_123",
+            "email": "johndoe@example.com"
+          }
+        ],
+        "options": {
+          "employee_fields": [
+            "id",
+            "first_name",
+            "last_name"
+          ]
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

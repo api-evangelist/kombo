@@ -1,0 +1,717 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Schema2",
+  "title": "Schema2",
+  "discriminator": {
+    "propertyName": "type"
+  },
+  "anyOf": [
+    {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unified_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "first_name",
+            "last_name",
+            "date_of_birth",
+            "gender",
+            "home_address.city",
+            "home_address.country",
+            "home_address.state",
+            "home_address.street_1",
+            "home_address.street_2",
+            "home_address.zip_code",
+            "job_title",
+            "legal_entity_id",
+            "location_id",
+            "mobile_phone_number",
+            "home_phone_number",
+            "nationality",
+            "start_date",
+            "work_email",
+            "private_email",
+            "yearly_salary"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "text"
+        },
+        "min_length": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "minimum": -1.7976931348623157e+308
+        },
+        "max_length": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "minimum": -1.7976931348623157e+308
+        },
+        "reg_exp": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "required",
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unified_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "first_name",
+            "last_name",
+            "date_of_birth",
+            "gender",
+            "home_address.city",
+            "home_address.country",
+            "home_address.state",
+            "home_address.street_1",
+            "home_address.street_2",
+            "home_address.zip_code",
+            "job_title",
+            "legal_entity_id",
+            "location_id",
+            "mobile_phone_number",
+            "home_phone_number",
+            "nationality",
+            "start_date",
+            "work_email",
+            "private_email",
+            "yearly_salary"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "number"
+        },
+        "min": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "minimum": -1.7976931348623157e+308
+        },
+        "max": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "minimum": -1.7976931348623157e+308
+        }
+      },
+      "required": [
+        "label",
+        "required",
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unified_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "first_name",
+            "last_name",
+            "date_of_birth",
+            "gender",
+            "home_address.city",
+            "home_address.country",
+            "home_address.state",
+            "home_address.street_1",
+            "home_address.street_2",
+            "home_address.zip_code",
+            "job_title",
+            "legal_entity_id",
+            "location_id",
+            "mobile_phone_number",
+            "home_phone_number",
+            "nationality",
+            "start_date",
+            "work_email",
+            "private_email",
+            "yearly_salary"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "date"
+        }
+      },
+      "required": [
+        "label",
+        "required",
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unified_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "first_name",
+            "last_name",
+            "date_of_birth",
+            "gender",
+            "home_address.city",
+            "home_address.country",
+            "home_address.state",
+            "home_address.street_1",
+            "home_address.street_2",
+            "home_address.zip_code",
+            "job_title",
+            "legal_entity_id",
+            "location_id",
+            "mobile_phone_number",
+            "home_phone_number",
+            "nationality",
+            "start_date",
+            "work_email",
+            "private_email",
+            "yearly_salary"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "single_select"
+        },
+        "options": {
+          "discriminator": {
+            "propertyName": "type"
+          },
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "inline"
+                },
+                "entries": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "unified_value": {
+                        "type": "string"
+                      },
+                      "remote_id": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number",
+                            "format": "double",
+                            "minimum": -1.7976931348623157e+308
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "label",
+                      "remote_id"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "type",
+                "entries"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "referenced"
+                },
+                "link": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "link"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "required",
+        "type",
+        "options"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unified_key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "multi_select"
+        },
+        "min_items": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "minimum": -1.7976931348623157e+308
+        },
+        "max_items": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "minimum": -1.7976931348623157e+308
+        },
+        "options": {
+          "discriminator": {
+            "propertyName": "type"
+          },
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "inline"
+                },
+                "entries": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "unified_value": {
+                        "type": "string"
+                      },
+                      "remote_id": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number",
+                            "format": "double",
+                            "minimum": -1.7976931348623157e+308
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "label",
+                      "remote_id"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "type",
+                "entries"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "referenced"
+                },
+                "link": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "link"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "required",
+        "type",
+        "options"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unified_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "first_name",
+            "last_name",
+            "date_of_birth",
+            "gender",
+            "home_address.city",
+            "home_address.country",
+            "home_address.state",
+            "home_address.street_1",
+            "home_address.street_2",
+            "home_address.zip_code",
+            "job_title",
+            "legal_entity_id",
+            "location_id",
+            "mobile_phone_number",
+            "home_phone_number",
+            "nationality",
+            "start_date",
+            "work_email",
+            "private_email",
+            "yearly_salary"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "checkbox"
+        }
+      },
+      "required": [
+        "label",
+        "required",
+        "type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unified_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "first_name",
+            "last_name",
+            "date_of_birth",
+            "gender",
+            "home_address.city",
+            "home_address.country",
+            "home_address.state",
+            "home_address.street_1",
+            "home_address.street_2",
+            "home_address.zip_code",
+            "job_title",
+            "legal_entity_id",
+            "location_id",
+            "mobile_phone_number",
+            "home_phone_number",
+            "nationality",
+            "start_date",
+            "work_email",
+            "private_email",
+            "yearly_salary"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "object"
+        },
+        "properties": {
+          "$ref": "#/components/schemas/Schema1"
+        }
+      },
+      "required": [
+        "label",
+        "required",
+        "type",
+        "properties"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unified_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "first_name",
+            "last_name",
+            "date_of_birth",
+            "gender",
+            "home_address.city",
+            "home_address.country",
+            "home_address.state",
+            "home_address.street_1",
+            "home_address.street_2",
+            "home_address.zip_code",
+            "job_title",
+            "legal_entity_id",
+            "location_id",
+            "mobile_phone_number",
+            "home_phone_number",
+            "nationality",
+            "start_date",
+            "work_email",
+            "private_email",
+            "yearly_salary"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "array"
+        },
+        "item_type": {
+          "$ref": "#/components/schemas/Schema2"
+        },
+        "min_items": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "minimum": -1.7976931348623157e+308
+        },
+        "max_items": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "minimum": -1.7976931348623157e+308
+        }
+      },
+      "required": [
+        "label",
+        "required",
+        "type",
+        "item_type"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unified_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "first_name",
+            "last_name",
+            "date_of_birth",
+            "gender",
+            "home_address.city",
+            "home_address.country",
+            "home_address.state",
+            "home_address.street_1",
+            "home_address.street_2",
+            "home_address.zip_code",
+            "job_title",
+            "legal_entity_id",
+            "location_id",
+            "mobile_phone_number",
+            "home_phone_number",
+            "nationality",
+            "start_date",
+            "work_email",
+            "private_email",
+            "yearly_salary"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "file"
+        },
+        "file_restrictions": {
+          "type": "object",
+          "properties": {
+            "accepted_mime_types": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "max_file_size": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "format": "double",
+              "minimum": -1.7976931348623157e+308
+            }
+          },
+          "required": [
+            "accepted_mime_types"
+          ]
+        }
+      },
+      "required": [
+        "label",
+        "required",
+        "type",
+        "file_restrictions"
+      ]
+    }
+  ]
+}

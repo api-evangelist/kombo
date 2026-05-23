@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PutAssessmentOrdersAssessmentOrderIdResultRequestBody",
+  "title": "PutAssessmentOrdersAssessmentOrderIdResultRequestBody",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "COMPLETED",
+        "CANCELLED",
+        "OPEN"
+      ],
+      "description": "Status of the assessment.\n\n**Please note the `status` can only be updated to a different value if its current value is `OPEN`.**"
+    },
+    "result_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "completed_at": {
+      "description": "YYYY-MM-DDTHH:mm:ss.sssZ\n\n**Please make sure this value is provided when the `status` is of the type `COMPLETED` or `CANCELLED`.**",
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+      "externalDocs": {
+        "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+      }
+    },
+    "score": {
+      "type": "number",
+      "format": "double",
+      "minimum": -1.7976931348623157e+308
+    },
+    "max_score": {
+      "type": "number",
+      "format": "double",
+      "minimum": -1.7976931348623157e+308
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "TEXT"
+              },
+              "label": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "label",
+              "value"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "const": "SUB_RESULT"
+              },
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "score": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number",
+                    "format": "double",
+                    "minimum": -1.7976931348623157e+308
+                  },
+                  "max": {
+                    "type": "number",
+                    "format": "double",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "value",
+                  "max"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "COMPLETED",
+                  "CANCELLED"
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "id",
+              "label",
+              "score",
+              "status"
+            ]
+          }
+        ]
+      },
+      "default": [],
+      "description": "An array of additional attributes that you would like to submit as a part of the assessment result.\n\n- If an ATS only supports writing text attributes, we will transform non `TEXT` attributes into formatted plain text values."
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system."
+          },
+          "content_type": {
+            "type": "string",
+            "pattern": "^[\\w.-]+\\/[\\w.-]+$",
+            "description": "Content/MIME type of the file (e.g., `application/pdf`).\n\nIf you provide `data`, this is required. If you provide `data_url`, this is optional and we'll attempt to use the `Content-Type` header of the response.\n\n**Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it's easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types))."
+          },
+          "data_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.\n\nIf you're using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).\n\n**Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases."
+          },
+          "data": {
+            "type": "string",
+            "description": "Base64-encoded contents of the file you want to upload.\n\n**Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "maxItems": 5,
+      "default": [],
+      "description": "An array of attachments containing the assessment result."
+    },
+    "remote_fields": {
+      "type": "object",
+      "properties": {
+        "smartrecruiters": {
+          "type": "object",
+          "properties": {
+            "scoreLabel": {
+              "type": "string",
+              "description": "Value that we will pass through to SmartRecruiters' `scoreLabel` field."
+            }
+          }
+        },
+        "recruitee": {
+          "type": "object",
+          "properties": {
+            "subtitle": {
+              "type": "string",
+              "description": "Value that we will pass through to Recruitee's `subtitle` field on the assessment report."
+            }
+          }
+        }
+      },
+      "description": "Additional fields that we will pass through to specific ATS systems."
+    }
+  },
+  "required": [
+    "status",
+    "result_url"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "operationId": "PostCustomDatevEmployeesEmployeeIdEauRequests",
+  "method": "POST",
+  "path": "/custom/datev/employees/{employee_id}/eau-requests",
+  "summary": "Create eAU Request",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "start_work_incapacity": "2022-01-01"
+      }
+    }
+  ],
+  "responseExamples": []
+}

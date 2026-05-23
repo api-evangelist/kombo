@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetLmsSkillsParameterIgnoreUnsupportedFilters",
+  "title": "GetLmsSkillsParameterIgnoreUnsupportedFilters",
+  "type": "string",
+  "enum": [
+    "true",
+    "false"
+  ],
+  "default": "false",
+  "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+}

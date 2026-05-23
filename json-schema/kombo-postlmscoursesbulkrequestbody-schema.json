@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostLmsCoursesBulkRequestBody",
+  "title": "PostLmsCoursesBulkRequestBody",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "origin_id": {
+            "type": "string",
+            "description": "A unique identifier for this item in the batch, used to correlate results and as a stable identifier for matching existing courses."
+          },
+          "course": {
+            "discriminator": {
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "const": "EXTERNAL",
+                    "description": "`EXTERNAL` indicates that the content is not sent to the LMS, but the `course_url` links to the content in your system."
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "The title of the course revision."
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "A description of the course revision."
+                  },
+                  "course_url": {
+                    "type": "string",
+                    "description": "URL to the course page. For content providers, this should be a deeplink into your product that allows users to access the course directly."
+                  },
+                  "thumbnail_url": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "URL to the thumbnail image for the course."
+                  },
+                  "duration": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ],
+                    "format": "int64",
+                    "exclusiveMinimum": 0,
+                    "description": "The duration of the course in minutes."
+                  },
+                  "languages": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$",
+                      "description": "IETF language tag (BCP 47) in the format \"ll-CC\" (e.g., \"en-US\", \"de-DE\") or \"ll\" (e.g., \"en\", \"de\")."
+                    },
+                    "description": "A array containing the supported languages for the course content. If only one language is accepted by remote tool we default to the first one. "
+                  }
+                },
+                "required": [
+                  "type",
+                  "title",
+                  "course_url"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "origin_id",
+          "course"
+        ]
+      },
+      "description": "Array of courses to create or update."
+    }
+  },
+  "required": [
+    "items"
+  ]
+}

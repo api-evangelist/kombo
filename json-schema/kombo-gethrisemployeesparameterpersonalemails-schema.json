@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisEmployeesParameterPersonalEmails",
+  "title": "GetHrisEmployeesParameterPersonalEmails",
+  "type": "string",
+  "description": "Filter by a comma-separated list of personal emails. We will only return employees who have _any_ of the personal emails. The format of the emails is case-insensitive."
+}

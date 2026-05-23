@@ -1,0 +1,23 @@
+{
+  "operationId": "PostHrisEmployeeSkillAssignments",
+  "method": "POST",
+  "path": "/hris/employee-skill-assignments",
+  "summary": "Create employee skill assignment",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "8AvRLpxwY5J6pGxfY6fUD81Z",
+          "employee_id": "26vafvWSRmbhNcxJYqjCzuJg",
+          "skill_id": "28KMdr68N8kG9EzLwjsN9aoz",
+          "current_level": "Proficiency Level 1"
+        }
+      }
+    }
+  ]
+}

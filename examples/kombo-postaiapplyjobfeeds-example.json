@@ -1,0 +1,29 @@
+{
+  "operationId": "PostAiApplyJobFeeds",
+  "method": "POST",
+  "path": "/ai-apply/job-feeds",
+  "summary": "Create a job feed",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "label": "Standard Acquisition Services LLC"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "id": "mK7pQw9xNvEr2LdY5sGh8TcZ",
+          "label": "Standard Acquisition Services LLC"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetIntegrationsIntegrationIdCustomFieldsPositiveResponse",
+  "title": "GetIntegrationsIntegrationIdCustomFieldsPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The unique ID of the field"
+              },
+              "key": {
+                "type": "string",
+                "description": "The key of the custom field as it will be used in the custom_field object of the corresponding model"
+              },
+              "integration_field": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The integration field's unique ID"
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "The key of the integration field in the remote system"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "DEFAULT",
+                      "CUSTOM"
+                    ],
+                    "description": "The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key."
+                  },
+                  "label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The label of the integration field in the remote system"
+                  }
+                },
+                "required": [
+                  "id",
+                  "key",
+                  "type",
+                  "label"
+                ],
+                "description": "The integration field the custom field is mapped to. Null if not mapped."
+              },
+              "model": {
+                "type": "string",
+                "description": "The model the field is associated with"
+              },
+              "label": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The label of the custom field"
+              },
+              "description": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The description of the custom field"
+              }
+            },
+            "required": [
+              "id",
+              "key",
+              "integration_field",
+              "model",
+              "label",
+              "description"
+            ],
+            "examples": [
+              {
+                "id": "EU3Bwa4iDfGspEELW71WDvvu",
+                "key": "tshirt_size",
+                "integration_field": {
+                  "id": "3n6geaAmKL5tFonXVAtsMDmr",
+                  "key": "custom.tshirt_size",
+                  "type": "CUSTOM",
+                  "label": "T-Shirt Size"
+                },
+                "model": "hris_employees",
+                "label": "T-Shirt Size",
+                "description": "Map this to the employee's tshirt size"
+              }
+            ]
+          }
+        },
+        "next_cursor": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "**(\u26a0\ufe0f Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages."
+        },
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages."
+        }
+      },
+      "required": [
+        "results",
+        "next_cursor",
+        "next"
+      ],
+      "examples": [
+        {
+          "results": [
+            {
+              "id": "D9CoSqqun6ix7uKEwb2kHBU1",
+              "key": "unified_tax_id",
+              "integration_field": {
+                "id": "FFpTK47GhXnU6QAopPq2bdos",
+                "key": "tax_id",
+                "type": "DEFAULT",
+                "label": "The employee's tax ID"
+              },
+              "model": "hris_employees",
+              "label": null,
+              "description": null
+            }
+          ],
+          "next_cursor": null,
+          "next": null
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

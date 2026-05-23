@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetHrisSkillsParameterNameContains",
+  "title": "GetHrisSkillsParameterNameContains",
+  "type": "string",
+  "description": "Filter by the `name` field. Can be used to find a skills by keywords present in the skill name."
+}

@@ -1,0 +1,4931 @@
+{
+  "provider": "Kombo",
+  "providerId": "kombo",
+  "kind": "json-structure",
+  "description": "Structural overview of the Kombo API surface; extracted from openapi/.",
+  "schemaCount": 540,
+  "operationCount": 121,
+  "schemas": [
+    {
+      "name": "GetCheckApiKeyPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostForceSyncPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostForceSyncRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PostPassthroughToolApiParameterTool",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostPassthroughToolApiParameterApi",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostPassthroughToolApiPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostPassthroughToolApiRequestBody",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "method",
+        "path"
+      ]
+    },
+    {
+      "name": "DeleteIntegrationsIntegrationIdParameterIntegrationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DeleteIntegrationsIntegrationIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteIntegrationsIntegrationIdRequestBody",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdParameterIntegrationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PutIntegrationsIntegrationIdEnabledParameterIntegrationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PutIntegrationsIntegrationIdEnabledPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PutIntegrationsIntegrationIdEnabledRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "value"
+      ]
+    },
+    {
+      "name": "PostIntegrationsIntegrationIdRelinkParameterIntegrationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostIntegrationsIntegrationIdRelinkPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostIntegrationsIntegrationIdRelinkRequestBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "PostIntegrationsIntegrationIdSetupLinkParameterIntegrationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostIntegrationsIntegrationIdSetupLinkPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostIntegrationsIntegrationIdSetupLinkRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "link_type"
+      ]
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdIntegrationFieldsParameterIntegrationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdIntegrationFieldsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdIntegrationFieldsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdIntegrationFieldsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationFieldId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "enable_passthrough"
+      ]
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdCustomFieldsParameterIntegrationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdCustomFieldsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdCustomFieldsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetIntegrationsIntegrationIdCustomFieldsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterIntegrationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterCustomFieldId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "integration_field_id"
+      ]
+    },
+    {
+      "name": "GetToolsCategoryParameterCategory",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetToolsCategoryPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostHrisProvisioningGroupsGroupIdDiffParameterGroupId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostHrisProvisioningGroupsGroupIdDiffPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostHrisProvisioningGroupsGroupIdDiffRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "provisioned_users",
+        "options"
+      ]
+    },
+    {
+      "name": "PostHrisProvisioningGroupsGroupIdSetupLinksParameterGroupId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostHrisProvisioningGroupsGroupIdSetupLinksPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostHrisProvisioningGroupsGroupIdSetupLinksRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterEmploymentStatus",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterEmploymentStatuses",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterGroupIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterLegalEntityIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterWorkLocationIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterWorkEmails",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterPersonalEmails",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesParameterCustomFields",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostHrisEmployeesPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostHrisEmployeesRequestBody",
+      "type": "object",
+      "propertyCount": 14,
+      "required": [
+        "first_name",
+        "last_name"
+      ]
+    },
+    {
+      "name": "Schema2",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Schema1",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeesFormPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostHrisEmployeesFormPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "Schema5",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Schema6",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Schema4",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Schema3",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostHrisEmployeesFormRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "properties"
+      ]
+    },
+    {
+      "name": "PatchHrisEmployeesEmployeeIdParameterEmployeeId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PatchHrisEmployeesEmployeeIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PatchHrisEmployeesEmployeeIdRequestBody",
+      "type": "object",
+      "propertyCount": 18,
+      "required": [
+        "work_email"
+      ]
+    },
+    {
+      "name": "PostHrisEmployeesEmployeeIdDocumentsParameterEmployeeId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostHrisEmployeesEmployeeIdDocumentsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostHrisEmployeesEmployeeIdDocumentsRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "category_id",
+        "document"
+      ]
+    },
+    {
+      "name": "GetHrisEmployeeDocumentCategoriesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeDocumentCategoriesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeDocumentCategoriesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeDocumentCategoriesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeDocumentCategoriesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeDocumentCategoriesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeDocumentCategoriesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeDocumentCategoriesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisTeamsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTeamsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTeamsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTeamsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTeamsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTeamsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTeamsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTeamsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisGroupsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisGroupsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisGroupsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisGroupsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisGroupsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisGroupsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisGroupsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisGroupsParameterTypes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisGroupsParameterNameContains",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisGroupsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisEmploymentsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmploymentsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmploymentsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmploymentsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmploymentsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmploymentsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmploymentsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmploymentsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisLocationsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLocationsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLocationsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLocationsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLocationsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLocationsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLocationsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLocationsParameterNameContains",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLocationsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisAbsenceTypesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsenceTypesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsenceTypesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsenceTypesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsenceTypesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsenceTypesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsenceTypesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsenceTypesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisTimeOffBalancesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimeOffBalancesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimeOffBalancesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimeOffBalancesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimeOffBalancesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimeOffBalancesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimeOffBalancesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimeOffBalancesParameterEmployeeId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimeOffBalancesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisAbsencesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterDateFrom",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterDateUntil",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterTypeIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterEmployeeId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterTimeFrom",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesParameterTimeUntil",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisAbsencesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostHrisAbsencesPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostHrisAbsencesRequestBody",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "employee_id",
+        "absence_type_id",
+        "start_date",
+        "end_date",
+        "employee_note"
+      ]
+    },
+    {
+      "name": "DeleteHrisAbsencesAbsenceIdParameterAbsenceId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DeleteHrisAbsencesAbsenceIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "DeleteHrisAbsencesAbsenceIdRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "GetHrisLegalEntitiesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLegalEntitiesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLegalEntitiesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLegalEntitiesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLegalEntitiesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLegalEntitiesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLegalEntitiesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLegalEntitiesParameterNameContains",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisLegalEntitiesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisTimesheetsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterEmployeeId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterStartedBefore",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterStartedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterEndedBefore",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsParameterEndedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisTimesheetsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisPerformanceReviewCyclesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewCyclesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewCyclesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewCyclesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewCyclesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewCyclesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewCyclesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewCyclesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterTypes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterReviewCycleIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsParameterRevieweeIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisPerformanceReviewsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetHrisSkillsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisSkillsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisSkillsParameterNameContains",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisSkillsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostHrisSkillsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostHrisSkillsRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "PatchHrisSkillsSkillIdParameterSkillId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PatchHrisSkillsSkillIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PatchHrisSkillsSkillIdRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DeleteHrisSkillsSkillIdParameterSkillId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DeleteHrisSkillsSkillIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteHrisSkillsSkillIdRequestBody",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeSkillAssignmentsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeSkillAssignmentsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeSkillAssignmentsParameterEmployeeIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeSkillAssignmentsParameterSkillIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisEmployeeSkillAssignmentsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostHrisEmployeeSkillAssignmentsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostHrisEmployeeSkillAssignmentsRequestBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "employee_id",
+        "skill_id"
+      ]
+    },
+    {
+      "name": "PatchHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentIdParameterEmployeeSkillAssignmentId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PatchHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PatchHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentIdRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "current_level"
+      ]
+    },
+    {
+      "name": "DeleteHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentIdParameterEmployeeSkillAssignmentId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DeleteHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentIdRequestBody",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesParameterModelTypes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesParameterStatuses",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetHrisStaffingEntitiesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsApplicationsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterOutcome",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterOutcomes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterJobIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterJobRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterCurrentStageIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsParameterRemoteCreatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PutAtsApplicationsApplicationIdStageParameterApplicationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PutAtsApplicationsApplicationIdStagePositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PutAtsApplicationsApplicationIdStageRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "stage_id"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdResultLinksParameterApplicationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdResultLinksPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdResultLinksRequestBody",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "label",
+        "url"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdNotesParameterApplicationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdNotesPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdNotesRequestBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "content",
+        "content_type"
+      ]
+    },
+    {
+      "name": "GetAtsApplicationsApplicationIdAttachmentsParameterApplicationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationsApplicationIdAttachmentsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdAttachmentsParameterApplicationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdAttachmentsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdAttachmentsRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "attachment"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdRejectParameterApplicationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdRejectPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdRejectRequestBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "rejection_reason_id"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdInterviewsParameterApplicationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdInterviewsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAtsApplicationsApplicationIdInterviewsRequestBody",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "title",
+        "start_time",
+        "end_time",
+        "interviewer_user_ids",
+        "organizer_user_id",
+        "location"
+      ]
+    },
+    {
+      "name": "PatchAtsApplicationsApplicationIdInterviewsParameterApplicationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PatchAtsApplicationsApplicationIdInterviewsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PatchAtsApplicationsApplicationIdInterviewsRequestBody",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "interview_id",
+        "title",
+        "start_time",
+        "end_time",
+        "interviewer_user_ids",
+        "organizer_user_id",
+        "location"
+      ]
+    },
+    {
+      "name": "GetAtsCandidatesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterEmail",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterJobIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterFirstName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesParameterLastName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAtsCandidatesPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsCandidatesRequestBody",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "candidate",
+        "application"
+      ]
+    },
+    {
+      "name": "GetAtsCandidatesCandidateIdAttachmentsParameterCandidateId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsCandidatesCandidateIdAttachmentsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsCandidatesCandidateIdAttachmentsParameterCandidateId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAtsCandidatesCandidateIdAttachmentsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsCandidatesCandidateIdAttachmentsRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "attachment"
+      ]
+    },
+    {
+      "name": "PostAtsCandidatesCandidateIdResultLinksParameterCandidateId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAtsCandidatesCandidateIdResultLinksPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsCandidatesCandidateIdResultLinksRequestBody",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "label",
+        "url"
+      ]
+    },
+    {
+      "name": "PostAtsCandidatesCandidateIdTagsParameterCandidateId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAtsCandidatesCandidateIdTagsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsCandidatesCandidateIdTagsRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "tag"
+      ]
+    },
+    {
+      "name": "DeleteAtsCandidatesCandidateIdTagsParameterCandidateId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DeleteAtsCandidatesCandidateIdTagsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "DeleteAtsCandidatesCandidateIdTagsRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "tag"
+      ]
+    },
+    {
+      "name": "GetAtsTagsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsTagsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsTagsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsTagsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsTagsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsTagsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsTagsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsTagsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsApplicationStagesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationStagesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationStagesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationStagesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationStagesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationStagesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationStagesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsApplicationStagesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsJobsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterJobCodes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterPostUrl",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterStatus",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterStatuses",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterEmploymentTypes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterVisibilities",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterRemoteCreatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsParameterNameContains",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsJobsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAtsJobsJobIdApplicationsParameterJobId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAtsJobsJobIdApplicationsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsJobsJobIdApplicationsRequestBody",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "candidate"
+      ]
+    },
+    {
+      "name": "GetAtsUsersParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsUsersParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsUsersParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsUsersParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsUsersParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsUsersParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsUsersParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsUsersParameterEmails",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsUsersPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsRolesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRolesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRolesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRolesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRolesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRolesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRolesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRolesParameterScopes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRolesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsOffersParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsOffersParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsOffersParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsOffersParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsOffersParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsOffersParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsOffersParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsOffersPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsRejectionReasonsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRejectionReasonsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRejectionReasonsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRejectionReasonsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRejectionReasonsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRejectionReasonsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRejectionReasonsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsRejectionReasonsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsInterviewsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsInterviewsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsInterviewsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsInterviewsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsInterviewsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsInterviewsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsInterviewsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsInterviewsParameterJobIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAtsInterviewsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsActionsAtsCreateCandidatePositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsActionsAtsCreateApplicationPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsActionsAtsAddApplicationAttachmentPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAtsActionsAtsAddCandidateAttachmentPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAtsImportTrackedApplicationPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostAtsImportTrackedApplicationRequestBody",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "tracked_at"
+      ]
+    },
+    {
+      "name": "PostAtsCustomAvionteSyncedJobsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAtsCustomAvionteSyncedJobsRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "job_remote_id"
+      ]
+    },
+    {
+      "name": "DeleteAtsCustomAvionteSyncedJobsJobRemoteIdParameterJobRemoteId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DeleteAtsCustomAvionteSyncedJobsJobRemoteIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteAtsCustomAvionteSyncedJobsJobRemoteIdRequestBody",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAssessmentPackagesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PutAssessmentPackagesPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PutAssessmentPackagesRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "packages"
+      ]
+    },
+    {
+      "name": "GetAssessmentOrdersParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAssessmentOrdersParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAssessmentOrdersParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAssessmentOrdersParameterStatuses",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAssessmentOrdersParameterCreatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAssessmentOrdersPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAssessmentOrdersOpenParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAssessmentOrdersOpenParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAssessmentOrdersOpenPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PutAssessmentOrdersAssessmentOrderIdResultParameterAssessmentOrderId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PutAssessmentOrdersAssessmentOrderIdResultPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PutAssessmentOrdersAssessmentOrderIdResultRequestBody",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "status",
+        "result_url"
+      ]
+    },
+    {
+      "name": "GetLmsUsersParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsUsersParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsUsersParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsUsersParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsUsersParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsUsersParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsUsersParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsUsersParameterWorkEmails",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsUsersPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetLmsCourseProgressionsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCourseProgressionsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCourseProgressionsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCourseProgressionsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCourseProgressionsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCourseProgressionsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCourseProgressionsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCourseProgressionsParameterUserIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCourseProgressionsParameterCourseIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCourseProgressionsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostLmsCourseProgressionsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostLmsCourseProgressionsRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "user_id",
+        "course_revision_id"
+      ]
+    },
+    {
+      "name": "PostLmsCourseProgressionsCourseProgressionIdCompleteParameterCourseProgressionId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostLmsCourseProgressionsCourseProgressionIdCompletePositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostLmsCourseProgressionsCourseProgressionIdCompleteRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "GetLmsCoursesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCoursesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCoursesParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCoursesParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCoursesParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCoursesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCoursesParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCoursesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostLmsCoursesBulkPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostLmsCoursesBulkRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "items"
+      ]
+    },
+    {
+      "name": "GetLmsCoursesBulkTaskIdParameterTaskId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsCoursesBulkTaskIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostLmsCoursesCourseIdDeactivateParameterCourseId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostLmsCoursesCourseIdDeactivatePositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostLmsCoursesCourseIdDeactivateRequestBody",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsSkillsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsSkillsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsSkillsParameterUpdatedAfter",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsSkillsParameterIncludeDeleted",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsSkillsParameterIgnoreUnsupportedFilters",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsSkillsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsSkillsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetLmsSkillsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyCareerSitesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyCareerSitesRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "label"
+      ]
+    },
+    {
+      "name": "GetAiApplyCareerSitesParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyCareerSitesParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyCareerSitesParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyCareerSitesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAiApplyPostingsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyPostingsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyPostingsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyPostingsParameterCareerSiteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyPostingsParameterJobCodes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyPostingsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyPostingsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyPostingsRequestBody",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "url",
+        "career_site_id"
+      ]
+    },
+    {
+      "name": "PostAiApplyPostingsPostingIdInquireParameterPostingId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAiApplyPostingsPostingIdInquirePositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyPostingsPostingIdInquireRequestBody",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAiApplyApplyPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyApplyRequestBody",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "submission_token",
+        "candidate_email",
+        "screening_question_answers"
+      ]
+    },
+    {
+      "name": "GetAiApplyApplicationsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyApplicationsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyApplicationsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyApplicationsParameterJobPostingIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyApplicationsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAiApplyUnifiedApiJobsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyUnifiedApiJobsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyUnifiedApiJobsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyUnifiedApiJobsParameterRemoteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyUnifiedApiJobsParameterJobCodes",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyUnifiedApiJobsParameterCareerSiteIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyUnifiedApiJobsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyUnifiedApiJobsJobIdApplicationsParameterJobId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostAiApplyUnifiedApiJobsJobIdApplicationsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyUnifiedApiJobsJobIdApplicationsRequestBody",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "candidate"
+      ]
+    },
+    {
+      "name": "GetAiApplyJobFeedsParameterCursor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyJobFeedsParameterPageSize",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyJobFeedsParameterIds",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAiApplyJobFeedsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyJobFeedsPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostAiApplyJobFeedsRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "label"
+      ]
+    },
+    {
+      "name": "PostConnectCreateLinkPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostConnectCreateLinkRequestBody",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "end_user_email",
+        "end_user_organization_name"
+      ]
+    },
+    {
+      "name": "GetConnectIntegrationByTokenTokenParameterToken",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetConnectIntegrationByTokenTokenPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostConnectActivateIntegrationPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostConnectActivateIntegrationRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "token"
+      ]
+    },
+    {
+      "name": "GetCustomDatevSystemInformationPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostCustomDatevPassthroughPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostCustomDatevPassthroughRequestBody",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "file_content",
+        "accounting_month",
+        "target_system",
+        "file_type",
+        "file_name"
+      ]
+    },
+    {
+      "name": "GetCustomDatevCheckEauPermissionPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "GetCustomDatevEauRequestsEauIdParameterEauId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetCustomDatevEauRequestsEauIdPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "GetCustomDatevCheckDocumentPermissionPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "GetCustomDatevAvailableDocumentsParameterPeriod",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetCustomDatevAvailableDocumentsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostCustomDatevDownloadDocumentPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostCustomDatevDownloadDocumentRequestBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "accounting_month",
+        "document_type",
+        "employee_id"
+      ]
+    },
+    {
+      "name": "PostCustomDatevEmployeesEmployeeIdDownloadDocumentParameterEmployeeId",
+      "type": [
+        "string",
+        "null"
+      ],
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostCustomDatevEmployeesEmployeeIdDownloadDocumentPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostCustomDatevEmployeesEmployeeIdDownloadDocumentRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "accounting_month",
+        "document_type"
+      ]
+    },
+    {
+      "name": "PostCustomDatevEmployeesEmployeeIdEauRequestsParameterEmployeeId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostCustomDatevEmployeesEmployeeIdEauRequestsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostCustomDatevEmployeesEmployeeIdEauRequestsRequestBody",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "start_work_incapacity"
+      ]
+    },
+    {
+      "name": "PutCustomDatevEmployeesEmployeeIdPreparePayrollParameterEmployeeId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PutCustomDatevEmployeesEmployeeIdPreparePayrollPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PutCustomDatevEmployeesEmployeeIdPreparePayrollRequestBody",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "payroll_run",
+        "hourly_payments",
+        "fixed_payments"
+      ]
+    },
+    {
+      "name": "PutCustomDatevEmployeesEmployeeIdCompensationsParameterEmployeeId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PutCustomDatevEmployeesEmployeeIdCompensationsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PutCustomDatevEmployeesEmployeeIdCompensationsRequestBody",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "effective_date",
+        "compensations"
+      ]
+    },
+    {
+      "name": "GetCustomDatevCheckWritePermissionPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "GetCustomDatevDataPushesPositiveResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "PostCustomDatevPushDataGeneralPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostCustomDatevPushDataGeneralRequestBody",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostCustomDatevPushDataPayrollPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostCustomDatevPushDataPayrollRequestBody",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "payroll_month"
+      ]
+    },
+    {
+      "name": "PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsParameterEmployeeId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsPositiveResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status",
+        "data",
+        "warnings"
+      ]
+    },
+    {
+      "name": "PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsRequestBody",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "supplement_code",
+        "effective_date"
+      ]
+    },
+    {
+      "name": "DataChangedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "ConnectionFlowFailedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "IntegrationCreatedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "IntegrationDeletedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "AssessmentOrderReceivedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "InlineAssessmentOrderReceivedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "IntegrationStateChangedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "AiApplyApplicationStatusUpdatedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "AiApplyJobPostingStatusUpdatedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "SyncFinishedWebhookPayload",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "type",
+        "data"
+      ]
+    },
+    {
+      "name": "BulkImportJobPostingLocation",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "country"
+      ]
+    },
+    {
+      "name": "BulkImportJobPostingInput",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "url",
+        "career_site_label"
+      ]
+    },
+    {
+      "name": "BulkImportResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "status",
+        "data"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/check-api-key",
+      "operationId": "GetCheckApiKey",
+      "summary": "Check API key",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/force-sync",
+      "operationId": "PostForceSync",
+      "summary": "Trigger sync",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/passthrough/{tool}/{api}",
+      "operationId": "PostPassthroughToolApi",
+      "summary": "Send passthrough request",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrations/{integration_id}",
+      "operationId": "GetIntegrationsIntegrationId",
+      "summary": "Get integration details",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/integrations/{integration_id}",
+      "operationId": "DeleteIntegrationsIntegrationId",
+      "summary": "Delete integration",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/integrations/{integration_id}/enabled",
+      "operationId": "PutIntegrationsIntegrationIdEnabled",
+      "summary": "Set integration enabled",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/integrations/{integration_id}/relink",
+      "operationId": "PostIntegrationsIntegrationIdRelink",
+      "summary": "Create reconnection link",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/integrations/{integration_id}/setup-link",
+      "operationId": "PostIntegrationsIntegrationIdSetupLink",
+      "summary": "Create Setup Flow link",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrations/{integration_id}/integration-fields",
+      "operationId": "GetIntegrationsIntegrationIdIntegrationFields",
+      "summary": "Get integration fields",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/integrations/{integration_id}/integration-fields/{integration_field_id}",
+      "operationId": "PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldId",
+      "summary": "Updates an integration fields passthrough setting",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/integrations/{integration_id}/custom-fields",
+      "operationId": "GetIntegrationsIntegrationIdCustomFields",
+      "summary": "Get custom fields with current mappings",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/integrations/{integration_id}/custom-fields/{custom_field_id}",
+      "operationId": "PutIntegrationsIntegrationIdCustomFieldsCustomFieldId",
+      "summary": "Put custom field mappings",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/tools/{category}",
+      "operationId": "GetToolsCategory",
+      "summary": "Get tools",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/hris/provisioning-groups/{group_id}/diff",
+      "operationId": "PostHrisProvisioningGroupsGroupIdDiff",
+      "summary": "Get provisioning diff",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/hris/provisioning-groups/{group_id}/setup-links",
+      "operationId": "PostHrisProvisioningGroupsGroupIdSetupLinks",
+      "summary": "Create provisioning setup link (deprecated)",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/employees",
+      "operationId": "GetHrisEmployees",
+      "summary": "Get employees",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/hris/employees",
+      "operationId": "PostHrisEmployees",
+      "summary": "[DEPRECATED] Create employee",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/employees/form",
+      "operationId": "GetHrisEmployeesForm",
+      "summary": "Get employee form",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/hris/employees/form",
+      "operationId": "PostHrisEmployeesForm",
+      "summary": "Create employee with form",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/hris/employees/{employee_id}",
+      "operationId": "PatchHrisEmployeesEmployeeId",
+      "summary": "Update employee",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/hris/employees/{employee_id}/documents",
+      "operationId": "PostHrisEmployeesEmployeeIdDocuments",
+      "summary": "Add document to employee",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/employee-document-categories",
+      "operationId": "GetHrisEmployeeDocumentCategories",
+      "summary": "Get employee document categories",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/teams",
+      "operationId": "GetHrisTeams",
+      "summary": "Get teams (deprecated)",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/groups",
+      "operationId": "GetHrisGroups",
+      "summary": "Get groups",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/employments",
+      "operationId": "GetHrisEmployments",
+      "summary": "Get employments",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/locations",
+      "operationId": "GetHrisLocations",
+      "summary": "Get work locations",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/absence-types",
+      "operationId": "GetHrisAbsenceTypes",
+      "summary": "Get absence types",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/time-off-balances",
+      "operationId": "GetHrisTimeOffBalances",
+      "summary": "Get time off balances",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/absences",
+      "operationId": "GetHrisAbsences",
+      "summary": "Get absences",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/hris/absences",
+      "operationId": "PostHrisAbsences",
+      "summary": "Create absence",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/hris/absences/{absence_id}",
+      "operationId": "DeleteHrisAbsencesAbsenceId",
+      "summary": "Delete absence",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/legal-entities",
+      "operationId": "GetHrisLegalEntities",
+      "summary": "Get legal entities",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/timesheets",
+      "operationId": "GetHrisTimesheets",
+      "summary": "Get timesheets",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/performance-review-cycles",
+      "operationId": "GetHrisPerformanceReviewCycles",
+      "summary": "Get performance review cycles",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/performance-reviews",
+      "operationId": "GetHrisPerformanceReviews",
+      "summary": "Get performance reviews",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/skills",
+      "operationId": "GetHrisSkills",
+      "summary": "Get skills",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/hris/skills",
+      "operationId": "PostHrisSkills",
+      "summary": "Create skill",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/hris/skills/{skill_id}",
+      "operationId": "DeleteHrisSkillsSkillId",
+      "summary": "Delete skill",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/hris/skills/{skill_id}",
+      "operationId": "PatchHrisSkillsSkillId",
+      "summary": "Update skill",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/employee-skill-assignments",
+      "operationId": "GetHrisEmployeeSkillAssignments",
+      "summary": "Get employee skill assignments",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/hris/employee-skill-assignments",
+      "operationId": "PostHrisEmployeeSkillAssignments",
+      "summary": "Create employee skill assignment",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/hris/employee-skill-assignments/{employee_skill_assignment_id}",
+      "operationId": "DeleteHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentId",
+      "summary": "Delete employee skill assignment",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/hris/employee-skill-assignments/{employee_skill_assignment_id}",
+      "operationId": "PatchHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentId",
+      "summary": "Update employee skill assignment",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/hris/staffing-entities",
+      "operationId": "GetHrisStaffingEntities",
+      "summary": "Get staffing entities",
+      "tags": [
+        "Unified HRIS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/applications",
+      "operationId": "GetAtsApplications",
+      "summary": "Get applications",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/ats/applications/{application_id}/stage",
+      "operationId": "PutAtsApplicationsApplicationIdStage",
+      "summary": "Move application to stage",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/applications/{application_id}/result-links",
+      "operationId": "PostAtsApplicationsApplicationIdResultLinks",
+      "summary": "Add result link to application",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/applications/{application_id}/notes",
+      "operationId": "PostAtsApplicationsApplicationIdNotes",
+      "summary": "Add note to application",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/applications/{application_id}/attachments",
+      "operationId": "GetAtsApplicationsApplicationIdAttachments",
+      "summary": "Get application attachments",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/applications/{application_id}/attachments",
+      "operationId": "PostAtsApplicationsApplicationIdAttachments",
+      "summary": "Add attachment to application",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/applications/{application_id}/reject",
+      "operationId": "PostAtsApplicationsApplicationIdReject",
+      "summary": "Reject application",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/applications/{application_id}/interviews",
+      "operationId": "PostAtsApplicationsApplicationIdInterviews",
+      "summary": "Create interview",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ats/applications/{application_id}/interviews",
+      "operationId": "PatchAtsApplicationsApplicationIdInterviews",
+      "summary": "Update interview",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/candidates",
+      "operationId": "GetAtsCandidates",
+      "summary": "Get candidates",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/candidates",
+      "operationId": "PostAtsCandidates",
+      "summary": "Create candidate",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/candidates/{candidate_id}/attachments",
+      "operationId": "GetAtsCandidatesCandidateIdAttachments",
+      "summary": "Get candidate attachments",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/candidates/{candidate_id}/attachments",
+      "operationId": "PostAtsCandidatesCandidateIdAttachments",
+      "summary": "Add attachment to candidate",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/candidates/{candidate_id}/result-links",
+      "operationId": "PostAtsCandidatesCandidateIdResultLinks",
+      "summary": "Add result link to candidate",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/candidates/{candidate_id}/tags",
+      "operationId": "PostAtsCandidatesCandidateIdTags",
+      "summary": "Add tag to candidate",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ats/candidates/{candidate_id}/tags",
+      "operationId": "DeleteAtsCandidatesCandidateIdTags",
+      "summary": "Remove tag from candidate",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/tags",
+      "operationId": "GetAtsTags",
+      "summary": "Get tags",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/application-stages",
+      "operationId": "GetAtsApplicationStages",
+      "summary": "Get application stages",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/jobs",
+      "operationId": "GetAtsJobs",
+      "summary": "Get jobs",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/jobs/{job_id}/applications",
+      "operationId": "PostAtsJobsJobIdApplications",
+      "summary": "Create application",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/users",
+      "operationId": "GetAtsUsers",
+      "summary": "Get users",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/roles",
+      "operationId": "GetAtsRoles",
+      "summary": "Get roles",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/offers",
+      "operationId": "GetAtsOffers",
+      "summary": "Get offers",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/rejection-reasons",
+      "operationId": "GetAtsRejectionReasons",
+      "summary": "Get rejection reasons",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/interviews",
+      "operationId": "GetAtsInterviews",
+      "summary": "Get interviews",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/actions/ats_create_candidate",
+      "operationId": "GetAtsActionsAtsCreateCandidate",
+      "summary": null,
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/actions/ats_create_application",
+      "operationId": "GetAtsActionsAtsCreateApplication",
+      "summary": null,
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/actions/ats_add_application_attachment",
+      "operationId": "GetAtsActionsAtsAddApplicationAttachment",
+      "summary": null,
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ats/actions/ats_add_candidate_attachment",
+      "operationId": "GetAtsActionsAtsAddCandidateAttachment",
+      "summary": null,
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/import-tracked-application",
+      "operationId": "PostAtsImportTrackedApplication",
+      "summary": "Import tracked application",
+      "tags": [
+        "Unified ATS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ats/custom/avionte/synced-jobs",
+      "operationId": "PostAtsCustomAvionteSyncedJobs",
+      "summary": "Add a job to be synced",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ats/custom/avionte/synced-jobs/{job_remote_id}",
+      "operationId": "DeleteAtsCustomAvionteSyncedJobsJobRemoteId",
+      "summary": "Remove a job from sync",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/assessment/packages",
+      "operationId": "GetAssessmentPackages",
+      "summary": "Get packages",
+      "tags": [
+        "Unified ATS (Assessment & Background Check) API"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/assessment/packages",
+      "operationId": "PutAssessmentPackages",
+      "summary": "Set packages",
+      "tags": [
+        "Unified ATS (Assessment & Background Check) API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/assessment/orders",
+      "operationId": "GetAssessmentOrders",
+      "summary": "Get orders",
+      "tags": [
+        "Unified ATS (Assessment & Background Check) API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/assessment/orders/open",
+      "operationId": "GetAssessmentOrdersOpen",
+      "summary": "Get open orders (deprecated)",
+      "tags": [
+        "Unified ATS (Assessment & Background Check) API"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/assessment/orders/{assessment_order_id}/result",
+      "operationId": "PutAssessmentOrdersAssessmentOrderIdResult",
+      "summary": "Update order result",
+      "tags": [
+        "Unified ATS (Assessment & Background Check) API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lms/users",
+      "operationId": "GetLmsUsers",
+      "summary": "Get users",
+      "tags": [
+        "Unified LMS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lms/course-progressions",
+      "operationId": "GetLmsCourseProgressions",
+      "summary": "Get course progressions",
+      "tags": [
+        "Unified LMS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lms/course-progressions",
+      "operationId": "PostLmsCourseProgressions",
+      "summary": "Enroll user in course",
+      "tags": [
+        "Unified LMS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lms/course-progressions/{course_progression_id}/complete",
+      "operationId": "PostLmsCourseProgressionsCourseProgressionIdComplete",
+      "summary": "Complete course",
+      "tags": [
+        "Unified LMS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lms/courses",
+      "operationId": "GetLmsCourses",
+      "summary": "Get courses",
+      "tags": [
+        "Unified LMS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lms/courses/bulk",
+      "operationId": "PostLmsCoursesBulk",
+      "summary": "Upsert courses",
+      "tags": [
+        "Unified LMS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lms/courses/bulk/{task_id}",
+      "operationId": "GetLmsCoursesBulkTaskId",
+      "summary": "Get status of \u201cUpsert courses\u201d task",
+      "tags": [
+        "Unified LMS API"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lms/courses/{course_id}/deactivate",
+      "operationId": "PostLmsCoursesCourseIdDeactivate",
+      "summary": "Deactivate course",
+      "tags": [
+        "Unified LMS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lms/skills",
+      "operationId": "GetLmsSkills",
+      "summary": "Get skills",
+      "tags": [
+        "Unified LMS API"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ai-apply/career-sites",
+      "operationId": "GetAiApplyCareerSites",
+      "summary": "Get career sites",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ai-apply/career-sites",
+      "operationId": "PostAiApplyCareerSites",
+      "summary": "Create a career site",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ai-apply/postings",
+      "operationId": "GetAiApplyPostings",
+      "summary": "Get job postings",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ai-apply/postings",
+      "operationId": "PostAiApplyPostings",
+      "summary": "Parse a job posting",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ai-apply/postings/{posting_id}/inquire",
+      "operationId": "PostAiApplyPostingsPostingIdInquire",
+      "summary": "Inquire about a job posting and the application f\u2026",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ai-apply/apply",
+      "operationId": "PostAiApplyApply",
+      "summary": "Submit job application",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ai-apply/applications",
+      "operationId": "GetAiApplyApplications",
+      "summary": "Get applications",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ai-apply/unified-api/jobs",
+      "operationId": "GetAiApplyUnifiedApiJobs",
+      "summary": "Get jobs",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ai-apply/unified-api/jobs/{job_id}/applications",
+      "operationId": "PostAiApplyUnifiedApiJobsJobIdApplications",
+      "summary": "Create application",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ai-apply/job-feeds",
+      "operationId": "GetAiApplyJobFeeds",
+      "summary": "Get job feeds",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ai-apply/job-feeds",
+      "operationId": "PostAiApplyJobFeeds",
+      "summary": "Create a job feed",
+      "tags": [
+        "AI Apply"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/connect/create-link",
+      "operationId": "PostConnectCreateLink",
+      "summary": "Create connection link",
+      "tags": [
+        "Kombo Connect"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connect/integration-by-token/{token}",
+      "operationId": "GetConnectIntegrationByTokenToken",
+      "summary": "Get integration by token",
+      "tags": [
+        "Kombo Connect"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/connect/activate-integration",
+      "operationId": "PostConnectActivateIntegration",
+      "summary": "Activate integration (optional)",
+      "tags": [
+        "Kombo Connect"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/custom/datev/system-information",
+      "operationId": "GetCustomDatevSystemInformation",
+      "summary": "Get DATEV system information",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/custom/datev/passthrough",
+      "operationId": "PostCustomDatevPassthrough",
+      "summary": "Write raw DATEV ASCII file",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/custom/datev/check-eau-permission",
+      "operationId": "GetCustomDatevCheckEauPermission",
+      "summary": "Verify service is enabled",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/custom/datev/eau-requests/{eau_id}",
+      "operationId": "GetCustomDatevEauRequestsEauId",
+      "summary": "Query the status of the eAU request",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/custom/datev/check-document-permission",
+      "operationId": "GetCustomDatevCheckDocumentPermission",
+      "summary": "Verify service is enabled",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/custom/datev/available-documents",
+      "operationId": "GetCustomDatevAvailableDocuments",
+      "summary": "Retrieve available documents",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/custom/datev/download-document",
+      "operationId": "PostCustomDatevDownloadDocument",
+      "summary": "Download Payroll Document",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/custom/datev/employees/{employee_id}/download-document",
+      "operationId": "PostCustomDatevEmployeesEmployeeIdDownloadDocument",
+      "summary": "Download Payroll Document",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/custom/datev/employees/{employee_id}/eau-requests",
+      "operationId": "PostCustomDatevEmployeesEmployeeIdEauRequests",
+      "summary": "Create eAU Request",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/custom/datev/employees/{employee_id}/prepare-payroll",
+      "operationId": "PutCustomDatevEmployeesEmployeeIdPreparePayroll",
+      "summary": "Prepare DATEV Payroll",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/custom/datev/employees/{employee_id}/compensations",
+      "operationId": "PutCustomDatevEmployeesEmployeeIdCompensations",
+      "summary": "Set DATEV compensations",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/custom/datev/check-write-permission",
+      "operationId": "GetCustomDatevCheckWritePermission",
+      "summary": "Verify service is enabled",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/custom/datev/data-pushes",
+      "operationId": "GetCustomDatevDataPushes",
+      "summary": "Get DATEV data pushes",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/custom/datev/push-data/general",
+      "operationId": "PostCustomDatevPushDataGeneral",
+      "summary": "Push general data to DATEV",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/custom/datev/push-data/payroll",
+      "operationId": "PostCustomDatevPushDataPayroll",
+      "summary": "Push payroll data to DATEV",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/custom/silae/employees/{employee_id}/payroll-supplements",
+      "operationId": "PostCustomSilaeEmployeesEmployeeIdPayrollSupplements",
+      "summary": "Write Payroll Supplement",
+      "tags": [
+        "Custom Endpoints"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ai-apply/job-feeds/{job_feed_id}/bulk-import",
+      "operationId": "postAiApplyJobFeedsBulkImport",
+      "summary": "Bulk import job postings",
+      "tags": [
+        "AI Apply"
+      ]
+    }
+  ]
+}

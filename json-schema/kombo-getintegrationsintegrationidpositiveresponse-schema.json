@@ -1,0 +1,413 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetIntegrationsIntegrationIdPositiveResponse",
+  "title": "GetIntegrationsIntegrationIdPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "tool": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the connected tool in Kombo (e.g. `factorial`)."
+            },
+            "label": {
+              "type": "string"
+            },
+            "internal_label": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Internal label that can help you debug specific variants of the integration. Only show the `label` to your users."
+            },
+            "logo_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL to an SVG logo of the connected tool. The logo usually contains the tool name."
+            },
+            "icon_url": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL to a square SVG icon of the connected tool."
+            }
+          },
+          "required": [
+            "id",
+            "label",
+            "internal_label",
+            "logo_url",
+            "icon_url"
+          ]
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "HRIS",
+            "ATS",
+            "ASSESSMENT",
+            "LMS"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ACTIVE",
+            "INVALID",
+            "INACTIVE"
+          ],
+          "description": "The current status of the integration.\n\n- `ACTIVE`: The integration is syncing data as expected.\n- `INVALID`: The integration has stopped syncing data because of invalid credentials. To fix this, reach out to your customer to [reconnect the integration](../guides/integration-states#credentials-invalid).\n- `INACTIVE`: The integration has stopped syncing as it's been manually set to inactive. You can [enable it again](../guides/integration-states#inactive) in the integration's page."
+        },
+        "setup_status": {
+          "type": "string",
+          "enum": [
+            "INCOMPLETE",
+            "FINAL_SYNC_PENDING",
+            "COMPLETED"
+          ],
+          "description": "The setup_status is used in conjunction with the filtering and field mapping features. If these are enabled in the connection flow, the integration will start in an \"INCOMPLETE\" state and move to \"COMPLETE\" once all steps are finished.\n\n- `INCOMPLETE`: Setup is still in progress. Some steps aren\u2019t finished, so no data is available yet. Syncs only run as needed for setup.\n- `FINAL_SYNC_PENDING`: Setup is complete, and the final sync is running. Data will be available after this sync is done.\n- `COMPLETED`: Setup is fully finished, and the integration is ready to use."
+        },
+        "end_user": {
+          "type": "object",
+          "properties": {
+            "organization_name": {
+              "type": "string"
+            },
+            "creator_email": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^(?!\\.)(?!.*\\.\\.)([\\w'+-.]*)[\\w+-]@([\\da-z][\\da-z-]*\\.)+[a-z]{2,}$"
+            },
+            "origin_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "The ID you have passed initially to the connection flow to create this integration."
+            }
+          },
+          "required": [
+            "organization_name",
+            "creator_email",
+            "origin_id"
+          ]
+        },
+        "scope_config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        "data_expired_at": {
+          "description": "The date when the integration configuration (e.g. filters, scope config) was changed, invalidating the synced data. It is cleared after a successful sync. If this field is `null` the data you fetch is valid to the state of the last sync or webhook event received. Otherwise it will be set to `null` with the next successful sync.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "externalDocs": {
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+          }
+        },
+        "created_at": {
+          "description": "YYYY-MM-DDTHH:mm:ss.sssZ",
+          "type": "string",
+          "format": "date-time",
+          "externalDocs": {
+            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+          }
+        },
+        "beta": {
+          "type": "boolean"
+        },
+        "read_models": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "ID of the model (e.g. hris_employees)."
+              },
+              "label": {
+                "type": "string",
+                "description": "Label of the model (e.g. Employees)."
+              },
+              "is_available": {
+                "type": "boolean",
+                "description": "Whether the datapoint is available and enabled and not opted out of."
+              },
+              "coverage_status": {
+                "type": "string",
+                "enum": [
+                  "SUPPORTED",
+                  "UNSUPPORTED",
+                  "NOT_IMPLEMENTED",
+                  "UNKNOWN"
+                ],
+                "description": "The status of a datapoint of an integrated tool:\n\n- `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.\n- `UNSUPPORTED`: the tool does not support the datapoint.\n- `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).\n- `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it's availability in the tool."
+              },
+              "scope_config_setting": {
+                "type": "string",
+                "enum": [
+                  "ENABLED",
+                  "DISABLED",
+                  "OPTIONAL"
+                ],
+                "description": "The setting of the datapoint in the scope config that you configured in the Kombo dashboard."
+              },
+              "opted_out_by_customer": {
+                "type": "boolean",
+                "description": "Whether the datapoint is opted out by your customer in the connection flow."
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Key of the field in the API (e.g. first_name)."
+                    },
+                    "is_available": {
+                      "type": "boolean",
+                      "description": "Whether the datapoint is available and enabled and not opted out of."
+                    },
+                    "coverage_status": {
+                      "type": "string",
+                      "enum": [
+                        "SUPPORTED",
+                        "UNSUPPORTED",
+                        "NOT_IMPLEMENTED",
+                        "UNKNOWN"
+                      ],
+                      "description": "The status of a datapoint of an integrated tool:\n\n- `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.\n- `UNSUPPORTED`: the tool does not support the datapoint.\n- `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).\n- `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it's availability in the tool."
+                    },
+                    "scope_config_setting": {
+                      "type": "string",
+                      "enum": [
+                        "ENABLED",
+                        "DISABLED",
+                        "OPTIONAL"
+                      ],
+                      "description": "The setting of the datapoint in the scope config that you configured in the Kombo dashboard."
+                    },
+                    "opted_out_by_customer": {
+                      "type": "boolean",
+                      "description": "Whether the datapoint is opted out by your customer in the connection flow."
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "is_available",
+                    "coverage_status",
+                    "scope_config_setting",
+                    "opted_out_by_customer"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "is_available",
+              "coverage_status",
+              "scope_config_setting",
+              "opted_out_by_customer",
+              "fields"
+            ]
+          }
+        },
+        "write_actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "ID of the action (e.g. ats_create_candidate)."
+              },
+              "label": {
+                "type": "string",
+                "description": "Label of the action (e.g. Create candidate)."
+              },
+              "is_available": {
+                "type": "boolean",
+                "description": "Whether the datapoint is available and enabled and not opted out of."
+              },
+              "coverage_status": {
+                "type": "string",
+                "enum": [
+                  "SUPPORTED",
+                  "UNSUPPORTED",
+                  "NOT_IMPLEMENTED",
+                  "UNKNOWN"
+                ],
+                "description": "The status of a datapoint of an integrated tool:\n\n- `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.\n- `UNSUPPORTED`: the tool does not support the datapoint.\n- `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).\n- `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it's availability in the tool."
+              },
+              "scope_config_setting": {
+                "type": "string",
+                "enum": [
+                  "ENABLED",
+                  "DISABLED",
+                  "OPTIONAL"
+                ],
+                "description": "The setting of the datapoint in the scope config that you configured in the Kombo dashboard."
+              },
+              "opted_out_by_customer": {
+                "type": "boolean",
+                "description": "Whether the datapoint is opted out by your customer in the connection flow."
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Key of the input field (e.g. candidate.first_name)."
+                    },
+                    "is_available": {
+                      "type": "boolean",
+                      "description": "Whether the datapoint is available and enabled and not opted out of."
+                    },
+                    "coverage_status": {
+                      "type": "string",
+                      "enum": [
+                        "SUPPORTED",
+                        "UNSUPPORTED",
+                        "NOT_IMPLEMENTED",
+                        "UNKNOWN"
+                      ],
+                      "description": "The status of a datapoint of an integrated tool:\n\n- `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.\n- `UNSUPPORTED`: the tool does not support the datapoint.\n- `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).\n- `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it's availability in the tool."
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "is_available",
+                    "coverage_status"
+                  ]
+                },
+                "description": "Field support status for the action. Please note that action fields can't be configured in the scope config or opted out by your customer."
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "is_available",
+              "coverage_status",
+              "scope_config_setting",
+              "opted_out_by_customer",
+              "fields"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "tool",
+        "category",
+        "status",
+        "setup_status",
+        "end_user",
+        "scope_config",
+        "data_expired_at",
+        "created_at",
+        "beta",
+        "read_models",
+        "write_actions"
+      ],
+      "examples": [
+        {
+          "id": "factorial:8d1hpPsbjxUkoCoa1veLZGe5",
+          "tool": {
+            "id": "factorial",
+            "label": "Factorial",
+            "internal_label": null,
+            "logo_url": "https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg",
+            "icon_url": "https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg"
+          },
+          "category": "HRIS",
+          "status": "ACTIVE",
+          "setup_status": "COMPLETED",
+          "end_user": {
+            "organization_name": "Acme",
+            "creator_email": "example-integration-creator@acme.com",
+            "origin_id": "2DQJAUtSzzzKP9buDTvUvPk3"
+          },
+          "scope_config": {
+            "id": "B1hu5NGyhdjSq5X3hxEz4bAN",
+            "name": "Anonymous Scopes"
+          },
+          "data_expired_at": null,
+          "created_at": "2022-08-07T14:01:29.196Z",
+          "beta": false,
+          "read_models": [
+            {
+              "id": "hris_employees",
+              "label": "Employees",
+              "is_available": true,
+              "coverage_status": "SUPPORTED",
+              "scope_config_setting": "ENABLED",
+              "opted_out_by_customer": false,
+              "fields": [
+                {
+                  "id": "date_of_birth",
+                  "is_available": false,
+                  "coverage_status": "SUPPORTED",
+                  "scope_config_setting": "OPTIONAL",
+                  "opted_out_by_customer": true
+                }
+              ]
+            }
+          ],
+          "write_actions": [
+            {
+              "id": "hris_create_employee",
+              "label": "Create employee",
+              "is_available": true,
+              "coverage_status": "SUPPORTED",
+              "scope_config_setting": "ENABLED",
+              "opted_out_by_customer": false,
+              "fields": [
+                {
+                  "id": "first_name",
+                  "is_available": true,
+                  "coverage_status": "SUPPORTED"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

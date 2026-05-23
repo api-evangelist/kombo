@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetCheckApiKeyPositiveResponse",
+  "title": "GetCheckApiKeyPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "environment_id": {
+          "type": "string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "**(\u26a0\ufe0f Deprecated)** Renamed to `environment_id`."
+        }
+      },
+      "required": [
+        "environment_id",
+        "customer_id"
+      ],
+      "examples": [
+        {
+          "environment_id": "2Uev1YUTqLFdvMPD3Jtrg2FX",
+          "customer_id": "2Uev1YUTqLFdvMPD3Jtrg2FX"
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

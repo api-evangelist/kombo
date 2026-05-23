@@ -1,0 +1,55 @@
+{
+  "operationId": "GetAtsOffers",
+  "method": "GET",
+  "path": "/ats/offers",
+  "summary": "Get offers",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "next": "eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=",
+          "results": [
+            {
+              "id": "76bab8LKuFtqpZ89mofCPMHX",
+              "remote_id": "6",
+              "status": "ACCEPTED",
+              "employment_start_date": "2022-08-07T14:01:29.196Z",
+              "application_id": "BAkbueBMBusj9Bg7L1Wps3AR",
+              "custom_fields": {},
+              "integration_fields": [],
+              "changed_at": "2022-08-07T14:01:29.196Z",
+              "remote_deleted_at": null,
+              "remote_created_at": "2022-08-07T14:01:29.196Z",
+              "remote_updated_at": "2022-08-07T14:01:29.196Z",
+              "remote_data": null,
+              "application": {
+                "candidate": {
+                  "id": "26vafvWSRmbhNcxJYqjCzuJg",
+                  "remote_id": "32",
+                  "first_name": "John",
+                  "last_name": "Doe",
+                  "email_addresses": [
+                    {
+                      "email_address": "john.doe@example.com",
+                      "type": "PRIVATE"
+                    }
+                  ]
+                },
+                "job": {
+                  "id": "H5daSm8e85Dmvmne3wLeCPhX",
+                  "remote_id": "32",
+                  "name": "Backend Engineer"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

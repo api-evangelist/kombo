@@ -1,0 +1,41 @@
+{
+  "operationId": "PutCustomDatevEmployeesEmployeeIdPreparePayroll",
+  "method": "PUT",
+  "path": "/custom/datev/employees/{employee_id}/prepare-payroll",
+  "summary": "Prepare DATEV Payroll",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "payroll_run": {
+          "date": "2022-05-01"
+        },
+        "fixed_payments": [
+          {
+            "amount": 560,
+            "lohnart": 100
+          }
+        ],
+        "hourly_payments": [
+          {
+            "hours": 14,
+            "lohnart": 200
+          },
+          {
+            "hours": 16,
+            "lohnart": 232
+          }
+        ],
+        "custom_lodas": [
+          {
+            "amount": 8,
+            "lohnart": 300,
+            "bearbeitungsschluessel": 4
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

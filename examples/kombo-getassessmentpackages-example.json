@@ -1,0 +1,28 @@
+{
+  "operationId": "GetAssessmentPackages",
+  "method": "GET",
+  "path": "/assessment/packages",
+  "summary": "Get packages",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "packages": [
+            {
+              "id": "1001",
+              "name": "TypeScript",
+              "description": "TypeScript coding skills assessments",
+              "updated_at": "2023-06-29T18:47:40.890Z",
+              "type": "SKILLS_TEST"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody",
+  "title": "PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody",
+  "type": "object",
+  "properties": {
+    "integration_field_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The integration field's unique ID which the custom field should be mapped to. Null to remove a mapping."
+    }
+  },
+  "required": [
+    "integration_field_id"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeleteHrisAbsencesAbsenceIdRequestBody",
+  "title": "DeleteHrisAbsencesAbsenceIdRequestBody",
+  "type": "object",
+  "properties": {
+    "remote_fields": {
+      "type": "object",
+      "properties": {
+        "adpworkforcenow": {
+          "type": "object",
+          "properties": {
+            "employment_id": {
+              "type": "string",
+              "description": "[Required] The employment ID of the employee that the absence will be deleted from."
+            }
+          },
+          "description": "Fields specific to ADP Workforce Now."
+        }
+      },
+      "description": "Additional fields that we will pass through to specific HRIS systems."
+    }
+  }
+}

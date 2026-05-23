@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetLmsCourseProgressionsParameterUpdatedAfter",
+  "title": "GetLmsCourseProgressionsParameterUpdatedAfter",
+  "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `user` | \u2717 No | \u2717 No |\n| `course_revision` | \u2717 No | \u2717 No |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._",
+  "type": "string",
+  "format": "date-time",
+  "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?)?Z?$",
+  "externalDocs": {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "operationId": "GetCustomDatevSystemInformation",
+  "method": "GET",
+  "path": "/custom/datev/system-information",
+  "summary": "Get DATEV system information",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "consultant_number": 1234567,
+          "client_number": 99999,
+          "target_system": "LODAS"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostAtsApplicationsApplicationIdNotesRequestBody",
+  "title": "PostAtsApplicationsApplicationIdNotesRequestBody",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "description": "UTF-8 content of the note."
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "PLAIN_TEXT"
+      ],
+      "description": "Content type of the note. Currently only `PLAIN_TEXT` is supported."
+    },
+    "remote_fields": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "teamtailor": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "string",
+                  "description": "ID of the user that created the note. Defaults to the first admin user found."
+                }
+              },
+              "description": "Teamtailor specific remote fields for the note."
+            },
+            "greenhouse": {
+              "type": "object",
+              "properties": {
+                "visibility": {
+                  "type": "string",
+                  "enum": [
+                    "admin_only",
+                    "private",
+                    "public"
+                  ],
+                  "description": "Visibility of the created note."
+                }
+              },
+              "description": "Greenhouse specific remote fields for the note."
+            },
+            "recruitee": {
+              "type": "object",
+              "properties": {
+                "visibility": {
+                  "description": "Visibility of the created note."
+                },
+                "is_json": {
+                  "type": "boolean",
+                  "description": "Whether the note is in a stringified JSON format. If true, content should contain a valid JSON as per the [Recruitee API documentation](https://docs.recruitee.com/reference/candidatesidnotes) (body_json field). If false we add the note as a plain text."
+                }
+              },
+              "description": "Recruitee specific remote fields for the note."
+            },
+            "bullhorn": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "description": "The action (or type) associated with a Note. You can find all available note actions in a Bullhorn instance under System Settings > commentActionList. The default action is `Note`."
+                }
+              },
+              "description": "Bullhorn specific remote fields for the note."
+            },
+            "lever": {
+              "type": "object",
+              "properties": {
+                "perform_as": {
+                  "type": "string",
+                  "description": "ID of the Lever user that will show up as having created the note. If not provided, defaults to the user associated with the OAuth token."
+                }
+              },
+              "description": "Lever specific remote fields for the note."
+            }
+          },
+          "description": "Tool specific remote fields for the note."
+        },
+        {
+          "type": "object",
+          "properties": {
+            "greenhouse": {
+              "type": "object",
+              "properties": {
+                "post_headers": {
+                  "type": "object",
+                  "properties": {
+                    "On-Behalf-Of": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "ID of the the user that will show up as having performed the action in Greenhouse. We already pass a value by default, but you can use this to override it."
+                    }
+                  },
+                  "description": "Headers we will pass with `POST` requests to Greenhouse."
+                }
+              },
+              "description": "Fields specific to Greenhouse."
+            },
+            "workable": {
+              "type": "object",
+              "properties": {
+                "on_behalf_of_user_remote_id": {
+                  "type": "string",
+                  "description": "The remote ID of the user that will be displayed in the UI as the one that performed the action."
+                }
+              },
+              "description": "Workable specific remote fields for ATS actions."
+            }
+          },
+          "description": "Additional fields that we will pass through to specific ATS systems."
+        }
+      ],
+      "description": "Tool specific remote fields for the note."
+    }
+  },
+  "required": [
+    "content",
+    "content_type"
+  ]
+}

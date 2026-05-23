@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAssessmentOrdersParameterStatuses",
+  "title": "GetAssessmentOrdersParameterStatuses",
+  "type": "string",
+  "description": "Filter by a comma-separated list of `OPEN`, `COMPLETED`, `CANCELLED`, `REJECTED`.\n\nLeave this blank to get results matching all values."
+}

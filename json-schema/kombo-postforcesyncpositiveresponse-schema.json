@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PostForceSyncPositiveResponse",
+  "title": "PostForceSyncPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "already_queued": {
+          "type": "boolean",
+          "description": "We only allow 1 concurrent sync to be running or queued."
+        },
+        "sync_id": {
+          "type": "string",
+          "description": "ID of the newly-created or already-queued-or-running sync."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FULL",
+            "DELTA"
+          ],
+          "description": "The type of the triggered sync. May differ from request, if the integration does not support delta syncs or if another sync is already running."
+        }
+      },
+      "required": [
+        "already_queued",
+        "sync_id",
+        "type"
+      ],
+      "examples": [
+        {
+          "already_queued": false,
+          "sync_id": "119ihtp91nA3dqRFiV67nXS6",
+          "type": "DELTA"
+        }
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "data"
+  ]
+}

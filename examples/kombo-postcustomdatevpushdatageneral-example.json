@@ -1,0 +1,30 @@
+{
+  "operationId": "PostCustomDatevPushDataGeneral",
+  "method": "POST",
+  "path": "/custom/datev/push-data/general",
+  "summary": "Push general data to DATEV",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {
+          "files": [
+            {
+              "name": "EXTF_Stammdaten.csv",
+              "content": "EXTF;700;21;Stammdaten;..."
+            }
+          ]
+        },
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

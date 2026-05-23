@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsApplicationsParameterOutcome",
+  "title": "GetAtsApplicationsParameterOutcome",
+  "type": "string",
+  "enum": [
+    "PENDING",
+    "HIRED",
+    "DECLINED"
+  ],
+  "description": "**(\u26a0\ufe0f Deprecated - Use the `outcomes` filter instead.)** Filter applications by outcome. This allows you to get applications that are for example `PENDING`, `HIRED`, or `DECLINED`."
+}

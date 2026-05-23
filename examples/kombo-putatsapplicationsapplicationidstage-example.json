@@ -1,0 +1,31 @@
+{
+  "operationId": "PutAtsApplicationsApplicationIdStage",
+  "method": "PUT",
+  "path": "/ats/applications/{application_id}/stage",
+  "summary": "Move application to stage",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "stage_id": "3PJ8PZhZZa1eEdd2DtPNtVup"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "example1",
+      "example": {
+        "status": "success",
+        "data": {},
+        "warnings": [
+          {
+            "message": "This is an example warning!"
+          }
+        ]
+      }
+    }
+  ]
+}

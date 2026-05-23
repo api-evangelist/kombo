@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetAtsCandidatesCandidateIdAttachmentsPositiveResponse",
+  "title": "GetAtsCandidatesCandidateIdAttachmentsPositiveResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "const": "success"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 24,
+                "maxLength": 24,
+                "pattern": "^[1-9A-HJ-NP-Za-km-z]+$"
+              },
+              "application_id": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 24,
+                "maxLength": 24,
+                "pattern": "^[1-9A-HJ-NP-Za-km-z]+$",
+                "description": "The Kombo ID of the application this attachment belongs to. When this is null, the attachment is not specific to any application but the candidate."
+              },
+              "candidate_id": {
+                "type": "string",
+                "minLength": 24,
+                "maxLength": 24,
+                "pattern": "^[1-9A-HJ-NP-Za-km-z]+$",
+                "description": "The Kombo ID of the candidate this attachment belongs to."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "CV",
+                  "COVER_LETTER",
+                  "OTHER"
+                ]
+              },
+              "remote_id": {
+                "type": "string"
+              },
+              "data_url": {
+                "type": "string"
+              },
+              "file_name": {
+                "type": "string"
+              },
+              "content_type": {
+                "type": "string",
+                "description": "The MIME type of the attachment."
+              },
+              "remote_created_at": {
+                "description": "The date when the attachment was created.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "externalDocs": {
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                }
+              },
+              "remote_updated_at": {
+                "description": "The date when the attachment was last updated.",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time",
+                "externalDocs": {
+                  "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString"
+                }
+              }
+            },
+            "required": [
+              "id",
+              "application_id",
+              "candidate_id",
+              "type",
+              "remote_id",
+              "data_url",
+              "file_name",
+              "content_type",
+              "remote_created_at",
+              "remote_updated_at"
+            ]
+          }
+        }
+      },
+      "required": [
+        "results"
+      ],
+      "examples": [
+        {
+          "results": [
+            {
+              "id": "EYJjhMQT3LtVKXnTbnRT8s6U",
+              "application_id": null,
+              "candidate_id": "BTbkvY2w5ou3z3hdwuKcKzDh",
+              "type": "CV",
+              "remote_id": "GUzE666zfyjeoCJX6A8n7wh6",
+              "data_url": "https://resources.kombo.dev/EYJjhMQT3LtVKXnTbnRT8s6U",
+              "file_name": "Frank Doe CV.pdf",
+              "content_type": "application/pdf",
+              "remote_created_at": null,
+              "remote_updated_at": null
+            }
+          ]
+        }
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "description": "These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console."
+    }
+  },
+  "required": [
+    "status",
+    "data",
+    "warnings"
+  ]
+}
