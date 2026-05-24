@@ -125,6 +125,8 @@ common:
   url: mailto:support@kombo.dev
 - type: GitHubOrganization
   url: https://github.com/kombo-api
+- type: LLMsTxt
+  url: https://docs.kombo.dev/llms.txt
 integrations:
 - name: Microsoft Entra ID
 - name: Google Workspace
