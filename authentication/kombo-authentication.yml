@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/kombo-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: ApiKey
+  type: http
+  scheme: bearer
+  description: Create an API key on the [Secrets](https://app.kombo.dev/secrets) page in the
+    Kombo dashboard.
+  sources:
+  - openapi/kombo-openapi.json
