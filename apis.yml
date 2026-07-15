@@ -97,6 +97,8 @@ apis:
       - type: OpenAPI
         url: https://api.kombo.dev/openapi.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/kombo-agentic-access.yml
   - type: TrustCenter
     url: security/kombo-trust-center.yml
   - type: DomainSecurity
