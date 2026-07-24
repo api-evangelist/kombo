@@ -1,0 +1,1189 @@
+openapi: 3.1.0
+info:
+  title: Kombo AI Apply Unified ATS (Assessment & Background Check) API API
+  version: 1.0.0
+  description: Endpoints for AI-powered job application features.
+servers:
+- url: https://api.kombo.dev/v1
+  description: Kombo EU API
+- url: https://api.us.kombo.dev/v1
+  description: Kombo US API
+security:
+- ApiKey: []
+tags:
+- name: Unified ATS (Assessment & Background Check) API
+  description: Unified endpoints to operate Assessments and Background Checks for many applicant tracking systems.
+paths:
+  /assessment/packages:
+    get:
+      operationId: GetAssessmentPackages
+      summary: Get packages
+      description: 'Get all available assessment and background check packages for an integration.
+
+
+        This is mainly intended for debugging. As you always need to submit the full list of available packages when using ["set packages"](/assessment/v1/put-packages), there shouldn''t ever be a need to call this endpoint in production.'
+      tags:
+      - Unified ATS (Assessment & Background Check) API
+      parameters:
+      - in: header
+        name: X-Integration-Id
+        schema:
+          type: string
+        description: ID of the integration you want to interact with.
+        example: recruitee:HWUTwvyx2wLoSUHphiWVrp28
+        required: true
+      responses:
+        '200':
+          description: GET /assessment/packages Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAssessmentPackagesPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      packages:
+                      - id: '1001'
+                        name: TypeScript
+                        description: TypeScript coding skills assessments
+                        updated_at: '2023-06-29T18:47:40.890Z'
+                        type: SKILLS_TEST
+        default:
+          $ref: '#/components/responses/ErrorResponseATS'
+    put:
+      operationId: PutAssessmentPackages
+      summary: Set packages
+      description: "Set packages\n\nReplaces the list of available assessment and or background check packages.\n\nPackages that have been previously submitted through this endpoint but aren't included again will be marked as deleted.\n\n### Example Request Body\n\n```json\n{\n  \"packages\": [\n    {\n      \"id\": \"1001\",\n      \"type\": \"SKILLS_TEST\",\n      \"name\": \"TypeScript\",\n      \"description\": \"TypeScript coding skills assessments\"\n    },\n    {\n      \"id\": \"1002\",\n      \"type\": \"VIDEO_INTERVIEW\",\n      \"name\": \"Video Interview\",\n      \"description\": \"Video interview to assess communication skills\"\n    }\n  ]\n}\n```"
+      tags:
+      - Unified ATS (Assessment & Background Check) API
+      parameters:
+      - in: header
+        name: X-Integration-Id
+        schema:
+          type: string
+        description: ID of the integration you want to interact with.
+        example: recruitee:HWUTwvyx2wLoSUHphiWVrp28
+        required: true
+      requestBody:
+        description: PUT /assessment/packages Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutAssessmentPackagesRequestBody'
+            examples:
+              example1:
+                value:
+                  packages:
+                  - id: '1001'
+                    type: SKILLS_TEST
+                    name: TypeScript
+                    description: TypeScript coding skills assessments
+                  - id: '1002'
+                    type: VIDEO_INTERVIEW
+                    name: Video Interview
+                    description: Video interview to assess communication skills
+      responses:
+        '200':
+          description: PUT /assessment/packages Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutAssessmentPackagesPositiveResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponseATS'
+  /assessment/orders:
+    get:
+      operationId: GetAssessmentOrders
+      summary: Get orders
+      description: Get all assessment and background check orders of an integration.
+      tags:
+      - Unified ATS (Assessment & Background Check) API
+      parameters:
+      - in: header
+        name: X-Integration-Id
+        schema:
+          type: string
+        description: ID of the integration you want to interact with.
+        example: recruitee:HWUTwvyx2wLoSUHphiWVrp28
+        required: true
+      - name: cursor
+        in: query
+        required: false
+        description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+        schema:
+          $ref: '#/components/schemas/GetAssessmentOrdersParameterCursor'
+      - name: page_size
+        in: query
+        required: false
+        description: The number of results to return per page. Maximum is 250.
+        schema:
+          $ref: '#/components/schemas/GetAssessmentOrdersParameterPageSize'
+      - name: ids
+        in: query
+        required: false
+        description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+        schema:
+          $ref: '#/components/schemas/GetAssessmentOrdersParameterIds'
+      - name: statuses
+        in: query
+        required: false
+        description: 'Filter by a comma-separated list of `OPEN`, `COMPLETED`, `CANCELLED`, `REJECTED`.
+
+
+          Leave this blank to get results matching all values.'
+        schema:
+          $ref: '#/components/schemas/GetAssessmentOrdersParameterStatuses'
+      - name: created_after
+        in: query
+        required: false
+        description: 'Filter orders by their creation date-timestamp in the format: `YYYY-MM-DDTHH:mm:ss.sssZ`. Only orders created on or after this date-timestamp will be returned.'
+        schema:
+          $ref: '#/components/schemas/GetAssessmentOrdersParameterCreatedAfter'
+      responses:
+        '200':
+          description: GET /assessment/orders Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAssessmentOrdersPositiveResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponseATS'
+  /assessment/orders/open:
+    get:
+      operationId: GetAssessmentOrdersOpen
+      summary: Get open orders (deprecated)
+      description: '**(⚠️ Deprecated - Use [Get orders](/assessment/v1/get-orders) instead)** Get all open assessment and background check orders of an integration.'
+      tags:
+      - Unified ATS (Assessment & Background Check) API
+      parameters:
+      - in: header
+        name: X-Integration-Id
+        schema:
+          type: string
+        description: ID of the integration you want to interact with.
+        example: recruitee:HWUTwvyx2wLoSUHphiWVrp28
+        required: true
+      - name: cursor
+        in: query
+        required: false
+        description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+        schema:
+          $ref: '#/components/schemas/GetAssessmentOrdersOpenParameterCursor'
+      - name: page_size
+        in: query
+        required: false
+        description: The number of results to return per page. Maximum is 250.
+        schema:
+          $ref: '#/components/schemas/GetAssessmentOrdersOpenParameterPageSize'
+      responses:
+        '200':
+          description: GET /assessment/orders/open Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAssessmentOrdersOpenPositiveResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponseATS'
+  /assessment/orders/{assessment_order_id}/result:
+    put:
+      operationId: PutAssessmentOrdersAssessmentOrderIdResult
+      summary: Update order result
+      description: "Updates an assessment or a background check order result.\n\n### Example Request Body\n\n```json\n{\n  \"status\": \"COMPLETED\",\n  \"score\": 90,\n  \"max_score\": 100,\n  \"result_url\": \"https://example.com\",\n  \"completed_at\": \"2023-04-04T00:00:00.000Z\",\n  \"attributes\": [\n    {\n      \"type\": \"TEXT\",\n      \"label\": \"Role fit\",\n      \"value\": \"Excellent\"\n    },\n    {\n      \"type\": \"SUB_RESULT\",\n      \"id\": \"<YOUR_INTERNAL_ID_OF_THE_TEST>\",\n      \"label\": \"Personality test\",\n      \"score\": {\n        \"value\": 97,\n        \"max\": 100\n      },\n      \"status\": \"COMPLETED\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"name\": \"Assessment Report.pdf\",\n      \"data\": \"SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=\",\n      \"content_type\": \"application/pdf\"\n    }\n  ]\n}\n```"
+      tags:
+      - Unified ATS (Assessment & Background Check) API
+      parameters:
+      - in: header
+        name: X-Integration-Id
+        schema:
+          type: string
+        description: ID of the integration you want to interact with.
+        example: recruitee:HWUTwvyx2wLoSUHphiWVrp28
+        required: true
+      - name: assessment_order_id
+        in: path
+        required: true
+        description: PUT /assessment/orders/:assessment_order_id/result Parameter
+        schema:
+          $ref: '#/components/schemas/PutAssessmentOrdersAssessmentOrderIdResultParameterAssessmentOrderId'
+        examples:
+          example1:
+            value: GRKdd9dibYKKCrmGRSMJf3wu
+      requestBody:
+        description: PUT /assessment/orders/:assessment_order_id/result Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutAssessmentOrdersAssessmentOrderIdResultRequestBody'
+            examples:
+              example1:
+                value:
+                  status: COMPLETED
+                  score: 90
+                  max_score: 100
+                  result_url: https://example.com
+                  completed_at: '2023-04-04T00:00:00.000Z'
+                  attributes:
+                  - type: TEXT
+                    label: Role fit
+                    value: Excellent
+                  - type: SUB_RESULT
+                    id: <YOUR_INTERNAL_ID_OF_THE_TEST>
+                    label: Personality test
+                    score:
+                      value: 97
+                      max: 100
+                    status: COMPLETED
+                  attachments:
+                  - name: Assessment Report.pdf
+                    data: SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=
+                    content_type: application/pdf
+      responses:
+        '200':
+          description: PUT /assessment/orders/:assessment_order_id/result Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutAssessmentOrdersAssessmentOrderIdResultPositiveResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponseATS'
+components:
+  schemas:
+    PutAssessmentOrdersAssessmentOrderIdResultRequestBody:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - COMPLETED
+          - CANCELLED
+          - OPEN
+          description: 'Status of the assessment.
+
+
+            **Please note the `status` can only be updated to a different value if its current value is `OPEN`.**'
+        result_url:
+          type: string
+          format: uri
+        completed_at:
+          description: 'YYYY-MM-DDTHH:mm:ss.sssZ
+
+
+            **Please make sure this value is provided when the `status` is of the type `COMPLETED` or `CANCELLED`.**'
+          type: string
+          format: date-time
+          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+          externalDocs:
+            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+        score:
+          type: number
+          format: double
+          minimum: -1.7976931348623157e+308
+        max_score:
+          type: number
+          format: double
+          minimum: -1.7976931348623157e+308
+        attributes:
+          type: array
+          items:
+            anyOf:
+            - type: object
+              properties:
+                type:
+                  type: string
+                  const: TEXT
+                label:
+                  type: string
+                value:
+                  type: string
+              required:
+              - type
+              - label
+              - value
+            - type: object
+              properties:
+                type:
+                  type: string
+                  const: SUB_RESULT
+                id:
+                  type: string
+                label:
+                  type: string
+                score:
+                  type: object
+                  properties:
+                    value:
+                      type: number
+                      format: double
+                      minimum: -1.7976931348623157e+308
+                    max:
+                      type: number
+                      format: double
+                      minimum: 1
+                  required:
+                  - value
+                  - max
+                status:
+                  type: string
+                  enum:
+                  - COMPLETED
+                  - CANCELLED
+              required:
+              - type
+              - id
+              - label
+              - score
+              - status
+          default: []
+          description: 'An array of additional attributes that you would like to submit as a part of the assessment result.
+
+
+            - If an ATS only supports writing text attributes, we will transform non `TEXT` attributes into formatted plain text values.'
+        attachments:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system.
+              content_type:
+                type: string
+                pattern: ^[\w.-]+\/[\w.-]+$
+                description: 'Content/MIME type of the file (e.g., `application/pdf`).
+
+
+                  If you provide `data`, this is required. If you provide `data_url`, this is optional and we''ll attempt to use the `Content-Type` header of the response.
+
+
+                  **Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it''s easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types)).'
+              data_url:
+                type: string
+                format: uri
+                description: 'URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.
+
+
+                  If you''re using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
+
+
+                  **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+              data:
+                type: string
+                description: 'Base64-encoded contents of the file you want to upload.
+
+
+                  **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+            required:
+            - name
+          maxItems: 5
+          default: []
+          description: An array of attachments containing the assessment result.
+        remote_fields:
+          type: object
+          properties:
+            smartrecruiters:
+              type: object
+              properties:
+                scoreLabel:
+                  type: string
+                  description: Value that we will pass through to SmartRecruiters' `scoreLabel` field.
+            recruitee:
+              type: object
+              properties:
+                subtitle:
+                  type: string
+                  description: Value that we will pass through to Recruitee's `subtitle` field on the assessment report.
+          description: Additional fields that we will pass through to specific ATS systems.
+      required:
+      - status
+      - result_url
+    PutAssessmentPackagesPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    GetAssessmentPackagesPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            packages:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  updated_at:
+                    description: YYYY-MM-DDTHH:mm:ss.sssZ
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  type:
+                    type:
+                    - string
+                    - 'null'
+                    enum:
+                    - BEHAVIORAL
+                    - VIDEO_INTERVIEW
+                    - SKILLS_TEST
+                    - BACKGROUND_CHECK
+                    - REFERENCE_CHECK
+                required:
+                - id
+                - name
+                - description
+                - updated_at
+                - type
+          required:
+          - packages
+          examples:
+          - packages:
+            - id: '1001'
+              name: TypeScript
+              description: TypeScript coding skills assessments
+              updated_at: '2023-06-29T18:47:40.890Z'
+              type: SKILLS_TEST
+      required:
+      - status
+      - data
+    PutAssessmentPackagesRequestBody:
+      type: object
+      properties:
+        packages:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: A unique identifier for the assessment package.
+              type:
+                type: string
+                enum:
+                - BEHAVIORAL
+                - VIDEO_INTERVIEW
+                - SKILLS_TEST
+                - BACKGROUND_CHECK
+                - REFERENCE_CHECK
+              name:
+                type: string
+                description: The name of the assessment package.
+              description:
+                type: string
+                description: Description about the package. Some ATSs will display this in their UI.
+            required:
+            - id
+            - type
+            - name
+            - description
+      required:
+      - packages
+    GetAssessmentOrdersParameterCreatedAfter:
+      description: 'Filter orders by their creation date-timestamp in the format: `YYYY-MM-DDTHH:mm:ss.sssZ`. Only orders created on or after this date-timestamp will be returned.'
+      type: string
+      format: date-time
+      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+      externalDocs:
+        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+    PutAssessmentOrdersAssessmentOrderIdResultParameterAssessmentOrderId:
+      type: string
+    GetAssessmentOrdersOpenPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The unique identifier of the assessment order.
+                    examples:
+                    - B5KQKhAgTv6ZwzrfAbqbhipd
+                  package_id:
+                    type: string
+                    description: The identifier of the assessment package.
+                    examples:
+                    - typescript_test
+                  candidate:
+                    type: object
+                    properties:
+                      remote_id:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's identifier in the integrated system.
+                        examples:
+                        - '12345'
+                      email:
+                        type: string
+                        description: The candidate's email address.
+                        examples:
+                        - john.doe@gmail.com
+                        format: email
+                      first_name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's first name.
+                        examples:
+                        - John
+                      last_name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's last name.
+                        examples:
+                        - Doe
+                      phone:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's phone number.
+                        examples:
+                        - +1 123 456 7890
+                    required:
+                    - remote_id
+                    - email
+                    - first_name
+                    - last_name
+                    - phone
+                    description: Information about the candidate taking the assessment.
+                  application:
+                    type: object
+                    properties:
+                      remote_id:
+                        type:
+                        - string
+                        - 'null'
+                        description: The application's identifier in the integrated system.
+                        examples:
+                        - '54321'
+                    required:
+                    - remote_id
+                    description: Information about the job application.
+                  job:
+                    type: object
+                    properties:
+                      remote_id:
+                        type:
+                        - string
+                        - 'null'
+                        description: The job's identifier in the integrated system.
+                        examples:
+                        - '67890'
+                      name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The job title.
+                        examples:
+                        - Bottle Opener
+                      job_code:
+                        type:
+                        - string
+                        - 'null'
+                        description: The human readable job code. Some systems expose this as the Requisition Code/ID.
+                        examples:
+                        - BO-2024-01
+                      description:
+                        type:
+                        - string
+                        - 'null'
+                        description: Description of the job. This field is usually returned as HTML.
+                        examples:
+                        - <p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>
+                      location:
+                        type:
+                        - object
+                        - 'null'
+                        properties:
+                          street_1:
+                            type:
+                            - string
+                            - 'null'
+                            description: If we can parse the address data, this field contains the first part of the street information.
+                          street_2:
+                            type:
+                            - string
+                            - 'null'
+                          city:
+                            type:
+                            - string
+                            - 'null'
+                          state:
+                            type:
+                            - string
+                            - 'null'
+                          zip_code:
+                            type:
+                            - string
+                            - 'null'
+                          country:
+                            type:
+                            - string
+                            - 'null'
+                            description: Contains the ISO2 country code if possible. If not, it contains the original value.
+                          raw:
+                            type:
+                            - string
+                            - 'null'
+                            description: If we have address data, this is filled with the raw address string.
+                        description: The job location information.
+                      hiring_team:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            remote_id:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's identifier in the integrated system.
+                              examples:
+                              - '78901'
+                            email:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's email address.
+                              examples:
+                              - jane.doe@gmail.com
+                            first_name:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's first name.
+                              examples:
+                              - Jane
+                            last_name:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's last name.
+                              examples:
+                              - Doe
+                            hiring_team_roles:
+                              type: array
+                              items:
+                                type: string
+                                enum:
+                                - RECRUITER
+                                - HIRING_MANAGER
+                                examples:
+                                - RECRUITER
+                              description: Array of the roles of the user for this specific job.
+                              examples:
+                              - - RECRUITER
+                          required:
+                          - remote_id
+                          - email
+                          - first_name
+                          - last_name
+                          - hiring_team_roles
+                          description: A member of the hiring team.
+                        description: The hiring team allows you to provision users into your system who can access the job and its applications.
+                    required:
+                    - remote_id
+                    - name
+                    - job_code
+                    - description
+                    - location
+                    - hiring_team
+                    description: Information about the job posting.
+                required:
+                - id
+                - package_id
+                - candidate
+                - application
+                - job
+                examples:
+                - id: B5KQKhAgTv6ZwzrfAbqbhipd
+                  package_id: typescript_test
+                  candidate:
+                    remote_id: '12345'
+                    email: john.doe@gmail.com
+                    first_name: John
+                    last_name: Doe
+                    phone: +1 123 456 7890
+                  application:
+                    remote_id: '54321'
+                  job:
+                    remote_id: '67890'
+                    name: Bottle Opener
+                    job_code: BO-2024-01
+                    description: <p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>
+                    location:
+                      street_1: Lohmühlenstraße 65
+                      street_2: null
+                      city: Berlin
+                      state: Berlin
+                      zip_code: '12435'
+                      country: DE
+                      raw: Berlin, Germany
+                    hiring_team:
+                    - remote_id: '78901'
+                      email: jane.doe@gmail.com
+                      first_name: Jane
+                      last_name: Doe
+                      hiring_team_roles:
+                      - RECRUITER
+          required:
+          - next
+          - results
+      required:
+      - status
+      - data
+    PutAssessmentOrdersAssessmentOrderIdResultPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    GetAssessmentOrdersParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAssessmentOrdersPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The unique identifier of the assessment order.
+                    examples:
+                    - B5KQKhAgTv6ZwzrfAbqbhipd
+                  package_id:
+                    type: string
+                    description: The identifier of the assessment package.
+                    examples:
+                    - typescript_test
+                  status:
+                    type: string
+                    enum:
+                    - OPEN
+                    - COMPLETED
+                    - CANCELLED
+                    - REJECTED
+                    description: The current status of the assessment order.
+                    examples:
+                    - OPEN
+                  candidate:
+                    type: object
+                    properties:
+                      remote_id:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's identifier in the integrated system.
+                        examples:
+                        - '12345'
+                      email:
+                        type: string
+                        description: The candidate's email address.
+                        examples:
+                        - john.doe@gmail.com
+                        format: email
+                      first_name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's first name.
+                        examples:
+                        - John
+                      last_name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's last name.
+                        examples:
+                        - Doe
+                      phone:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's phone number.
+                        examples:
+                        - +1 123 456 7890
+                    required:
+                    - remote_id
+                    - email
+                    - first_name
+                    - last_name
+                    - phone
+                    description: Information about the candidate taking the assessment.
+                  application:
+                    type: object
+                    properties:
+                      remote_id:
+                        type:
+                        - string
+                        - 'null'
+                        description: The application's identifier in the integrated system.
+                        examples:
+                        - '54321'
+                    required:
+                    - remote_id
+                    description: Information about the job application.
+                  job:
+                    type: object
+                    properties:
+                      remote_id:
+                        type:
+                        - string
+                        - 'null'
+                        description: The job's identifier in the integrated system.
+                        examples:
+                        - '67890'
+                      name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The job title.
+                        examples:
+                        - Bottle Opener
+                      job_code:
+                        type:
+                        - string
+                        - 'null'
+                        description: The human readable job code. Some systems expose this as the Requisition Code/ID.
+                        examples:
+                        - BO-2024-01
+                      description:
+                        type:
+                        - string
+                        - 'null'
+                        description: Description of the job. This field is usually returned as HTML.
+                        examples:
+                        - <p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>
+                      location:
+                        type:
+                        - object
+                        - 'null'
+                        properties:
+                          street_1:
+                            type:
+                            - string
+                            - 'null'
+                            description: If we can parse the address data, this field contains the first part of the street information.
+                          street_2:
+                            type:
+                            - string
+                            - 'null'
+                          city:
+                            type:
+                            - string
+                            - 'null'
+                          state:
+                            type:
+                            - string
+                            - 'null'
+                          zip_code:
+                            type:
+                            - string
+                            - 'null'
+                          country:
+                            type:
+                            - string
+                            - 'null'
+                            description: Contains the ISO2 country code if possible. If not, it contains the original value.
+                          raw:
+                            type:
+                            - string
+                            - 'null'
+                            description: If we have address data, this is filled with the raw address string.
+                        description: The job location information.
+                      hiring_team:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            remote_id:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's identifier in the integrated system.
+                              examples:
+                              - '78901'
+                            email:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's email address.
+                              examples:
+                              - jane.doe@gmail.com
+                            first_name:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's first name.
+                              examples:
+                              - Jane
+                            last_name:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's last name.
+                              examples:
+                              - Doe
+                            hiring_team_roles:
+                              type: array
+                              items:
+                                type: string
+                                enum:
+                                - RECRUITER
+                                - HIRING_MANAGER
+                                examples:
+                                - RECRUITER
+                              description: Array of the roles of the user for this specific job.
+                              examples:
+                              - - RECRUITER
+                          required:
+                          - remote_id
+                          - email
+                          - first_name
+                          - last_name
+                          - hiring_team_roles
+                          description: A member of the hiring team.
+                        description: The hiring team allows you to provision users into your system who can access the job and its applications.
+                    required:
+                    - remote_id
+                    - name
+                    - job_code
+                    - description
+                    - location
+                    - hiring_team
+                    description: Information about the job posting.
+                required:
+                - id
+                - package_id
+                - status
+                - candidate
+                - application
+                - job
+                examples:
+                - id: B5KQKhAgTv6ZwzrfAbqbhipd
+                  package_id: typescript_test
+                  status: OPEN
+                  candidate:
+                    remote_id: '12345'
+                    email: john.doe@gmail.com
+                    first_name: John
+                    last_name: Doe
+                    phone: +1 123 456 7890
+                  application:
+                    remote_id: '54321'
+                  job:
+                    remote_id: '67890'
+                    name: Bottle Opener
+                    job_code: BO-2024-01
+                    description: <p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>
+                    location:
+                      street_1: Lohmühlenstraße 65
+                      street_2: null
+                      city: Berlin
+                      state: Berlin
+                      zip_code: '12435'
+                      country: DE
+                      raw: Berlin, Germany
+                    hiring_team:
+                    - remote_id: '78901'
+                      email: jane.doe@gmail.com
+                      first_name: Jane
+                      last_name: Doe
+                      hiring_team_roles:
+                      - RECRUITER
+          required:
+          - next
+          - results
+      required:
+      - status
+      - data
+    GetAssessmentOrdersParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    GetAssessmentOrdersOpenParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAssessmentOrdersParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
+    GetAssessmentOrdersParameterStatuses:
+      type: string
+      description: 'Filter by a comma-separated list of `OPEN`, `COMPLETED`, `CANCELLED`, `REJECTED`.
+
+
+        Leave this blank to get results matching all values.'
+    GetAssessmentOrdersOpenParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
+  responses:
+    ErrorResponseATS:
+      description: The standard error response with the error codes for the ATS use case.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                enum:
+                - error
+              error:
+                type: object
+                properties:
+                  code:
+                    type:
+                    - string
+                    - 'null'
+                    enum:
+                    - PLATFORM.RATE_LIMIT_EXCEEDED
+                    - PLATFORM.CONCURRENCY_LIMIT_EXCEEDED
+                    - PLATFORM.INTEGRATION_NOT_FOUND
+                    - PLATFORM.INPUT_INVALID
+                    - PLATFORM.UNKNOWN_ERROR
+                    - PLATFORM.IP_NOT_WHITELISTED
+                    - PLATFORM.AUTHENTICATION_INVALID
+                    - PLATFORM.TASK_TIMED_OUT
+                    - INTEGRATION.PERMISSION_MISSING
+                    - INTEGRATION.AUTHENTICATION_INVALID
+                    - INTEGRATION.QA_FAILED
+                    - INTEGRATION.SETUP_SYNC_PENDING
+                    - INTEGRATION.SETUP_INCOMPLETE
+                    - INTEGRATION.INACTIVE
+                    - INTEGRATION.MODEL_NOT_AVAILABLE
+                    - INTEGRATION.MODEL_DISABLED
+                    - INTEGRATION.ACTION_NOT_AVAILABLE
+                    - INTEGRATION.ACTION_DISABLED
+                    - REMOTE.SERVICE_UNAVAILABLE
+                    - REMOTE.RATE_LIMIT_EXCEEDED
+                    - REMOTE.INPUT_INVALID
+                    - REMOTE.UNKNOWN_HTTP_ERROR
+                    - ATS.JOB_CLOSED
+                    - ATS.APPLICATION_ALREADY_EXISTS
+                    example: ATS.JOB_CLOSED
+                    description: Some errors include an error code that can be used to identify their cause. See the [Error Handling Docs](https://docs.kombo.dev/guides/errors) for more information. For your error handling logic please use the error `code` instead of other properties (e.g. message, http status code, ...).
+                  title:
+                    type:
+                    - string
+                    - 'null'
+                    description: A static, human-readable label.
+                  message:
+                    type: string
+                    description: A dynamic, detailed description of what went wrong in this specific instance.
+                  log_url:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                    description: The log page in the Kombo UI lists every interaction with full details. If you need assistance, share that link with our support team.
+                required:
+                - code
+                - title
+                - message
+                - log_url
+                description: Error details with structured code for programmatic handling.
+            required:
+            - status
+            - error
+          examples:
+            Error Response:
+              description: When building error handling logic, always use the `code` field to identify specific error types programmatically. See the complete list of error codes in the [docs](https://docs.kombo.dev/guides/errors).
+              value:
+                status: error
+                error:
+                  code: INTEGRATION.MODEL_NOT_AVAILABLE
+                  title: This data model isn't supported for the selected integration.
+                  message: The "employees" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.
+                  log_url: https://app.kombo.dev/my-prod/logs?interactionId=123456
+            Minimal Error Response:
+              description: The "message" is always required while other fields can also be `null`. See the [docs](https://docs.kombo.dev/guides/errors) for more information.
+              value:
+                status: error
+                error:
+                  code: null
+                  title: null
+                  message: The message is always in the response.
+                  log_url: null
+  securitySchemes:
+    ApiKey:
+      type: http
+      scheme: bearer
+      description: Create an API key on the [Secrets](https://app.kombo.dev/secrets) page in the Kombo dashboard.
