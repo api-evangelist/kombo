@@ -4,7 +4,20 @@ description: >-
   Kombo is a unified API for HR and ATS integrations, enabling B2B SaaS companies to connect with HRIS, payroll,
   recruiting, and learning systems through a single integration.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/kombo.png
 tags:
   - ATS
   - Embedded iPaaS
@@ -17,85 +30,167 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: kombo:unified-api
-    name: Kombo Unified API
-    description: >-
-      Kombo provides a unified API that connects B2B SaaS products with HR, payroll, applicant tracking, and learning
-      management systems through a single integration point, handling data normalization and authentication across 300+
-      HR and ATS tools.
-    humanURL: https://www.kombo.dev
-    baseURL: https://api.kombo.dev
-    tags:
-      - ATS
-      - HRIS
-      - Payroll
-      - Unified API
-    properties:
-      - type: Documentation
-        url: https://docs.kombo.dev
-      - type: GettingStarted
-        url: https://docs.kombo.dev/getting-started
-      - type: OpenAPI
-        url: https://api.kombo.dev/openapi.json
-      - type: SDKs
-        url: https://kombo.dev/libraries-and-sdks
-      - type: Integrations
-        url: https://www.kombo.dev/categories/all
-      - type: Security
-        url: https://security.kombo.dev
-  - aid: kombo:hris-api
-    name: Kombo Unified HRIS API
-    description: >-
-      Unified HRIS API for accessing employee data, absence management, time-off tracking, document management, and
-      provisioning workflows across HR systems.
-    humanURL: https://docs.kombo.dev
-    tags:
-      - HRIS
-      - Employees
-      - Time Off
-    properties:
-      - type: Documentation
-        url: https://docs.kombo.dev
-      - type: OpenAPI
-        url: https://api.kombo.dev/openapi.json
-  - aid: kombo:ats-api
-    name: Kombo Unified ATS API
-    description: >-
-      Unified ATS API for managing job postings, candidates, applications, and recruitment pipelines across applicant
-      tracking systems.
-    humanURL: https://docs.kombo.dev
-    tags:
-      - ATS
-      - Recruiting
-    properties:
-      - type: Documentation
-        url: https://docs.kombo.dev
-      - type: OpenAPI
-        url: https://api.kombo.dev/openapi.json
-  - aid: kombo:ats-assessment-api
-    name: Kombo Unified ATS-Assessment API
-    description: Unified ATS-Assessment API for assessment writing, notifications, and result submission across ATS platforms.
-    humanURL: https://docs.kombo.dev
-    tags:
-      - ATS
-      - Assessments
-    properties:
-      - type: Documentation
-        url: https://docs.kombo.dev
-      - type: OpenAPI
-        url: https://api.kombo.dev/openapi.json
-  - aid: kombo:lms-api
-    name: Kombo Unified LMS API
-    description: Unified LMS API for user management, courses, and learning progress tracking across learning management systems.
-    humanURL: https://docs.kombo.dev
-    tags:
-      - LMS
-      - Learning
-    properties:
-      - type: Documentation
-        url: https://docs.kombo.dev
-      - type: OpenAPI
-        url: https://api.kombo.dev/openapi.json
+- aid: kombo:kombo-ai-apply-api
+  name: Kombo AI Apply API
+  description: Endpoints for AI-powered job application features.
+  humanURL: https://www.kombo.dev
+  baseURL: https://api.kombo.dev
+  tags:
+  - AI Apply
+  properties:
+  - type: OpenAPI
+    url: openapi/kombo-ai-apply-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kombo.dev
+  - type: GettingStarted
+    url: https://docs.kombo.dev/getting-started
+  - type: SDKs
+    url: https://kombo.dev/libraries-and-sdks
+  - type: Integrations
+    url: https://www.kombo.dev/categories/all
+  - type: Security
+    url: https://security.kombo.dev
+- aid: kombo:kombo-custom-endpoints-api
+  name: Kombo Custom Endpoints API
+  description: Custom integration-specific endpoints.
+  humanURL: https://www.kombo.dev
+  baseURL: https://api.kombo.dev
+  tags:
+  - Custom Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/kombo-custom-endpoints-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kombo.dev
+  - type: GettingStarted
+    url: https://docs.kombo.dev/getting-started
+  - type: SDKs
+    url: https://kombo.dev/libraries-and-sdks
+  - type: Integrations
+    url: https://www.kombo.dev/categories/all
+  - type: Security
+    url: https://security.kombo.dev
+- aid: kombo:kombo-general-api
+  name: Kombo General API
+  description: The General API from Kombo — 12 operation(s) for general.
+  humanURL: https://www.kombo.dev
+  baseURL: https://api.kombo.dev
+  tags:
+  - General
+  properties:
+  - type: OpenAPI
+    url: openapi/kombo-general-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kombo.dev
+  - type: GettingStarted
+    url: https://docs.kombo.dev/getting-started
+  - type: SDKs
+    url: https://kombo.dev/libraries-and-sdks
+  - type: Integrations
+    url: https://www.kombo.dev/categories/all
+  - type: Security
+    url: https://security.kombo.dev
+- aid: kombo:kombo-kombo-connect-api
+  name: Kombo Kombo Connect API
+  description: Endpoints for Kombo Connect, our end-user-facing flow for setting up new integrations.
+  humanURL: https://www.kombo.dev
+  baseURL: https://api.kombo.dev
+  tags:
+  - Kombo Connect
+  properties:
+  - type: OpenAPI
+    url: openapi/kombo-kombo-connect-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kombo.dev
+  - type: GettingStarted
+    url: https://docs.kombo.dev/getting-started
+  - type: SDKs
+    url: https://kombo.dev/libraries-and-sdks
+  - type: Integrations
+    url: https://www.kombo.dev/categories/all
+  - type: Security
+    url: https://security.kombo.dev
+- aid: kombo:kombo-unified-ats-api-api
+  name: Kombo Unified ATS API API
+  description: Unified endpoints to access all the ATS concepts you might need.
+  humanURL: https://www.kombo.dev
+  baseURL: https://api.kombo.dev
+  tags:
+  - Unified ATS API
+  properties:
+  - type: OpenAPI
+    url: openapi/kombo-unified-ats-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kombo.dev
+  - type: GettingStarted
+    url: https://docs.kombo.dev/getting-started
+  - type: SDKs
+    url: https://kombo.dev/libraries-and-sdks
+  - type: Integrations
+    url: https://www.kombo.dev/categories/all
+  - type: Security
+    url: https://security.kombo.dev
+- aid: kombo:kombo-unified-ats-assessment-background-check-api-api
+  name: Kombo Unified ATS (Assessment & Background Check) API API
+  description: >-
+    Unified endpoints to operate Assessments and Background Checks for many applicant tracking systems.
+  humanURL: https://www.kombo.dev
+  baseURL: https://api.kombo.dev
+  tags:
+  - Unified ATS (Assessment & Background Check) API
+  properties:
+  - type: OpenAPI
+    url: openapi/kombo-unified-ats-assessment-background-check-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kombo.dev
+  - type: GettingStarted
+    url: https://docs.kombo.dev/getting-started
+  - type: SDKs
+    url: https://kombo.dev/libraries-and-sdks
+  - type: Integrations
+    url: https://www.kombo.dev/categories/all
+  - type: Security
+    url: https://security.kombo.dev
+- aid: kombo:kombo-unified-hris-api-api
+  name: Kombo Unified HRIS API API
+  description: Unified endpoints to access all the HR concepts you might need.
+  humanURL: https://www.kombo.dev
+  baseURL: https://api.kombo.dev
+  tags:
+  - Unified HRIS API
+  properties:
+  - type: OpenAPI
+    url: openapi/kombo-unified-hris-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kombo.dev
+  - type: GettingStarted
+    url: https://docs.kombo.dev/getting-started
+  - type: SDKs
+    url: https://kombo.dev/libraries-and-sdks
+  - type: Integrations
+    url: https://www.kombo.dev/categories/all
+  - type: Security
+    url: https://security.kombo.dev
+- aid: kombo:kombo-unified-lms-api-api
+  name: Kombo Unified LMS API API
+  description: Unified endpoints to access all the LMS concepts you might need.
+  humanURL: https://www.kombo.dev
+  baseURL: https://api.kombo.dev
+  tags:
+  - Unified LMS API
+  properties:
+  - type: OpenAPI
+    url: openapi/kombo-unified-lms-api-api-openapi.yml
+  - type: Documentation
+    url: https://docs.kombo.dev
+  - type: GettingStarted
+    url: https://docs.kombo.dev/getting-started
+  - type: SDKs
+    url: https://kombo.dev/libraries-and-sdks
+  - type: Integrations
+    url: https://www.kombo.dev/categories/all
+  - type: Security
+    url: https://security.kombo.dev
 common:
   - type: AgenticAccess
     url: agentic-access/kombo-agentic-access.yml
