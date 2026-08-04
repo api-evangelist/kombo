@@ -1,0 +1,28 @@
+{
+  "provider": "kombo",
+  "sources": [
+    "kombo-ai-apply-api-openapi.yml",
+    "kombo-custom-endpoints-api-openapi.yml",
+    "kombo-general-api-openapi.yml",
+    "kombo-kombo-connect-api-openapi.yml",
+    "kombo-unified-ats-api-api-openapi.yml",
+    "kombo-unified-ats-assessment-background-check-api-api-openapi.yml",
+    "kombo-unified-hris-api-api-openapi.yml",
+    "kombo-unified-lms-api-api-openapi.yml"
+  ],
+  "outputs": [
+    "kombo-ai-apply-api-openapi.yml",
+    "kombo-custom-endpoints-api-openapi.yml",
+    "kombo-general-api-openapi.yml",
+    "kombo-kombo-connect-api-openapi.yml",
+    "kombo-unified-ats-api-api-openapi.yml",
+    "kombo-unified-ats-assessment-background-check-api-api-openapi.yml",
+    "kombo-unified-hris-api-api-openapi.yml",
+    "kombo-unified-lms-api-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
