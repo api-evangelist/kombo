@@ -1,0 +1,411 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kombo AI Apply Unified LMS API API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unified LMS API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/lms/users",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "work_emails",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of work emails. We will only return users who have _any_ of the work emails. The format of the emails is case-insensitive."
+              }
+            ]
+          },
+          "docs": "Get users\n\nRetrieve all users from the LMS system. Users are learners who can enroll in and complete courses.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get course progressions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/lms/course-progressions",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `user` | ✗ No | ✗ No |\n| `course_revision` | ✗ No | ✗ No |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "user_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of user IDs. We will only return progressions that are related to _any_ of the users."
+              },
+              {
+                "name": "course_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of course IDs. We will only return progressions for revisions that belong to _any_ of the courses."
+              }
+            ]
+          },
+          "docs": "Get course progressions\n\nRetrieve all course progressions from the LMS system. Course progressions track users enrollment and completion status in courses.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Enroll user in course",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/lms/course-progressions",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enroll a user in a course revision.\n\n<Note>\n  This endpoint requires the permission **Create and manage course progressions** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"user_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n  \"course_revision_id\": \"3KMdr68N8kG9EzLwjsN9aoz\"\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Complete course",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/lms/course-progressions/:course_progression_id/complete",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "course_progression_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the course progression in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Mark a course revision as completed for a user.\n\n<Note>\n  This endpoint requires the permission **Create and manage course progressions** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"completed_at\": \"2024-04-15\",\n  \"score\": 93\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Get courses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/lms/courses",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `provider` | ✗ No | ✗ No |\n| `revisions` | ✓ Yes | ✓ Yes |\n| `revisions` → `skill_assignments` | ✗ No | ✗ No |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Get courses\n\nRetrieve all courses available in the LMS. Courses are structured learning programs that users can enroll in and complete.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Upsert courses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/lms/courses/bulk",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update multiple courses in the LMS.\n\n<Info>\n  **Note:** This endpoint is asynchronous – it returns a `task_id` immediately and processes the request in the background. Use the corresponding `GET` endpoint to poll for the task status until it reaches `COMPLETED` or `FAILED`. Learn more in our [async endpoints guide](/lms/guides/async-endpoints).\n</Info>\n\n<Note>\n  This endpoint requires the permission **Upsert courses** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example "
+        },
+        {
+          "info": {
+            "name": "Get status of “Upsert courses” task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/lms/courses/bulk/:task_id",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "GET /lms/courses/bulk/:task_id Parameter"
+              }
+            ]
+          },
+          "docs": "Poll for the status of an existing “Upsert courses” task.\n\n<Info>\nThis endpoint returns the current status of a task. Poll it at regular intervals until the task reaches a terminal status. Learn more in our [async endpoints guide](/lms/guides/async-endpoints). The possible statuses are:\n  - `PENDING` – The task is still being processed.\n  - `COMPLETED` – The task finished successfully. The `data` field contains the results.\n  - `FAILED` – The task encountered an error. Check the `error` field fo"
+        },
+        {
+          "info": {
+            "name": "Deactivate course",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/lms/courses/:course_id/deactivate",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "course_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the course in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deactivate a course in the LMS.\n\nDeactivates a course, making it unavailable for new enrollments while preserving existing progress records.\n\n<Note>\n  This endpoint requires the permission **Upsert courses** to be enabled in [your scope config](/scopes).\n</Note>"
+        },
+        {
+          "info": {
+            "name": "Get skills",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/lms/skills",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Get skills\n\nRetrieve all skills available in the LMS system. Skills represent competencies or abilities that users can acquire or demonstrate through courses.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

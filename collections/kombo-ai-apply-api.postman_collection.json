@@ -1,0 +1,2130 @@
+{
+  "item": [
+    {
+      "id": "d6d97c4a-5733-4b3c-a957-4dc5af0e19d6",
+      "name": "AI Apply",
+      "description": {
+        "content": "Endpoints for AI-powered job application features.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9475cb63-cf7d-4cff-aaad-1dd08d92da45",
+          "name": "Create a career site",
+          "request": {
+            "name": "Create a career site",
+            "description": {
+              "content": "Create a career site entry. Career sites are required to be specified when parsing job postings, grouping them under a single entity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "career-sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e5e162c-c10c-4bac-961d-f228243b2fca",
+              "name": "POST /ai-apply/career-sites Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "career-sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Acme Inc. California\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"mK7pQw9xNvEr2LdY5sGh8TcZ\",\n    \"label\": \"Acme Inc. California\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2cdbee6-0d1a-46bb-84ea-ab64179b8024",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "career-sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Acme Inc. California\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89187852-89a4-4a19-a385-941aa21bee36",
+          "name": "Get career sites",
+          "request": {
+            "name": "Get career sites",
+            "description": {
+              "content": "Get all career sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "career-sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37e61082-b9a4-4228-a9b6-7d9f89a6dc1c",
+              "name": "GET /ai-apply/career-sites Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "career-sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"results\": [\n      {\n        \"id\": \"mK7pQw9xNvEr2LdY5sGh8TcZ\",\n        \"label\": \"Acme Inc. California\"\n      }\n    ],\n    \"next\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8515946b-ff52-47db-a511-efa1344198db",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "career-sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16d08e40-f76f-4682-acf9-0ae1dfc8b96c",
+          "name": "Get job postings",
+          "request": {
+            "name": "Get job postings",
+            "description": {
+              "content": "Get all job postings. To get the application form and submit applications, use the POST /postings/:id/inquire endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "postings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                },
+                {
+                  "disabled": false,
+                  "key": "career_site_ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`."
+                },
+                {
+                  "disabled": false,
+                  "key": "job_codes",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of job codes such as `ACME_13,ACME_14`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b277a699-c137-4115-87a7-e9e699d1d9d5",
+              "name": "GET /ai-apply/postings Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "postings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "career_site_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "job_codes",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"results\": [\n      {\n        \"id\": \"9QGNv3B98kL3hyELE1qsZ86s\",\n        \"career_site\": {\n          \"id\": \"Chc4dua5asAQ48KUERDVF1bs\",\n          \"label\": \"Acme\"\n        },\n        \"url\": \"https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102\",\n        \"job_code\": \"ACME_13\",\n        \"created_at\": \"2025-01-01T00:00:00.000Z\",\n        \"updated_at\": \"2025-03-02T23:12:32.000Z\",\n        \"archived_at\": null,\n        \"archived_reason\": null,\n        \"availability\": \"PENDING\"\n      }\n    ],\n    \"next\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88e416c9-7f22-44f5-8625-c0d2f7a704c1",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "postings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "career_site_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "job_codes",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "581a555a-3329-4a0b-9048-62e947451e21",
+          "name": "Parse a job posting",
+          "request": {
+            "name": "Parse a job posting",
+            "description": {
+              "content": "Submit a job posting URL to be parsed asynchronously. Returns ID to track progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "postings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"career_site_id\": \"<string>\",\n  \"job_code\": \"<string>\",\n  \"location\": {\n    \"country\": \"<string>\",\n    \"postal_code\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55a96eea-b77e-4aa7-bb48-4a769ebb932f",
+              "name": "POST /ai-apply/postings Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "postings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102\",\n  \"job_code\": \"ACME_13\",\n  \"location\": {\n    \"country\": \"US\",\n    \"postal_code\": \"94115\"\n  },\n  \"career_site_id\": \"Chc4dua5asAQ48KUERDVF1bs\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"9QGNv3B98kL3hyELE1qsZ86s\",\n    \"career_site\": {\n      \"id\": \"Chc4dua5asAQ48KUERDVF1bs\",\n      \"label\": \"Acme\"\n    },\n    \"url\": \"https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102\",\n    \"job_code\": \"ACME_13\",\n    \"created_at\": \"2025-01-01T00:00:00.000Z\",\n    \"updated_at\": \"2025-03-02T23:12:32.000Z\",\n    \"archived_at\": null,\n    \"archived_reason\": null,\n    \"availability\": \"PENDING\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d31a35a-cad9-4d2b-8c97-cc0d4a4145dc",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "postings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102\",\n  \"job_code\": \"ACME_13\",\n  \"location\": {\n    \"country\": \"US\",\n    \"postal_code\": \"94115\"\n  },\n  \"career_site_id\": \"Chc4dua5asAQ48KUERDVF1bs\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1c0e23c-b898-4fe8-b44d-cc57c55e16cc",
+          "name": "Inquire about a job posting and the application f…",
+          "request": {
+            "name": "Inquire about a job posting and the application f…",
+            "description": {
+              "content": "Receive the application form (screening questions) for a job posting and a submission token. This endpoint must be called before submitting an application to ensure you have the latest questions and a valid submission token. The submission token is valid for 2 days and prevents duplicate submissions. The application form may contain conditional questions that are only shown based on answers to previous questions (check the display_when field).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "postings",
+                ":posting_id",
+                "inquire"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "posting_id",
+                  "description": "(Required) The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95766879-fb0b-456b-81c4-7a21f7f72644",
+              "name": "POST /ai-apply/postings/:posting_id/inquire Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "postings",
+                    ":posting_id",
+                    "inquire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "posting_id",
+                      "description": "(Required) The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"application_form\": [\n      {\n        \"block_type\": \"SECTION\",\n        \"label\": \"Personal Information\",\n        \"children\": [\n          {\n            \"block_type\": \"QUESTION\",\n            \"question_id\": \"6VrjehyBk685vubNydiR1hSn\",\n            \"label\": \"First name\",\n            \"description\": null,\n            \"required\": true,\n            \"category\": null,\n            \"question_type\": \"TEXT\",\n            \"unified_key\": \"FIRST_NAME\",\n            \"options\": null,\n            \"display_when\": null\n          },\n          {\n            \"block_type\": \"QUESTION\",\n            \"question_id\": \"Hjsapofs69cx2iAu6MtTfhoh\",\n            \"label\": \"Last name\",\n            \"description\": null,\n            \"required\": true,\n            \"category\": null,\n            \"question_type\": \"TEXT\",\n            \"unified_key\": \"LAST_NAME\",\n            \"options\": null,\n            \"display_when\": null\n          }\n        ]\n      },\n      {\n        \"block_type\": \"QUESTION\",\n        \"question_id\": \"EKaumKPGjeA97cb8ystMmkCe\",\n        \"label\": \"What is your desired working location?\",\n        \"description\": \"Select your preferred work arrangement\",\n        \"required\": true,\n        \"category\": null,\n        \"question_type\": \"SINGLE_SELECT\",\n        \"unified_key\": null,\n        \"options\": [\n          {\n            \"id\": \"BsnL4pAhNQc26uSc4JopTP3P\",\n            \"label\": \"Remote\",\n            \"unified_key\": null\n          },\n          {\n            \"id\": \"8T4fcKgzLxbKFUo4saXaoMTG\",\n            \"label\": \"On-site\",\n            \"unified_key\": null\n          },\n          {\n            \"id\": \"2cJDK3dq4WNjovohSG7dSpfd\",\n            \"label\": \"Hybrid\",\n            \"unified_key\": null\n          }\n        ],\n        \"display_when\": null\n      },\n      {\n        \"block_type\": \"QUESTION\",\n        \"question_id\": \"2H26BKTbDn2ygN2GfEcCsUP8\",\n        \"label\": \"What timezone are you in?\",\n        \"description\": \"This helps us schedule meetings at convenient times\",\n        \"required\": true,\n        \"category\": null,\n        \"question_type\": \"TEXT\",\n        \"unified_key\": null,\n        \"options\": null,\n        \"display_when\": {\n          \"question_id\": \"EKaumKPGjeA97cb8ystMmkCe\",\n          \"answer_equals\": \"BsnL4pAhNQc26uSc4JopTP3P\"\n        }\n      },\n      {\n        \"block_type\": \"QUESTION\",\n        \"question_id\": \"AdM1EuwBKE4pz94SSRHMgmba\",\n        \"label\": \"Which office would you prefer?\",\n        \"description\": null,\n        \"required\": true,\n        \"category\": null,\n        \"question_type\": \"SINGLE_SELECT\",\n        \"unified_key\": null,\n        \"options\": [\n          {\n            \"id\": \"EHCqUb5E6xzfjnfHT2LEgmM7\",\n            \"label\": \"San Francisco\",\n            \"unified_key\": null\n          },\n          {\n            \"id\": \"5RbHT73StFM5tHdF3aVr4do1\",\n            \"label\": \"New York\",\n            \"unified_key\": null\n          },\n          {\n            \"id\": \"F4rRwGTNeLQZV5VLwstERpsT\",\n            \"label\": \"London\",\n            \"unified_key\": null\n          }\n        ],\n        \"display_when\": {\n          \"question_id\": \"EKaumKPGjeA97cb8ystMmkCe\",\n          \"answer_equals\": \"8T4fcKgzLxbKFUo4saXaoMTG\"\n        }\n      },\n      {\n        \"block_type\": \"QUESTION\",\n        \"question_id\": \"FuVZvF26NueKcN46o5euHeGx\",\n        \"label\": \"How many days per week would you like to work in the office?\",\n        \"description\": null,\n        \"required\": true,\n        \"category\": null,\n        \"question_type\": \"NUMBER\",\n        \"unified_key\": null,\n        \"options\": null,\n        \"display_when\": {\n          \"question_id\": \"EKaumKPGjeA97cb8ystMmkCe\",\n          \"answer_equals\": \"2cJDK3dq4WNjovohSG7dSpfd\"\n        }\n      }\n    ],\n    \"submission_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "425af07e-9a6a-4b80-bef5-207ba836826b",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "postings",
+                    ":posting_id",
+                    "inquire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "posting_id",
+                      "description": "(Required) The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa209e41-76e9-474a-9605-5ebf27aeb972",
+          "name": "Submit job application",
+          "request": {
+            "name": "Submit job application",
+            "description": {
+              "content": "Submit a job application using a submission token. The application will be queued and processed asynchronously. Returns ID to track progress and match with webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "apply"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"submission_token\": \"<string>\",\n  \"candidate_email\": \"<email>\",\n  \"screening_question_answers\": [\n    {\n      \"question_id\": \"<string>\",\n      \"answer\": \"<string>\"\n    },\n    {\n      \"question_id\": \"<string>\",\n      \"answer\": \"<string>\"\n    }\n  ],\n  \"query_params\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"additional_clicks\": \"<long>\",\n  \"additional_clicks_scatter_duration\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5127a3e4-8460-40e1-a5b3-8f525c848759",
+              "name": "POST /ai-apply/apply Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "apply"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"submission_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"candidate_email\": \"john.doe@gmail.com\",\n  \"query_params\": {\n    \"source\": \"acme\",\n    \"user_id\": \"8e05b4e5-c586-4d42-8606-b45febad3af3\"\n  },\n  \"screening_question_answers\": [\n    {\n      \"question_id\": \"A4zHtGQLF823sNmqy4WxoduFH\",\n      \"answer\": \"John Doe\"\n    },\n    {\n      \"question_id\": \"CDEfHvMGSDnM6pq5HECdE2Kg\",\n      \"answer\": \"EycufwZHfwcVDmE47X7QN8X2\"\n    },\n    {\n      \"question_id\": \"3dT5df2PhyVp7Rze76S5NqrW\",\n      \"answer\": {\n        \"name\": \"john_doe_resume.pdf\",\n        \"content_type\": \"application/pdf\",\n        \"data\": \"JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovT3V0bGluZXMgMiAwIFIKL1BhZ2VzIDMgMCBSCj4+CmVuZG9iag==\"\n      }\n    }\n  ],\n  \"additional_clicks\": 10,\n  \"additional_clicks_scatter_duration\": 45\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"ADbmw5XSkeCSE1fAucoxEGnwZ\",\n    \"posting_id\": \"JDn252PEYa4rMhKbJBjtn3ng\",\n    \"status\": \"PENDING\",\n    \"created_at\": \"2025-01-01T00:00:00.000Z\",\n    \"updated_at\": \"2025-03-02T23:12:32.000Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f1b78a2-82cb-40a5-9c5b-b1f26da71bb3",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "apply"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"submission_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"candidate_email\": \"john.doe@gmail.com\",\n  \"query_params\": {\n    \"source\": \"acme\",\n    \"user_id\": \"8e05b4e5-c586-4d42-8606-b45febad3af3\"\n  },\n  \"screening_question_answers\": [\n    {\n      \"question_id\": \"A4zHtGQLF823sNmqy4WxoduFH\",\n      \"answer\": \"John Doe\"\n    },\n    {\n      \"question_id\": \"CDEfHvMGSDnM6pq5HECdE2Kg\",\n      \"answer\": \"EycufwZHfwcVDmE47X7QN8X2\"\n    },\n    {\n      \"question_id\": \"3dT5df2PhyVp7Rze76S5NqrW\",\n      \"answer\": {\n        \"name\": \"john_doe_resume.pdf\",\n        \"content_type\": \"application/pdf\",\n        \"data\": \"JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PAovVHlwZSAvQ2F0YWxvZwovT3V0bGluZXMgMiAwIFIKL1BhZ2VzIDMgMCBSCj4+CmVuZG9iag==\"\n      }\n    }\n  ],\n  \"additional_clicks\": 10,\n  \"additional_clicks_scatter_duration\": 45\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13481f52-529d-411f-8b47-907c7cc0ea94",
+          "name": "Get applications",
+          "request": {
+            "name": "Get applications",
+            "description": {
+              "content": "Get all applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                },
+                {
+                  "disabled": false,
+                  "key": "job_posting_ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of job posting IDs such as `89V6GEKpdZwqbxQz59n1ftFb,kcGHREEXCMF26Yhpuyh1gDVE`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50436985-ca5a-48c1-8ff5-dd0c7ed6e5fa",
+              "name": "GET /ai-apply/applications Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "job_posting_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"results\": [\n      {\n        \"id\": \"ADbmw5XSkeCSE1fAucoxEGnwZ\",\n        \"job_posting_id\": \"JDn252PEYa4rMhKbJBjtn3ng\",\n        \"status\": \"PENDING\",\n        \"created_at\": \"2025-01-01T00:00:00.000Z\",\n        \"updated_at\": \"2025-03-02T23:12:32.000Z\"\n      }\n    ],\n    \"next\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d252da0-31d7-4d0c-b131-02db1d353e83",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "job_posting_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6caa6b9-1c5a-48fe-8c51-05707655fda6",
+          "name": "Get jobs",
+          "request": {
+            "name": "Get jobs",
+            "description": {
+              "content": "**Deprecation Notice:** This endpoint is no longer actively supported. Please use the standard AI Apply API instead.\nGet jobs in a backwards compatible way as you would [via Kombo's unified API](https://docs.kombo.dev/ats/v1/get-jobs).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "unified-api",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "5",
+                  "description": "The number of results to return per page. Maximum is 5."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                },
+                {
+                  "disabled": false,
+                  "key": "remote_ids",
+                  "value": "<string>",
+                  "description": "This parameter exists for backwards compatibility with Kombo's unified API. Supplying a comma-separated list of remote IDs such as `32,33` will return no jobs because AI Apply does not interface with a remote system that issues remote IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "job_codes",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of job codes such as `ACME_12,ACME_14`."
+                },
+                {
+                  "disabled": false,
+                  "key": "career_site_ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89afeb92-beca-4de9-9ee5-78dcaf3d97b8",
+              "name": "GET /ai-apply/unified-api/jobs Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "unified-api",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "5"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "job_codes",
+                      "value": "string"
+                    },
+                    {
+                      "key": "career_site_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"results\": [\n      {\n        \"id\": \"string\",\n        \"remote_id\": \"string\",\n        \"name\": \"string\",\n        \"job_code\": \"string\",\n        \"description\": \"string\",\n        \"confidential\": true,\n        \"weekly_hours\": -1.1692749680844144e+308,\n        \"category\": \"string\",\n        \"department\": \"string\",\n        \"post_url\": \"string\",\n        \"experience_level\": \"string\",\n        \"salary_amount\": -5.214153770017702e+307,\n        \"salary_amount_from\": -1.405836313516667e+308,\n        \"salary_amount_to\": -1.281701209961075e+307,\n        \"salary_currency\": \"string\",\n        \"custom_fields\": {},\n        \"opened_at\": \"2032-36-91T55:10:93.97298Z\",\n        \"closed_at\": \"2506-59-85T91:93:37.8987252984Z\",\n        \"remote_created_at\": \"6564-25-69T68:08:93Z\",\n        \"remote_updated_at\": \"6254-35-54T99:73:18Z\",\n        \"contact_id\": \"string\",\n        \"remote_data\": {},\n        \"changed_at\": \"6261-74-64T58:73:52Z\",\n        \"remote_deleted_at\": \"3899-86-04T41:00:96.44964Z\",\n        \"remote_url\": \"string\",\n        \"screening_questions\": [\n          {\n            \"id\": \"string\",\n            \"remote_id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"category\": \"EEO\",\n            \"required\": true,\n            \"format\": {\n              \"type\": \"string\",\n              \"display_type\": \"EMAIL\",\n              \"max_length\": 8044\n            },\n            \"index\": 3383,\n            \"precondition_question_id\": \"string\",\n            \"precondition_options\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"id\": \"string\",\n            \"remote_id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"category\": \"EEO\",\n            \"required\": false,\n            \"format\": {\n              \"type\": \"string\",\n              \"display_type\": \"EMAIL\",\n              \"max_length\": 3156\n            },\n            \"index\": 9370,\n            \"precondition_question_id\": \"string\",\n            \"precondition_options\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ],\n        \"visibility\": \"string\",\n        \"remote_work_status\": \"string\",\n        \"salary_period\": \"string\",\n        \"employment_type\": \"FULL_TIME\",\n        \"status\": \"ARCHIVED\",\n        \"location\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"raw\": \"string\",\n          \"state\": \"string\",\n          \"street_1\": \"string\",\n          \"street_2\": \"string\",\n          \"zip_code\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"remote_id\": \"string\",\n        \"name\": \"string\",\n        \"job_code\": \"string\",\n        \"description\": \"string\",\n        \"confidential\": false,\n        \"weekly_hours\": -2.501985527993428e+307,\n        \"category\": \"string\",\n        \"department\": \"string\",\n        \"post_url\": \"string\",\n        \"experience_level\": \"string\",\n        \"salary_amount\": -1.5749751047480002e+308,\n        \"salary_amount_from\": -1.7776676051282982e+308,\n        \"salary_amount_to\": -9.12526065769899e+307,\n        \"salary_currency\": \"string\",\n        \"custom_fields\": {},\n        \"opened_at\": \"7847-44-48T81:07:01Z\",\n        \"closed_at\": \"4343-19-00T57:62:79.6740Z\",\n        \"remote_created_at\": \"3867-68-54T32:64:64Z\",\n        \"remote_updated_at\": \"1514-82-14T12:64:12.873000375Z\",\n        \"contact_id\": \"string\",\n        \"remote_data\": {},\n        \"changed_at\": \"6175-47-00T82:31:17Z\",\n        \"remote_deleted_at\": \"2799-89-73T20:84:69.0Z\",\n        \"remote_url\": \"string\",\n        \"screening_questions\": [\n          {\n            \"id\": \"string\",\n            \"remote_id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"category\": \"EEO\",\n            \"required\": true,\n            \"format\": {\n              \"type\": \"string\",\n              \"display_type\": \"SINGLE_LINE\",\n              \"max_length\": 270\n            },\n            \"index\": 5121,\n            \"precondition_question_id\": \"string\",\n            \"precondition_options\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          {\n            \"id\": \"string\",\n            \"remote_id\": \"string\",\n            \"title\": \"string\",\n            \"description\": \"string\",\n            \"category\": \"EEO\",\n            \"required\": false,\n            \"format\": {\n              \"type\": \"string\",\n              \"display_type\": \"SINGLE_LINE\",\n              \"max_length\": 931\n            },\n            \"index\": 7519,\n            \"precondition_question_id\": \"string\",\n            \"precondition_options\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        ],\n        \"visibility\": \"string\",\n        \"remote_work_status\": \"string\",\n        \"salary_period\": \"string\",\n        \"employment_type\": \"FULL_TIME\",\n        \"status\": \"OPEN\",\n        \"location\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"raw\": \"string\",\n          \"state\": \"string\",\n          \"street_1\": \"string\",\n          \"street_2\": \"string\",\n          \"zip_code\": \"string\"\n        }\n      }\n    ],\n    \"next\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "462c5856-a03e-4cca-9292-9929f56f051e",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "unified-api",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "5"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "job_codes",
+                      "value": "string"
+                    },
+                    {
+                      "key": "career_site_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cb72876-4131-4132-8e5d-a5e0bcbfbfa3",
+          "name": "Create application",
+          "request": {
+            "name": "Create application",
+            "description": {
+              "content": "**Deprecation Notice:** This endpoint is no longer actively supported. Please use the standard AI Apply API instead.\nCreate applications in a backwards compatible way as you would [via Kombo's unified API](https://docs.kombo.dev/ats/v1/post-jobs-job-id-applications).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "unified-api",
+                "jobs",
+                ":job_id",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_id",
+                  "description": "(Required) The Kombo ID or Remote ID of the Job this candidate should apply for. If you want to use the ID of the integrated system (remote_id) you need to prefix the id with \"remote:\". You can use the remote ID if you do not want to sync jobs."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"candidate\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email_address\": \"<email>\",\n    \"additional_email_addresses\": [\n      {\n        \"type\": \"<string>\",\n        \"email_address\": \"<email>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"email_address\": \"<email>\"\n      }\n    ],\n    \"company\": \"<string>\",\n    \"title\": \"<string>\",\n    \"phone_number\": \"<string>\",\n    \"additional_phone_numbers\": [\n      {\n        \"type\": \"<string>\",\n        \"phone_number\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"phone_number\": \"<string>\"\n      }\n    ],\n    \"location\": {\n      \"country\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"street_1\": \"<string>\",\n      \"zip_code\": \"<string>\"\n    },\n    \"gender\": \"<string>\",\n    \"availability_date\": \"<dateTime>\",\n    \"salary_expectations\": {\n      \"period\": \"<string>\",\n      \"amount\": \"<double>\"\n    }\n  },\n  \"stage_id\": \"<string>\",\n  \"source\": {\n    \"name\": \"<string>\",\n    \"unified_key\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"sourced_by\": {\n    \"user_id\": \"<string>\"\n  },\n  \"gdpr_consent\": {\n    \"expires_at\": \"<dateTime>\",\n    \"given\": \"<boolean>\"\n  },\n  \"remote_fields\": {\n    \"successfactors\": {\n      \"Candidate\": {\n        \"key_0\": false,\n        \"key_1\": 7139\n      },\n      \"JobApplication\": {\n        \"key_0\": 4479.741006155134\n      },\n      \"copyJobApplicationAttachments\": \"<boolean>\",\n      \"update_existing_candidate\": \"<boolean,null>\"\n    },\n    \"personio\": {\n      \"application\": {\n        \"key_0\": false,\n        \"key_1\": \"string\",\n        \"key_2\": true\n      }\n    },\n    \"talentsoft\": {\n      \"applicant\": {\n        \"key_0\": \"string\",\n        \"key_1\": 3826.205705820147,\n        \"key_2\": 7358\n      },\n      \"application\": {\n        \"key_0\": 2164,\n        \"key_1\": 1156\n      }\n    },\n    \"teamtailor\": {\n      \"candidate\": {\n        \"key_0\": false\n      },\n      \"application\": {\n        \"attributes\": {\n          \"key_0\": \"string\"\n        }\n      }\n    },\n    \"greenhouse\": {\n      \"candidate\": {\n        \"key_0\": \"string\",\n        \"key_1\": false\n      },\n      \"application\": {\n        \"key_0\": false,\n        \"key_1\": true\n      },\n      \"post_headers\": {\n        \"On-Behalf-Of\": \"<string,null>\"\n      }\n    },\n    \"lever\": {\n      \"candidate\": {\n        \"key_0\": 1808,\n        \"key_1\": 3670.024438304387\n      }\n    },\n    \"workable\": {\n      \"candidate\": {\n        \"key_0\": \"string\"\n      },\n      \"on_behalf_of_user_remote_id\": \"<string>\"\n    },\n    \"workday\": {\n      \"Candidate_Data\": {\n        \"Name_Detail_Data\": {\n          \"Middle_Name\": \"<string>\",\n          \"Social_Suffix_Reference\": {\n            \"Predefined_Name_Component_ID\": \"<string>\"\n          }\n        },\n        \"Language_Reference\": {\n          \"WID\": \"<string>\"\n        },\n        \"Job_Application_Data\": {\n          \"Job_Applied_To_Data\": {\n            \"Global_Personal_Information_Data\": {\n              \"Date_of_Birth\": \"<string>\"\n            }\n          },\n          \"Resume_Data\": {\n            \"Education_Data\": [\n              {\n                \"School_Name\": \"<string>\",\n                \"First_Year_Attended\": \"<double>\",\n                \"Last_Year_Attended\": \"<double>\",\n                \"Field_of_Study_Reference\": {\n                  \"WID\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"Degree_Reference\": {\n                  \"WID\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"Grade_Average\": \"<string>\"\n              },\n              {\n                \"School_Name\": \"<string>\",\n                \"First_Year_Attended\": \"<double>\",\n                \"Last_Year_Attended\": \"<double>\",\n                \"Field_of_Study_Reference\": {\n                  \"WID\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"Degree_Reference\": {\n                  \"WID\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"Grade_Average\": \"<string>\"\n              }\n            ],\n            \"Skill_Data\": [\n              {\n                \"Skill_Name\": \"<string>\"\n              },\n              {\n                \"Skill_Name\": \"<string>\"\n              }\n            ],\n            \"Language_Data\": [\n              {\n                \"Language_Reference\": {\n                  \"WID\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"Language\": {\n                  \"Language_Ability\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"Native\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              },\n              {\n                \"Language_Reference\": {\n                  \"WID\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                \"Language\": {\n                  \"Language_Ability\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"Native\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              }\n            ],\n            \"Experience_Data\": [\n              {\n                \"Company_Name\": \"<string>\",\n                \"Title\": \"<string>\",\n                \"Start_Date\": \"<dateTime>\",\n                \"Location\": \"<string>\",\n                \"End_Date\": \"<dateTime>\",\n                \"Currently_Work_Here\": \"<boolean>\",\n                \"Description\": \"<string>\"\n              },\n              {\n                \"Company_Name\": \"<string>\",\n                \"Title\": \"<string>\",\n                \"Start_Date\": \"<dateTime>\",\n                \"Location\": \"<string>\",\n                \"End_Date\": \"<dateTime>\",\n                \"Currently_Work_Here\": \"<boolean>\",\n                \"Description\": \"<string>\"\n              }\n            ]\n          }\n        },\n        \"Contact_Data\": {\n          \"Location_Data\": {\n            \"Address_Line_1\": \"<string>\",\n            \"Address_Line_2\": \"<string>\",\n            \"Region_Subdivision_1\": \"<string>\",\n            \"Country_Region_Reference\": {\n              \"Country_Region_ID\": \"<string>\"\n            },\n            \"Country_City_Reference\": {\n              \"WID\": \"<string>\"\n            }\n          }\n        },\n        \"Worker_Reference\": {\n          \"WID\": \"<string>\",\n          \"Employee_ID\": \"<string>\"\n        }\n      },\n      \"Override_Source_Reference_WID\": \"<string>\"\n    },\n    \"zohorecruit\": {\n      \"candidate\": {\n        \"key_0\": 3467.769233845582,\n        \"key_1\": false\n      }\n    },\n    \"bullhorn\": {\n      \"candidate\": {\n        \"key_0\": 7136\n      },\n      \"job_submission\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": 7067.257675813754\n      }\n    },\n    \"smartrecruiters\": {\n      \"candidate_with_questions\": {\n        \"key_0\": 5483\n      },\n      \"candidate_without_questions\": {\n        \"key_0\": true,\n        \"key_1\": \"string\"\n      },\n      \"candidate\": {\n        \"key_0\": \"string\",\n        \"key_1\": false\n      },\n      \"consent_decisions\": {\n        \"SINGLE\": \"<boolean>\",\n        \"SMART_RECRUIT\": \"<boolean>\",\n        \"SMART_CRM\": \"<boolean>\",\n        \"SMART_MESSAGE_SMS\": \"<boolean>\",\n        \"SMART_MESSAGE_WHATSAPP\": \"<boolean>\"\n      }\n    },\n    \"talentadore\": {\n      \"applications\": {\n        \"key_0\": false,\n        \"key_1\": 2628.313309608652,\n        \"key_2\": \"string\"\n      }\n    },\n    \"guidecom\": {\n      \"candidate\": {\n        \"key_0\": \"string\",\n        \"key_1\": 2014.3289822435595\n      }\n    },\n    \"dvinci\": {\n      \"application\": {\n        \"key_0\": 1175.4018890654106,\n        \"key_1\": 2871.4790413388137,\n        \"key_2\": 3378\n      },\n      \"candidate\": {\n        \"key_0\": false\n      }\n    },\n    \"hrworks\": {\n      \"jobApplication\": {\n        \"key_0\": 8233.71422220564,\n        \"key_1\": true\n      }\n    },\n    \"jobylon\": {\n      \"application\": {\n        \"message\": \"<string>\"\n      }\n    },\n    \"avature\": {\n      \"workflow\": {\n        \"step\": {\n          \"id\": \"<long>\"\n        }\n      }\n    },\n    \"recruitee\": {\n      \"candidate\": {\n        \"cover_letter_text\": \"<string>\"\n      }\n    },\n    \"rexx\": {\n      \"candidate\": {\n        \"key_0\": false,\n        \"key_1\": false\n      }\n    },\n    \"umantis\": {\n      \"person\": {\n        \"key_0\": 5118.751172499013\n      }\n    },\n    \"piloga\": {\n      \"candidate\": {\n        \"street\": \"<string>\"\n      }\n    },\n    \"pinpoint\": {\n      \"candidate\": {\n        \"key_0\": 7414.115320964032\n      }\n    },\n    \"covetorest\": {\n      \"candidate\": {\n        \"mandant\": \"<double>\"\n      }\n    }\n  },\n  \"screening_question_answers\": [\n    {\n      \"question_id\": \"<string>\",\n      \"answer\": \"<string>\"\n    },\n    {\n      \"question_id\": \"<string>\",\n      \"answer\": \"<string>\"\n    }\n  ],\n  \"query_params\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b08196c-8f63-41b1-9d8e-e4efb7b6e910",
+              "name": "POST /ai-apply/unified-api/jobs/:job_id/applications Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "unified-api",
+                    "jobs",
+                    ":job_id",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The Kombo ID or Remote ID of the Job this candidate should apply for. If you want to use the ID of the integrated system (remote_id) you need to prefix the id with \"remote:\". You can use the remote ID if you do not want to sync jobs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"candidate\": {\n    \"first_name\": \"Frank\",\n    \"last_name\": \"Doe\",\n    \"company\": \"Acme Inc.\",\n    \"title\": \"Head of Integrations\",\n    \"email_address\": \"frank.doe@example.com\",\n    \"phone_number\": \"+1-541-754-3010\",\n    \"gender\": \"MALE\",\n    \"salary_expectations\": {\n      \"amount\": 100000,\n      \"period\": \"YEAR\"\n    },\n    \"availability_date\": \"2021-01-01\",\n    \"location\": {\n      \"city\": \"New York\",\n      \"zip_code\": \"10016\",\n      \"state\": \"NY\",\n      \"country\": \"US\"\n    }\n  },\n  \"stage_id\": \"8x3YKRDcuRnwShdh96ShBNn1\",\n  \"attachments\": [\n    {\n      \"name\": \"Frank Doe CV.txt\",\n      \"data\": \"SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=\",\n      \"type\": \"CV\",\n      \"content_type\": \"text/plain\"\n    }\n  ],\n  \"screening_question_answers\": [\n    {\n      \"question_id\": \"3phFBNXRweGnDmsU9o2vdPuQ\",\n      \"answer\": \"Yes\"\n    },\n    {\n      \"question_id\": \"EYJjhMQT3LtVKXnTbnRT8s6U\",\n      \"answer\": [\n        \"GUzE666zfyjeoCJX6A8n7wh6\",\n        \"5WPHzzKAv8cx97KtHRUV96U8\",\n        \"7yZfKGzWigXxxRTygqAfHvyE\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"H77fDF8uvEzGNPRubiz5DvQ7\",\n    \"remote_id\": \"32\",\n    \"outcome\": \"PENDING\",\n    \"rejection_reason_name\": null,\n    \"rejected_at\": null,\n    \"current_stage_id\": \"5J7L4b48wBfffYwek9Az9pkM\",\n    \"job_id\": \"H5daSm8e85Dmvmne3wLeCPhX\",\n    \"candidate_id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n    \"screening_question_answers\": [],\n    \"custom_fields\": {},\n    \"integration_fields\": [],\n    \"remote_url\": \"https://example.com/applications/32\",\n    \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n    \"remote_deleted_at\": null,\n    \"remote_created_at\": \"2022-04-02T00:00:00.000Z\",\n    \"remote_updated_at\": \"2022-04-04T00:00:00.000Z\",\n    \"remote_data\": null,\n    \"current_stage\": {\n      \"id\": \"5J7L4b48wBfffYwek9Az9pkM\",\n      \"name\": \"Interview\",\n      \"remote_id\": \"5\",\n      \"index\": 2\n    },\n    \"job\": {\n      \"id\": \"H5daSm8e85Dmvmne3wLeCPhX\",\n      \"name\": \"Head of Integrations\",\n      \"remote_id\": \"1\"\n    },\n    \"candidate\": {\n      \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n      \"remote_id\": \"32\",\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\",\n      \"company\": \"Acme, Inc.\",\n      \"title\": \"Head of Marketing\",\n      \"confidential\": false,\n      \"source\": \"Employee Referral\",\n      \"phone_numbers\": [\n        {\n          \"phone_number\": \"+1-541-754-3010\",\n          \"type\": \"HOME\"\n        }\n      ],\n      \"email_addresses\": [\n        {\n          \"email_address\": \"john.doe@example.com\",\n          \"type\": \"PRIVATE\"\n        }\n      ],\n      \"social_media\": [\n        {\n          \"link\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\",\n          \"type\": \"YOUTUBE\",\n          \"username\": null\n        }\n      ],\n      \"location\": {\n        \"city\": \"Berlin\",\n        \"country\": \"DE\",\n        \"raw\": \"Berlin, Germany\",\n        \"state\": \"Berlin\",\n        \"street_1\": \"Lohmühlenstraße 65\",\n        \"street_2\": null,\n        \"zip_code\": \"12435\"\n      },\n      \"custom_fields\": {},\n      \"integration_fields\": [],\n      \"remote_url\": \"https://example.com/candidates/32\",\n      \"remote_created_at\": \"2022-04-02T00:00:00.000Z\",\n      \"remote_updated_at\": \"2022-04-04T00:00:00.000Z\",\n      \"remote_data\": null,\n      \"changed_at\": \"2022-04-04T00:00:00.000Z\",\n      \"remote_deleted_at\": null,\n      \"tags\": [\n        {\n          \"id\": \"7DHDky9zk4qnWkycuuQjFXNh\",\n          \"name\": \"Fast Learner\",\n          \"remote_id\": \"1\"\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a14d8760-33ba-4e1b-ab09-9b8d599641c7",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "unified-api",
+                    "jobs",
+                    ":job_id",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_id",
+                      "description": "(Required) The Kombo ID or Remote ID of the Job this candidate should apply for. If you want to use the ID of the integrated system (remote_id) you need to prefix the id with \"remote:\". You can use the remote ID if you do not want to sync jobs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"candidate\": {\n    \"first_name\": \"Frank\",\n    \"last_name\": \"Doe\",\n    \"company\": \"Acme Inc.\",\n    \"title\": \"Head of Integrations\",\n    \"email_address\": \"frank.doe@example.com\",\n    \"phone_number\": \"+1-541-754-3010\",\n    \"gender\": \"MALE\",\n    \"salary_expectations\": {\n      \"amount\": 100000,\n      \"period\": \"YEAR\"\n    },\n    \"availability_date\": \"2021-01-01\",\n    \"location\": {\n      \"city\": \"New York\",\n      \"zip_code\": \"10016\",\n      \"state\": \"NY\",\n      \"country\": \"US\"\n    }\n  },\n  \"stage_id\": \"8x3YKRDcuRnwShdh96ShBNn1\",\n  \"attachments\": [\n    {\n      \"name\": \"Frank Doe CV.txt\",\n      \"data\": \"SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=\",\n      \"type\": \"CV\",\n      \"content_type\": \"text/plain\"\n    }\n  ],\n  \"screening_question_answers\": [\n    {\n      \"question_id\": \"3phFBNXRweGnDmsU9o2vdPuQ\",\n      \"answer\": \"Yes\"\n    },\n    {\n      \"question_id\": \"EYJjhMQT3LtVKXnTbnRT8s6U\",\n      \"answer\": [\n        \"GUzE666zfyjeoCJX6A8n7wh6\",\n        \"5WPHzzKAv8cx97KtHRUV96U8\",\n        \"7yZfKGzWigXxxRTygqAfHvyE\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b08ab2e9-5852-4342-9bf0-1e6f73c48b59",
+          "name": "Get job feeds",
+          "request": {
+            "name": "Get job feeds",
+            "description": {
+              "content": "Get all job feeds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "job-feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2fa2b51e-7cf3-4667-994a-f2f99153a223",
+              "name": "GET /ai-apply/job-feeds Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "job-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"results\": [\n      {\n        \"id\": \"mK7pQw9xNvEr2LdY5sGh8TcZ\",\n        \"label\": \"Standard Acquisition Services LLC\"\n      }\n    ],\n    \"next\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d039b870-0480-40f4-a6fa-ca5ac076528d",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "job-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ae715b4-22da-4376-86c4-1b5f44681b42",
+          "name": "Create a job feed",
+          "request": {
+            "name": "Create a job feed",
+            "description": {
+              "content": "Create a job feed. Jobs feeds are required when bulk importing job postings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "job-feeds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42c7fe91-8b1a-4cca-8dec-b4a22dc9c3b8",
+              "name": "POST /ai-apply/job-feeds Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "job-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Standard Acquisition Services LLC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"mK7pQw9xNvEr2LdY5sGh8TcZ\",\n    \"label\": \"Standard Acquisition Services LLC\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a32376e4-7011-4a85-b9cd-9079610da458",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "job-feeds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"Standard Acquisition Services LLC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4293c490-2cb3-42ae-b4b6-418f916bf730",
+          "name": "Bulk import job postings",
+          "request": {
+            "name": "Bulk import job postings",
+            "description": {
+              "content": "Bulk import job postings into a job feed using NDJSON (newline-delimited JSON) format.\n\n**Request Format:**\nSend one JSON object per line. Each line represents a job posting to import.\n\n**Example Request Body:**\n```\n{\"url\":\"https://careers.acme.com/job/1\",\"career_site_label\":\"ACME Corp\"}\n{\"url\":\"https://careers.acme.com/job/2\",\"career_site_label\":\"ACME Corp\",\"job_code\":\"ENG-123\"}\n{\"url\":\"https://careers.acme.com/job/3\",\"career_site_label\":\"ACME Corp\",\"location\":{\"country\":\"US\",\"postal_code\":\"94115\"}}\n```\n\n**Behavior:**\n- Career sites are automatically created based on unique `career_site_label` values\n- Job postings are identified by the combination of URL + career_site_label + job_code\n- Existing job postings are updated; new ones are created and queued for parsing\n- Job postings from previous imports that are not included in the current import are archived\n\n**Constraints:**\n- Maximum request size: 35 MB\n- Timeout: 5 minutes\n- One concurrent import per job feed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ai-apply",
+                "job-feeds",
+                ":job_feed_id",
+                "bulk-import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_feed_id",
+                  "description": "(Required) The ID of the job feed to import into"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-ndjson"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "e0385584-79e4-4059-9752-b82949c62bd1",
+              "name": "Import completed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "job-feeds",
+                    ":job_feed_id",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_feed_id",
+                      "description": "(Required) The ID of the job feed to import into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"url\":\"https://careers.acme.com/job/1\",\"career_site_label\":\"ACME Corp\"}\n{\"url\":\"https://careers.acme.com/job/2\",\"career_site_label\":\"ACME Corp\",\"job_code\":\"ENG-123\"}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"created\": 150,\n    \"processed\": 197,\n    \"archived\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "def4edf5-6f38-460f-8592-b1e6b5f94fce",
+              "name": "The standard error response with the error codes for AI Apply.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ai-apply",
+                    "job-feeds",
+                    ":job_feed_id",
+                    "bulk-import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_feed_id",
+                      "description": "(Required) The ID of the job feed to import into"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"url\":\"https://careers.acme.com/job/1\",\"career_site_label\":\"ACME Corp\"}\n{\"url\":\"https://careers.acme.com/job/2\",\"career_site_label\":\"ACME Corp\",\"job_code\":\"ENG-123\"}"
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kombo.dev/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "505b0edd-0e28-44d2-8ca3-d4be39e47d2a",
+    "name": "Kombo AI Apply API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Endpoints for AI-powered job application features.",
+      "type": "text/plain"
+    }
+  }
+}

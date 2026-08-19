@@ -1,0 +1,171 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kombo AI Apply Unified ATS (Assessment & Background Check) API API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unified ATS (Assessment & Background Check) API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/assessment/packages",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          },
+          "docs": "Get all available assessment and background check packages for an integration.\n\nThis is mainly intended for debugging. As you always need to submit the full list of available packages when using [\"set packages\"](/assessment/v1/put-packages), there shouldn't ever be a need to call this endpoint in production."
+        },
+        {
+          "info": {
+            "name": "Set packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kombo.dev/v1/assessment/packages",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set packages\n\nReplaces the list of available assessment and or background check packages.\n\nPackages that have been previously submitted through this endpoint but aren't included again will be marked as deleted.\n\n### Example Request Body\n\n```json\n{\n  \"packages\": [\n    {\n      \"id\": \"1001\",\n      \"type\": \"SKILLS_TEST\",\n      \"name\": \"TypeScript\",\n      \"description\": \"TypeScript coding skills assessments\"\n    },\n    {\n      \"id\": \"1002\",\n      \"type\": \"VIDEO_INTERVIEW\",\n      \"name\": \"Video Interv"
+        },
+        {
+          "info": {
+            "name": "Get orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/assessment/orders",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `OPEN`, `COMPLETED`, `CANCELLED`, `REJECTED`.\n\nLeave this blank to get results matching all values."
+              },
+              {
+                "name": "created_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders by their creation date-timestamp in the format: `YYYY-MM-DDTHH:mm:ss.sssZ`. Only orders created on or after this date-timestamp will be returned."
+              }
+            ]
+          },
+          "docs": "Get all assessment and background check orders of an integration."
+        },
+        {
+          "info": {
+            "name": "Get open orders (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/assessment/orders/open",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              }
+            ]
+          },
+          "docs": "**(⚠️ Deprecated - Use [Get orders](/assessment/v1/get-orders) instead)** Get all open assessment and background check orders of an integration."
+        },
+        {
+          "info": {
+            "name": "Update order result",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kombo.dev/v1/assessment/orders/:assessment_order_id/result",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "assessment_order_id",
+                "value": "",
+                "type": "path",
+                "description": "PUT /assessment/orders/:assessment_order_id/result Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an assessment or a background check order result.\n\n### Example Request Body\n\n```json\n{\n  \"status\": \"COMPLETED\",\n  \"score\": 90,\n  \"max_score\": 100,\n  \"result_url\": \"https://example.com\",\n  \"completed_at\": \"2023-04-04T00:00:00.000Z\",\n  \"attributes\": [\n    {\n      \"type\": \"TEXT\",\n      \"label\": \"Role fit\",\n      \"value\": \"Excellent\"\n    },\n    {\n      \"type\": \"SUB_RESULT\",\n      \"id\": \"<YOUR_INTERNAL_ID_OF_THE_TEST>\",\n      \"label\": \"Personality test\",\n      \"score\": {\n        \"value\": 97,\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kombo AI Apply Unified ATS API API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unified ATS API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/applications",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `candidate` | n/a | ✓ Yes |\n| `candidate` → `tags` | ✗ No | ✗ No |\n| `current_stage` | n/a | ✓ Yes |\n| `job` | ✗ No | ✗ No |\n| `interviews` | ✓ Yes | ✓ Yes |\n| `offers` | ✓ Yes | ✓ Yes |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "outcome",
+                "value": "",
+                "type": "query",
+                "description": "**(⚠️ Deprecated - Use the `outcomes` filter instead.)** Filter applications by outcome. This allows you to get applications that are for example `PENDING`, `HIRED`, or `DECLINED`."
+              },
+              {
+                "name": "outcomes",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `PENDING`, `HIRED`, `DECLINED` \n* `PENDING`: The application is still being processed. \n* `HIRED`: The candidate was hired. \n* `DECLINED`: The candidate was declined. \n \n\nLeave this blank to get results matching all values."
+              },
+              {
+                "name": "job_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of job IDs. We will only return applications that are related to _any_ of the jobs."
+              },
+              {
+                "name": "job_remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of job remote IDs. We will only return applications that are related to _any_ of the jobs."
+              },
+              {
+                "name": "current_stage_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of application stage IDs. We will only return applications that are currently in _any_ of the stages."
+              },
+              {
+                "name": "remote_created_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter applications by the day they were created in the remote system. This allows you to get applications that were created on or after a certain day."
+              }
+            ]
+          },
+          "docs": "Retrieve all applications.\n\nVisit our in-depth guides to learn more about:\n\n- 💡 [Being aware of which applications are tracked](/ats/features/implementation-guide/tracking-created-applications#be-aware-of-which-applications-are-tracked)\n- 🚦 [Hiring signals](/ats/features/implementation-guide/tracking-created-applications#hiring-signals)\n- 📈 [Application stage changes](/ats/features/implementation-guide/tracking-created-applications#application-stage-changes)\n- ❓ [ATS-specific limitations](/at"
+        },
+        {
+          "info": {
+            "name": "Move application to stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kombo.dev/v1/ats/applications/:application_id/stage",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the application you want to move to a different stage."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Moves an application to a specified stage. Use job-specific stages from GET /jobs, not the deprecated /application-stages endpoint.\n\n<Note>\n  This endpoint requires the permission **Set application stage** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"stage_id\": \"3PJ8PZhZZa1eEdd2DtPNtVup\",\n  \"remote_fields\": {}\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Add result link to application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/applications/:application_id/result-links",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the application you want to create the link for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a result link to an application.\n\nThis can, for example, be used to link a candidate back to a test result/assessment in your application. As not all ATS tools have a \"result link\" feature, we sometimes repurpose other fields to expose it.\n\n<Note>\n  This endpoint requires the permission **Add result links** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"application_id\": \"8Xi6iZrwusZqJmDGXs49GBmJ\",\n  \"label\": \"Assessment Result\",\n  \"url\": \"https"
+        },
+        {
+          "info": {
+            "name": "Add note to application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/applications/:application_id/notes",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the application you want to create the note for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a note to an application.\n\nAdd extra information to an application. This can be any extra text information you want to add to an application.\n\n<Note>\n  This endpoint requires the permission **Add notes** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"content\": \"A new message from the candidate is available in YourChat!\",\n  \"content_type\": \"PLAIN_TEXT\",\n  \"remote_fields\": {}\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Get application attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/applications/:application_id/attachments",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the application you want to obtain attachments for."
+              }
+            ]
+          },
+          "docs": "Get attachments from a candidate or application.\n\nGet attachments from an application. If the ATS stores the attachments on the candidate, it will get the attachments from the corresponding candidate instead.\n\n<Note>\n  This endpoint requires the permission **Read document attachments** to be enabled in [your scope config](/scopes).\n</Note>"
+        },
+        {
+          "info": {
+            "name": "Add attachment to application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/applications/:application_id/attachments",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "POST /ats/applications/:application_id/attachments Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads an attachment file for the specified applicant.\n\n<Warning>\n  If adding an attachment to an application is not supported by the integration, the attachment will be [added to the candidate](/ats/v1/post-candidates-candidate-id-attachments) instead. \n</Warning>\n\n<Note>\n  This endpoint requires the permission **Add attachments** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"application_id\": \"GRKdd9dibYKKCrmGRSMJf3wu\",\n  \"attachment\": {\n    \"na"
+        },
+        {
+          "info": {
+            "name": "Reject application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/applications/:application_id/reject",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the application you want to reject."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rejects an application with a provided reason.\n\nRejects an application with a provided reason. Optionally, you can provide a free text note. You can get the list of rejection reasons with our [Get rejection reasons endpoint](/ats/v1/get-rejection-reasons).\n\n<Note>\n  This endpoint requires the permission **Reject applications** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"rejection_reason_id\": \"3PJ8PZhZZa1eEdd2DtPNtVup\",\n  \"note\": \"Candidate was a"
+        },
+        {
+          "info": {
+            "name": "Create interview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/applications/:application_id/interviews",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create interview\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n"
+        },
+        {
+          "info": {
+            "name": "Update interview",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.kombo.dev/v1/ats/applications/:application_id/interviews",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update interview\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n"
+        },
+        {
+          "info": {
+            "name": "Get candidates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/candidates",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `applications` | ✓ Yes | ✓ Yes |\n| `applications` → `current_stage` | ✗ No | ✗ No |\n| `applications` → `job` | ✗ No | ✗ No |\n| `tags` | ✓ Yes | ✗ No |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter the candidates based on an email address. When set, returns only the candidates where the given `email` is in `email_addresses`. This filter is case-insensitive."
+              },
+              {
+                "name": "job_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of job IDs. We will only return candidates that have applied to _any_ of the jobs."
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter candidates by first name. This filter is case-insensitive and matches the exact first name. Fuzzy matching might be enabled in the future, so consider this for your implementation."
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter candidates by last name. This filter is case-insensitive and matches the exact last name. Fuzzy matching might be enabled in the future, so consider this for your implementation."
+              }
+            ]
+          },
+          "docs": "Retrieve all candidates.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Create candidate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/candidates",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new candidate and application for the specified job.\n\n<Warning>\n      **We recommend using the [Create application](/ats/v1/post-jobs-job-id-applications) endpoint instead.**\n\n      We realized that in practice it was always more about creating _applications_ instead of _candidates_, so we created a new, more aptly named one that you should use instead: [Create application](/ats/v1/post-jobs-job-id-applications)\n\n      Using it also has the benefit that we return the newly created appli"
+        },
+        {
+          "info": {
+            "name": "Get candidate attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/candidates/:candidate_id/attachments",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "candidate_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the candidate you want to obtain attachments for."
+              }
+            ]
+          },
+          "docs": "Get attachments from a candidate, including all attachments of all of their applications.\n\n<Note>\n  This endpoint requires the permission **Read document attachments** to be enabled in [your scope config](/scopes).\n</Note>"
+        },
+        {
+          "info": {
+            "name": "Add attachment to candidate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/candidates/:candidate_id/attachments",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "candidate_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the candidate you want to add the attachment to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads an attachment file for the specified candidate.\n\n<Warning>\n  **We recommend using the [add attachment to application](/ats/v1/post-applications-application-id-attachments) endpoint instead.**\n\n  We realized that in practice it was always more about adding attachments to _applications_ instead of _candidates_, so we created a new, more aptly named one that you should use instead: [add attachment to application](/ats/v1/post-applications-application-id-attachments)\n  </Warning>\n\n<Note>\n  T"
+        },
+        {
+          "info": {
+            "name": "Add result link to candidate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/candidates/:candidate_id/result-links",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "candidate_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the candidate you want to add the result link to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a result link to a candidate.\n\n<Warning>\n  **We recommend to use [add result link to application](/ats/v1/post-applications-application-id-result-links) instead.**\n\n  This can, for example, be used to link a candidate back to a test result/assessment in your application. As not all ATS tools have a \"result link\" feature, we sometimes repurpose other fields to expose it.\n\n  </Warning>\n  \n\n<Note>\n  This endpoint requires the permission **Add result links** to be enabled in [your scope config]("
+        },
+        {
+          "info": {
+            "name": "Add tag to candidate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/candidates/:candidate_id/tags",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "candidate_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the candidate you want to add the tag to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a tag to a candidate.\n\nKombo takes care of creating the tag if required, finding out the right ID, and appending it to the list of tags.\n\n<Note>\n  This endpoint requires the permission **Manage tags** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"tag\": {\n    \"name\": \"Excellent Fit\"\n  }\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Remove tag from candidate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kombo.dev/v1/ats/candidates/:candidate_id/tags",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "candidate_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the candidate you want to remove the tag from."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove a tag from a candidate based on its name.\n\nThis will also succeed if the tag does not exist on the candidate.\n\n<Note>\n  This endpoint requires the permission **Manage tags** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"tag\": {\n    \"name\": \"Excellent Fit\"\n  }\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Get tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/tags",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Retrieve all tags.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get application stages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/application-stages",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Get all application stages available in the ATS.\n\n<Warning>\n  **This endpoint is deprecated!**\n\n  Get all application stages available in the ATS. This is deprecated because most ATS systems have separate sets of stages for each job. We'd recommend using the `stages` property from the [GET Jobs endpoint](/ats/v1/get-jobs) instead.\n\n**Important**: Using global stages can cause \"Stage not found\" errors when moving applications, especially with systems like Workable that have job-specific stages.\n\n"
+        },
+        {
+          "info": {
+            "name": "Get jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/jobs",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `stages` | ✓ Yes | ✗ No |\n| `screening_questions` | ✓ Yes | ✗ No |\n| `job_postings` | ✓ Yes | ✓ Yes |\n| `hiring_team` | ✓ Yes | ✗ No |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "job_codes",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of job codes."
+              },
+              {
+                "name": "post_url",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the `post_url` field. Can be used to find a job based on its public posting URL."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "**(⚠️ Deprecated - Use the `statuses` filter instead.)** Filter by the `status` field. Can be used to find a job based on its status."
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `OPEN`, `CLOSED`, `DRAFT`, `ARCHIVED`  \n\nLeave this blank to get results matching all values."
+              },
+              {
+                "name": "employment_types",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `FULL_TIME`, `PART_TIME`, `CONTRACT`, `SEASONAL`, `INTERNSHIP`  \n\nLeave this blank to get results matching all values."
+              },
+              {
+                "name": "visibilities",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `PUBLIC`, `INTERNAL`, `UNLISTED`, `CONFIDENTIAL`  \n\nLeave this blank to get results matching all values."
+              },
+              {
+                "name": "remote_created_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter jobs by the day they were created in the remote system. This allows you to get jobs that were created on or after a certain day."
+              },
+              {
+                "name": "name_contains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the `name` field. Can be used to find a job by keywords present in the job name."
+              }
+            ]
+          },
+          "docs": "Retrieve all jobs.\n\nVisit our in-depth guides to learn more about:\n\n- 🔄 [Getting updates of the data](/ats/features/implementation-guide/reading-jobs#getting-updates-of-the-data)\n- ❗ [Handling failing syncs](/ats/features/implementation-guide/reading-jobs#handling-failing-syncs)\n- 🔍 [Letting your customer choose which jobs to expose](/ats/features/implementation-guide/reading-jobs#let-your-customer-choose-which-jobs-to-expose-to-you)\n- 🔗 [Matching jobs in your database to ATS jobs](/ats/featu"
+        },
+        {
+          "info": {
+            "name": "Create application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/jobs/:job_id/applications",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID or Remote ID of the Job this candidate should apply for. If you want to use the ID of the integrated system (remote_id) you need to prefix the id with \"remote:\". You can use the remote ID if you do not want to sync jobs."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new application and candidate for the specified job.\n\nVisit our in-depth guides to learn more about:\n\n- 🌐 [Setting the source of the application](/ats/features/implementation-guide/creating-applications#set-the-source-of-the-application) \n- 📎 [Uploading attachments with the application](/ats/features/implementation-guide/creating-applications#upload-attachments-with-the-application) \n- ♻️ [Retry behaviour](/ats/features/implementation-guide/creating-applications#retry-behaviour) \n- ✏️"
+        },
+        {
+          "info": {
+            "name": "Get users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/users",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `system_role_assignment` | ✓ Yes | ✓ Yes |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "emails",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of emails. We will only return users who have _any_ of the emails. The format of the emails is case-insensitive."
+              }
+            ]
+          },
+          "docs": "Retrieve all users.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/roles",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "scopes",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `SYSTEM`, `JOB` \n* `SYSTEM`: System-wide roles that apply globally (e.g., an \"Admin\" role). \n* `JOB`: Job-scoped roles that apply to specific jobs (e.g., a \"Hiring Manager\" role). \n \n\nLeave this blank to get results matching all values."
+              }
+            ]
+          },
+          "docs": "Retrieve all roles.\n\nVisit our in-depth guide about [roles](/ats/features/roles) to learn more.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/offers",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `application` | n/a | ✓ Yes |\n| `application` → `candidate` | ✗ No | ✗ No |\n| `application` → `job` | ✗ No | ✗ No |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Retrieve all offers.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get rejection reasons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/rejection-reasons",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Retrieve all rejection reasons.\n\nGet all rejection reasons available in the system. The Kombo ID is required in the associated [reject application action](/ats/v1/post-applications-application-id-reject).\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get interviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/interviews",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `interviewers` | ✓ Yes | ✗ No |\n| `application` | n/a | ✓ Yes |\n| `application` → `candidate` | ✗ No | ✗ No |\n| `application` → `job` | ✗ No | ✗ No |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "job_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of job IDs. We will only return interviews for applications associated with any of these jobs."
+              }
+            ]
+          },
+          "docs": "Retrieve all interviews.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "GetAtsActionsAtsCreateCandidate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/actions/ats_create_candidate",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GetAtsActionsAtsCreateApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/actions/ats_create_application",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GetAtsActionsAtsAddApplicationAttachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/actions/ats_add_application_attachment",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "GetAtsActionsAtsAddCandidateAttachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/ats/actions/ats_add_candidate_attachment",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Import tracked application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/import-tracked-application",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "join:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import tracked application\n\nRetroactively import existing applications into Kombo's tracking system. This is particularly useful if you have enabled the 'sync only created applications' setting and want to start tracking applications that were created before using Kombo.\n\nTo import an application, you'll need to provide specific identifiers based on the ATS. The available `id_type` values are defined by Kombo based on the tool's API capabilities. Please reach out to Kombo support if you require "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

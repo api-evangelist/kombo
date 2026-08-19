@@ -1,0 +1,438 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kombo AI Apply Custom Endpoints API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a job to be synced",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/ats/custom/avionte/synced-jobs",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "avionte:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a job to the synced jobs list. The next sync will pick it up and sync it including all applications and candidates."
+        },
+        {
+          "info": {
+            "name": "Remove a job from sync",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kombo.dev/v1/ats/custom/avionte/synced-jobs/:job_remote_id",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "avionte:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "job_remote_id",
+                "value": "",
+                "type": "path",
+                "description": "DELETE /ats/custom/avionte/synced-jobs/:job_remote_id Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes a job from the synced jobs list. Does not delete already synced data."
+        },
+        {
+          "info": {
+            "name": "Get DATEV system information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/custom/datev/system-information",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          },
+          "docs": "This endpoint returns BeraterNr (consultant_number), MandantenNr (client_number) and the payroll system (LODAS or Lohn und Gehalt). Useful to generate a DATEV ASCII file for the passthrough endpoint."
+        },
+        {
+          "info": {
+            "name": "Write raw DATEV ASCII file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/custom/datev/passthrough",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This action allows to send an arbitrary ASCII file directly to DATEV LODAS or Lohn und Gehalt. Kombo adds validation for the file format but not on the content. This action allows you to implement any use case that you might have with DATEV payroll ASCII imports."
+        },
+        {
+          "info": {
+            "name": "Verify service is enabled",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/custom/datev/check-eau-permission",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          },
+          "docs": "This endpoint validates that this DATEV integration is ready to use the eAU feature."
+        },
+        {
+          "info": {
+            "name": "Query the status of the eAU request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/custom/datev/eau-requests/:eau_id",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "eau_id",
+                "value": "",
+                "type": "path",
+                "description": "GET /custom/datev/eau-requests/:eau_id Parameter"
+              }
+            ]
+          },
+          "docs": "This endpoint queries the status of the eAU request for the given DATEV integration."
+        },
+        {
+          "info": {
+            "name": "Verify service is enabled",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/custom/datev/check-document-permission",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          },
+          "docs": "This endpoint returns the available document types for this DATEV integration."
+        },
+        {
+          "info": {
+            "name": "Retrieve available documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/custom/datev/available-documents",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Provide the period in the format YYYY-MM-DD for which to check for available documents."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to get all available documents for a specific period."
+        },
+        {
+          "info": {
+            "name": "Download Payroll Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/custom/datev/download-document",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Download a document from DATEV\n\n<Note>\n  This endpoint requires the permission **Manage documents** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"accounting_month\": \"2001-12-01\",\n  \"document_type\": \"LOJE\",\n  \"employee_id\": null\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Download Payroll Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/custom/datev/employees/:employee_id/download-document",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path",
+                "description": "POST /custom/datev/employees/:employee_id/download-document Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Download a document from DATEV\n\n<Note>\n  This endpoint requires the permission **Manage documents** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"accounting_month\": \"2001-12-01\",\n  \"document_type\": \"LOJE\"\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Create eAU Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/custom/datev/employees/:employee_id/eau-requests",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a request for an electronic certificate of incapacity for work (eAU).\n\n<Note>\n  This endpoint requires the permission **Manage eAU** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"start_work_incapacity\": \"2022-01-01\"\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Prepare DATEV Payroll",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kombo.dev/v1/custom/datev/employees/:employee_id/prepare-payroll",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "What DATEV requires to prepare payroll is very specific and currently, as DATEV is not providing \"read\", this is not part of the unified model.\n\n<Note>\n  This endpoint requires the permission **Manage payroll** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"employee_id\": \"EvLV61zdahkN4ftPJbmPCkdv\",\n  \"payroll_run\": {\n    \"date\": \"2022-05-01\"\n  },\n  \"fixed_payments\": [\n    {\n      \"amount\": 560,\n      \"lohnart\": 100\n    }\n  ],\n  \"hourly_payments\": ["
+        },
+        {
+          "info": {
+            "name": "Set DATEV compensations",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kombo.dev/v1/custom/datev/employees/:employee_id/compensations",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the compensations for an employee on the specified effective date.\n\n Other compensations will end at the effective date. That means, if you would like to add a compensation, you also have to include the compensations that you would like to keep.\n\n<Note>\n  This endpoint requires the permission **Manage payroll** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"employee_id\": \"3bdhemmSP1TPQDGWtRveRot9\",\n  \"effective_date\": \"2022-12-01\",\n  \"compensa"
+        },
+        {
+          "info": {
+            "name": "Verify service is enabled",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/custom/datev/check-write-permission",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          },
+          "docs": "This endpoint returns whether you can write to this DATEV integration."
+        },
+        {
+          "info": {
+            "name": "Get DATEV data pushes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/custom/datev/data-pushes",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          },
+          "docs": "Returns all \"DATEV Data Pushes\" of the last 2 months. You can use this endpoint to give your users transparency about submitted \"ASCII-Files\" and their status. Each data push can contain multiple files that were submitted."
+        },
+        {
+          "info": {
+            "name": "Push general data to DATEV",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/custom/datev/push-data/general",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads the currently relevant general data (employees, compensations, and time offs) to DATEV. This will create so called ASCII files that the accountant has to import in DATEV. You can call this endpoint to implement an on-demand sync to DATEV, for example if you want to offer your users a button to do that in your application."
+        },
+        {
+          "info": {
+            "name": "Push payroll data to DATEV",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/custom/datev/push-data/payroll",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads the currently relevant payroll data (supplements) to DATEV. This will create so called ASCII files that the accountant has to import in DATEV. After finishing the payroll preparation or after correcting payroll, you can call this."
+        },
+        {
+          "info": {
+            "name": "Write Payroll Supplement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/custom/silae/employees/:employee_id/payroll-supplements",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "silae:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Write a payroll supplement to Silae using the supplement code.\n\n<Note>\n  This endpoint requires the permission **Manage payroll** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"employee_id\": \"EvLV61zdahkN4ftPJbmPCkdv\",\n  \"supplement_code\": \"200\",\n  \"effective_date\": \"2024-01-14\",\n  \"element_amount\": 6\n}\n```"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

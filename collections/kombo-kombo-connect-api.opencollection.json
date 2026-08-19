@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kombo AI Apply Kombo Connect API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Kombo Connect",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create connection link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/connect/create-link",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a unique link that allows your user to enter the embedded Kombo Connect flow.\n\n> Check out [our full guide](/connect/embedded-flow) for more details about implementing the connection flow into your app.\n\n> Kombo will not deduplicate integrations for you that are created with this endpoint. You are responsible for keeping track of integrations in your system and prevent customers from connecting the same tool again. Use the [reconnection link](/v1/post-integrations-integration-id-relink)"
+        },
+        {
+          "info": {
+            "name": "Get integration by token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/connect/integration-by-token/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "GET /connect/integration-by-token/:token Parameter"
+              }
+            ]
+          },
+          "docs": "Use this endpoint with the token you get from the connection flow to retrieve information about the created integration.\n\n  It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user.\n\n> Check out [our full guide](/connect/embedded-flow) for more details about implementing the connection flow into your app.\n\nThis endpoint is used to ensure users can't trick your system connecting their\naccount in your system to another customers in"
+        },
+        {
+          "info": {
+            "name": "Activate integration (optional)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/connect/activate-integration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use this endpoint with the token you get from the connection flow to retrieve information about the created integration. It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user. You do not need to call this endpoint for an integration to become active.\n\n<Warning>We are deprecating this endpoint in favour of the [get integration by code endpoint](/v1/get-integration-by-token-token). To migrate you only have to change to the new A"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

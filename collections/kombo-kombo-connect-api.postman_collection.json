@@ -1,0 +1,498 @@
+{
+  "item": [
+    {
+      "id": "0dd05428-4210-49f0-93ea-b5692a56ea2a",
+      "name": "Kombo Connect",
+      "description": {
+        "content": "Endpoints for Kombo Connect, our end-user-facing flow for setting up new integrations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5da109b7-ead3-4930-ace0-ceba4342aa72",
+          "name": "Create connection link",
+          "request": {
+            "name": "Create connection link",
+            "description": {
+              "content": "Generate a unique link that allows your user to enter the embedded Kombo Connect flow.\n\n> Check out [our full guide](/connect/embedded-flow) for more details about implementing the connection flow into your app.\n\n> Kombo will not deduplicate integrations for you that are created with this endpoint. You are responsible for keeping track of integrations in your system and prevent customers from connecting the same tool again. Use the [reconnection link](/v1/post-integrations-integration-id-relink) endpoint if you want a customer to update their credentials.\n\n### Example Request Body\n\n```json\n{\n  \"end_user_email\": \"test@example.com\",\n  \"end_user_organization_name\": \"Test Inc.\",\n  \"integration_category\": \"HRIS\",\n  \"integration_tool\": \"personio\",\n  \"end_user_origin_id\": \"123\",\n  \"language\": \"en\",\n  \"link_type\": \"EMBEDDED\"\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connect",
+                "create-link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"end_user_email\": \"<email>\",\n  \"end_user_organization_name\": \"<string>\",\n  \"end_user_origin_id\": \"<string,null>\",\n  \"remote_environment\": \"<string,null>\",\n  \"integration_category\": \"HRIS\",\n  \"integration_tool\": \"<string,null>\",\n  \"language\": \"en\",\n  \"scope_config_id\": \"<string,null>\",\n  \"enable_filtering\": false,\n  \"enable_field_mapping\": false,\n  \"link_type\": \"EMBEDDED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55412ca0-466c-416b-9a85-226465a5bdb3",
+              "name": "POST /connect/create-link Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "create-link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"end_user_email\": \"test@example.com\",\n  \"end_user_organization_name\": \"Test Inc.\",\n  \"integration_category\": \"HRIS\",\n  \"integration_tool\": \"personio\",\n  \"end_user_origin_id\": \"123\",\n  \"language\": \"en\",\n  \"link_type\": \"EMBEDDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"link\": \"https://connect.kombo.dev/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.SWYgeW91IGFyZSByZWFkaW5nIHRoaXMsIHdlIHdvdWxkIGxpa2UgdG8gbGV0IHlvdSBrbm93IHRoYXQgd2UgYXJlIGhpcmluZyBwZW9wbGUgbGlrZSB5b3UgOikuIFJlYWNoIG91dCB0byBhbGV4QGtvbWJvLmRldiB0byBnZXQgaW4gY29udGFjdCBhbmQgdGVsbCBoaW0geW91IGNvbWUgZnJvbSB0aGUgSldUIDsp._hhX5YTtHfLn9ZC806dZceRn2whzxHyrhft1ONzNgOE\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afc3c0dd-8fb3-44b1-acb8-f0b9e66a5c93",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "create-link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"end_user_email\": \"test@example.com\",\n  \"end_user_organization_name\": \"Test Inc.\",\n  \"integration_category\": \"HRIS\",\n  \"integration_tool\": \"personio\",\n  \"end_user_origin_id\": \"123\",\n  \"language\": \"en\",\n  \"link_type\": \"EMBEDDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c218343-0962-45da-bd76-c970c8437761",
+          "name": "Get integration by token",
+          "request": {
+            "name": "Get integration by token",
+            "description": {
+              "content": "Use this endpoint with the token you get from the connection flow to retrieve information about the created integration.\n\n  It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user.\n\n> Check out [our full guide](/connect/embedded-flow) for more details about implementing the connection flow into your app.\n\nThis endpoint is used to ensure users can't trick your system connecting their\naccount in your system to another customers integration. You don't get the integration ID\nfrom the `showKomboConnect(link)` function but only the short lived token used\nfor this endpoint so that users can't send you arbitrary data that you would put\ninto your system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connect",
+                "integration-by-token",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) GET /connect/integration-by-token/:token Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66cefcd5-2fc7-4d22-9acd-b995f7887a72",
+              "name": "GET /connect/integration-by-token/:token Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "integration-by-token",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) GET /connect/integration-by-token/:token Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"tool\": \"personio\",\n    \"id\": \"personio:CBNMt7dSNCzBdnRTx87dev4E\",\n    \"end_user_origin_id\": \"36123\",\n    \"end_user_organization_name\": \"Acme, Inc.\",\n    \"end_user_email\": \"user@example.com\",\n    \"setup_status\": \"COMPLETED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9f403bc-ce32-4716-9426-bc23690aa8ca",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "integration-by-token",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) GET /connect/integration-by-token/:token Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55e5ea93-7703-4fd2-98e8-987a1ab9c676",
+          "name": "Activate integration (optional)",
+          "request": {
+            "name": "Activate integration (optional)",
+            "description": {
+              "content": "Use this endpoint with the token you get from the connection flow to retrieve information about the created integration. It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user. You do not need to call this endpoint for an integration to become active.\n\n<Warning>We are deprecating this endpoint in favour of the [get integration by code endpoint](/v1/get-integration-by-token-token). To migrate you only have to change to the new API endpoint.</Warning>\n\n### Example Request Body\n\n```json\n{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjoiVGhpcyBpcyBub3QgYW4gYWN0dWFsIHRva2VuLiJ9.JulqgOZBMKceI8vh9YLpVX51efND0ZyfUNHDXLrPz_4\"\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "connect",
+                "activate-integration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a981bec3-a59f-4997-a57f-10e3edd5cefe",
+              "name": "POST /connect/activate-integration Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "activate-integration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"tool\": \"personio\",\n    \"id\": \"personio:CBNMt7dSNCzBdnRTx87dev4E\",\n    \"end_user_origin_id\": \"36123\",\n    \"end_user_organization_name\": \"Acme, Inc.\",\n    \"end_user_email\": \"user@example.com\",\n    \"setup_status\": \"COMPLETED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a93bdde1-40e0-4751-a8cf-4f0fd23aa9b5",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "connect",
+                    "activate-integration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kombo.dev/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "48a6b892-c7a6-4b22-81cd-428adae8a900",
+    "name": "Kombo AI Apply Kombo Connect API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Endpoints for AI-powered job application features.",
+      "type": "text/plain"
+    }
+  }
+}

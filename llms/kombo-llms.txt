@@ -1,0 +1,674 @@
+# Kombo
+
+## Docs
+
+- [Introduction](https://docs.kombo.dev/introduction.md): Learn how you can put integrations on autopilot through Kombo’s unified APIs.
+- [Kombo Connect](https://docs.kombo.dev/kombo-connect.md): Our interactive embeddable connection flow.
+- [Reading and writing data](https://docs.kombo.dev/reading-and-writing-data.md): How you send requests to Kombo
+- [Libraries & SDKs](https://docs.kombo.dev/libraries-and-sdks.md): Use our official SDKs for ergonomic and type-safe API interactions.
+- [Extending the model](https://docs.kombo.dev/extending-the-model.md): How to make Kombo's unified models fit your product
+- [Permissions and scopes](https://docs.kombo.dev/permissions-and-scopes.md): Customize the data that is being synced by Kombo.
+- [KomboAI](https://docs.kombo.dev/kombo-ai.md): Get account-aware technical support in your shared channel
+- [Support](https://docs.kombo.dev/support.md): Be an expert in every tool you offer
+- [How do we prioritize Support Requests?](https://docs.kombo.dev/support/how-we-prioritize-support-requests.md)
+- [The dashboard](https://docs.kombo.dev/the-dashboard.md): Your hub for developing and configuring your integrations
+- [Data Residency and Compliance](https://docs.kombo.dev/data-residency-compliance.md): Understanding Kombo's data handling, security, and regional deployment options
+- [Product Capabilities & Clarifications](https://docs.kombo.dev/misconceptions-and-clarifications.md): _Last updated: March 30, 2026._
+- [Introduction](https://docs.kombo.dev/hris/introduction.md): Learn how to get started with Kombo's unified HRIS API.
+- [Overview](https://docs.kombo.dev/hris/getting-started.md): Let's get you up and running with our API!
+- [Sandbox Integrations](https://docs.kombo.dev/hris/getting-started/sandbox-integrations.md): Learn how to access tools you can connect to Kombo for development purposes.
+- [Creating Integrations](https://docs.kombo.dev/hris/getting-started/create-integrations.md): Learn how to connect tools to Kombo.
+- [Authentication](https://docs.kombo.dev/hris/getting-started/authentication.md): Learn how to authenticate with the Kombo API and manage API keys securely.
+- [Querying the API](https://docs.kombo.dev/hris/getting-started/querying-api.md): Learn how to filter and paginate the Kombo `GET` endpoints. This will help you implement incremental fetching and more.
+- [Fetching Data](https://docs.kombo.dev/hris/getting-started/fetching-data.md): Learn how to get the newest data back from Kombo.
+- [Remote Data](https://docs.kombo.dev/hris/getting-started/remote-data.md): Learn how to use remote data to access any available field.
+- [Context](https://docs.kombo.dev/hris/implementation-guide/context.md)
+- [Setup](https://docs.kombo.dev/hris/implementation-guide/setup.md)
+- [Connection setup](https://docs.kombo.dev/hris/implementation-guide/connection-setup.md)
+- [Context](https://docs.kombo.dev/hris/implementation-guide/filtering-employees/context.md)
+- [Using the filtering UI](https://docs.kombo.dev/hris/implementation-guide/filtering-employees/using-the-filtering-ui.md)
+- [Building filtering in-house](https://docs.kombo.dev/hris/implementation-guide/filtering-employees/building-filtering-in-house.md)
+- [Reading employees](https://docs.kombo.dev/hris/implementation-guide/reading-employees.md)
+- [Creating Employees (v2)](https://docs.kombo.dev/hris/implementation-guide/create-employee.md): Learn how to create employee records in connected HRIS via Kombo.
+- [Create Employee Form with Staffing Entities](https://docs.kombo.dev/hris/implementation-guide/staffing-entities-in-create-employee.md): Get a scoped create employee form by implementing and using our **Staffing Entities** model.
+- [Available HRIS Connectors](https://docs.kombo.dev/hris/connectors.md): Browse all available HRIS connectors integrated with Kombo
+- [a3innuva Nómina HRIS Integration](https://docs.kombo.dev/hris/connectors/a3innuvanomina.md): a3innuva Nómina connector for Kombo's HRIS API
+- [Abacus HRIS Integration](https://docs.kombo.dev/hris/connectors/abacus.md): Abacus connector for Kombo's HRIS API
+- [Absence.io HRIS Integration](https://docs.kombo.dev/hris/connectors/absenceio.md): Absence.io connector for Kombo's HRIS API
+- [ADP Decidium HRIS Integration](https://docs.kombo.dev/hris/connectors/adpdecidium.md): ADP Decidium connector for Kombo's HRIS API
+- [ADP Workforce Now HRIS Integration](https://docs.kombo.dev/hris/connectors/adpworkforcenow.md): ADP Workforce Now connector for Kombo's HRIS API
+- [AFAS Software HRIS Integration](https://docs.kombo.dev/hris/connectors/afas.md): AFAS Software connector for Kombo's HRIS API
+- [AlexisHR HRIS Integration](https://docs.kombo.dev/hris/connectors/alexishr.md): AlexisHR connector for Kombo's HRIS API
+- [BambooHR HRIS Integration](https://docs.kombo.dev/hris/connectors/bamboohr.md): BambooHR connector for Kombo's HRIS API
+- [BoondManager HRIS Integration](https://docs.kombo.dev/hris/connectors/boondmanager.md): BoondManager connector for Kombo's HRIS API
+- [Breathe HR HRIS Integration](https://docs.kombo.dev/hris/connectors/breathehr.md): Breathe HR connector for Kombo's HRIS API
+- [CatalystOne HRIS Integration](https://docs.kombo.dev/hris/connectors/catalystone.md): CatalystOne connector for Kombo's HRIS API
+- [Cezanne HR HRIS Integration](https://docs.kombo.dev/hris/connectors/cezannehr.md): Cezanne HR connector for Kombo's HRIS API
+- [Charlie HRIS Integration](https://docs.kombo.dev/hris/connectors/charliehr.md): Charlie connector for Kombo's HRIS API
+- [Cornerstone OnDemand HRIS Integration](https://docs.kombo.dev/hris/connectors/cornerstoneondemand.md): Cornerstone OnDemand connector for Kombo's HRIS API
+- [DATEV HRIS Integration](https://docs.kombo.dev/hris/connectors/datevlauds.md): DATEV connector for Kombo's HRIS API
+- [DATEV HR HRIS Integration](https://docs.kombo.dev/hris/connectors/datevhr.md): DATEV connector for Kombo's HRIS API
+- [DATEV LODAS HRIS Integration](https://docs.kombo.dev/hris/connectors/datev.md): DATEV LODAS connector for Kombo's HRIS API
+- [DATEV Lohn & Gehalt HRIS Integration](https://docs.kombo.dev/hris/connectors/datevlug.md): DATEV Lohn & Gehalt connector for Kombo's HRIS API
+- [Dayforce HRIS Integration](https://docs.kombo.dev/hris/connectors/dayforce.md): Dayforce connector for Kombo's HRIS API
+- [Deel HRIS Integration](https://docs.kombo.dev/hris/connectors/deel.md): Deel connector for Kombo's HRIS API
+- [Employment Hero HRIS Integration](https://docs.kombo.dev/hris/connectors/employmenthero.md): Employment Hero connector for Kombo's HRIS API
+- [Eurécia HRIS Integration](https://docs.kombo.dev/hris/connectors/eurecia.md): Eurécia connector for Kombo's HRIS API
+- [Factorial HRIS Integration](https://docs.kombo.dev/hris/connectors/factorial.md): Factorial connector for Kombo's HRIS API
+- [Fourth HRIS Integration](https://docs.kombo.dev/hris/connectors/fourth.md): Fourth connector for Kombo's HRIS API
+- [Google Workspace HRIS Integration](https://docs.kombo.dev/hris/connectors/googleworkspace.md): Google Workspace connector for Kombo's HRIS API
+- [Gusto HRIS Integration](https://docs.kombo.dev/hris/connectors/gusto.md): Gusto connector for Kombo's HRIS API
+- [Hailey HR HRIS Integration](https://docs.kombo.dev/hris/connectors/haileyhr.md): Hailey HR connector for Kombo's HRIS API
+- [Hansalog HRIS Integration](https://docs.kombo.dev/hris/connectors/hansalog.md): Hansalog connector for Kombo's HRIS API
+- [HeavenHR HRIS Integration](https://docs.kombo.dev/hris/connectors/heavenhr.md): HeavenHR connector for Kombo's HRIS API
+- [HiBob HRIS Integration](https://docs.kombo.dev/hris/connectors/hibob.md): HiBob connector for Kombo's HRIS API
+- [HoorayHR HRIS Integration](https://docs.kombo.dev/hris/connectors/hoorayhr.md): HoorayHR connector for Kombo's HRIS API
+- [HR WORKS HRIS Integration](https://docs.kombo.dev/hris/connectors/hrworks.md): HR WORKS connector for Kombo's HRIS API
+- [HR4YOU HRIS Integration](https://docs.kombo.dev/hris/connectors/hr4you.md): HR4YOU connector for Kombo's HRIS API
+- [Humaans HRIS Integration](https://docs.kombo.dev/hris/connectors/humaans.md): Humaans connector for Kombo's HRIS API
+- [Insperity HRIS Integration](https://docs.kombo.dev/hris/connectors/insperity.md): Insperity connector for Kombo's HRIS API
+- [IRIS Cascade HRIS Integration](https://docs.kombo.dev/hris/connectors/iriscascade.md): IRIS Cascade connector for Kombo's HRIS API
+- [iTrent HRIS Integration](https://docs.kombo.dev/hris/connectors/itrent.md): iTrent connector for Kombo's HRIS API
+- [Kallidus (Sapling) HRIS Integration](https://docs.kombo.dev/hris/connectors/sapling.md): Kallidus (Sapling) connector for Kombo's HRIS API
+- [Kenjo HRIS Integration](https://docs.kombo.dev/hris/connectors/kenjo.md): Kenjo connector for Kombo's HRIS API
+- [Kombo Sandbox HRIS Integration](https://docs.kombo.dev/hris/connectors/sandbox.md): Kombo Sandbox connector for Kombo's HRIS API
+- [Lattice HRIS Integration](https://docs.kombo.dev/hris/connectors/lattice.md): Lattice connector for Kombo's HRIS API
+- [Lattice Talent HRIS Integration](https://docs.kombo.dev/hris/connectors/latticetalent.md): Lattice Talent connector for Kombo's HRIS API
+- [Leapsome HRIS Integration](https://docs.kombo.dev/hris/connectors/leapsome.md): Leapsome connector for Kombo's HRIS API
+- [Loket HRIS Integration](https://docs.kombo.dev/hris/connectors/loket.md): Loket connector for Kombo's HRIS API
+- [Lucca HRIS Integration](https://docs.kombo.dev/hris/connectors/lucca.md): Lucca connector for Kombo's HRIS API
+- [MHR People First HRIS Integration](https://docs.kombo.dev/hris/connectors/peoplefirst.md): MHR People First connector for Kombo's HRIS API
+- [Microsoft Azure AD HRIS Integration](https://docs.kombo.dev/hris/connectors/azuread.md): Microsoft Azure AD connector for Kombo's HRIS API
+- [Microsoft Entra ID HRIS Integration](https://docs.kombo.dev/hris/connectors/entraid.md): Microsoft Entra ID connector for Kombo's HRIS API
+- [Mirus HRIS Integration](https://docs.kombo.dev/hris/connectors/mirus.md): Mirus connector for Kombo's HRIS API
+- [Namely HRIS Integration](https://docs.kombo.dev/hris/connectors/namely.md): Namely connector for Kombo's HRIS API
+- [Nibelis HRIS Integration](https://docs.kombo.dev/hris/connectors/nibelis.md): Nibelis connector for Kombo's HRIS API
+- [Nmbrs HRIS Integration](https://docs.kombo.dev/hris/connectors/nmbrs.md): Nmbrs connector for Kombo's HRIS API
+- [Officient HRIS Integration](https://docs.kombo.dev/hris/connectors/officient.md): Officient connector for Kombo's HRIS API
+- [Okta HRIS Integration](https://docs.kombo.dev/hris/connectors/okta.md): Okta connector for Kombo's HRIS API
+- [Oracle HCM HRIS Integration](https://docs.kombo.dev/hris/connectors/oraclehcm.md): Oracle HCM connector for Kombo's HRIS API
+- [OysterHR HRIS Integration](https://docs.kombo.dev/hris/connectors/oysterhr.md): OysterHR connector for Kombo's HRIS API
+- [Paychex HRIS Integration](https://docs.kombo.dev/hris/connectors/paychex.md): Paychex connector for Kombo's HRIS API
+- [Paycom HRIS Integration](https://docs.kombo.dev/hris/connectors/paycom.md): Paycom connector for Kombo's HRIS API
+- [Paycor HRIS Integration](https://docs.kombo.dev/hris/connectors/paycor.md): Paycor connector for Kombo's HRIS API
+- [PayFit Customer HRIS Integration](https://docs.kombo.dev/hris/connectors/payfitcustomer.md): PayFit connector for Kombo's HRIS API
+- [PayFit Partner HRIS Integration](https://docs.kombo.dev/hris/connectors/payfitpartner.md): PayFit connector for Kombo's HRIS API
+- [PayFit Legacy HRIS Integration](https://docs.kombo.dev/hris/connectors/payfit.md): PayFit connector for Kombo's HRIS API
+- [Paylocity HRIS Integration](https://docs.kombo.dev/hris/connectors/paylocity.md): Paylocity connector for Kombo's HRIS API
+- [PeopleHR HRIS Integration](https://docs.kombo.dev/hris/connectors/peoplehr.md): PeopleHR connector for Kombo's HRIS API
+- [PeopleXD HRIS Integration](https://docs.kombo.dev/hris/connectors/peoplexd.md): PeopleXD connector for Kombo's HRIS API
+- [Perbility Helix HRIS Integration](https://docs.kombo.dev/hris/connectors/perbilityhelix.md): Perbility Helix connector for Kombo's HRIS API
+- [Personio HRIS Integration](https://docs.kombo.dev/hris/connectors/personio.md): Personio connector for Kombo's HRIS API
+- [Planday HRIS Integration](https://docs.kombo.dev/hris/connectors/planday.md): Planday connector for Kombo's HRIS API
+- [Remote HRIS Integration](https://docs.kombo.dev/hris/connectors/remotecom.md): Remote connector for Kombo's HRIS API
+- [rexx systems HRIS Integration](https://docs.kombo.dev/hris/connectors/rexx.md): rexx systems connector for Kombo's HRIS API
+- [Rippling HRIS Integration](https://docs.kombo.dev/hris/connectors/rippling.md): Rippling connector for Kombo's HRIS API
+- [Sage HR HRIS Integration](https://docs.kombo.dev/hris/connectors/sagehr.md): Sage HR connector for Kombo's HRIS API
+- [Sage People HRIS Integration](https://docs.kombo.dev/hris/connectors/sagepeople.md): Sage People connector for Kombo's HRIS API
+- [SAP SuccessFactors HRIS Integration](https://docs.kombo.dev/hris/connectors/successfactors.md): SAP SuccessFactors connector for Kombo's HRIS API
+- [SCIM HRIS Integration](https://docs.kombo.dev/hris/connectors/scim.md): SCIM connector for Kombo's HRIS API
+- [SD Worx HRIS Integration](https://docs.kombo.dev/hris/connectors/sdworx.md): SD Worx connector for Kombo's HRIS API
+- [Sesame HR HRIS Integration](https://docs.kombo.dev/hris/connectors/sesamehr.md): Sesame HR connector for Kombo's HRIS API
+- [SFTP HRIS Integration](https://docs.kombo.dev/hris/connectors/sftp.md): SFTP connector for Kombo's HRIS API
+- [SFTP Fetch HRIS Integration](https://docs.kombo.dev/hris/connectors/sftpfetch.md): SFTP Fetch connector for Kombo's HRIS API
+- [Silae HRIS Integration](https://docs.kombo.dev/hris/connectors/silae.md): Silae connector for Kombo's HRIS API
+- [Simployer HRIS Integration](https://docs.kombo.dev/hris/connectors/simployer.md): Simployer connector for Kombo's HRIS API
+- [Square HRIS Integration](https://docs.kombo.dev/hris/connectors/square.md): Square connector for Kombo's HRIS API
+- [Sympa HRIS Integration](https://docs.kombo.dev/hris/connectors/sympa.md): Sympa connector for Kombo's HRIS API
+- [Tellent HR HRIS Integration](https://docs.kombo.dev/hris/connectors/kiwihr.md): Tellent HR connector for Kombo's HRIS API
+- [TriNet (Zenefits) HRIS Integration](https://docs.kombo.dev/hris/connectors/trinet.md): TriNet (Zenefits) connector for Kombo's HRIS API
+- [TriNet PEO HRIS Integration](https://docs.kombo.dev/hris/connectors/trinetpeo.md): TriNet PEO connector for Kombo's HRIS API
+- [UKG Pro HRIS Integration](https://docs.kombo.dev/hris/connectors/ukgpro.md): UKG Pro connector for Kombo's HRIS API
+- [UKG Pro WFM HRIS Integration](https://docs.kombo.dev/hris/connectors/ukgprowfm.md): UKG Pro WFM connector for Kombo's HRIS API
+- [UKG Ready HRIS Integration](https://docs.kombo.dev/hris/connectors/ukgready.md): UKG Ready connector for Kombo's HRIS API
+- [Visma Peple HRIS Integration](https://docs.kombo.dev/hris/connectors/peple.md): Visma Peple connector for Kombo's HRIS API
+- [Visma Raet - Youforce HRIS Integration](https://docs.kombo.dev/hris/connectors/youforce.md): Visma Raet - Youforce connector for Kombo's HRIS API
+- [Visma YouServe HRIS Integration](https://docs.kombo.dev/hris/connectors/youserve.md): Visma YouServe connector for Kombo's HRIS API
+- [Workday HRIS Integration](https://docs.kombo.dev/hris/connectors/workday.md): Workday connector for Kombo's HRIS API
+- [Workday Custom Report SFTP HRIS Integration](https://docs.kombo.dev/hris/connectors/workdaycustomreportsftp.md): Workday Custom Report SFTP connector for Kombo's HRIS API
+- [Workday Custom Reports HRIS Integration](https://docs.kombo.dev/hris/connectors/workdaycustomreport.md): Workday Custom Reports connector for Kombo's HRIS API
+- [workforce.com HRIS Integration](https://docs.kombo.dev/hris/connectors/workforcecom.md): workforce.com connector for Kombo's HRIS API
+- [Zelt HRIS Integration](https://docs.kombo.dev/hris/connectors/zelt.md): Zelt connector for Kombo's HRIS API
+- [Zoho People HRIS Integration](https://docs.kombo.dev/hris/connectors/zohopeople.md): Zoho People connector for Kombo's HRIS API
+- [FAQ](https://docs.kombo.dev/hris/faq.md): Frequently Asked Questions
+- [Important Changes](https://docs.kombo.dev/hris/important-changes.md): Significant platform changes that may affect your integration.
+- [Real-time Data](https://docs.kombo.dev/hris/features/real-time-data.md): Get near-real-time updates when any data changes in connected HRIS systems.
+- [Create and read absences](https://docs.kombo.dev/hris/features/creating-absences.md): Learn how properly utilize the Absence functionality.
+- [Create Employee](https://docs.kombo.dev/hris/features/create-employee.md): Streamline employee onboarding with a dynamic form-based solution for creating employee records in connected HRIS systems.
+- [Data Explorer](https://docs.kombo.dev/hris/features/data-explorer.md): Interact with customer data from a convenient UI in the Kombo dashboard.
+- [Time and Attendance](https://docs.kombo.dev/hris/features/time-and-attendance.md): Timesheets endpoint overview, data structure, validation, time zones, payable hours, approvals, breaks, and API usage.
+- [Performance data](https://docs.kombo.dev/hris/features/performance-data.md): Performance data endpoints overview, data structure, types, cycles, ratings, and API usage.
+- [Staffing entities](https://docs.kombo.dev/hris/features/staffing-entities.md): Staffing entities endpoints overview, data structure, model_types, and API usage.
+- [Introduction](https://docs.kombo.dev/hris/features/filtering/introduction.md): Learn what the filtering feature is and when to use it.
+- [Data deletion](https://docs.kombo.dev/hris/features/filtering/data-policy.md): How we make our filtering feature compliant.
+- [SFTP connections](https://docs.kombo.dev/hris/features/sftp.md): Learn about SFTP transfers and their potential benefits.
+- [SCIM Integrations](https://docs.kombo.dev/hris/features/scim.md): Learn about SCIM integration and their potential benefits.
+- [Setup Flow](https://docs.kombo.dev/hris/features/setup-flow/introduction.md): Let your customers configure their integration end-to-end.
+- [Custom Fields](https://docs.kombo.dev/hris/features/custom-fields.md): Learn how to extend Kombo's unified data models with additional fields.
+- [Introduction](https://docs.kombo.dev/hris/features/remapping/introduction.md): Learn how to use the remapping feature to adjust Kombo default fields based on fields in your customer's systems.
+- [Remapping simple fields](https://docs.kombo.dev/hris/features/remapping/simple-remapping.md): Learn how to use the remapping feature to adjust simple Kombo default fields based on fields in your customer's systems.
+- [Remapping enum fields](https://docs.kombo.dev/hris/features/remapping/enum-remapping.md): Learn how to use the remapping feature to adjust Kombo enum fields based on fields in your customer's systems.
+- [Remapping date fields](https://docs.kombo.dev/hris/features/remapping/date-remapping.md): Learn how to use the remapping feature to adjust Kombo date fields based on fields in your customer's systems.
+- [Remapping address fields](https://docs.kombo.dev/hris/features/remapping/struct-remapping.md): Learn how to use the remapping feature to adjust Kombo address fields based on fields in your customer's systems.
+- [Remapping reference fields](https://docs.kombo.dev/hris/features/remapping/reference-remapping.md): Learn how to use the remapping feature to adjust Kombo reference fields based on fields in your customer's systems.
+- [Remapping array fields](https://docs.kombo.dev/hris/features/remapping/array-remapping.md): Learn how to use the remapping feature to adjust Kombo array fields based on fields in your customer's systems.
+- [Kombo default fallback](https://docs.kombo.dev/hris/features/remapping/kombo-default-fallback.md): Learn how to use Kombo's standard mapping logic as a fallback priority in your remapping configuration, giving you full control over the mapping order.
+- [Logs](https://docs.kombo.dev/hris/features/logs.md): Learn how Kombo's logs allow you to monitor and troubleshoot your integrations.
+- [Issues](https://docs.kombo.dev/hris/features/issues.md): See which integrations need attention, and how long the problem has been going on.
+- [Issue types](https://docs.kombo.dev/hris/features/issue-types.md): All customer-visible issue types Kombo can raise, and when they are created and resolved.
+- [Deletion Policy](https://docs.kombo.dev/hris/features/deletion-policy.md): Understand how Kombo deletes data.
+- [Passthrough API](https://docs.kombo.dev/hris/features/passthrough-api.md): Implement any edge case feature with our passthrough API.
+- [Komboman](https://docs.kombo.dev/hris/features/komboman.md): Test and troubleshoot both Kombo API and passthrough API calls with our built-in API client.
+- [Extend write endpoints](https://docs.kombo.dev/hris/features/remote-fields.md): Learn how Kombo allows you to write additional, otherwise unsupported fields with unified write actions.
+- [Scopes](https://docs.kombo.dev/hris/features/scopes.md): Scopes allow you to customize what data is being synced by Kombo.
+- [Audit Logs](https://docs.kombo.dev/hris/features/audit-logs.md): Audit sensitive changes to your Kombo environment.
+- [Introduction](https://docs.kombo.dev/hris/guides/connect/introduction.md): Our interactive embeddable connection flow.
+- [Manual setup](https://docs.kombo.dev/hris/guides/connect/manual-setup.md): Manually set up integrations on behalf of your customers.
+- [Magic links](https://docs.kombo.dev/hris/guides/connect/magic-links.md): Let your customers set up integrations without changing your app.
+- [Embedded flow](https://docs.kombo.dev/hris/guides/connect/embedded-flow.md): Embed Kombo Connect into your app for the most seamless experience.
+- [Reconnecting an integration](https://docs.kombo.dev/hris/guides/connect/reconnection.md): This document explains why and how to reconnect an integration.
+- [How Kombo Syncs Data](https://docs.kombo.dev/hris/guides/sync.md): Understanding how Kombo keeps integration data up-to-date internally without sacrificing API reliability and performance.
+- [Error Handling](https://docs.kombo.dev/guides/errors.md): Learn what errors the Kombo API can return and how to handle them.
+- [Concurrency Limiting](https://docs.kombo.dev/hris/guides/concurrency-limiting.md): Concurrency limiting caps simultaneous in-flight unified actions per integration, giving you fast feedback instead of slow timeouts.
+- [SFTP self-serve setup](https://docs.kombo.dev/hris/guides/sftp-self-serve.md): Configure SFTP integrations using Kombo's self-serve mapping tools.
+- [Webhooks](https://docs.kombo.dev/hris/guides/webhooks.md): Kombo sends you webhooks so that you don't have to poll our API for changes.
+- [Upstream webhooks](https://docs.kombo.dev/hris/guides/upstream-webhooks.md): Kombo can subscribe to webhooks of the systems that your customers connect. We call this feature upstream webhooks. This document explains how they work and how you can leverage them.
+- [Integration States](https://docs.kombo.dev/hris/guides/integration-states.md)
+- [Implementing New Tools](https://docs.kombo.dev/hris/guides/implementing-new-tools.md): Learn about best practices when using a new tool.
+- [Environments](https://docs.kombo.dev/hris/guides/environments.md)
+- [Partner Credentials](https://docs.kombo.dev/hris/guides/partner-credentials.md): Learn how existing partnerships to integrated systems can be used with Kombo.
+- [Static IPs](https://docs.kombo.dev/hris/guides/static-ips.md): Route all Kombo API calls through a fixed set of IP addresses so your customers can allowlist them.
+- [How to troubleshoot issues with Kombo](https://docs.kombo.dev/hris/guides/debugging/introduction.md): Identify and resolve issues across connections, data, and actions using Kombo’s troubleshooting tools.
+- [Troubleshoot connection flow problems](https://docs.kombo.dev/hris/guides/debugging/debug-connection-flow.md): Investigate and resolve issues that prevent your customers from connecting.
+- [Investigate failing actions](https://docs.kombo.dev/hris/guides/debugging/investigate-failing-actions.md): Diagnose failed write actions using Logs and Komboman.
+- [Diagnosing missing or incorrect data](https://docs.kombo.dev/hris/guides/debugging/debug-data-issues.md): A step-by-step guide to troubleshooting data discrepancies between Kombo and the remote tool.
+- [Get employees](https://docs.kombo.dev/hris/v1/get-employees.md): Retrieve all employees.
+- [Get employments](https://docs.kombo.dev/hris/v1/get-employments.md): Retrieve all employments.
+- [Get employee form](https://docs.kombo.dev/hris/v1/get-employees-form.md): Get the form for creating an employee. This form can be rendered dynamically on your frontend to allow your customers to create employees in their HRIS.
+- [Create employee with form](https://docs.kombo.dev/hris/v1/post-employees-form.md): Create an employee, based on the form schema.
+- [[DEPRECATED] Create employee](https://docs.kombo.dev/hris/v1/post-employees.md): Create a new employee.
+- [Get groups](https://docs.kombo.dev/hris/v1/get-groups.md): Retrieve all "groups" (teams, departments, and cost centers).
+- [Get legal entities](https://docs.kombo.dev/hris/v1/get-legal-entities.md): Retrieve all legal entites.
+- [Get work locations](https://docs.kombo.dev/hris/v1/get-locations.md): Retrieve all work locations.
+- [Get employee document categories](https://docs.kombo.dev/hris/v1/get-employee-document-categories.md): Get employee document categories.
+- [Add document to employee](https://docs.kombo.dev/hris/v1/post-employees-employee-id-documents.md): Uploads an document file for the specified employee.
+- [Get absences](https://docs.kombo.dev/hris/v1/get-absences.md): Retrieve all absences.
+- [Get absence types](https://docs.kombo.dev/hris/v1/get-absence-types.md): Retrieve all absence types.
+- [Get time off balances](https://docs.kombo.dev/hris/v1/get-time-off-balances.md): Retrieve all time off balances.
+- [Create absence](https://docs.kombo.dev/hris/v1/post-absences.md): Create a new absence.
+- [Delete absence](https://docs.kombo.dev/hris/v1/delete-absences-absence-id.md): Delete this absence.
+- [Get timesheets](https://docs.kombo.dev/hris/v1/get-timesheets.md): Get timesheets
+- [Get performance review cycles](https://docs.kombo.dev/hris/v1/get-performance-review-cycles.md): Get performance review cycles
+- [Get performance reviews](https://docs.kombo.dev/hris/v1/get-performance-reviews.md): Get performance reviews
+- [Get staffing entities](https://docs.kombo.dev/hris/v1/get-staffing-entities.md): Retrieve all staffing entities.
+- [Get skills](https://docs.kombo.dev/hris/v1/get-skills.md): Get skills
+- [Upsert managed skill](https://docs.kombo.dev/hris/v1/post-skills.md): Create or update a skill in the catalog managed by your system.
+- [Get employee skill proficiency ratings](https://docs.kombo.dev/hris/v1/get-skill-proficiency-ratings.md): Retrieve all employee skill proficiency ratings.
+- [Upsert employee skill proficiency rating](https://docs.kombo.dev/hris/v1/post-skill-proficiency-ratings.md): Assign a skill to an employee with an optional proficiency rating, attributed to the provider configured in the settings. Re-sending the same skill and source overwrites the existing rating.
+- [Upsert staffing entity skill expectation](https://docs.kombo.dev/hris/v1/post-staffing-entities-staffing-entity-id-skills.md): Add a skill expectation on a staffing entity, with an optional expected proficiency level. Re-sending the same skill updates the expectation in place.
+- [Payslips](https://docs.kombo.dev/hris/v1/get-payslips.md): Payslips
+- [Pay Runs](https://docs.kombo.dev/hris/v1/get-pay-runs.md): Pay Runs
+- [Pay Groups](https://docs.kombo.dev/hris/v1/get-pay-groups.md): Pay Groups
+- [Create connection link](https://docs.kombo.dev/hris/v1/post-connect-create-link.md): Generate a unique link that allows your user to enter the embedded Kombo Connect flow.
+- [Get integration by token](https://docs.kombo.dev/hris/v1/get-connect-integration-by-token-token.md): Use this endpoint with the token you get from the connection flow to retrieve information about the created integration.
+- [Activate integration (optional)](https://docs.kombo.dev/hris/v1/post-connect-activate-integration.md): Use this endpoint with the token you get from the connection flow to retrieve information about the created integration. It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user. You do not need to call this endpoint for an integrati…
+- [Create reconnection link](https://docs.kombo.dev/hris/v1/post-integrations-integration-id-relink.md): Create a link that will allow the user to reconnect an integration. This is useful if you want to allow your users to update the credentials if the old ones for example expired.
+- [Create Setup Flow link](https://docs.kombo.dev/hris/v1/post-integrations-integration-id-setup-link.md): Create a link that lets your customer run the [Setup Flow](/hris/features/setup-flow/introduction) for an integration. Use this to send customers back into setup steps like field mapping or employee filtering without having to go through the initial connection flow again. Pass the returned URL to `s…
+- [Get tools](https://docs.kombo.dev/hris/v1/get-tools-category.md): Get a list of the tools (i.e., integrations) enabled in your environment.
+- [Get integration details](https://docs.kombo.dev/hris/v1/get-integrations-integration-id.md): Get the specified integration with everything you need to display it to your customer.
+- [Set integration enabled](https://docs.kombo.dev/hris/v1/put-integrations-integration-id-enabled.md): Enable or disable the specified integration. When disabling, all currently running syncs will be cancelled.
+- [Delete integration](https://docs.kombo.dev/hris/v1/delete-integrations-integration-id.md): Delete the specified integration.
+- [Trigger sync](https://docs.kombo.dev/hris/v1/post-force-sync.md): Trigger a sync for a specific integration.
+- [Create provisioning setup link (deprecated)](https://docs.kombo.dev/hris/v1/post-provisioning-groups-group-id-setup-links.md): Create a new link that can be passed to the Kombo Connect SDK to open the provisioning setup UI.
+- [Get custom fields with current mappings](https://docs.kombo.dev/hris/v1/get-integrations-integration-id-custom-fields.md): Get all custom fields available on the specified integration.
+- [Check API key](https://docs.kombo.dev/hris/v1/get-check-api-key.md): Check whether your API key is working properly.
+- [Send passthrough request](https://docs.kombo.dev/hris/v1/post-passthrough-tool-api.md): Send a request to the specified integration's native API.
+- [Getting Started](https://docs.kombo.dev/hris/datev/datev-integration.md): Learn how to set up a DATEV integration with Kombo.
+- [Get available salary types (Lohnarten) from DATEV.](https://docs.kombo.dev/hris/v1/get-custom-datev-salary-types.md): This endpoint returns all available salary types for the given integration. This list can be customized by the DATEV user. It is only available for the DATEV LAUDS variant.
+- [Get available health insurers from DATEV.](https://docs.kombo.dev/hris/v1/get-custom-datev-health-insurances.md): This endpoint returns all available health insurers for the given integration. This list can be customized by the DATEV user. It is only available for the DATEV LAUDS variant.
+- [Verify ASCII write is enabled](https://docs.kombo.dev/hris/v1/get-datev-check-write-permission.md): This endpoint returns whether DATEV's Lohnimportdatenservice is enabled, which is the service required to submit [ASCII files](/hris/v1/post-datev-passthrough). It works for both DATEV HR and DATEV LAUDS integrations.
+- [Write raw DATEV ASCII file](https://docs.kombo.dev/hris/v1/post-datev-passthrough.md): This action allows to send an arbitrary ASCII file directly to DATEV LODAS or Lohn und Gehalt. Kombo adds validation for the file format but not on the content. This action allows you to implement any use case that you might have with DATEV payroll ASCII imports.
+- [Get DATEV system information](https://docs.kombo.dev/hris/v1/get-datev-system-information.md): This endpoint returns BeraterNr (consultant_number), MandantenNr (client_number) and the payroll system (LODAS or Lohn und Gehalt). Useful to generate a DATEV ASCII file for the passthrough endpoint.
+- [Get DATEV data pushes](https://docs.kombo.dev/hris/v1/get-datev-data-pushes.md): Returns all "DATEV Data Pushes" of the last 2 months. You can use this endpoint to give your users transparency about submitted "ASCII-Files" and their status. Each data push can contain multiple files that were submitted.
+- [Verify service is enabled](https://docs.kombo.dev/hris/v1/get-datev-check-document-permission.md): This endpoint returns the available document types for this DATEV integration.
+- [Retrieve available documents](https://docs.kombo.dev/hris/v1/get-datev-available-documents.md): Use this endpoint to get all available documents for a specific period.
+- [Download Employee Document](https://docs.kombo.dev/hris/v1/post-datev-employees-employee-id-download-document.md): Download a document from DATEV
+- [Download Company Document](https://docs.kombo.dev/hris/v1/post-datev-download-document.md): Download a document from DATEV
+- [Process Description](https://docs.kombo.dev/hris/datev/datev-eau.md): Learn how to use the Kombo DATEV integration to request and retrieve eAU certificates.
+- [eAU examples](https://docs.kombo.dev/hris/datev/datev-eau-examples.md): Common eAU requests and their responses.
+- [Verify service is enabled](https://docs.kombo.dev/hris/v1/get-datev-check-eau-permission.md): This endpoint validates that this DATEV integration is ready to use the eAU feature.
+- [Create eAU Request](https://docs.kombo.dev/hris/v1/post-datev-employees-employee-id-eau-requests.md): Create a request for an electronic certificate of incapacity for work (eAU).
+- [Query the status of the eAU request](https://docs.kombo.dev/hris/v1/get-datev-eau-requests-eau-id.md): This endpoint queries the status of the eAU request for the given DATEV integration.
+- [Introduction](https://docs.kombo.dev/lms/introduction.md): Learn how to get started with Kombo's unified LMS API.
+- [Overview](https://docs.kombo.dev/lms/getting-started.md): Let's get you up and running with our API!
+- [Sandbox Integrations](https://docs.kombo.dev/lms/getting-started/sandbox-integrations.md): Learn how to access tools you can connect to Kombo for development purposes.
+- [Creating Integrations](https://docs.kombo.dev/lms/getting-started/create-integrations.md): Learn how to connect tools to Kombo.
+- [Authentication](https://docs.kombo.dev/lms/getting-started/authentication.md): Learn how to authenticate with the Kombo API and manage API keys securely.
+- [Querying the API](https://docs.kombo.dev/lms/getting-started/querying-api.md): Learn how to filter and paginate the Kombo `GET` endpoints. This will help you implement incremental fetching and more.
+- [Fetching Data](https://docs.kombo.dev/lms/getting-started/fetching-data.md): Learn how to get the newest data back from Kombo.
+- [Remote Data](https://docs.kombo.dev/lms/getting-started/remote-data.md): Learn how to use remote data to access any available field.
+- [Setup](https://docs.kombo.dev/lms/implementation-guide/setup.md)
+- [Connection setup](https://docs.kombo.dev/lms/implementation-guide/connection-setup.md)
+- [Content providers](https://docs.kombo.dev/lms/implementation-guide/content-providers.md): Integration guide for content providers connecting to customer LMS systems
+- [SSO and identity matching](https://docs.kombo.dev/lms/implementation-guide/sso-and-identity-matching.md): Authenticate learners launching from the LMS and match them to Kombo's synced user data without a login prompt.
+- [Talent management](https://docs.kombo.dev/lms/implementation-guide/talent-management.md): Integration guide for talent management platforms reading from customer LMS systems
+- [Available LMS Connectors](https://docs.kombo.dev/lms/connectors.md): Browse all available LMS connectors integrated with Kombo
+- [360Learning LMS Integration](https://docs.kombo.dev/lms/connectors/360learning.md): 360Learning connector for Kombo's LMS API
+- [Cornerstone OnDemand LMS Integration](https://docs.kombo.dev/lms/connectors/cornerstoneondemand.md): Cornerstone OnDemand connector for Kombo's LMS API
+- [Coursera LMS Integration](https://docs.kombo.dev/lms/connectors/coursera.md): Coursera connector for Kombo's LMS API
+- [Docebo LMS Integration](https://docs.kombo.dev/lms/connectors/docebo.md): Docebo connector for Kombo's LMS API
+- [Kombo Sandbox LMS Integration](https://docs.kombo.dev/lms/connectors/sandbox.md): Kombo Sandbox connector for Kombo's LMS API
+- [LinkedIn Learning LMS Integration](https://docs.kombo.dev/lms/connectors/linkedinlearning.md): LinkedIn Learning connector for Kombo's LMS API
+- [Moodle LMS Integration](https://docs.kombo.dev/lms/connectors/moodle.md): Moodle connector for Kombo's LMS API
+- [SAP SuccessFactors LMS Integration](https://docs.kombo.dev/lms/connectors/successfactors.md): SAP SuccessFactors connector for Kombo's LMS API
+- [TalentLMS LMS Integration](https://docs.kombo.dev/lms/connectors/talentlms.md): TalentLMS connector for Kombo's LMS API
+- [Udemy Business LMS Integration](https://docs.kombo.dev/lms/connectors/udemy.md): Udemy Business connector for Kombo's LMS API
+- [Workday LMS Integration](https://docs.kombo.dev/lms/connectors/workday.md): Workday connector for Kombo's LMS API
+- [Important Changes](https://docs.kombo.dev/lms/important-changes.md): Significant platform changes that may affect your integration.
+- [Data Explorer](https://docs.kombo.dev/lms/features/data-explorer.md): Interact with customer data from a convenient UI in the Kombo dashboard.
+- [Setup Flow](https://docs.kombo.dev/lms/features/setup-flow/introduction.md): Let your customers configure their integration end-to-end.
+- [Custom Fields](https://docs.kombo.dev/lms/features/custom-fields.md): Learn how to extend Kombo's unified data models with additional fields.
+- [Introduction](https://docs.kombo.dev/lms/features/remapping/introduction.md): Learn how to use the remapping feature to adjust Kombo default fields based on fields in your customer's systems.
+- [Remapping simple fields](https://docs.kombo.dev/lms/features/remapping/simple-remapping.md): Learn how to use the remapping feature to adjust simple Kombo default fields based on fields in your customer's systems.
+- [Remapping enum fields](https://docs.kombo.dev/lms/features/remapping/enum-remapping.md): Learn how to use the remapping feature to adjust Kombo enum fields based on fields in your customer's systems.
+- [Remapping date fields](https://docs.kombo.dev/lms/features/remapping/date-remapping.md): Learn how to use the remapping feature to adjust Kombo date fields based on fields in your customer's systems.
+- [Remapping address fields](https://docs.kombo.dev/lms/features/remapping/struct-remapping.md): Learn how to use the remapping feature to adjust Kombo address fields based on fields in your customer's systems.
+- [Remapping reference fields](https://docs.kombo.dev/lms/features/remapping/reference-remapping.md): Learn how to use the remapping feature to adjust Kombo reference fields based on fields in your customer's systems.
+- [Remapping array fields](https://docs.kombo.dev/lms/features/remapping/array-remapping.md): Learn how to use the remapping feature to adjust Kombo array fields based on fields in your customer's systems.
+- [Kombo default fallback](https://docs.kombo.dev/lms/features/remapping/kombo-default-fallback.md): Learn how to use Kombo's standard mapping logic as a fallback priority in your remapping configuration, giving you full control over the mapping order.
+- [Logs](https://docs.kombo.dev/lms/features/logs.md): Learn how Kombo's logs allow you to monitor and troubleshoot your integrations.
+- [Issues](https://docs.kombo.dev/lms/features/issues.md): See which integrations need attention, and how long the problem has been going on.
+- [Issue types](https://docs.kombo.dev/lms/features/issue-types.md): All customer-visible issue types Kombo can raise, and when they are created and resolved.
+- [Deletion Policy](https://docs.kombo.dev/lms/features/deletion-policy.md): Understand how Kombo deletes data.
+- [Passthrough API](https://docs.kombo.dev/lms/features/passthrough-api.md): Implement any edge case feature with our passthrough API.
+- [Komboman](https://docs.kombo.dev/lms/features/komboman.md): Test and troubleshoot both Kombo API and passthrough API calls with our built-in API client.
+- [Extend write endpoints](https://docs.kombo.dev/lms/features/remote-fields.md): Learn how Kombo allows you to write additional, otherwise unsupported fields with unified write actions.
+- [Scopes](https://docs.kombo.dev/lms/features/scopes.md): Scopes allow you to customize what data is being synced by Kombo.
+- [Audit Logs](https://docs.kombo.dev/lms/features/audit-logs.md): Audit sensitive changes to your Kombo environment.
+- [Introduction](https://docs.kombo.dev/lms/guides/connect/introduction.md): Our interactive embeddable connection flow.
+- [Manual setup](https://docs.kombo.dev/lms/guides/connect/manual-setup.md): Manually set up integrations on behalf of your customers.
+- [Magic links](https://docs.kombo.dev/lms/guides/connect/magic-links.md): Let your customers set up integrations without changing your app.
+- [Embedded flow](https://docs.kombo.dev/lms/guides/connect/embedded-flow.md): Embed Kombo Connect into your app for the most seamless experience.
+- [Reconnecting an integration](https://docs.kombo.dev/lms/guides/connect/reconnection.md): This document explains why and how to reconnect an integration.
+- [How Kombo Syncs Data](https://docs.kombo.dev/lms/guides/sync.md): Understanding how Kombo keeps integration data up-to-date internally without sacrificing API reliability and performance.
+- [Concurrency Limiting](https://docs.kombo.dev/lms/guides/concurrency-limiting.md): Concurrency limiting caps simultaneous in-flight unified actions per integration, giving you fast feedback instead of slow timeouts.
+- [Async Endpoints](https://docs.kombo.dev/lms/guides/async-endpoints.md): How to work with asynchronous endpoints that process requests in the background and return results via polling.
+- [Webhooks](https://docs.kombo.dev/lms/guides/webhooks.md): Kombo sends you webhooks so that you don't have to poll our API for changes.
+- [Upstream webhooks](https://docs.kombo.dev/lms/guides/upstream-webhooks.md): Kombo can subscribe to webhooks of the systems that your customers connect. We call this feature upstream webhooks. This document explains how they work and how you can leverage them.
+- [Integration States](https://docs.kombo.dev/lms/guides/integration-states.md)
+- [Implementing New Tools](https://docs.kombo.dev/lms/guides/implementing-new-tools.md): Learn about best practices when using a new tool.
+- [Environments](https://docs.kombo.dev/lms/guides/environments.md)
+- [Partner Credentials](https://docs.kombo.dev/lms/guides/partner-credentials.md): Learn how existing partnerships to integrated systems can be used with Kombo.
+- [Static IPs](https://docs.kombo.dev/lms/guides/static-ips.md): Route all Kombo API calls through a fixed set of IP addresses so your customers can allowlist them.
+- [How to troubleshoot issues with Kombo](https://docs.kombo.dev/lms/guides/debugging/introduction.md): Identify and resolve issues across connections, data, and actions using Kombo’s troubleshooting tools.
+- [Troubleshoot connection flow problems](https://docs.kombo.dev/lms/guides/debugging/debug-connection-flow.md): Investigate and resolve issues that prevent your customers from connecting.
+- [Investigate failing actions](https://docs.kombo.dev/lms/guides/debugging/investigate-failing-actions.md): Diagnose failed write actions using Logs and Komboman.
+- [Diagnosing missing or incorrect data](https://docs.kombo.dev/lms/guides/debugging/debug-data-issues.md): A step-by-step guide to troubleshooting data discrepancies between Kombo and the remote tool.
+- [Get users](https://docs.kombo.dev/lms/v1/get-users.md): Get users
+- [Get skills](https://docs.kombo.dev/lms/v1/get-skills.md): Get skills
+- [Get courses](https://docs.kombo.dev/lms/v1/get-courses.md): Get courses
+- [Upsert courses](https://docs.kombo.dev/lms/v1/post-courses-bulk.md): Create or update multiple courses in the LMS.
+- [Get status of “Upsert courses” task](https://docs.kombo.dev/lms/v1/get-courses-bulk-task-id.md): Poll for the status of an existing “Upsert courses” task.
+- [Deactivate course](https://docs.kombo.dev/lms/v1/post-courses-course-id-deactivate.md): Deactivate a course in the LMS.
+- [Get course progressions](https://docs.kombo.dev/lms/v1/get-course-progressions.md): Get course progressions
+- [Enroll user in course](https://docs.kombo.dev/lms/v1/post-course-progressions.md): Enroll a user in a course revision.
+- [Complete course](https://docs.kombo.dev/lms/v1/post-course-progressions-course-progression-id-complete.md): Mark a course revision as completed for a user.
+- [Create connection link](https://docs.kombo.dev/lms/v1/post-connect-create-link.md): Generate a unique link that allows your user to enter the embedded Kombo Connect flow.
+- [Get integration by token](https://docs.kombo.dev/lms/v1/get-connect-integration-by-token-token.md): Use this endpoint with the token you get from the connection flow to retrieve information about the created integration.
+- [Activate integration (optional)](https://docs.kombo.dev/lms/v1/post-connect-activate-integration.md): Use this endpoint with the token you get from the connection flow to retrieve information about the created integration. It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user. You do not need to call this endpoint for an integrati…
+- [Create reconnection link](https://docs.kombo.dev/lms/v1/post-integrations-integration-id-relink.md): Create a link that will allow the user to reconnect an integration. This is useful if you want to allow your users to update the credentials if the old ones for example expired.
+- [Create Setup Flow link](https://docs.kombo.dev/lms/v1/post-integrations-integration-id-setup-link.md): Create a link that lets your customer run the [Setup Flow](/hris/features/setup-flow/introduction) for an integration. Use this to send customers back into setup steps like field mapping or employee filtering without having to go through the initial connection flow again. Pass the returned URL to `s…
+- [Get tools](https://docs.kombo.dev/lms/v1/get-tools-category.md): Get a list of the tools (i.e., integrations) enabled in your environment.
+- [Get integration details](https://docs.kombo.dev/lms/v1/get-integrations-integration-id.md): Get the specified integration with everything you need to display it to your customer.
+- [Set integration enabled](https://docs.kombo.dev/lms/v1/put-integrations-integration-id-enabled.md): Enable or disable the specified integration. When disabling, all currently running syncs will be cancelled.
+- [Delete integration](https://docs.kombo.dev/lms/v1/delete-integrations-integration-id.md): Delete the specified integration.
+- [Trigger sync](https://docs.kombo.dev/lms/v1/post-force-sync.md): Trigger a sync for a specific integration.
+- [Create provisioning setup link (deprecated)](https://docs.kombo.dev/lms/v1/post-hris-provisioning-groups-group-id-setup-links.md): Create a new link that can be passed to the Kombo Connect SDK to open the provisioning setup UI.
+- [Get custom fields with current mappings](https://docs.kombo.dev/lms/v1/get-integrations-integration-id-custom-fields.md): Get all custom fields available on the specified integration.
+- [Check API key](https://docs.kombo.dev/lms/v1/get-check-api-key.md): Check whether your API key is working properly.
+- [Send passthrough request](https://docs.kombo.dev/lms/v1/post-passthrough-tool-api.md): Send a request to the specified integration's native API.
+- [Introduction](https://docs.kombo.dev/ats/introduction.md): Learn how to get started with Kombo's unified ATS API.
+- [Overview](https://docs.kombo.dev/ats/getting-started.md): Let's get you up and running with our API!
+- [Sandbox Integrations](https://docs.kombo.dev/ats/getting-started/sandbox-integrations.md): Learn how to access tools you can connect to Kombo for development purposes.
+- [Creating Integrations](https://docs.kombo.dev/ats/getting-started/create-integrations.md): Learn how to connect tools to Kombo.
+- [Authentication](https://docs.kombo.dev/ats/getting-started/authentication.md): Learn how to authenticate with the Kombo API and manage API keys securely.
+- [Querying the API](https://docs.kombo.dev/ats/getting-started/querying-api.md): Learn how to filter and paginate the Kombo `GET` endpoints. This will help you implement incremental fetching and more.
+- [Fetching Data](https://docs.kombo.dev/ats/getting-started/fetching-data.md): Learn how to get the newest data back from Kombo.
+- [Remote Data](https://docs.kombo.dev/ats/getting-started/remote-data.md): Learn how to use remote data to access any available field.
+- [Setup](https://docs.kombo.dev/ats/implementation-guide/setup.md)
+- [Connection setup](https://docs.kombo.dev/ats/implementation-guide/connection-setup.md)
+- [Context](https://docs.kombo.dev/ats/implementation-guide/context.md)
+- [Setup](https://docs.kombo.dev/ats/implementation-guide/talent-acquisition/setup.md)
+- [Connection setup](https://docs.kombo.dev/ats/implementation-guide/talent-acquisition/connection-setup.md)
+- [Reading jobs](https://docs.kombo.dev/ats/implementation-guide/reading-jobs.md)
+- [Screening questions](https://docs.kombo.dev/ats/implementation-guide/screening-questions.md)
+- [Creating applications](https://docs.kombo.dev/ats/implementation-guide/creating-applications.md)
+- [Tracking created applications](https://docs.kombo.dev/ats/implementation-guide/tracking-created-applications.md)
+- [Screening overview](https://docs.kombo.dev/ats/implementation-guide/screening-overview.md)
+- [Setup](https://docs.kombo.dev/ats/implementation-guide/ai-screening/setup.md)
+- [Connection setup](https://docs.kombo.dev/ats/implementation-guide/ai-screening/connection-setup.md)
+- [Reading Applications](https://docs.kombo.dev/ats/implementation-guide/reading-applicants.md)
+- [Writing application results](https://docs.kombo.dev/ats/implementation-guide/writing-application-results.md)
+- [Moving and Rejecting Candidates](https://docs.kombo.dev/ats/implementation-guide/moving-and-rejecting-candidates.md)
+- [Available ATS Connectors](https://docs.kombo.dev/ats/connectors.md): Browse all available ATS connectors integrated with Kombo
+- [Abacus Umantis ATS Integration](https://docs.kombo.dev/ats/connectors/abacusumantis.md): Abacus Umantis connector for Kombo's ATS API
+- [ADP Workforce Now ATS Integration](https://docs.kombo.dev/ats/connectors/adpworkforcenow.md): ADP Workforce Now connector for Kombo's ATS API
+- [AFAS Software ATS Integration](https://docs.kombo.dev/ats/connectors/afas.md): AFAS Software connector for Kombo's ATS API
+- [ApplicantStack ATS Integration](https://docs.kombo.dev/ats/connectors/applicantstack.md): ApplicantStack connector for Kombo's ATS API
+- [Apploi ATS Integration](https://docs.kombo.dev/ats/connectors/apploi.md): Apploi connector for Kombo's ATS API
+- [Ashby ATS Integration](https://docs.kombo.dev/ats/connectors/ashby.md): Ashby connector for Kombo's ATS API
+- [Asymbl ATS Integration](https://docs.kombo.dev/ats/connectors/asymbl.md): Asymbl connector for Kombo's ATS API
+- [Avature ATS Integration](https://docs.kombo.dev/ats/connectors/avature.md): Avature connector for Kombo's ATS API
+- [Avionté ATS Integration](https://docs.kombo.dev/ats/connectors/avionte.md): Avionté connector for Kombo's ATS API
+- [BambooHR ATS Integration](https://docs.kombo.dev/ats/connectors/bamboohr.md): BambooHR connector for Kombo's ATS API
+- [BITE ATS Integration](https://docs.kombo.dev/ats/connectors/bite.md): BITE connector for Kombo's ATS API
+- [Brass Ring ATS Integration](https://docs.kombo.dev/ats/connectors/brassring.md): Brass Ring connector for Kombo's ATS API
+- [Breezy HR ATS Integration](https://docs.kombo.dev/ats/connectors/breezyhr.md): Breezy HR connector for Kombo's ATS API
+- [Bullhorn ATS Integration](https://docs.kombo.dev/ats/connectors/bullhorn.md): Bullhorn connector for Kombo's ATS API
+- [Bullhorn for Salesforce ATS Integration](https://docs.kombo.dev/ats/connectors/bullhorn4salesforce.md): Bullhorn for Salesforce connector for Kombo's ATS API
+- [Bullhorn Login ATS Integration](https://docs.kombo.dev/ats/connectors/bullhornlogin.md): Bullhorn Login connector for Kombo's ATS API
+- [CareerPlug ATS Integration](https://docs.kombo.dev/ats/connectors/careerplug.md): CareerPlug connector for Kombo's ATS API
+- [Carerix ATS Integration](https://docs.kombo.dev/ats/connectors/carerix.md): Carerix connector for Kombo's ATS API
+- [Carerix (GraphQL) ATS Integration](https://docs.kombo.dev/ats/connectors/carerixgraphql.md): Carerix connector for Kombo's ATS API
+- [CEGID TalentSoft Customer ATS Integration](https://docs.kombo.dev/ats/connectors/talentsoftcustomer.md): CEGID TalentSoft Customer connector for Kombo's ATS API
+- [CEGID TalentSoft FrontOffice ATS Integration](https://docs.kombo.dev/ats/connectors/talentsoft.md): CEGID TalentSoft FrontOffice connector for Kombo's ATS API
+- [Ceipal ATS Integration](https://docs.kombo.dev/ats/connectors/ceipal.md): Ceipal connector for Kombo's ATS API
+- [Compleet (Pitcher API) ATS Integration](https://docs.kombo.dev/ats/connectors/compleetpitcher.md): Compleet connector for Kombo's ATS API
+- [Compleet (only PersoProfiler) ATS Integration](https://docs.kombo.dev/ats/connectors/compleet.md): Compleet (PersoProfiler) connector for Kombo's ATS API
+- [Compleet (Persy API) ATS Integration](https://docs.kombo.dev/ats/connectors/compleetpersy.md): Compleet (Persy) connector for Kombo's ATS API
+- [concludis ATS Integration](https://docs.kombo.dev/ats/connectors/concludis.md): concludis connector for Kombo's ATS API
+- [Connexys By Bullhorn ATS Integration](https://docs.kombo.dev/ats/connectors/connexys.md): Connexys By Bullhorn connector for Kombo's ATS API
+- [Cornerstone OnDemand ATS Integration](https://docs.kombo.dev/ats/connectors/cornerstoneondemand.md): Cornerstone OnDemand connector for Kombo's ATS API
+- [Cornerstone TalentLink ATS Integration](https://docs.kombo.dev/ats/connectors/cornerstonetalentlink.md): Cornerstone TalentLink connector for Kombo's ATS API
+- [Coveto (legacy SOAP API) ATS Integration](https://docs.kombo.dev/ats/connectors/coveto.md): Coveto (legacy SOAP API) connector for Kombo's ATS API
+- [Coveto (REST API) ATS Integration](https://docs.kombo.dev/ats/connectors/covetorest.md): Coveto (REST API) connector for Kombo's ATS API
+- [Crelate ATS Integration](https://docs.kombo.dev/ats/connectors/crelate.md): Crelate connector for Kombo's ATS API
+- [d.vinci ATS Integration](https://docs.kombo.dev/ats/connectors/dvinci.md): d.vinci connector for Kombo's ATS API
+- [d.vinci admin ATS Integration](https://docs.kombo.dev/ats/connectors/dvinciadmin.md): d.vinci admin connector for Kombo's ATS API
+- [Databites ATS Integration](https://docs.kombo.dev/ats/connectors/databites.md): Databites connector for Kombo's ATS API
+- [Dayforce ATS Integration](https://docs.kombo.dev/ats/connectors/dayforce.md): Dayforce connector for Kombo's ATS API
+- [Digital Recruiters ATS Integration](https://docs.kombo.dev/ats/connectors/digitalrecruiters.md): Digital Recruiters connector for Kombo's ATS API
+- [Eightfold ATS Integration](https://docs.kombo.dev/ats/connectors/eightfold.md): Eightfold connector for Kombo's ATS API
+- [Eploy ATS Integration](https://docs.kombo.dev/ats/connectors/eploy.md): Eploy connector for Kombo's ATS API
+- [eRecruiter ATS Integration](https://docs.kombo.dev/ats/connectors/erecruiter.md): eRecruiter connector for Kombo's ATS API
+- [Factorial ATS Integration](https://docs.kombo.dev/ats/connectors/factorial.md): Factorial connector for Kombo's ATS API
+- [Flatchr ATS Integration](https://docs.kombo.dev/ats/connectors/flatchr.md): Flatchr connector for Kombo's ATS API
+- [Fountain ATS Integration](https://docs.kombo.dev/ats/connectors/fountain.md): Fountain connector for Kombo's ATS API
+- [Gem ATS Integration](https://docs.kombo.dev/ats/connectors/gem.md): Gem connector for Kombo's ATS API
+- [Greenhouse (V1) ATS Integration](https://docs.kombo.dev/ats/connectors/greenhouse.md): Greenhouse (V1) connector for Kombo's ATS API
+- [Greenhouse (V3) ATS Integration](https://docs.kombo.dev/ats/connectors/greenhousev3.md): Greenhouse (V3) connector for Kombo's ATS API
+- [Greenhouse Job Board ATS Integration](https://docs.kombo.dev/ats/connectors/greenhousejobboard.md): Greenhouse Job Board connector for Kombo's ATS API
+- [GuideCom ATS Integration](https://docs.kombo.dev/ats/connectors/guidecom.md): GuideCom connector for Kombo's ATS API
+- [Haufe Umantis ATS Integration](https://docs.kombo.dev/ats/connectors/umantis.md): Haufe Umantis connector for Kombo's ATS API
+- [Heyrecruit ATS Integration](https://docs.kombo.dev/ats/connectors/heyrecruit.md): Heyrecruit connector for Kombo's ATS API
+- [Homerun ATS Integration](https://docs.kombo.dev/ats/connectors/homerun.md): Homerun connector for Kombo's ATS API
+- [HR Office ATS Integration](https://docs.kombo.dev/ats/connectors/hroffice.md): HR Office connector for Kombo's ATS API
+- [HR WORKS ATS Integration](https://docs.kombo.dev/ats/connectors/hrworks.md): HR WORKS connector for Kombo's ATS API
+- [HR4YOU ATS Integration](https://docs.kombo.dev/ats/connectors/hr4you.md): HR4YOU connector for Kombo's ATS API
+- [iCIMS ATS Integration](https://docs.kombo.dev/ats/connectors/icims.md): iCIMS connector for Kombo's ATS API
+- [InRecruiting by Zucchetti ATS Integration](https://docs.kombo.dev/ats/connectors/inrecruiting.md): InRecruiting by Zucchetti connector for Kombo's ATS API
+- [JazzHR ATS Integration](https://docs.kombo.dev/ats/connectors/jazzhr.md): JazzHR connector for Kombo's ATS API
+- [JobAdder ATS Integration](https://docs.kombo.dev/ats/connectors/jobadder.md): JobAdder connector for Kombo's ATS API
+- [JobDiva ATS Integration](https://docs.kombo.dev/ats/connectors/jobdiva.md): JobDiva connector for Kombo's ATS API
+- [Jobvite ATS Integration](https://docs.kombo.dev/ats/connectors/jobvite.md): Jobvite connector for Kombo's ATS API
+- [Jobylon ATS Integration](https://docs.kombo.dev/ats/connectors/jobylon.md): Jobylon connector for Kombo's ATS API
+- [JOIN ATS Integration](https://docs.kombo.dev/ats/connectors/join.md): JOIN connector for Kombo's ATS API
+- [Kombo Sandbox ATS Integration](https://docs.kombo.dev/ats/connectors/sandbox.md): Kombo Sandbox connector for Kombo's ATS API
+- [Kula ATS Integration](https://docs.kombo.dev/ats/connectors/kula.md): Kula connector for Kombo's ATS API
+- [Laura ATS Integration](https://docs.kombo.dev/ats/connectors/laura.md): Laura connector for Kombo's ATS API
+- [Lever ATS Integration](https://docs.kombo.dev/ats/connectors/lever.md): Lever connector for Kombo's ATS API
+- [Logic Melon ATS Integration](https://docs.kombo.dev/ats/connectors/logicmelon.md): Logic Melon connector for Kombo's ATS API
+- [Loxo ATS Integration](https://docs.kombo.dev/ats/connectors/loxo.md): Loxo connector for Kombo's ATS API
+- [Manatal ATS Integration](https://docs.kombo.dev/ats/connectors/manatal.md): Manatal connector for Kombo's ATS API
+- [Mercury ATS Integration](https://docs.kombo.dev/ats/connectors/mercury.md): Mercury connector for Kombo's ATS API
+- [MHM HR ATS Integration](https://docs.kombo.dev/ats/connectors/mhmhr.md): MHM HR connector for Kombo's ATS API
+- [Mysolution ATS Integration](https://docs.kombo.dev/ats/connectors/mysolution.md): Mysolution connector for Kombo's ATS API
+- [Odoo ATS Integration](https://docs.kombo.dev/ats/connectors/odoo.md): Odoo connector for Kombo's ATS API
+- [Onlyfy ATS Integration](https://docs.kombo.dev/ats/connectors/onlyfy.md): Onlyfy connector for Kombo's ATS API
+- [Oracle Recruiting Cloud ATS Integration](https://docs.kombo.dev/ats/connectors/oraclerecruiting.md): Oracle Recruiting Cloud connector for Kombo's ATS API
+- [Oracle Taleo ATS Integration](https://docs.kombo.dev/ats/connectors/taleo.md): Oracle Taleo connector for Kombo's ATS API
+- [OTYS ATS Integration](https://docs.kombo.dev/ats/connectors/otys.md): OTYS connector for Kombo's ATS API
+- [P&I Loga ATS Integration](https://docs.kombo.dev/ats/connectors/piloga.md): P&I Loga connector for Kombo's ATS API
+- [PageUp People ATS Integration](https://docs.kombo.dev/ats/connectors/pageup.md): PageUp People connector for Kombo's ATS API
+- [Paradox ATS Integration](https://docs.kombo.dev/ats/connectors/paradox.md): Paradox connector for Kombo's ATS API
+- [Paycor ATS Integration](https://docs.kombo.dev/ats/connectors/paycor.md): Paycor connector for Kombo's ATS API
+- [Paylocity ATS Integration](https://docs.kombo.dev/ats/connectors/paylocity.md): Paylocity connector for Kombo's ATS API
+- [Perbility Helix ATS Integration](https://docs.kombo.dev/ats/connectors/perbilityhelix.md): Perbility Helix connector for Kombo's ATS API
+- [Personio ATS Integration](https://docs.kombo.dev/ats/connectors/personio.md): Personio connector for Kombo's ATS API
+- [Perview ATS Integration](https://docs.kombo.dev/ats/connectors/perview.md): Perview connector for Kombo's ATS API
+- [Phenom ATS Integration](https://docs.kombo.dev/ats/connectors/phenom.md): Phenom connector for Kombo's ATS API
+- [Pinpoint ATS Integration](https://docs.kombo.dev/ats/connectors/pinpoint.md): Pinpoint connector for Kombo's ATS API
+- [ReachMee ATS Integration](https://docs.kombo.dev/ats/connectors/reachmee.md): ReachMee connector for Kombo's ATS API
+- [RECRU ATS Integration](https://docs.kombo.dev/ats/connectors/recruhr.md): RECRU connector for Kombo's ATS API
+- [Recruit CRM ATS Integration](https://docs.kombo.dev/ats/connectors/recruitcrm.md): Recruit CRM connector for Kombo's ATS API
+- [RecruiterFlow ATS Integration](https://docs.kombo.dev/ats/connectors/recruiterflow.md): RecruiterFlow connector for Kombo's ATS API
+- [rexx systems ATS Integration](https://docs.kombo.dev/ats/connectors/rexx.md): rexx systems connector for Kombo's ATS API
+- [Sage HR ATS Integration](https://docs.kombo.dev/ats/connectors/sagehr.md): Sage HR connector for Kombo's ATS API
+- [SAP SuccessFactors ATS Integration](https://docs.kombo.dev/ats/connectors/successfactors.md): SAP SuccessFactors connector for Kombo's ATS API
+- [SmartRecruiters ATS Integration](https://docs.kombo.dev/ats/connectors/smartrecruiters.md): SmartRecruiters connector for Kombo's ATS API
+- [Softgarden ATS Integration](https://docs.kombo.dev/ats/connectors/softgarden.md): Softgarden connector for Kombo's ATS API
+- [Softgarden Partner ATS Integration](https://docs.kombo.dev/ats/connectors/softgardenpartner.md): Softgarden Partner connector for Kombo's ATS API
+- [Spark Hire Recruit ATS Integration](https://docs.kombo.dev/ats/connectors/comeet.md): Spark Hire Recruit connector for Kombo's ATS API
+- [Spott ATS Integration](https://docs.kombo.dev/ats/connectors/spott.md): Spott connector for Kombo's ATS API
+- [Taleez ATS Integration](https://docs.kombo.dev/ats/connectors/taleez.md): Taleez connector for Kombo's ATS API
+- [Talent Clue ATS Integration](https://docs.kombo.dev/ats/connectors/talentclue.md): Talent Clue connector for Kombo's ATS API
+- [Talent360 ATS Integration](https://docs.kombo.dev/ats/connectors/talent360.md): Talent360 connector for Kombo's ATS API
+- [TalentAdore ATS Integration](https://docs.kombo.dev/ats/connectors/talentadore.md): TalentAdore connector for Kombo's ATS API
+- [Talention ATS Integration](https://docs.kombo.dev/ats/connectors/talention.md): Talention connector for Kombo's ATS API
+- [Teamtailor ATS Integration](https://docs.kombo.dev/ats/connectors/teamtailor.md): Teamtailor connector for Kombo's ATS API
+- [Teamtailor Job Boards ATS Integration](https://docs.kombo.dev/ats/connectors/teamtailorjobboards.md): Teamtailor Job Boards connector for Kombo's ATS API
+- [Tellent Recruitee ATS Integration](https://docs.kombo.dev/ats/connectors/recruitee.md): Tellent Recruitee connector for Kombo's ATS API
+- [TrackerRMS ATS Integration](https://docs.kombo.dev/ats/connectors/trackerrms.md): TrackerRMS connector for Kombo's ATS API
+- [TRAFFIT ATS Integration](https://docs.kombo.dev/ats/connectors/traffit.md): TRAFFIT connector for Kombo's ATS API
+- [Ubeeo ATS Integration](https://docs.kombo.dev/ats/connectors/ubeeo.md): Ubeeo connector for Kombo's ATS API
+- [UKG Pro ATS Integration](https://docs.kombo.dev/ats/connectors/ukgpro.md): UKG Pro connector for Kombo's ATS API
+- [UKG Ready ATS Integration](https://docs.kombo.dev/ats/connectors/ukgready.md): UKG Ready connector for Kombo's ATS API
+- [Welcome to the Jungle ATS Integration](https://docs.kombo.dev/ats/connectors/welcometothejungle.md): Welcome to the Jungle connector for Kombo's ATS API
+- [Workable ATS Integration](https://docs.kombo.dev/ats/connectors/workable.md): Workable connector for Kombo's ATS API
+- [Workday ATS Integration](https://docs.kombo.dev/ats/connectors/workday.md): Workday connector for Kombo's ATS API
+- [Zoho Recruit ATS Integration](https://docs.kombo.dev/ats/connectors/zohorecruit.md): Zoho Recruit connector for Kombo's ATS API
+- [Zvoove Recruit ATS Integration](https://docs.kombo.dev/ats/connectors/zvooverecruit.md): Zvoove Recruit connector for Kombo's ATS API
+- [FAQ](https://docs.kombo.dev/ats/faq.md): Frequently Asked Questions
+- [Important Changes](https://docs.kombo.dev/ats/important-changes.md): Significant platform changes that may affect your integration.
+- [Real-time Data](https://docs.kombo.dev/ats/features/real-time-data.md): Get near-real-time updates when any data changes in connected ATS systems.
+- [Application attribution](https://docs.kombo.dev/ats/features/application-attribution.md): Learn how to attach source information to applications easily.
+- [Application tracking](https://docs.kombo.dev/ats/features/application-status-tracking.md): Track a candidate's application status.
+- [Upstream filtering](https://docs.kombo.dev/ats/features/upstream-filtering.md): Filter candidate and application sync to recent data only for improved performance.
+- [Screening questions](https://docs.kombo.dev/ats/features/candidate-screening-questions.md): Attach your candidates' answers to screening questions when creating applications.
+- [EEO questions](https://docs.kombo.dev/ats/features/eeo-questions.md): Getting and answering EEO and demographic questions
+- [Roles](https://docs.kombo.dev/ats/features/roles.md): Understanding system roles and job roles in ATS integrations
+- [Data Explorer](https://docs.kombo.dev/ats/features/data-explorer.md): Interact with customer data from a convenient UI in the Kombo dashboard.
+- [Setup Flow](https://docs.kombo.dev/ats/features/setup-flow/introduction.md): Let your customers configure their integration end-to-end.
+- [Custom Fields](https://docs.kombo.dev/ats/features/custom-fields.md): Learn how to extend Kombo's unified data models with additional fields.
+- [Introduction](https://docs.kombo.dev/ats/features/remapping/introduction.md): Learn how to use the remapping feature to adjust Kombo default fields based on fields in your customer's systems.
+- [Remapping simple fields](https://docs.kombo.dev/ats/features/remapping/simple-remapping.md): Learn how to use the remapping feature to adjust simple Kombo default fields based on fields in your customer's systems.
+- [Remapping enum fields](https://docs.kombo.dev/ats/features/remapping/enum-remapping.md): Learn how to use the remapping feature to adjust Kombo enum fields based on fields in your customer's systems.
+- [Remapping date fields](https://docs.kombo.dev/ats/features/remapping/date-remapping.md): Learn how to use the remapping feature to adjust Kombo date fields based on fields in your customer's systems.
+- [Remapping address fields](https://docs.kombo.dev/ats/features/remapping/struct-remapping.md): Learn how to use the remapping feature to adjust Kombo address fields based on fields in your customer's systems.
+- [Remapping reference fields](https://docs.kombo.dev/ats/features/remapping/reference-remapping.md): Learn how to use the remapping feature to adjust Kombo reference fields based on fields in your customer's systems.
+- [Remapping array fields](https://docs.kombo.dev/ats/features/remapping/array-remapping.md): Learn how to use the remapping feature to adjust Kombo array fields based on fields in your customer's systems.
+- [Kombo default fallback](https://docs.kombo.dev/ats/features/remapping/kombo-default-fallback.md): Learn how to use Kombo's standard mapping logic as a fallback priority in your remapping configuration, giving you full control over the mapping order.
+- [Logs](https://docs.kombo.dev/ats/features/logs.md): Learn how Kombo's logs allow you to monitor and troubleshoot your integrations.
+- [Issues](https://docs.kombo.dev/ats/features/issues.md): See which integrations need attention, and how long the problem has been going on.
+- [Issue types](https://docs.kombo.dev/ats/features/issue-types.md): All customer-visible issue types Kombo can raise, and when they are created and resolved.
+- [Deletion Policy](https://docs.kombo.dev/ats/features/deletion-policy.md): Understand how Kombo deletes data.
+- [Passthrough API](https://docs.kombo.dev/ats/features/passthrough-api.md): Implement any edge case feature with our passthrough API.
+- [Komboman](https://docs.kombo.dev/ats/features/komboman.md): Test and troubleshoot both Kombo API and passthrough API calls with our built-in API client.
+- [Extend write endpoints](https://docs.kombo.dev/ats/features/remote-fields.md): Learn how Kombo allows you to write additional, otherwise unsupported fields with unified write actions.
+- [Scopes](https://docs.kombo.dev/ats/features/scopes.md): Scopes allow you to customize what data is being synced by Kombo.
+- [Audit Logs](https://docs.kombo.dev/ats/features/audit-logs.md): Audit sensitive changes to your Kombo environment.
+- [Introduction](https://docs.kombo.dev/ats/guides/connect/introduction.md): Our interactive embeddable connection flow.
+- [Manual setup](https://docs.kombo.dev/ats/guides/connect/manual-setup.md): Manually set up integrations on behalf of your customers.
+- [Magic links](https://docs.kombo.dev/ats/guides/connect/magic-links.md): Let your customers set up integrations without changing your app.
+- [Embedded flow](https://docs.kombo.dev/ats/guides/connect/embedded-flow.md): Embed Kombo Connect into your app for the most seamless experience.
+- [Reconnecting an integration](https://docs.kombo.dev/ats/guides/connect/reconnection.md): This document explains why and how to reconnect an integration.
+- [How Kombo Syncs Data](https://docs.kombo.dev/ats/guides/sync.md): Understanding how Kombo keeps integration data up-to-date internally without sacrificing API reliability and performance.
+- [Concurrency Limiting](https://docs.kombo.dev/ats/guides/concurrency-limiting.md): Concurrency limiting caps simultaneous in-flight unified actions per integration, giving you fast feedback instead of slow timeouts.
+- [Webhooks](https://docs.kombo.dev/ats/guides/webhooks.md): Kombo sends you webhooks so that you don't have to poll our API for changes.
+- [Upstream webhooks](https://docs.kombo.dev/ats/guides/upstream-webhooks.md): Kombo can subscribe to webhooks of the systems that your customers connect. We call this feature upstream webhooks. This document explains how they work and how you can leverage them.
+- [Integration States](https://docs.kombo.dev/ats/guides/integration-states.md)
+- [Implementing New Tools](https://docs.kombo.dev/ats/guides/implementing-new-tools.md): Learn about best practices when using a new tool.
+- [Environments](https://docs.kombo.dev/ats/guides/environments.md)
+- [Partner Credentials](https://docs.kombo.dev/ats/guides/partner-credentials.md): Learn how existing partnerships to integrated systems can be used with Kombo.
+- [Static IPs](https://docs.kombo.dev/ats/guides/static-ips.md): Route all Kombo API calls through a fixed set of IP addresses so your customers can allowlist them.
+- [How to troubleshoot issues with Kombo](https://docs.kombo.dev/ats/guides/debugging/introduction.md): Identify and resolve issues across connections, data, and actions using Kombo’s troubleshooting tools.
+- [Troubleshoot connection flow problems](https://docs.kombo.dev/ats/guides/debugging/debug-connection-flow.md): Investigate and resolve issues that prevent your customers from connecting.
+- [Investigate failing actions](https://docs.kombo.dev/ats/guides/debugging/investigate-failing-actions.md): Diagnose failed write actions using Logs and Komboman.
+- [Diagnosing missing or incorrect data](https://docs.kombo.dev/ats/guides/debugging/debug-data-issues.md): A step-by-step guide to troubleshooting data discrepancies between Kombo and the remote tool.
+- [Get jobs](https://docs.kombo.dev/ats/v1/get-jobs.md): Retrieve all jobs.
+- [Get application stages](https://docs.kombo.dev/ats/v1/get-application-stages.md): Get all application stages available in the ATS.
+- [Get Job Postings](https://docs.kombo.dev/ats/v1/get-postings.md): Retrieve all job postings.
+- [Get applications](https://docs.kombo.dev/ats/v1/get-applications.md): Retrieve all applications.
+- [Create application](https://docs.kombo.dev/ats/v1/post-jobs-job-id-applications.md): Create a new application and candidate for the specified job.
+- [Add attachment to application](https://docs.kombo.dev/ats/v1/post-applications-application-id-attachments.md): Uploads an attachment file for the specified applicant.
+- [Move application to stage](https://docs.kombo.dev/ats/v1/put-applications-application-id-stage.md): Moves an application to a specified stage. Use job-specific stages from GET /jobs, not the deprecated /application-stages endpoint.
+- [Add result link to application](https://docs.kombo.dev/ats/v1/post-applications-application-id-result-links.md): Add a result link to an application.
+- [Add note to application](https://docs.kombo.dev/ats/v1/post-applications-application-id-notes.md): Add a note to an application.
+- [Get application attachments](https://docs.kombo.dev/ats/v1/get-applications-application-id-attachments.md): Get attachments from a candidate or application.
+- [Reject application](https://docs.kombo.dev/ats/v1/post-applications-application-id-reject.md): Rejects an application with a provided reason.
+- [Create interview](https://docs.kombo.dev/ats/v1/post-applications-application-id-interviews.md): Create interview
+- [Update interview](https://docs.kombo.dev/ats/v1/patch-applications-application-id-interviews.md): Update interview
+- [Get candidates](https://docs.kombo.dev/ats/v1/get-candidates.md): Retrieve all candidates.
+- [Create candidate](https://docs.kombo.dev/ats/v1/post-candidates.md): Create a new candidate and application for the specified job.
+- [Get candidate attachments](https://docs.kombo.dev/ats/v1/get-candidates-candidate-id-attachments.md): Get attachments from a candidate, including all attachments of all of their applications.
+- [Add attachment to candidate](https://docs.kombo.dev/ats/v1/post-candidates-candidate-id-attachments.md): Uploads an attachment file for the specified candidate.
+- [Add result link to candidate](https://docs.kombo.dev/ats/v1/post-candidates-candidate-id-result-links.md): Add a result link to a candidate.
+- [Get notes](https://docs.kombo.dev/ats/v1/get-notes.md): Retrieve all notes.
+- [Get tags](https://docs.kombo.dev/ats/v1/get-tags.md): Retrieve all tags.
+- [Add tag to candidate](https://docs.kombo.dev/ats/v1/post-candidates-candidate-id-tags.md): Add a tag to a candidate.
+- [Remove tag from candidate](https://docs.kombo.dev/ats/v1/delete-candidates-candidate-id-tags.md): Remove a tag from a candidate based on its name.
+- [Get users](https://docs.kombo.dev/ats/v1/get-users.md): Retrieve all users.
+- [Get offers](https://docs.kombo.dev/ats/v1/get-offers.md): Retrieve all offers.
+- [Get rejection reasons](https://docs.kombo.dev/ats/v1/get-rejection-reasons.md): Retrieve all rejection reasons.
+- [Get interviews](https://docs.kombo.dev/ats/v1/get-interviews.md): Retrieve all interviews.
+- [Get roles](https://docs.kombo.dev/ats/v1/get-roles.md): Retrieve all roles.
+- [Create connection link](https://docs.kombo.dev/ats/v1/post-connect-create-link.md): Generate a unique link that allows your user to enter the embedded Kombo Connect flow.
+- [Get integration by token](https://docs.kombo.dev/ats/v1/get-connect-integration-by-token-token.md): Use this endpoint with the token you get from the connection flow to retrieve information about the created integration.
+- [Activate integration (optional)](https://docs.kombo.dev/ats/v1/post-connect-activate-integration.md): Use this endpoint with the token you get from the connection flow to retrieve information about the created integration. It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user. You do not need to call this endpoint for an integrati…
+- [Create reconnection link](https://docs.kombo.dev/ats/v1/post-integrations-integration-id-relink.md): Create a link that will allow the user to reconnect an integration. This is useful if you want to allow your users to update the credentials if the old ones for example expired.
+- [Create Setup Flow link](https://docs.kombo.dev/ats/v1/post-integrations-integration-id-setup-link.md): Create a link that lets your customer run the [Setup Flow](/hris/features/setup-flow/introduction) for an integration. Use this to send customers back into setup steps like field mapping or employee filtering without having to go through the initial connection flow again. Pass the returned URL to `s…
+- [Get tools](https://docs.kombo.dev/ats/v1/get-tools-category.md): Get a list of the tools (i.e., integrations) enabled in your environment.
+- [Get integration details](https://docs.kombo.dev/ats/v1/get-integrations-integration-id.md): Get the specified integration with everything you need to display it to your customer.
+- [Set integration enabled](https://docs.kombo.dev/ats/v1/put-integrations-integration-id-enabled.md): Enable or disable the specified integration. When disabling, all currently running syncs will be cancelled.
+- [Delete integration](https://docs.kombo.dev/ats/v1/delete-integrations-integration-id.md): Delete the specified integration.
+- [Trigger sync](https://docs.kombo.dev/ats/v1/post-force-sync.md): Trigger a sync for a specific integration.
+- [Create provisioning setup link (deprecated)](https://docs.kombo.dev/ats/v1/post-hris-provisioning-groups-group-id-setup-links.md): Create a new link that can be passed to the Kombo Connect SDK to open the provisioning setup UI.
+- [Get custom fields with current mappings](https://docs.kombo.dev/ats/v1/get-integrations-integration-id-custom-fields.md): Get all custom fields available on the specified integration.
+- [Check API key](https://docs.kombo.dev/ats/v1/get-check-api-key.md): Check whether your API key is working properly.
+- [Send passthrough request](https://docs.kombo.dev/ats/v1/post-passthrough-tool-api.md): Send a request to the specified integration's native API.
+- [Introduction](https://docs.kombo.dev/assessment/introduction.md): Learn how to get started with Kombo's unified ATS Assessment & Background Check API.
+- [Overview](https://docs.kombo.dev/assessment/getting-started.md): Let's get you up and running with our API!
+- [Sandbox Integrations](https://docs.kombo.dev/assessment/getting-started/sandbox-integrations.md): Learn how to access tools you can connect to Kombo for development purposes.
+- [Creating Integrations](https://docs.kombo.dev/assessment/getting-started/create-integrations.md): Learn how to connect tools to Kombo.
+- [Authentication](https://docs.kombo.dev/assessment/getting-started/authentication.md): Learn how to authenticate with the Kombo API and manage API keys securely.
+- [Querying the API](https://docs.kombo.dev/assessment/getting-started/querying-api.md): Learn how to filter and paginate the Kombo `GET` endpoints. This will help you implement incremental fetching and more.
+- [Remote Data](https://docs.kombo.dev/assessment/getting-started/remote-data.md): Learn how to use remote data to access any available field.
+- [Available Assessment Connectors](https://docs.kombo.dev/assessment/connectors.md): Browse all available Assessment connectors integrated with Kombo
+- [Ashby Assessment Integration](https://docs.kombo.dev/assessment/connectors/ashby.md): Ashby connector for Kombo's Assessment API
+- [Avature Assessment Integration](https://docs.kombo.dev/assessment/connectors/avature.md): Avature connector for Kombo's Assessment API
+- [Bullhorn Assessment Integration](https://docs.kombo.dev/assessment/connectors/bullhorn.md): Bullhorn connector for Kombo's Assessment API
+- [Eightfold Assessment Integration](https://docs.kombo.dev/assessment/connectors/eightfold.md): Eightfold connector for Kombo's Assessment API
+- [Greenhouse Assessment Integration](https://docs.kombo.dev/assessment/connectors/greenhouse.md): Greenhouse connector for Kombo's Assessment API
+- [iCIMS Assessment Integration](https://docs.kombo.dev/assessment/connectors/icims.md): iCIMS connector for Kombo's Assessment API
+- [JazzHR Assessment Integration](https://docs.kombo.dev/assessment/connectors/jazzhr.md): JazzHR connector for Kombo's Assessment API
+- [Jobvite Assessment Integration](https://docs.kombo.dev/assessment/connectors/jobvite.md): Jobvite connector for Kombo's Assessment API
+- [Jobylon Assessment Integration](https://docs.kombo.dev/assessment/connectors/jobylon.md): Jobylon connector for Kombo's Assessment API
+- [Kombo Sandbox Assessment Integration](https://docs.kombo.dev/assessment/connectors/sandbox.md): Kombo Sandbox connector for Kombo's Assessment API
+- [Lever Assessment Integration](https://docs.kombo.dev/assessment/connectors/lever.md): Lever connector for Kombo's Assessment API
+- [Oracle Recruiting Cloud Assessment Integration](https://docs.kombo.dev/assessment/connectors/oraclerecruiting.md): Oracle Recruiting Cloud connector for Kombo's Assessment API
+- [PageUp People Assessment Integration](https://docs.kombo.dev/assessment/connectors/pageup.md): PageUp People connector for Kombo's Assessment API
+- [SAP SuccessFactors Assessment Integration](https://docs.kombo.dev/assessment/connectors/successfactors.md): SAP SuccessFactors connector for Kombo's Assessment API
+- [SmartRecruiters Assessment Integration](https://docs.kombo.dev/assessment/connectors/smartrecruiters.md): SmartRecruiters connector for Kombo's Assessment API
+- [Teamtailor Assessment Integration](https://docs.kombo.dev/assessment/connectors/teamtailor.md): Teamtailor connector for Kombo's Assessment API
+- [Tellent Recruitee Assessment Integration](https://docs.kombo.dev/assessment/connectors/recruitee.md): Tellent Recruitee connector for Kombo's Assessment API
+- [UKG Pro Assessment Integration](https://docs.kombo.dev/assessment/connectors/ukgpro.md): UKG Pro connector for Kombo's Assessment API
+- [Workday Assessment Integration](https://docs.kombo.dev/assessment/connectors/workday.md): Workday connector for Kombo's Assessment API
+- [FAQ](https://docs.kombo.dev/assessment/faq.md): Frequently Asked Questions
+- [Important Changes](https://docs.kombo.dev/assessment/important-changes.md): Significant platform changes that may affect your integration.
+- [Assessment UI](https://docs.kombo.dev/assessment/features/assessment-ui.md): View assessment packages and orders from the Kombo dashboard.
+- [Inline Assessment](https://docs.kombo.dev/assessment/features/inline-assessment.md): How to handle inline assessment webhooks
+- [Setup Flow](https://docs.kombo.dev/assessment/features/setup-flow/introduction.md): Let your customers configure their integration end-to-end.
+- [Custom Fields](https://docs.kombo.dev/assessment/features/custom-fields.md): Learn how to extend Kombo's unified data models with additional fields.
+- [Introduction](https://docs.kombo.dev/assessment/features/remapping/introduction.md): Learn how to use the remapping feature to adjust Kombo default fields based on fields in your customer's systems.
+- [Remapping simple fields](https://docs.kombo.dev/assessment/features/remapping/simple-remapping.md): Learn how to use the remapping feature to adjust simple Kombo default fields based on fields in your customer's systems.
+- [Remapping enum fields](https://docs.kombo.dev/assessment/features/remapping/enum-remapping.md): Learn how to use the remapping feature to adjust Kombo enum fields based on fields in your customer's systems.
+- [Remapping date fields](https://docs.kombo.dev/assessment/features/remapping/date-remapping.md): Learn how to use the remapping feature to adjust Kombo date fields based on fields in your customer's systems.
+- [Remapping address fields](https://docs.kombo.dev/assessment/features/remapping/struct-remapping.md): Learn how to use the remapping feature to adjust Kombo address fields based on fields in your customer's systems.
+- [Remapping reference fields](https://docs.kombo.dev/assessment/features/remapping/reference-remapping.md): Learn how to use the remapping feature to adjust Kombo reference fields based on fields in your customer's systems.
+- [Remapping array fields](https://docs.kombo.dev/assessment/features/remapping/array-remapping.md): Learn how to use the remapping feature to adjust Kombo array fields based on fields in your customer's systems.
+- [Kombo default fallback](https://docs.kombo.dev/assessment/features/remapping/kombo-default-fallback.md): Learn how to use Kombo's standard mapping logic as a fallback priority in your remapping configuration, giving you full control over the mapping order.
+- [Logs](https://docs.kombo.dev/assessment/features/logs.md): Learn how Kombo's logs allow you to monitor and troubleshoot your integrations.
+- [Issues](https://docs.kombo.dev/assessment/features/issues.md): See which integrations need attention, and how long the problem has been going on.
+- [Issue types](https://docs.kombo.dev/assessment/features/issue-types.md): All customer-visible issue types Kombo can raise, and when they are created and resolved.
+- [Deletion Policy](https://docs.kombo.dev/assessment/features/deletion-policy.md): Understand how Kombo deletes data.
+- [Passthrough API](https://docs.kombo.dev/assessment/features/passthrough-api.md): Implement any edge case feature with our passthrough API.
+- [Komboman](https://docs.kombo.dev/assessment/features/komboman.md): Test and troubleshoot both Kombo API and passthrough API calls with our built-in API client.
+- [Extend write endpoints](https://docs.kombo.dev/assessment/features/remote-fields.md): Learn how Kombo allows you to write additional, otherwise unsupported fields with unified write actions.
+- [Scopes](https://docs.kombo.dev/assessment/features/scopes.md): Scopes allow you to customize what data is being synced by Kombo.
+- [Audit Logs](https://docs.kombo.dev/assessment/features/audit-logs.md): Audit sensitive changes to your Kombo environment.
+- [Introduction](https://docs.kombo.dev/assessment/guides/connect/introduction.md): Our interactive embeddable connection flow.
+- [Manual setup](https://docs.kombo.dev/assessment/guides/connect/manual-setup.md): Manually set up integrations on behalf of your customers.
+- [Magic links](https://docs.kombo.dev/assessment/guides/connect/magic-links.md): Let your customers set up integrations without changing your app.
+- [Embedded flow](https://docs.kombo.dev/assessment/guides/connect/embedded-flow.md): Embed Kombo Connect into your app for the most seamless experience.
+- [Reconnecting an integration](https://docs.kombo.dev/assessment/guides/connect/reconnection.md): This document explains why and how to reconnect an integration.
+- [How Kombo Syncs Data](https://docs.kombo.dev/assessment/guides/sync.md): Understanding how Kombo keeps integration data up-to-date internally without sacrificing API reliability and performance.
+- [Concurrency Limiting](https://docs.kombo.dev/assessment/guides/concurrency-limiting.md): Concurrency limiting caps simultaneous in-flight unified actions per integration, giving you fast feedback instead of slow timeouts.
+- [Webhooks](https://docs.kombo.dev/assessment/guides/webhooks.md): Kombo sends you webhooks so that you don't have to poll our API for changes.
+- [Upstream webhooks](https://docs.kombo.dev/assessment/guides/upstream-webhooks.md): Kombo can subscribe to webhooks of the systems that your customers connect. We call this feature upstream webhooks. This document explains how they work and how you can leverage them.
+- [Integration States](https://docs.kombo.dev/assessment/guides/integration-states.md)
+- [Implementing New Tools](https://docs.kombo.dev/assessment/guides/implementing-new-tools.md): Learn about best practices when using a new tool.
+- [Environments](https://docs.kombo.dev/assessment/guides/environments.md)
+- [Partner Credentials](https://docs.kombo.dev/assessment/guides/partner-credentials.md): Learn how existing partnerships to integrated systems can be used with Kombo.
+- [Static IPs](https://docs.kombo.dev/assessment/guides/static-ips.md): Route all Kombo API calls through a fixed set of IP addresses so your customers can allowlist them.
+- [How to troubleshoot issues with Kombo](https://docs.kombo.dev/assessment/guides/debugging/introduction.md): Identify and resolve issues across connections, data, and actions using Kombo’s troubleshooting tools.
+- [Troubleshoot connection flow problems](https://docs.kombo.dev/assessment/guides/debugging/debug-connection-flow.md): Investigate and resolve issues that prevent your customers from connecting.
+- [Investigate failing actions](https://docs.kombo.dev/assessment/guides/debugging/investigate-failing-actions.md): Diagnose failed write actions using Logs and Komboman.
+- [Diagnosing missing or incorrect data](https://docs.kombo.dev/assessment/guides/debugging/debug-data-issues.md): A step-by-step guide to troubleshooting data discrepancies between Kombo and the remote tool.
+- [assessment:order-received](https://docs.kombo.dev/assessment/webhooks/assessment-order-received.md): This event is triggered when a new assessment or background check order is created for a candidate within your customer's ATS.
+- [Set packages](https://docs.kombo.dev/assessment/v1/put-packages.md): Set packages
+- [Get packages](https://docs.kombo.dev/assessment/v1/get-packages.md): Get all available assessment and background check packages for an integration.
+- [Get orders](https://docs.kombo.dev/assessment/v1/get-orders.md): Get all assessment and background check orders of an integration.
+- [Get open orders (deprecated)](https://docs.kombo.dev/assessment/v1/get-orders-open.md): **(⚠️ Deprecated - Use [Get orders](/assessment/v1/get-orders) instead)** Get all open assessment and background check orders of an integration.
+- [Update order result](https://docs.kombo.dev/assessment/v1/put-orders-assessment-order-id-result.md): Updates an assessment or a background check order result.
+- [Create connection link](https://docs.kombo.dev/assessment/v1/post-connect-create-link.md): Generate a unique link that allows your user to enter the embedded Kombo Connect flow.
+- [Get integration by token](https://docs.kombo.dev/assessment/v1/get-connect-integration-by-token-token.md): Use this endpoint with the token you get from the connection flow to retrieve information about the created integration.
+- [Activate integration (optional)](https://docs.kombo.dev/assessment/v1/post-connect-activate-integration.md): Use this endpoint with the token you get from the connection flow to retrieve information about the created integration. It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user. You do not need to call this endpoint for an integrati…
+- [Create reconnection link](https://docs.kombo.dev/assessment/v1/post-integrations-integration-id-relink.md): Create a link that will allow the user to reconnect an integration. This is useful if you want to allow your users to update the credentials if the old ones for example expired.
+- [Create Setup Flow link](https://docs.kombo.dev/assessment/v1/post-integrations-integration-id-setup-link.md): Create a link that lets your customer run the [Setup Flow](/hris/features/setup-flow/introduction) for an integration. Use this to send customers back into setup steps like field mapping or employee filtering without having to go through the initial connection flow again. Pass the returned URL to `s…
+- [Get tools](https://docs.kombo.dev/assessment/v1/get-tools-category.md): Get a list of the tools (i.e., integrations) enabled in your environment.
+- [Get integration details](https://docs.kombo.dev/assessment/v1/get-integrations-integration-id.md): Get the specified integration with everything you need to display it to your customer.
+- [Set integration enabled](https://docs.kombo.dev/assessment/v1/put-integrations-integration-id-enabled.md): Enable or disable the specified integration. When disabling, all currently running syncs will be cancelled.
+- [Delete integration](https://docs.kombo.dev/assessment/v1/delete-integrations-integration-id.md): Delete the specified integration.
+- [Trigger sync](https://docs.kombo.dev/assessment/v1/post-force-sync.md): Trigger a sync for a specific integration.
+- [Create provisioning setup link (deprecated)](https://docs.kombo.dev/assessment/v1/post-hris-provisioning-groups-group-id-setup-links.md): Create a new link that can be passed to the Kombo Connect SDK to open the provisioning setup UI.
+- [Get custom fields with current mappings](https://docs.kombo.dev/assessment/v1/get-integrations-integration-id-custom-fields.md): Get all custom fields available on the specified integration.
+- [Check API key](https://docs.kombo.dev/assessment/v1/get-check-api-key.md): Check whether your API key is working properly.
+- [Send passthrough request](https://docs.kombo.dev/assessment/v1/post-passthrough-tool-api.md): Send a request to the specified integration's native API.
+- [AI Apply](https://docs.kombo.dev/ai-apply.md): Learn how you can use AI Apply to apply to any public job posting.
+- [AI Apply: Candidate Account Creation](https://docs.kombo.dev/ai-apply-candidate-account-creation.md): How our system handles cases when we need to create a candidate account for a job posting.
+- [AI Apply: Job feeds and bulk imports](https://docs.kombo.dev/ai-apply-job-feeds.md): Learn how you can import high volumes of job postings into AI Apply using Job feeds.
+- [AI Apply: Unified API](https://docs.kombo.dev/ai-apply-unified-api.md): Learn about the alternate way of using AI Apply, compatible with Kombo's Unified API.
+- [AI Apply: Webhooks](https://docs.kombo.dev/ai-apply-webhooks.md): Receive high-signal status updates for Job Postings and Applications.
+- [Integration Fields](https://docs.kombo.dev/assessment/features/integration-fields.md): Learn how to use integration fields to read additional data properties from your customer's systems.
+- [Get integration fields](https://docs.kombo.dev/assessment/v1/get-integrations-integration-id-integration-fields.md): Get all fields available on the specified integration.
+- [Updates an integration fields passthrough setting](https://docs.kombo.dev/assessment/v1/patch-integrations-integration-id-integration-fields-integration-field-id.md): When enabled, the integration field will be passed as part of the `integration_fields` array on the specific model endpoint. Providing false will disable the passthrough for the specified field.
+- [Attachment type analysis](https://docs.kombo.dev/ats/attachment-restrictions.md)
+- [Connect your Lever ATS](https://docs.kombo.dev/ats/connection-guides/lever.md)
+- [Integration Fields](https://docs.kombo.dev/ats/features/integration-fields.md): Learn how to use integration fields to read additional data properties from your customer's systems.
+- [Get integration fields](https://docs.kombo.dev/ats/v1/get-integrations-integration-id-integration-fields.md): Get all fields available on the specified integration.
+- [Updates an integration fields passthrough setting](https://docs.kombo.dev/ats/v1/patch-integrations-integration-id-integration-fields-integration-field-id.md): When enabled, the integration field will be passed as part of the `integration_fields` array on the specific model endpoint. Providing false will disable the passthrough for the specified field.
+- [Integration Fields](https://docs.kombo.dev/hris/features/integration-fields.md): Learn how to use integration fields to read additional data properties from your customer's systems.
+- [Get integration fields](https://docs.kombo.dev/hris/v1/get-integrations-integration-id-integration-fields.md): Get all fields available on the specified integration.
+- [Updates an integration fields passthrough setting](https://docs.kombo.dev/hris/v1/patch-integrations-integration-id-integration-fields-integration-field-id.md): When enabled, the integration field will be passed as part of the `integration_fields` array on the specific model endpoint. Providing false will disable the passthrough for the specified field.
+- [Integration Fields](https://docs.kombo.dev/lms/features/integration-fields.md): Learn how to use integration fields to read additional data properties from your customer's systems.
+- [Get integration fields](https://docs.kombo.dev/lms/v1/get-integrations-integration-id-integration-fields.md): Get all fields available on the specified integration.
+- [Updates an integration fields passthrough setting](https://docs.kombo.dev/lms/v1/patch-integrations-integration-id-integration-fields-integration-field-id.md): When enabled, the integration field will be passed as part of the `integration_fields` array on the specific model endpoint. Providing false will disable the passthrough for the specified field.
+
+## OpenAPI Specs
+
+- [openapi](https://docs.kombo.dev/openapi.json)
+
+## Optional
+
+- [Changelog](https://changelog.kombo.dev)
+- [Status](https://status.kombo.dev)

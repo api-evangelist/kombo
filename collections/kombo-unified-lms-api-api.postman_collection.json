@@ -1,0 +1,1974 @@
+{
+  "item": [
+    {
+      "id": "fcc205b4-8169-4c83-a720-c77788859b1b",
+      "name": "Unified LMS API",
+      "description": {
+        "content": "Unified endpoints to access all the LMS concepts you might need.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd3b5d34-ee75-4d87-bda0-27ddf80c896b",
+          "name": "Get users",
+          "request": {
+            "name": "Get users",
+            "description": {
+              "content": "Get users\n\nRetrieve all users from the LMS system. Users are learners who can enroll in and complete courses.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lms",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_after",
+                  "value": "<dateTime>",
+                  "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_deleted",
+                  "value": "false",
+                  "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_unsupported_filters",
+                  "value": "false",
+                  "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                },
+                {
+                  "disabled": false,
+                  "key": "remote_ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of remote IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "work_emails",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of work emails. We will only return users who have _any_ of the work emails. The format of the emails is case-insensitive."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c616d725-128f-4a09-87f2-d4b5af5b32b0",
+              "name": "GET /lms/users Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "8890-08-79Z"
+                    },
+                    {
+                      "key": "include_deleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_filters",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "work_emails",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"next\": \"eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=\",\n    \"results\": [\n      {\n        \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n        \"remote_id\": \"32\",\n        \"first_name\": \"Sarah\",\n        \"last_name\": \"Johnson\",\n        \"work_email\": \"sarah.johnson@example.com\",\n        \"status\": \"ACTIVE\",\n        \"remote_created_at\": \"2022-08-07T14:01:29.196Z\",\n        \"remote_deleted_at\": null,\n        \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n        \"remote_data\": null,\n        \"custom_fields\": null,\n        \"integration_fields\": []\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9f77e0e-4562-4afc-9d08-4d7a51d29c22",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "8890-08-79Z"
+                    },
+                    {
+                      "key": "include_deleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_filters",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "work_emails",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40b9ee7d-119a-4b7b-9514-40c781ace4ab",
+          "name": "Get course progressions",
+          "request": {
+            "name": "Get course progressions",
+            "description": {
+              "content": "Get course progressions\n\nRetrieve all course progressions from the LMS system. Course progressions track users enrollment and completion status in courses.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lms",
+                "course-progressions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_after",
+                  "value": "<dateTime>",
+                  "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `user` | ✗ No | ✗ No |\n| `course_revision` | ✗ No | ✗ No |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_deleted",
+                  "value": "false",
+                  "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_unsupported_filters",
+                  "value": "false",
+                  "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                },
+                {
+                  "disabled": false,
+                  "key": "remote_ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of remote IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of user IDs. We will only return progressions that are related to _any_ of the users."
+                },
+                {
+                  "disabled": false,
+                  "key": "course_ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of course IDs. We will only return progressions for revisions that belong to _any_ of the courses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e45db71e-63ba-411a-82c6-7feb2c914125",
+              "name": "GET /lms/course-progressions Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "course-progressions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "7208-65-10"
+                    },
+                    {
+                      "key": "include_deleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_filters",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "user_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "course_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"next\": \"eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=\",\n    \"results\": [\n      {\n        \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n        \"remote_id\": \"progress-12345\",\n        \"user_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n        \"course_revision_id\": \"3KMdr68N8kG9EzLwjsN9aoz\",\n        \"status\": \"COMPLETED\",\n        \"enrolled_at\": \"2022-08-07T14:01:29.196Z\",\n        \"completed_at\": \"2022-08-07T14:01:29.196Z\",\n        \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n        \"remote_deleted_at\": null,\n        \"remote_data\": null,\n        \"user\": {\n          \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n          \"remote_id\": \"32\",\n          \"first_name\": \"Sarah\",\n          \"last_name\": \"Johnson\",\n          \"work_email\": \"sarah.johnson@example.com\"\n        },\n        \"course_revision\": {\n          \"id\": \"3KMdr68N8kG9EzLwjsN9aoz\",\n          \"remote_id\": \"revision-12345\",\n          \"title\": \"Building LMS integrations with Kombo\",\n          \"course\": {\n            \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n            \"remote_id\": \"32\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01492f37-1b93-4c64-83c4-beebceb7f039",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "course-progressions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "7208-65-10"
+                    },
+                    {
+                      "key": "include_deleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_filters",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "user_ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "course_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e50c46c7-49f3-4575-9766-8fc72f2bf21c",
+          "name": "Enroll user in course",
+          "request": {
+            "name": "Enroll user in course",
+            "description": {
+              "content": "Enroll a user in a course revision.\n\n<Note>\n  This endpoint requires the permission **Create and manage course progressions** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"user_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n  \"course_revision_id\": \"3KMdr68N8kG9EzLwjsN9aoz\"\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lms",
+                "course-progressions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<string>\",\n  \"course_revision_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac60697a-dbcf-40ff-b5d1-eb1367a2fa14",
+              "name": "POST /lms/course-progressions Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "course-progressions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n  \"course_revision_id\": \"3KMdr68N8kG9EzLwjsN9aoz\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n    \"remote_id\": \"progress-12345\",\n    \"user_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n    \"course_revision_id\": \"3KMdr68N8kG9EzLwjsN9aoz\",\n    \"status\": \"COMPLETED\",\n    \"enrolled_at\": \"2022-08-07T14:01:29.196Z\",\n    \"completed_at\": \"2022-08-07T14:01:29.196Z\",\n    \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n    \"remote_deleted_at\": null,\n    \"remote_data\": null,\n    \"user\": {\n      \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n      \"remote_id\": \"32\",\n      \"first_name\": \"Sarah\",\n      \"last_name\": \"Johnson\",\n      \"work_email\": \"sarah.johnson@example.com\"\n    },\n    \"course_revision\": {\n      \"id\": \"3KMdr68N8kG9EzLwjsN9aoz\",\n      \"remote_id\": \"revision-12345\",\n      \"title\": \"Building LMS integrations with Kombo\",\n      \"course\": {\n        \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n        \"remote_id\": \"32\"\n      }\n    }\n  },\n  \"warnings\": [\n    {\n      \"message\": \"This is an example warning!\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39def12b-e3f3-4172-919f-ced0d9f12617",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "course-progressions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n  \"course_revision_id\": \"3KMdr68N8kG9EzLwjsN9aoz\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59f6043d-9146-44d7-9d8b-7dba1e6d8a21",
+          "name": "Complete course",
+          "request": {
+            "name": "Complete course",
+            "description": {
+              "content": "Mark a course revision as completed for a user.\n\n<Note>\n  This endpoint requires the permission **Create and manage course progressions** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"completed_at\": \"2024-04-15\",\n  \"score\": 93\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lms",
+                "course-progressions",
+                ":course_progression_id",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "course_progression_id",
+                  "description": "(Required) The ID of the course progression in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"completed_at\": \"<string,null-date-time>\",\n  \"score\": \"<integer,null-int64>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc4e9a1d-19d4-4d6a-b83b-a3f9fb8e61cc",
+              "name": "POST /lms/course-progressions/:course_progression_id/complete Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "course-progressions",
+                    ":course_progression_id",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "course_progression_id",
+                      "description": "(Required) The ID of the course progression in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"completed_at\": \"2024-04-15\",\n  \"score\": 93\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n    \"remote_id\": \"progress-12345\",\n    \"user_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n    \"course_revision_id\": \"3KMdr68N8kG9EzLwjsN9aoz\",\n    \"status\": \"COMPLETED\",\n    \"enrolled_at\": \"2022-08-07T14:01:29.196Z\",\n    \"completed_at\": \"2022-08-07T14:01:29.196Z\",\n    \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n    \"remote_deleted_at\": null,\n    \"remote_data\": null,\n    \"user\": {\n      \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n      \"remote_id\": \"32\",\n      \"first_name\": \"Sarah\",\n      \"last_name\": \"Johnson\",\n      \"work_email\": \"sarah.johnson@example.com\"\n    },\n    \"course_revision\": {\n      \"id\": \"3KMdr68N8kG9EzLwjsN9aoz\",\n      \"remote_id\": \"revision-12345\",\n      \"title\": \"Building LMS integrations with Kombo\",\n      \"course\": {\n        \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n        \"remote_id\": \"32\"\n      }\n    }\n  },\n  \"warnings\": [\n    {\n      \"message\": \"This is an example warning!\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "132387ce-c6c0-4767-9563-667e44a64f52",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "course-progressions",
+                    ":course_progression_id",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "course_progression_id",
+                      "description": "(Required) The ID of the course progression in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"completed_at\": \"2024-04-15\",\n  \"score\": 93\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "053ed43d-e7f0-4b41-9cbb-ac6c2945f0dc",
+          "name": "Get courses",
+          "request": {
+            "name": "Get courses",
+            "description": {
+              "content": "Get courses\n\nRetrieve all courses available in the LMS. Courses are structured learning programs that users can enroll in and complete.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lms",
+                "courses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_after",
+                  "value": "<dateTime>",
+                  "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `provider` | ✗ No | ✗ No |\n| `revisions` | ✓ Yes | ✓ Yes |\n| `revisions` → `skill_assignments` | ✗ No | ✗ No |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_deleted",
+                  "value": "false",
+                  "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_unsupported_filters",
+                  "value": "false",
+                  "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                },
+                {
+                  "disabled": false,
+                  "key": "remote_ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of remote IDs."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2cd5eabf-3034-4810-835b-f54551217863",
+              "name": "GET /lms/courses Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "courses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "6472-99-38T81:97:79Z"
+                    },
+                    {
+                      "key": "include_deleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_filters",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"next\": \"eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=\",\n    \"results\": [\n      {\n        \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n        \"remote_id\": \"32\",\n        \"provider_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n        \"origin_id\": \"course-123\",\n        \"remote_created_at\": \"2022-08-07T14:01:29.196Z\",\n        \"remote_deleted_at\": null,\n        \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n        \"remote_data\": null,\n        \"custom_fields\": null,\n        \"integration_fields\": [],\n        \"provider\": {\n          \"id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n          \"remote_id\": \"provider-12345\",\n          \"name\": \"Kombo Academy\"\n        },\n        \"revisions\": [\n          {\n            \"id\": \"3KMdr68N8kG9EzLwjsN9aoz\",\n            \"remote_id\": \"revision-12345\",\n            \"course_id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n            \"title\": \"Building LMS integrations with Kombo\",\n            \"description\": \"Learn how to build and integrate Learning Management System (LMS) integrations with Kombo. This course covers the unified LMS API, course management, user enrollment, progress tracking, and best practices for building robust LMS connectors.\",\n            \"remote_url\": \"https://learning.acme.com/courses/building-integrations/v1\",\n            \"status\": \"ACTIVE\",\n            \"remote_created_at\": \"2022-08-07T14:01:29.196Z\",\n            \"remote_deleted_at\": null,\n            \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n            \"remote_data\": null,\n            \"custom_fields\": null,\n            \"integration_fields\": [],\n            \"skill_assignments\": [\n              {\n                \"skill\": {\n                  \"id\": \"4EeSSSd9Fr8iiW9mPKmjEVWK\",\n                  \"remote_id\": \"skill-123\",\n                  \"name\": \"LMS Integration\"\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65b3fa36-2a54-4b89-b124-3040f3147032",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "courses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "6472-99-38T81:97:79Z"
+                    },
+                    {
+                      "key": "include_deleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_filters",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "053ee82a-c745-4d0b-82a4-a10a605453ec",
+          "name": "Upsert courses",
+          "request": {
+            "name": "Upsert courses",
+            "description": {
+              "content": "Create or update multiple courses in the LMS.\n\n<Info>\n  **Note:** This endpoint is asynchronous – it returns a `task_id` immediately and processes the request in the background. Use the corresponding `GET` endpoint to poll for the task status until it reaches `COMPLETED` or `FAILED`. Learn more in our [async endpoints guide](/lms/guides/async-endpoints).\n</Info>\n\n<Note>\n  This endpoint requires the permission **Upsert courses** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"items\": [\n    {\n      \"origin_id\": \"course-1\",\n      \"course\": {\n        \"type\": \"EXTERNAL\",\n        \"title\": \"Building LMS integrations with Kombo\",\n        \"description\": \"Learn how to build and integrate Learning Management System (LMS) integrations with Kombo. This course covers the unified LMS API, course management, user enrollment, progress tracking, and best practices for building robust LMS connectors.\",\n        \"course_url\": \"https://docs.kombo.dev/lms/introduction\",\n        \"thumbnail_url\": \"https://kombo.dev/images/courses/lms-integrations-thumbnail.png\",\n        \"duration\": 45,\n        \"languages\": [\n          \"en\",\n          \"de-CH\"\n        ]\n      }\n    },\n    {\n      \"origin_id\": \"course-2\",\n      \"course\": {\n        \"type\": \"EXTERNAL\",\n        \"title\": \"Introduction to TypeScript\",\n        \"description\": \"Learn one of the most popular programming languages of the recent years quickly and efficiently. Results guaranteed!\",\n        \"course_url\": \"https://example.com\",\n        \"thumbnail_url\": \"https://example.com/images/thumbnail.jpg\",\n        \"duration\": 60,\n        \"languages\": [\n          \"en-US\",\n          \"pl-PL\"\n        ]\n      }\n    }\n  ]\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lms",
+                "courses",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"origin_id\": \"<string>\",\n      \"course\": {\n        \"type\": \"<string>\",\n        \"title\": \"<string>\",\n        \"course_url\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"thumbnail_url\": \"<string,null>\",\n        \"duration\": \"<integer,null-int64>\",\n        \"languages\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    {\n      \"origin_id\": \"<string>\",\n      \"course\": {\n        \"type\": \"<string>\",\n        \"title\": \"<string>\",\n        \"course_url\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"thumbnail_url\": \"<string,null>\",\n        \"duration\": \"<integer,null-int64>\",\n        \"languages\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1638171-6708-4e60-8adb-064ede4ca8f0",
+              "name": "POST /lms/courses/bulk Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "courses",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"origin_id\": \"course-1\",\n      \"course\": {\n        \"type\": \"EXTERNAL\",\n        \"title\": \"Building LMS integrations with Kombo\",\n        \"description\": \"Learn how to build and integrate Learning Management System (LMS) integrations with Kombo. This course covers the unified LMS API, course management, user enrollment, progress tracking, and best practices for building robust LMS connectors.\",\n        \"course_url\": \"https://docs.kombo.dev/lms/introduction\",\n        \"thumbnail_url\": \"https://kombo.dev/images/courses/lms-integrations-thumbnail.png\",\n        \"duration\": 45,\n        \"languages\": [\n          \"en\",\n          \"de-CH\"\n        ]\n      }\n    },\n    {\n      \"origin_id\": \"course-2\",\n      \"course\": {\n        \"type\": \"EXTERNAL\",\n        \"title\": \"Introduction to TypeScript\",\n        \"description\": \"Learn one of the most popular programming languages of the recent years quickly and efficiently. Results guaranteed!\",\n        \"course_url\": \"https://example.com\",\n        \"thumbnail_url\": \"https://example.com/images/thumbnail.jpg\",\n        \"duration\": 60,\n        \"languages\": [\n          \"en-US\",\n          \"pl-PL\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"task_id\": \"string\"\n  },\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89e3bb4c-83d6-455b-9e5e-e3bd9c2e094c",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "courses",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"origin_id\": \"course-1\",\n      \"course\": {\n        \"type\": \"EXTERNAL\",\n        \"title\": \"Building LMS integrations with Kombo\",\n        \"description\": \"Learn how to build and integrate Learning Management System (LMS) integrations with Kombo. This course covers the unified LMS API, course management, user enrollment, progress tracking, and best practices for building robust LMS connectors.\",\n        \"course_url\": \"https://docs.kombo.dev/lms/introduction\",\n        \"thumbnail_url\": \"https://kombo.dev/images/courses/lms-integrations-thumbnail.png\",\n        \"duration\": 45,\n        \"languages\": [\n          \"en\",\n          \"de-CH\"\n        ]\n      }\n    },\n    {\n      \"origin_id\": \"course-2\",\n      \"course\": {\n        \"type\": \"EXTERNAL\",\n        \"title\": \"Introduction to TypeScript\",\n        \"description\": \"Learn one of the most popular programming languages of the recent years quickly and efficiently. Results guaranteed!\",\n        \"course_url\": \"https://example.com\",\n        \"thumbnail_url\": \"https://example.com/images/thumbnail.jpg\",\n        \"duration\": 60,\n        \"languages\": [\n          \"en-US\",\n          \"pl-PL\"\n        ]\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71654b11-53a1-48ae-aaba-1bf257c3350a",
+          "name": "Get status of “Upsert courses” task",
+          "request": {
+            "name": "Get status of “Upsert courses” task",
+            "description": {
+              "content": "Poll for the status of an existing “Upsert courses” task.\n\n<Info>\nThis endpoint returns the current status of a task. Poll it at regular intervals until the task reaches a terminal status. Learn more in our [async endpoints guide](/lms/guides/async-endpoints). The possible statuses are:\n  - `PENDING` – The task is still being processed.\n  - `COMPLETED` – The task finished successfully. The `data` field contains the results.\n  - `FAILED` – The task encountered an error. Check the `error` field for details.\n</Info>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lms",
+                "courses",
+                "bulk",
+                ":task_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "task_id",
+                  "description": "(Required) GET /lms/courses/bulk/:task_id Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4154718-988d-493c-b475-0aaba3be44ad",
+              "name": "GET /lms/courses/bulk/:task_id Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "courses",
+                    "bulk",
+                    ":task_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "task_id",
+                      "description": "(Required) GET /lms/courses/bulk/:task_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"task_id\": \"string\",\n    \"created_at\": \"string\",\n    \"status\": \"string\",\n    \"completed_at\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68b56b3d-1df8-4adb-9241-fb0d84bf0984",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "courses",
+                    "bulk",
+                    ":task_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "task_id",
+                      "description": "(Required) GET /lms/courses/bulk/:task_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3a076d5-0db6-4a51-8f8b-f581cfbd0571",
+          "name": "Deactivate course",
+          "request": {
+            "name": "Deactivate course",
+            "description": {
+              "content": "Deactivate a course in the LMS.\n\nDeactivates a course, making it unavailable for new enrollments while preserving existing progress records.\n\n<Note>\n  This endpoint requires the permission **Upsert courses** to be enabled in [your scope config](/scopes).\n</Note>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lms",
+                "courses",
+                ":course_id",
+                "deactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "course_id",
+                  "description": "(Required) The ID of the course in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "52edafe9-a159-49b7-8435-1f5f50b13b09",
+              "name": "POST /lms/courses/:course_id/deactivate Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "courses",
+                    ":course_id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "course_id",
+                      "description": "(Required) The ID of the course in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n    \"remote_id\": \"32\",\n    \"provider_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n    \"origin_id\": \"course-123\",\n    \"remote_created_at\": \"2022-08-07T14:01:29.196Z\",\n    \"remote_deleted_at\": null,\n    \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n    \"remote_data\": null,\n    \"custom_fields\": null,\n    \"integration_fields\": [],\n    \"provider\": {\n      \"id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n      \"remote_id\": \"provider-12345\",\n      \"name\": \"Kombo Academy\"\n    },\n    \"revisions\": [\n      {\n        \"id\": \"3KMdr68N8kG9EzLwjsN9aoz\",\n        \"remote_id\": \"revision-12345\",\n        \"course_id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n        \"title\": \"Building LMS integrations with Kombo\",\n        \"description\": \"Learn how to build and integrate Learning Management System (LMS) integrations with Kombo. This course covers the unified LMS API, course management, user enrollment, progress tracking, and best practices for building robust LMS connectors.\",\n        \"remote_url\": \"https://learning.acme.com/courses/building-integrations/v1\",\n        \"status\": \"ACTIVE\",\n        \"remote_created_at\": \"2022-08-07T14:01:29.196Z\",\n        \"remote_deleted_at\": null,\n        \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n        \"remote_data\": null,\n        \"custom_fields\": null,\n        \"integration_fields\": [],\n        \"skill_assignments\": [\n          {\n            \"skill\": {\n              \"id\": \"4EeSSSd9Fr8iiW9mPKmjEVWK\",\n              \"remote_id\": \"skill-123\",\n              \"name\": \"LMS Integration\"\n            }\n          }\n        ]\n      }\n    ]\n  },\n  \"warnings\": [\n    {\n      \"message\": \"This is an example warning!\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57d479a7-3dd3-4b4e-85eb-9aa9b1d79651",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "courses",
+                    ":course_id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "course_id",
+                      "description": "(Required) The ID of the course in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b17d6fb0-eb46-483d-baae-e9fd0d4c3899",
+          "name": "Get skills",
+          "request": {
+            "name": "Get skills",
+            "description": {
+              "content": "Get skills\n\nRetrieve all skills available in the LMS system. Skills represent competencies or abilities that users can acquire or demonstrate through courses.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lms",
+                "skills"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_after",
+                  "value": "<dateTime>",
+                  "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_deleted",
+                  "value": "false",
+                  "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_unsupported_filters",
+                  "value": "false",
+                  "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                },
+                {
+                  "disabled": false,
+                  "key": "remote_ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of remote IDs."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f97ecba0-6ad6-469e-a9a4-2399b7d5064b",
+              "name": "GET /lms/skills Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "8890-08-79Z"
+                    },
+                    {
+                      "key": "include_deleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_filters",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"next\": \"eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=\",\n    \"results\": [\n      {\n        \"id\": \"26vafvWSRmbhNcxJYqjCzuJg\",\n        \"remote_id\": \"skill-12345\",\n        \"name\": \"LMS Integration\",\n        \"remote_created_at\": \"2022-08-07T14:01:29.196Z\",\n        \"remote_deleted_at\": null,\n        \"changed_at\": \"2022-08-07T14:01:29.196Z\",\n        \"remote_data\": null,\n        \"custom_fields\": null,\n        \"integration_fields\": []\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1416fe44-e968-4a0c-a8c1-d3714a757b45",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lms",
+                    "skills"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "8890-08-79Z"
+                    },
+                    {
+                      "key": "include_deleted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ignore_unsupported_filters",
+                      "value": "false"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "remote_ids",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "bombohr:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kombo.dev/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2b360f87-af2d-494f-ae38-b928ffbccd8f",
+    "name": "Kombo AI Apply Unified LMS API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Endpoints for AI-powered job application features.",
+      "type": "text/plain"
+    }
+  }
+}

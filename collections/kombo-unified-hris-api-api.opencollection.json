@@ -1,0 +1,1515 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kombo AI Apply Unified HRIS API API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unified HRIS API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get provisioning diff",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/hris/provisioning-groups/:group_id/diff",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the provisioning group (currently only `default` is allowed)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of users to provision, deprovision, and optionally update based on the users you've already provisioned in your system."
+        },
+        {
+          "info": {
+            "name": "Create provisioning setup link (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/hris/provisioning-groups/:group_id/setup-links",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "group_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the provisioning group (currently only `default` is allowed)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new link that can be passed to the Kombo Connect SDK to open the provisioning setup UI.\n\n<Warning>\n  **This endpoint is deprecated!**\n\n  Please use the [Create Setup Flow link endpoint](/v1/post-integrations-integration-id-setup-link) instead. It supports the full Setup Flow (including filtering, field mapping, and any other enabled steps) and works for any integration category, not just HRIS.\n</Warning>"
+        },
+        {
+          "info": {
+            "name": "Get employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/employees",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `employments` | ✓ Yes | ✓ Yes |\n| `time_off_balances` | ✓ Yes | ✓ Yes |\n| `manager` | n/a | ✓ Yes |\n| `group_memberships` | ✓ Yes | ✗ No |\n| `legal_entity` | n/a | ✓ Yes |\n| `work_location` | n/a | ✓ Yes |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "employment_status",
+                "value": "",
+                "type": "query",
+                "description": "**(⚠️ Deprecated - Use the `employment_statuses` filter instead.)** Filter by the `employment_status` field."
+              },
+              {
+                "name": "employment_statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `ACTIVE`, `PENDING`, `INACTIVE`, `LEAVE` \n* `ACTIVE`: the employee is **actively employed** \n* `PENDING`: the employee is **not actively employed yet** (but they signed their contract or are part of an onboarding process) \n* `INACTIVE`: a full-time employee is no longer employed, or, for a contract worker when their contract runs out \n* `LEAVE`: the employee is still employed but **currently on leave** (note that not all HR systems support this status — use our absences API for detailed information) \n \n\nLeave this blank to get results matching all values."
+              },
+              {
+                "name": "group_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of group IDs. We will only return employees that are members of _any_ of the groups."
+              },
+              {
+                "name": "legal_entity_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of legal entity IDs. We will only return employees that are members of _any_ of the legal entities."
+              },
+              {
+                "name": "work_location_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of work location IDs. We will only return employees who are at _any_ of the work locations."
+              },
+              {
+                "name": "work_emails",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of work emails. We will only return employees who have _any_ of the work emails. The format of the emails is case-insensitive."
+              },
+              {
+                "name": "personal_emails",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of personal emails. We will only return employees who have _any_ of the personal emails. The format of the emails is case-insensitive."
+              },
+              {
+                "name": "custom_fields",
+                "value": "",
+                "type": "query",
+                "description": "A JSON string with a single key-value pair like {\"fieldKey\":\"fieldValue\"} to filter employees by a specific custom field value. Note that the value must be a string, number, boolean or null and the key must be a valid custom field key. Custom fields with a value of type array or object are not supported."
+              }
+            ]
+          },
+          "docs": "Retrieve all employees.\n\n<Note>Not interested in most fields? You can use our [our Scopes feature](/scopes) to customize what data points are synced.</Note>\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "[DEPRECATED] Create employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/hris/employees",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new employee.\n\n<Warning>\n  We are deprecating this endpoint in favor of the new [create employee form](/hris/features/create-employee) endpoint.\n</Warning>\n\n<Note>\n  This endpoint requires the permission **Create and manage employees** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"work_email\": \"john.doe@acme.com\",\n  \"gender\": \"MALE\",\n  \"date_of_birth\": \"1986-01-01\",\n  \"start_date\": \"2020-04-07"
+        },
+        {
+          "info": {
+            "name": "Get employee form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/employees/form",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ]
+          },
+          "docs": "Get the form for creating an employee. This form can be rendered dynamically on your frontend to allow your customers to create employees in their HRIS.\n\nFollow our [create employee guide here](/hris/features/create-employee) to learn how this form is generated and how you can use it.\n\n### Example Form\n```json\n{\n  \"properties\": {\n    \"firstName\": {\n      \"type\": \"text\",\n      \"label\": \"First Name\",\n      \"required\": true,\n      \"description\": \"Employee's first name\",\n      \"unified_key\": \"first_"
+        },
+        {
+          "info": {
+            "name": "Create employee with form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/hris/employees/form",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an employee, based on the form schema.\n\n<Note>\n  This endpoint requires the permission **Create and manage employees** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"properties\": {\n    \"firstName\": \"John\",\n    \"startDate\": \"2025-01-01\",\n    \"workLocation\": {\n      \"site\": \"8e422bf8cav\",\n      \"keyNumbers\": [\n        142,\n        525,\n        63\n      ]\n    }\n  }\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Update employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.kombo.dev/v1/hris/employees/:employee_id",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an employee.\n\n<Note>\n  This endpoint requires the permission **Create and manage employees** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"employee_id\": \"BkgfzSr5muN9cUTMD4wDQFn4\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"work_email\": \"john.doe@acme.com\",\n  \"ssn\": \"555-32-6395\",\n  \"tax_id\": \"12 345 678 901\",\n  \"gender\": \"MALE\",\n  \"marital_status\": \"MARRIED\",\n  \"date_of_birth\": \"1986-01-01\",\n  \"start_date\": \"2020-04-07\",\n  \"terminati"
+        },
+        {
+          "info": {
+            "name": "Add document to employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/hris/employees/:employee_id/documents",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "path",
+                "description": "POST /hris/employees/:employee_id/documents Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Uploads an document file for the specified employee.\n\n<Note>\n  This endpoint requires the permission **Manage documents** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"category_id\": \"3Cjwu7nA7pH5cX5X1NAPmb7M\",\n  \"document\": {\n    \"name\": \"Frank Doe Employment Contract.txt\",\n    \"data\": \"SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=\",\n    \"content_type\": \"text/plain\"\n  }\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Get employee document categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/employee-document-categories",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Get employee document categories.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get teams (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/teams",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Get the teams.\n\n<Warning>\n  **This endpoint is deprecated!**\n\n  Please use [the `/groups` endpoint](/hris/v1/get-groups) instead. It returns the same data but the naming makes more sense as the model not only includes teams but also departments and cost centers..\n</Warning>\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/groups",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of group types: `DEPARTMENT`, `TEAM`, `COST_CENTER`, or `null` to filter groups without a type. \n\nLeave this blank to get results matching all values."
+              },
+              {
+                "name": "name_contains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the `name` field. Can be used to find a group by keywords present in the group name."
+              }
+            ]
+          },
+          "docs": "Retrieve all \"groups\" (teams, departments, and cost centers).\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get employments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/employments",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Retrieve all employments.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get work locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/locations",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "name_contains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the `name` field. Can be used to find a location by keywords present in the location name."
+              }
+            ]
+          },
+          "docs": "Retrieve all work locations.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get absence types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/absence-types",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Retrieve all absence types.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get time off balances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/time-off-balances",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `type` | n/a | ✓ Yes |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a specific employee using their ID."
+              }
+            ]
+          },
+          "docs": "Retrieve all time off balances.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get absences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/absences",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `type` | n/a | ✓ Yes |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "date_from",
+                "value": "",
+                "type": "query",
+                "description": "Filter for all the absences that either start _or_ haven't ended yet on/after this day. If you imagine a calendar displaying absences, this defines the left-most visible day. This is a plain date (i.e., `yyyy-MM-dd`), all time information is discarded."
+              },
+              {
+                "name": "date_until",
+                "value": "",
+                "type": "query",
+                "description": "Filter for absences that start on or before this day (but might continue after). If you imagine a calendar displaying absences, this defines the right-most visible day. This is a plain date (i.e., `yyyy-MM-dd`), all time information is discarded."
+              },
+              {
+                "name": "type_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of absence type IDs."
+              },
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a specific employee using their ID."
+              },
+              {
+                "name": "time_from",
+                "value": "",
+                "type": "query",
+                "description": "**(⚠️ Deprecated - Use the `date_from` filter instead.)** Filter for absences that either start after or start before and end after a certain time."
+              },
+              {
+                "name": "time_until",
+                "value": "",
+                "type": "query",
+                "description": "**(⚠️ Deprecated - Use the `date_until` filter instead.)** Filter for absences that start before a certain time."
+              }
+            ]
+          },
+          "docs": "Retrieve all absences.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Create absence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/hris/absences",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new absence.\n\nCheck [this page](/hris/features/creating-absences) for a detailed guide.\n\n<Note>\n  This endpoint requires the permission **Manage absences** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"employee_id\": \"wXJMxwDvPAjrJ4CyqdV9\",\n  \"absence_type_id\": \"3YKtQ7qedsrcCady1jSyAkY1\",\n  \"start_date\": \"2019-09-17\",\n  \"end_date\": \"2019-09-21\",\n  \"start_time\": \"08:30:00\",\n  \"end_time\": \"16:00:00\",\n  \"start_half_day\": false,\n  \"end_half_da"
+        },
+        {
+          "info": {
+            "name": "Delete absence",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kombo.dev/v1/hris/absences/:absence_id",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "absence_id",
+                "value": "",
+                "type": "path",
+                "description": "The Kombo ID of the absence"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete this absence.\n\n<Note>\n  This endpoint requires the permission **Manage absences** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"absence_id\": \"wXJMxwDvPAjrJ4CyqdV9\"\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Get legal entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/legal-entities",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "name_contains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the `name` field. Can be used to find a legal entity by keywords present in the legal entity name."
+              }
+            ]
+          },
+          "docs": "Retrieve all legal entites.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get timesheets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/timesheets",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "employee_id",
+                "value": "",
+                "type": "query",
+                "description": "Returns timesheets for a specific employee."
+              },
+              {
+                "name": "started_before",
+                "value": "",
+                "type": "query",
+                "description": "Return timesheets whose start time is before the given timestamp."
+              },
+              {
+                "name": "started_after",
+                "value": "",
+                "type": "query",
+                "description": "Return timesheets whose start time is on or after the given timestamp."
+              },
+              {
+                "name": "ended_before",
+                "value": "",
+                "type": "query",
+                "description": "Return timesheets whose end time is on or before the given timestamp."
+              },
+              {
+                "name": "ended_after",
+                "value": "",
+                "type": "query",
+                "description": "Return timesheets whose end time is on or after the given timestamp."
+              }
+            ]
+          },
+          "docs": "Get timesheets\n\nRetrieve attendance data and timesheets from HRIS tools.\n\n<Warning>**Open Beta Feature:** This endpoint is currently in beta. Please reach out to our support team if you need assistance with implementation.</Warning>\n\nFor a detailed explanation of the data model, validation rules, time zones, payable hours, approvals, and break patterns, see the [Time & Attendance guide](/hris/features/time-and-attendance).\n\nTop level filters use AND, while individual filters use OR if they accep"
+        },
+        {
+          "info": {
+            "name": "Get performance review cycles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/performance-review-cycles",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, only changes to the returned record itself are considered."
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              }
+            ]
+          },
+          "docs": "Get performance review cycles\n\nRetrieve performance review cycles data from HRIS tools.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get performance reviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/performance-reviews",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `review_cycle` | n/a | ✓ Yes |\n| `reviewee` | n/a | ✓ Yes |\n| `reviewer` | n/a | ✓ Yes |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `MANAGER`, `DIRECT_REPORT`, `PEER`, `SELF`  \n\nLeave this blank to get results matching all values."
+              },
+              {
+                "name": "review_cycle_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of review cycle IDs."
+              },
+              {
+                "name": "reviewee_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of reviewee IDs."
+              }
+            ]
+          },
+          "docs": "Get performance reviews\n\nRetrieve performance review data from HRIS tools.\n\nTop level filters use AND, while individual filters use OR if they accept multiple arguments. That means filters will be resolved like this: `(id IN ids) AND (remote_id IN remote_ids)`"
+        },
+        {
+          "info": {
+            "name": "Get skills",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/skills",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "name_contains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the `name` field. Can be used to find a skills by keywords present in the skill name."
+              }
+            ]
+          },
+          "docs": "Get skills\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n\n\nRetrieve all skills available in the HRIS system. Skills are available on employees and job positions."
+        },
+        {
+          "info": {
+            "name": "Create skill",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/hris/skills",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create skill\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n\n\nCreate a new skill in the HRIS system with specified name and levels. Refer to our coverage grid for support of levels."
+        },
+        {
+          "info": {
+            "name": "Update skill",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.kombo.dev/v1/hris/skills/:skill_id",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "skill_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the skill"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update skill\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n\n\nUpdate an existing skill in the HRIS system."
+        },
+        {
+          "info": {
+            "name": "Delete skill",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kombo.dev/v1/hris/skills/:skill_id",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "skill_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the skill"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete skill\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n\n\nDelete a skill from the HRIS system."
+        },
+        {
+          "info": {
+            "name": "Get employee skill assignments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/employee-skill-assignments",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "employee_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of employee IDs."
+              },
+              {
+                "name": "skill_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of skill IDs."
+              }
+            ]
+          },
+          "docs": "Get employee skill assignments\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n\n\nRetrieve all employee skill assignments. These represent the skills that employees possess and their current proficiency levels."
+        },
+        {
+          "info": {
+            "name": "Create employee skill assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/hris/employee-skill-assignments",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create employee skill assignment\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n\n\nAssign a skill to an employee with a specified skill level."
+        },
+        {
+          "info": {
+            "name": "Update employee skill assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.kombo.dev/v1/hris/employee-skill-assignments/:employee_skill_assignment_id",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_skill_assignment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the employee skill assignment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update employee skill assignment\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n\n\nUpdate the skill level for an employee skill assignment."
+        },
+        {
+          "info": {
+            "name": "Delete employee skill assignment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kombo.dev/v1/hris/employee-skill-assignments/:employee_skill_assignment_id",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "employee_skill_assignment_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the employee skill assignment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete employee skill assignment\n\n\n\n<Warning>**Closed Beta Feature:** This endpoint is currently in closed beta. We're testing it with selected customers before its public release. If you're interested in learning more or getting early access, please reach out.</Warning>\n\n\n\nRemove a skill assignment from an employee."
+        },
+        {
+          "info": {
+            "name": "Get staffing entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/hris/staffing-entities",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "bamboohr:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record's own `changed_at` field remains unchanged.\n\nIf you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.\n\nFor more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).\n\nFor this endpoint, `updated_after` matches when the returned record changed, or when related data changed as described below.\n\n| Path | Added/Removed | Linked Record |\n| --- | --- | --- |\n| `locations` | ✓ Yes | ✓ Yes |\n| `legal_entities` | ✓ Yes | ✓ Yes |\n| `groups` | ✓ Yes | ✓ Yes |\n\n_**Added/Removed**: Whether adding or removing entries from this list triggers an update (n/a for single records). **Linked Record**: Whether changes to the linked record itself trigger an update._"
+              },
+              {
+                "name": "include_deleted",
+                "value": "",
+                "type": "query",
+                "description": "By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too."
+              },
+              {
+                "name": "ignore_unsupported_filters",
+                "value": "",
+                "type": "query",
+                "description": "When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results."
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+              },
+              {
+                "name": "remote_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of remote IDs."
+              },
+              {
+                "name": "model_types",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `JOB`, `POSITION`, `REQUISITION`  \n\nLeave this blank to get results matching all values."
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter by a comma-separated list of `OPEN_LIMITED`, `OPEN_UNLIMITED`, `PENDING`, `FROZEN`, `FILLED`, `CLOSED`  \n\nLeave this blank to get results matching all values."
+              }
+            ]
+          },
+          "docs": "Retrieve all staffing entities.\n\nRetrieve all staffing entities (positions, requisitions, and jobs) from the HRIS system.\n\nMany enterprise HRIS platforms distinguish between **positions**, **requisitions**, and **jobs** — three related but different concepts used to manage headcount and hiring. Not every HRIS uses all three, and naming varies across systems, but here is a general overview:\n\n- **Position**: A slot in the organizational structure that represents a role to be filled (or already fil"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

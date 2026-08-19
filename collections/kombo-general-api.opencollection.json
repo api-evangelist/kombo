@@ -1,0 +1,341 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kombo AI Apply General API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "General",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check API key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/check-api-key"
+          },
+          "docs": "Check whether your API key is working properly."
+        },
+        {
+          "info": {
+            "name": "Trigger sync",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/force-sync",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "workday:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a sync for a specific integration.\n\n<Warning>Please note that it is **not** necessary nor recommended to call this endpoint periodically on your side. Kombo already performs periodic syncs for you and you should only trigger syncs yourself in special cases (like when a user clicks on a \"Sync\" button in your app).</Warning>"
+        },
+        {
+          "info": {
+            "name": "Send passthrough request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/passthrough/:tool/:api",
+            "headers": [
+              {
+                "name": "X-Integration-Id",
+                "value": "greenhouse:HWUTwvyx2wLoSUHphiWVrp28"
+              }
+            ],
+            "params": [
+              {
+                "name": "tool",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the tool whose passthrough API you want to call (e.g., `personio`)."
+              },
+              {
+                "name": "api",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a request to the specified integration's native API.\n\nAt Kombo we put a lot of work into making sure that our unified API covers all our customers' use cases and that they never have to think about integration-specific logic again. There are cases, however, where our customers want to build features that are very integration-specific. That's where this endpoint comes in.\n\nPass in details about the request you want to make to the integration's API and we'll forward it for you. We'll also tak"
+        },
+        {
+          "info": {
+            "name": "Get integration details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/integrations/:integration_id",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "GET /integrations/:integration_id Parameter"
+              }
+            ]
+          },
+          "docs": "Get the specified integration with everything you need to display it to your customer."
+        },
+        {
+          "info": {
+            "name": "Delete integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.kombo.dev/v1/integrations/:integration_id",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "DELETE /integrations/:integration_id Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete the specified integration.\n**⚠️ This can not be undone!**"
+        },
+        {
+          "info": {
+            "name": "Set integration enabled",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kombo.dev/v1/integrations/:integration_id/enabled",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "PUT /integrations/:integration_id/enabled Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or disable the specified integration. When disabling, all currently running syncs will be cancelled.\n\nAll authentication credentials and configuration are preserved. Syncs can be resumed by re-enabling the integration.\n\nYou may use this to, for example, pause syncing for customers that are temporarily not using the integration."
+        },
+        {
+          "info": {
+            "name": "Create reconnection link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/integrations/:integration_id/relink",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "POST /integrations/:integration_id/relink Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a link that will allow the user to reconnect an integration. This is useful if you want to allow your users to update the credentials if the old ones for example expired.\n\nEmbed this the same way you would [embed the connect link](/connect/embedded-flow). By default, the link will be valid for 1 hour.\n\n### Example Request Body\n\n```json\n{\n  \"language\": \"en\",\n  \"scope_config_id\": \"9Pv6aCFwNDEzPNmwjSsY9SQx\",\n  \"link_type\": \"EMBEDDED\"\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Create Setup Flow link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.kombo.dev/v1/integrations/:integration_id/setup-link",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "POST /integrations/:integration_id/setup-link Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a link that lets your customer run the [Setup Flow](/hris/features/setup-flow/introduction) for an integration. Use this to send customers back into setup steps like field mapping or employee filtering without having to go through the initial connection flow again. Pass the returned URL to `showKomboConnect` from the Kombo Connect SDK, the same way you do with a connection link.\n\nThe integration must have at least one Setup Flow step enabled (e.g. field mapping or employee filtering); oth"
+        },
+        {
+          "info": {
+            "name": "Get integration fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/integrations/:integration_id/integration-fields",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "GET /integrations/:integration_id/integration-fields Parameter"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 2000."
+              }
+            ]
+          },
+          "docs": "Get all fields available on the specified integration.\n**This includes the mapping to your custom fields**"
+        },
+        {
+          "info": {
+            "name": "Updates an integration fields passthrough setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.kombo.dev/v1/integrations/:integration_id/integration-fields/:integration_field_id",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter"
+              },
+              {
+                "name": "integration_field_id",
+                "value": "",
+                "type": "path",
+                "description": "PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "When enabled, the integration field will be passed as part of the `integration_fields` array on the specific model endpoint. Providing false will disable the passthrough for the specified field."
+        },
+        {
+          "info": {
+            "name": "Get custom fields with current mappings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/integrations/:integration_id/custom-fields",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "GET /integrations/:integration_id/custom-fields Parameter"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to return per page. Maximum is 250."
+              }
+            ]
+          },
+          "docs": "Get all custom fields available on the specified integration.\n**This includes the mapping to the corresponding integration field if applicable*"
+        },
+        {
+          "info": {
+            "name": "Put custom field mappings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.kombo.dev/v1/integrations/:integration_id/custom-fields/:custom_field_id",
+            "params": [
+              {
+                "name": "integration_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the integration where the custom field mapping should be updated"
+              },
+              {
+                "name": "custom_field_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the custom field that should be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the mapping of a given custom field. If the custom field is already mapped, it will be updated."
+        },
+        {
+          "info": {
+            "name": "Get tools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.kombo.dev/v1/tools/:category",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "path",
+                "description": "GET /tools/:category Parameter"
+              }
+            ]
+          },
+          "docs": "Get a list of the tools (i.e., integrations) enabled in your environment.\n This can (in combination with the `integration_tool` parameter of [the \"Create Link\" endpoint](/v1/post-create-link)) be used to, for example, display a custom list or grid of available integrations to your end users instead of exposing Kombo Connect's standard tool selector."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,946 @@
+{
+  "item": [
+    {
+      "id": "f7382837-3ff0-4486-aea2-a86323212b23",
+      "name": "Unified ATS (Assessment & Background Check) API",
+      "description": {
+        "content": "Unified endpoints to operate Assessments and Background Checks for many applicant tracking systems.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "061e7cec-d96e-4795-aec6-bc0ce54eeac7",
+          "name": "Get packages",
+          "request": {
+            "name": "Get packages",
+            "description": {
+              "content": "Get all available assessment and background check packages for an integration.\n\nThis is mainly intended for debugging. As you always need to submit the full list of available packages when using [\"set packages\"](/assessment/v1/put-packages), there shouldn't ever be a need to call this endpoint in production.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessment",
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2db1d7da-ad45-4cc8-98b7-ba60b6922de7",
+              "name": "GET /assessment/packages Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"packages\": [\n      {\n        \"id\": \"1001\",\n        \"name\": \"TypeScript\",\n        \"description\": \"TypeScript coding skills assessments\",\n        \"updated_at\": \"2023-06-29T18:47:40.890Z\",\n        \"type\": \"SKILLS_TEST\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ebbb347-830f-4723-bf4b-d026d0f5dc39",
+              "name": "The standard error response with the error codes for the ATS use case.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e032663-4b32-49a1-af68-412ed663ec4a",
+          "name": "Set packages",
+          "request": {
+            "name": "Set packages",
+            "description": {
+              "content": "Set packages\n\nReplaces the list of available assessment and or background check packages.\n\nPackages that have been previously submitted through this endpoint but aren't included again will be marked as deleted.\n\n### Example Request Body\n\n```json\n{\n  \"packages\": [\n    {\n      \"id\": \"1001\",\n      \"type\": \"SKILLS_TEST\",\n      \"name\": \"TypeScript\",\n      \"description\": \"TypeScript coding skills assessments\"\n    },\n    {\n      \"id\": \"1002\",\n      \"type\": \"VIDEO_INTERVIEW\",\n      \"name\": \"Video Interview\",\n      \"description\": \"Video interview to assess communication skills\"\n    }\n  ]\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessment",
+                "packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packages\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e7f53f2d-966c-4d08-bb03-7d888d7e5d41",
+              "name": "PUT /assessment/packages Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"id\": \"1001\",\n      \"type\": \"SKILLS_TEST\",\n      \"name\": \"TypeScript\",\n      \"description\": \"TypeScript coding skills assessments\"\n    },\n    {\n      \"id\": \"1002\",\n      \"type\": \"VIDEO_INTERVIEW\",\n      \"name\": \"Video Interview\",\n      \"description\": \"Video interview to assess communication skills\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {},\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e71e3fc-a482-4b10-a78d-bbb1791bf413",
+              "name": "The standard error response with the error codes for the ATS use case.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"packages\": [\n    {\n      \"id\": \"1001\",\n      \"type\": \"SKILLS_TEST\",\n      \"name\": \"TypeScript\",\n      \"description\": \"TypeScript coding skills assessments\"\n    },\n    {\n      \"id\": \"1002\",\n      \"type\": \"VIDEO_INTERVIEW\",\n      \"name\": \"Video Interview\",\n      \"description\": \"Video interview to assess communication skills\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63b65781-7829-4a03-913f-f0640a5c2ba4",
+          "name": "Get orders",
+          "request": {
+            "name": "Get orders",
+            "description": {
+              "content": "Get all assessment and background check orders of an integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessment",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Filter by a comma-separated list of `OPEN`, `COMPLETED`, `CANCELLED`, `REJECTED`.\n\nLeave this blank to get results matching all values."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_after",
+                  "value": "<dateTime>",
+                  "description": "Filter orders by their creation date-timestamp in the format: `YYYY-MM-DDTHH:mm:ss.sssZ`. Only orders created on or after this date-timestamp will be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa93df6f-06f5-4fdc-aeaa-b55bd9feeffc",
+              "name": "GET /assessment/orders Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "string"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "4645-18-74"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"next\": \"string\",\n    \"results\": [\n      {\n        \"id\": \"B5KQKhAgTv6ZwzrfAbqbhipd\",\n        \"package_id\": \"typescript_test\",\n        \"status\": \"OPEN\",\n        \"candidate\": {\n          \"remote_id\": \"12345\",\n          \"email\": \"john.doe@gmail.com\",\n          \"first_name\": \"John\",\n          \"last_name\": \"Doe\",\n          \"phone\": \"+1 123 456 7890\"\n        },\n        \"application\": {\n          \"remote_id\": \"54321\"\n        },\n        \"job\": {\n          \"remote_id\": \"67890\",\n          \"name\": \"Bottle Opener\",\n          \"job_code\": \"BO-2024-01\",\n          \"description\": \"<p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>\",\n          \"location\": {\n            \"street_1\": \"string\",\n            \"street_2\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip_code\": \"string\",\n            \"country\": \"string\",\n            \"raw\": \"string\"\n          },\n          \"hiring_team\": [\n            {\n              \"remote_id\": \"78901\",\n              \"email\": \"jane.doe@gmail.com\",\n              \"first_name\": \"Jane\",\n              \"last_name\": \"Doe\",\n              \"hiring_team_roles\": [\n                \"RECRUITER\"\n              ]\n            },\n            {\n              \"remote_id\": \"78901\",\n              \"email\": \"jane.doe@gmail.com\",\n              \"first_name\": \"Jane\",\n              \"last_name\": \"Doe\",\n              \"hiring_team_roles\": [\n                \"RECRUITER\"\n              ]\n            }\n          ]\n        }\n      },\n      {\n        \"id\": \"B5KQKhAgTv6ZwzrfAbqbhipd\",\n        \"package_id\": \"typescript_test\",\n        \"status\": \"OPEN\",\n        \"candidate\": {\n          \"remote_id\": \"12345\",\n          \"email\": \"john.doe@gmail.com\",\n          \"first_name\": \"John\",\n          \"last_name\": \"Doe\",\n          \"phone\": \"+1 123 456 7890\"\n        },\n        \"application\": {\n          \"remote_id\": \"54321\"\n        },\n        \"job\": {\n          \"remote_id\": \"67890\",\n          \"name\": \"Bottle Opener\",\n          \"job_code\": \"BO-2024-01\",\n          \"description\": \"<p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>\",\n          \"location\": {\n            \"street_1\": \"string\",\n            \"street_2\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip_code\": \"string\",\n            \"country\": \"string\",\n            \"raw\": \"string\"\n          },\n          \"hiring_team\": [\n            {\n              \"remote_id\": \"78901\",\n              \"email\": \"jane.doe@gmail.com\",\n              \"first_name\": \"Jane\",\n              \"last_name\": \"Doe\",\n              \"hiring_team_roles\": [\n                \"RECRUITER\"\n              ]\n            },\n            {\n              \"remote_id\": \"78901\",\n              \"email\": \"jane.doe@gmail.com\",\n              \"first_name\": \"Jane\",\n              \"last_name\": \"Doe\",\n              \"hiring_team_roles\": [\n                \"RECRUITER\"\n              ]\n            }\n          ]\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea01d7b7-434e-4ca5-a6f0-237e194a5c97",
+              "name": "The standard error response with the error codes for the ATS use case.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "string"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "string"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "4645-18-74"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "464e30d2-24a9-4677-978e-4ece3e0bd4bf",
+          "name": "Get open orders (deprecated)",
+          "request": {
+            "name": "Get open orders (deprecated)",
+            "description": {
+              "content": "**(⚠️ Deprecated - Use [Get orders](/assessment/v1/get-orders) instead)** Get all open assessment and background check orders of an integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessment",
+                "orders",
+                "open"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f2feaf7-eb25-483d-a4ee-68a86bed7a02",
+              "name": "GET /assessment/orders/open Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "orders",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"next\": \"string\",\n    \"results\": [\n      {\n        \"id\": \"B5KQKhAgTv6ZwzrfAbqbhipd\",\n        \"package_id\": \"typescript_test\",\n        \"candidate\": {\n          \"remote_id\": \"12345\",\n          \"email\": \"john.doe@gmail.com\",\n          \"first_name\": \"John\",\n          \"last_name\": \"Doe\",\n          \"phone\": \"+1 123 456 7890\"\n        },\n        \"application\": {\n          \"remote_id\": \"54321\"\n        },\n        \"job\": {\n          \"remote_id\": \"67890\",\n          \"name\": \"Bottle Opener\",\n          \"job_code\": \"BO-2024-01\",\n          \"description\": \"<p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>\",\n          \"location\": {\n            \"street_1\": \"string\",\n            \"street_2\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip_code\": \"string\",\n            \"country\": \"string\",\n            \"raw\": \"string\"\n          },\n          \"hiring_team\": [\n            {\n              \"remote_id\": \"78901\",\n              \"email\": \"jane.doe@gmail.com\",\n              \"first_name\": \"Jane\",\n              \"last_name\": \"Doe\",\n              \"hiring_team_roles\": [\n                \"RECRUITER\"\n              ]\n            },\n            {\n              \"remote_id\": \"78901\",\n              \"email\": \"jane.doe@gmail.com\",\n              \"first_name\": \"Jane\",\n              \"last_name\": \"Doe\",\n              \"hiring_team_roles\": [\n                \"RECRUITER\"\n              ]\n            }\n          ]\n        }\n      },\n      {\n        \"id\": \"B5KQKhAgTv6ZwzrfAbqbhipd\",\n        \"package_id\": \"typescript_test\",\n        \"candidate\": {\n          \"remote_id\": \"12345\",\n          \"email\": \"john.doe@gmail.com\",\n          \"first_name\": \"John\",\n          \"last_name\": \"Doe\",\n          \"phone\": \"+1 123 456 7890\"\n        },\n        \"application\": {\n          \"remote_id\": \"54321\"\n        },\n        \"job\": {\n          \"remote_id\": \"67890\",\n          \"name\": \"Bottle Opener\",\n          \"job_code\": \"BO-2024-01\",\n          \"description\": \"<p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>\",\n          \"location\": {\n            \"street_1\": \"string\",\n            \"street_2\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip_code\": \"string\",\n            \"country\": \"string\",\n            \"raw\": \"string\"\n          },\n          \"hiring_team\": [\n            {\n              \"remote_id\": \"78901\",\n              \"email\": \"jane.doe@gmail.com\",\n              \"first_name\": \"Jane\",\n              \"last_name\": \"Doe\",\n              \"hiring_team_roles\": [\n                \"RECRUITER\"\n              ]\n            },\n            {\n              \"remote_id\": \"78901\",\n              \"email\": \"jane.doe@gmail.com\",\n              \"first_name\": \"Jane\",\n              \"last_name\": \"Doe\",\n              \"hiring_team_roles\": [\n                \"RECRUITER\"\n              ]\n            }\n          ]\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb38094f-9528-432d-974a-484641a3a3c2",
+              "name": "The standard error response with the error codes for the ATS use case.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "orders",
+                    "open"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "861b0ca7-7aa5-4c31-9466-c34344996c67",
+          "name": "Update order result",
+          "request": {
+            "name": "Update order result",
+            "description": {
+              "content": "Updates an assessment or a background check order result.\n\n### Example Request Body\n\n```json\n{\n  \"status\": \"COMPLETED\",\n  \"score\": 90,\n  \"max_score\": 100,\n  \"result_url\": \"https://example.com\",\n  \"completed_at\": \"2023-04-04T00:00:00.000Z\",\n  \"attributes\": [\n    {\n      \"type\": \"TEXT\",\n      \"label\": \"Role fit\",\n      \"value\": \"Excellent\"\n    },\n    {\n      \"type\": \"SUB_RESULT\",\n      \"id\": \"<YOUR_INTERNAL_ID_OF_THE_TEST>\",\n      \"label\": \"Personality test\",\n      \"score\": {\n        \"value\": 97,\n        \"max\": 100\n      },\n      \"status\": \"COMPLETED\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"name\": \"Assessment Report.pdf\",\n      \"data\": \"SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=\",\n      \"content_type\": \"application/pdf\"\n    }\n  ]\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessment",
+                "orders",
+                ":assessment_order_id",
+                "result"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessment_order_id",
+                  "description": "(Required) PUT /assessment/orders/:assessment_order_id/result Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"result_url\": \"<uri>\",\n  \"completed_at\": \"<dateTime>\",\n  \"score\": \"<double>\",\n  \"max_score\": \"<double>\",\n  \"remote_fields\": {\n    \"smartrecruiters\": {\n      \"scoreLabel\": \"<string>\"\n    },\n    \"recruitee\": {\n      \"subtitle\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1824ab05-0027-4ee6-9f3a-7b34646ed1af",
+              "name": "PUT /assessment/orders/:assessment_order_id/result Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "orders",
+                    ":assessment_order_id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessment_order_id",
+                      "description": "(Required) PUT /assessment/orders/:assessment_order_id/result Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"COMPLETED\",\n  \"score\": 90,\n  \"max_score\": 100,\n  \"result_url\": \"https://example.com\",\n  \"completed_at\": \"2023-04-04T00:00:00.000Z\",\n  \"attributes\": [\n    {\n      \"type\": \"TEXT\",\n      \"label\": \"Role fit\",\n      \"value\": \"Excellent\"\n    },\n    {\n      \"type\": \"SUB_RESULT\",\n      \"id\": \"<YOUR_INTERNAL_ID_OF_THE_TEST>\",\n      \"label\": \"Personality test\",\n      \"score\": {\n        \"value\": 97,\n        \"max\": 100\n      },\n      \"status\": \"COMPLETED\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"name\": \"Assessment Report.pdf\",\n      \"data\": \"SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=\",\n      \"content_type\": \"application/pdf\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {},\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96c95ac5-8bd3-4225-958c-2cc80ba00515",
+              "name": "The standard error response with the error codes for the ATS use case.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessment",
+                    "orders",
+                    ":assessment_order_id",
+                    "result"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessment_order_id",
+                      "description": "(Required) PUT /assessment/orders/:assessment_order_id/result Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "recruitee:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"COMPLETED\",\n  \"score\": 90,\n  \"max_score\": 100,\n  \"result_url\": \"https://example.com\",\n  \"completed_at\": \"2023-04-04T00:00:00.000Z\",\n  \"attributes\": [\n    {\n      \"type\": \"TEXT\",\n      \"label\": \"Role fit\",\n      \"value\": \"Excellent\"\n    },\n    {\n      \"type\": \"SUB_RESULT\",\n      \"id\": \"<YOUR_INTERNAL_ID_OF_THE_TEST>\",\n      \"label\": \"Personality test\",\n      \"score\": {\n        \"value\": 97,\n        \"max\": 100\n      },\n      \"status\": \"COMPLETED\"\n    }\n  ],\n  \"attachments\": [\n    {\n      \"name\": \"Assessment Report.pdf\",\n      \"data\": \"SGkgdGhlcmUsIEtvbWJvIGlzIGN1cnJlbnRseSBoaXJpbmcgZW5naW5lZXJzIHRoYXQgbG92ZSB0byB3b3JrIG9uIGRldmVsb3BlciBwcm9kdWN0cy4=\",\n      \"content_type\": \"application/pdf\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kombo.dev/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "04f24070-7b65-4722-84dc-9652a5cd39aa",
+    "name": "Kombo AI Apply Unified ATS (Assessment & Background Check) API API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Endpoints for AI-powered job application features.",
+      "type": "text/plain"
+    }
+  }
+}

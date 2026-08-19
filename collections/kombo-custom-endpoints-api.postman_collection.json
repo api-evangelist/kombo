@@ -1,0 +1,3203 @@
+{
+  "item": [
+    {
+      "id": "032a7f43-6409-4387-aee2-0ab9618b0f41",
+      "name": "Custom Endpoints",
+      "description": {
+        "content": "Custom integration-specific endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1487b7d-5127-4250-81cb-39c420c33b8e",
+          "name": "Add a job to be synced",
+          "request": {
+            "name": "Add a job to be synced",
+            "description": {
+              "content": "Adds a job to the synced jobs list. The next sync will pick it up and sync it including all applications and candidates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ats",
+                "custom",
+                "avionte",
+                "synced-jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"job_remote_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "34a17712-d608-4686-9093-dccd13156011",
+              "name": "POST /ats/custom/avionte/synced-jobs Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ats",
+                    "custom",
+                    "avionte",
+                    "synced-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "avionte:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_remote_id\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2e20f1f-bc9a-4e98-8068-b5f49825e28a",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ats",
+                    "custom",
+                    "avionte",
+                    "synced-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "avionte:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"job_remote_id\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0752d8f5-d7b8-4a9e-a235-b5e42d174b2c",
+          "name": "Remove a job from sync",
+          "request": {
+            "name": "Remove a job from sync",
+            "description": {
+              "content": "Removes a job from the synced jobs list. Does not delete already synced data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ats",
+                "custom",
+                "avionte",
+                "synced-jobs",
+                ":job_remote_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "job_remote_id",
+                  "description": "(Required) DELETE /ats/custom/avionte/synced-jobs/:job_remote_id Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9663079-afee-45b5-a1e8-1a2a97db1572",
+              "name": "DELETE /ats/custom/avionte/synced-jobs/:job_remote_id Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ats",
+                    "custom",
+                    "avionte",
+                    "synced-jobs",
+                    ":job_remote_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_remote_id",
+                      "description": "(Required) DELETE /ats/custom/avionte/synced-jobs/:job_remote_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "avionte:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41d9a4ed-b314-4a97-b7b1-e7009da0982e",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ats",
+                    "custom",
+                    "avionte",
+                    "synced-jobs",
+                    ":job_remote_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "job_remote_id",
+                      "description": "(Required) DELETE /ats/custom/avionte/synced-jobs/:job_remote_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "avionte:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66c6eb8c-4035-4a21-9fc9-4d558d0ebdef",
+          "name": "Get DATEV system information",
+          "request": {
+            "name": "Get DATEV system information",
+            "description": {
+              "content": "This endpoint returns BeraterNr (consultant_number), MandantenNr (client_number) and the payroll system (LODAS or Lohn und Gehalt). Useful to generate a DATEV ASCII file for the passthrough endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "system-information"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "153e55d1-e0e9-40ca-b1c5-86677dc45820",
+              "name": "GET /custom/datev/system-information Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "system-information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"consultant_number\": 1234567,\n    \"client_number\": 99999,\n    \"target_system\": \"LODAS\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96f411fe-3a7a-49f3-8807-e6b7ad035e03",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "system-information"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e44d96c-9997-46ef-ac3b-f23e86cbfe94",
+          "name": "Write raw DATEV ASCII file",
+          "request": {
+            "name": "Write raw DATEV ASCII file",
+            "description": {
+              "content": "This action allows to send an arbitrary ASCII file directly to DATEV LODAS or Lohn und Gehalt. Kombo adds validation for the file format but not on the content. This action allows you to implement any use case that you might have with DATEV payroll ASCII imports.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "passthrough"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"file_content\": \"<string>\",\n  \"accounting_month\": \"<dateTime>\",\n  \"target_system\": \"<string>\",\n  \"file_type\": \"<string>\",\n  \"file_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "205d906a-04ea-4c9c-bd2a-3e35b9378980",
+              "name": "POST /custom/datev/passthrough Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "passthrough"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_content\": \"<string>\",\n  \"accounting_month\": \"<dateTime>\",\n  \"target_system\": \"<string>\",\n  \"file_type\": \"<string>\",\n  \"file_name\": \"Stammdaten.txt\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {},\n  \"warnings\": [\n    {\n      \"message\": \"This is an example warning!\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fde3c9a7-9fa2-4762-92ae-e28411f516fe",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "passthrough"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"file_content\": \"<string>\",\n  \"accounting_month\": \"<dateTime>\",\n  \"target_system\": \"<string>\",\n  \"file_type\": \"<string>\",\n  \"file_name\": \"Stammdaten.txt\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb98aa3a-d305-4eae-9619-019aa1e40606",
+          "name": "Verify service is enabled",
+          "request": {
+            "name": "Verify service is enabled",
+            "description": {
+              "content": "This endpoint validates that this DATEV integration is ready to use the eAU feature.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "check-eau-permission"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2cb56e2f-153e-495f-a49c-d92a57340e8f",
+              "name": "GET /custom/datev/check-eau-permission Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "check-eau-permission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"ready\": false,\n    \"error\": \"string\"\n  },\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7af8b1c4-a606-4650-9969-8eb66cf87885",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "check-eau-permission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6c7b88d-bad0-4c64-a550-0fcecc0407ac",
+          "name": "Query the status of the eAU request",
+          "request": {
+            "name": "Query the status of the eAU request",
+            "description": {
+              "content": "This endpoint queries the status of the eAU request for the given DATEV integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "eau-requests",
+                ":eau_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eau_id",
+                  "description": "(Required) GET /custom/datev/eau-requests/:eau_id Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81eed5dd-7359-4ded-ae83-12de507b6ed3",
+              "name": "GET /custom/datev/eau-requests/:eau_id Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "eau-requests",
+                    ":eau_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eau_id",
+                      "description": "(Required) GET /custom/datev/eau-requests/:eau_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"raw\": {\n      \"source\": \"string\",\n      \"start_work_incapacity\": \"string\",\n      \"feedbacks_from_health_insurance\": [\n        {\n          \"guid\": \"string\",\n          \"contact_person\": {\n            \"name\": \"string\",\n            \"telephone\": \"string\",\n            \"fax\": \"string\",\n            \"email\": \"string\",\n            \"name1_health_insurance\": \"string\",\n            \"postal_code\": \"string\",\n            \"city\": \"string\",\n            \"street\": \"string\",\n            \"house_number\": \"string\",\n            \"gender_contact_person\": \"M\",\n            \"name2_health_insurance\": \"string\",\n            \"name3_health_insurance\": \"string\"\n          },\n          \"incapacity_for_work\": {\n            \"start_work_incapacity_employer\": \"string\",\n            \"start_work_incapacity_au\": \"string\",\n            \"end_work_incapacity_au\": \"string\",\n            \"date_of_diagnosis\": \"string\",\n            \"flag_current_work_incapacity\": -6.415515685702107e+307,\n            \"accident_at_work\": true,\n            \"assignment_accident_insurance_doctor\": false,\n            \"other_accident\": false,\n            \"initial_certificate\": false,\n            \"automatic_feedback_until\": \"string\",\n            \"actual_end_work_incapacity_au\": \"string\",\n            \"start_hospitalisation\": \"string\",\n            \"end_hospitalisation\": \"string\"\n          },\n          \"error_block_list\": [\n            {\n              \"origin\": \"string\",\n              \"error_number\": \"string\",\n              \"error_text\": \"string\",\n              \"error_value\": \"string\"\n            },\n            {\n              \"origin\": \"string\",\n              \"error_number\": \"string\",\n              \"error_text\": \"string\",\n              \"error_value\": \"string\"\n            }\n          ]\n        },\n        {\n          \"guid\": \"string\",\n          \"contact_person\": {\n            \"name\": \"string\",\n            \"telephone\": \"string\",\n            \"fax\": \"string\",\n            \"email\": \"string\",\n            \"name1_health_insurance\": \"string\",\n            \"postal_code\": \"string\",\n            \"city\": \"string\",\n            \"street\": \"string\",\n            \"house_number\": \"string\",\n            \"gender_contact_person\": \"M\",\n            \"name2_health_insurance\": \"string\",\n            \"name3_health_insurance\": \"string\"\n          },\n          \"incapacity_for_work\": {\n            \"start_work_incapacity_employer\": \"string\",\n            \"start_work_incapacity_au\": \"string\",\n            \"end_work_incapacity_au\": \"string\",\n            \"date_of_diagnosis\": \"string\",\n            \"flag_current_work_incapacity\": -5.019805792515584e+307,\n            \"accident_at_work\": true,\n            \"assignment_accident_insurance_doctor\": true,\n            \"other_accident\": true,\n            \"initial_certificate\": false,\n            \"automatic_feedback_until\": \"string\",\n            \"actual_end_work_incapacity_au\": \"string\",\n            \"start_hospitalisation\": \"string\",\n            \"end_hospitalisation\": \"string\"\n          },\n          \"error_block_list\": [\n            {\n              \"origin\": \"string\",\n              \"error_number\": \"string\",\n              \"error_text\": \"string\",\n              \"error_value\": \"string\"\n            },\n            {\n              \"origin\": \"string\",\n              \"error_number\": \"string\",\n              \"error_text\": \"string\",\n              \"error_value\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"collaboration_identifier\": \"string\"\n    }\n  },\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ea44337-28db-4341-8f42-157e6359209f",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "eau-requests",
+                    ":eau_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eau_id",
+                      "description": "(Required) GET /custom/datev/eau-requests/:eau_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5c0fac7-b6c8-4dc0-aa69-08e14c67b562",
+          "name": "Verify service is enabled",
+          "request": {
+            "name": "Verify service is enabled",
+            "description": {
+              "content": "This endpoint returns the available document types for this DATEV integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "check-document-permission"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6fc40c92-9e0c-4092-9252-975e00dbb329",
+              "name": "GET /custom/datev/check-document-permission Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "check-document-permission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"ready\": false,\n    \"documents_granted\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95397dee-1beb-47a6-a9df-ac26ca8ae05d",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "check-document-permission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f663a0b-79b8-4301-b9f7-b08522d14040",
+          "name": "Retrieve available documents",
+          "request": {
+            "name": "Retrieve available documents",
+            "description": {
+              "content": "Use this endpoint to get all available documents for a specific period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "available-documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "period",
+                  "value": "<string>",
+                  "description": "(Required) Provide the period in the format YYYY-MM-DD for which to check for available documents."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f1a75a0-249d-4466-aa0f-694ae2a86ff3",
+              "name": "GET /custom/datev/available-documents Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "available-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"results\": [\n      {\n        \"document_type\": \"LOBN\",\n        \"available_for_employees\": [\n          {\n            \"id\": \"8Xi6iZrwusZqJmDGXs49GBmJ\",\n            \"remote_id\": \"123456\"\n          }\n        ],\n        \"is_company_document\": false\n      },\n      {\n        \"document_type\": \"LOJO\",\n        \"available_for_employees\": [],\n        \"is_company_document\": true\n      }\n    ]\n  },\n  \"warnings\": [\n    {\n      \"message\": \"This is an example warning!\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fd9a804-147f-4f1a-b261-9273d2bb5683",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "available-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "period",
+                      "value": "string"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22694ab7-f129-48cd-bd93-aec2ef78a4ff",
+          "name": "Download Payroll Document",
+          "request": {
+            "name": "Download Payroll Document",
+            "description": {
+              "content": "Download a document from DATEV\n\n<Note>\n  This endpoint requires the permission **Manage documents** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"accounting_month\": \"2001-12-01\",\n  \"document_type\": \"LOJE\",\n  \"employee_id\": null\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "download-document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accounting_month\": \"<dateTime>\",\n  \"document_type\": \"<string>\",\n  \"employee_id\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d3de443-4906-43c9-8373-324234d614c8",
+              "name": "POST /custom/datev/download-document Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "download-document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accounting_month\": \"2001-12-01\",\n  \"document_type\": \"LOJE\",\n  \"employee_id\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"data_url\": \"https://CffhoqoGWuZWkHoTEwLlBCo.rkhnR-r4JGCLmDvm17dXc,IiBYNd2,EmN3F6Kt1SK5h-AB+EgJKrXJUIR4xe89ItP8\",\n    \"file_name\": \"string\",\n    \"content_type\": \"string\"\n  },\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ecb54e0-254c-401f-92fb-c3e35d0dd087",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "download-document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accounting_month\": \"2001-12-01\",\n  \"document_type\": \"LOJE\",\n  \"employee_id\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf74e224-1464-47d8-8223-8c2c596ddc6d",
+          "name": "Download Payroll Document",
+          "request": {
+            "name": "Download Payroll Document",
+            "description": {
+              "content": "Download a document from DATEV\n\n<Note>\n  This endpoint requires the permission **Manage documents** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"accounting_month\": \"2001-12-01\",\n  \"document_type\": \"LOJE\"\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "employees",
+                ":employee_id",
+                "download-document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string,null>",
+                  "key": "employee_id",
+                  "description": "(Required) POST /custom/datev/employees/:employee_id/download-document Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accounting_month\": \"<dateTime>\",\n  \"document_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "346891d3-2834-4259-bc85-9fa60b5ca6e0",
+              "name": "POST /custom/datev/employees/:employee_id/download-document Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "employees",
+                    ":employee_id",
+                    "download-document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string,null>",
+                      "key": "employee_id",
+                      "description": "(Required) POST /custom/datev/employees/:employee_id/download-document Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accounting_month\": \"2001-12-01\",\n  \"document_type\": \"LOJE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"data_url\": \"https://CffhoqoGWuZWkHoTEwLlBCo.rkhnR-r4JGCLmDvm17dXc,IiBYNd2,EmN3F6Kt1SK5h-AB+EgJKrXJUIR4xe89ItP8\",\n    \"file_name\": \"string\",\n    \"content_type\": \"string\"\n  },\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f0d6734-bc2d-4ccd-9d11-1e44472724bb",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "employees",
+                    ":employee_id",
+                    "download-document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string,null>",
+                      "key": "employee_id",
+                      "description": "(Required) POST /custom/datev/employees/:employee_id/download-document Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accounting_month\": \"2001-12-01\",\n  \"document_type\": \"LOJE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26318feb-2e66-4f20-90d1-14c6685bd6c4",
+          "name": "Create eAU Request",
+          "request": {
+            "name": "Create eAU Request",
+            "description": {
+              "content": "Create a request for an electronic certificate of incapacity for work (eAU).\n\n<Note>\n  This endpoint requires the permission **Manage eAU** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"start_work_incapacity\": \"2022-01-01\"\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "employees",
+                ":employee_id",
+                "eau-requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start_work_incapacity\": \"<string>\",\n  \"notification\": {\n    \"email\": \"<string>\"\n  },\n  \"contact_person\": {\n    \"gender\": \"<string>\",\n    \"name\": \"<string>\",\n    \"telephone\": \"<string>\",\n    \"fax\": \"<string>\",\n    \"email\": \"<string>\",\n    \"company_name\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"street\": \"<string>\",\n    \"house_number\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "773735b4-5496-44cc-b595-bd9d0eff7232",
+              "name": "POST /custom/datev/employees/:employee_id/eau-requests Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "employees",
+                    ":employee_id",
+                    "eau-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_work_incapacity\": \"2022-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"eau_id\": \"string\"\n  },\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a9ae048-788d-4cd5-9166-8ff946bafce9",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "employees",
+                    ":employee_id",
+                    "eau-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_work_incapacity\": \"2022-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab37fc7e-889a-4b2f-a30c-ab43ae70361d",
+          "name": "Prepare DATEV Payroll",
+          "request": {
+            "name": "Prepare DATEV Payroll",
+            "description": {
+              "content": "What DATEV requires to prepare payroll is very specific and currently, as DATEV is not providing \"read\", this is not part of the unified model.\n\n<Note>\n  This endpoint requires the permission **Manage payroll** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"employee_id\": \"EvLV61zdahkN4ftPJbmPCkdv\",\n  \"payroll_run\": {\n    \"date\": \"2022-05-01\"\n  },\n  \"fixed_payments\": [\n    {\n      \"amount\": 560,\n      \"lohnart\": 100\n    }\n  ],\n  \"hourly_payments\": [\n    {\n      \"hours\": 14,\n      \"lohnart\": 200\n    },\n    {\n      \"hours\": 16,\n      \"lohnart\": 232\n    }\n  ],\n  \"custom_lodas\": [\n    {\n      \"amount\": 8,\n      \"lohnart\": 300,\n      \"bearbeitungsschluessel\": 4\n    }\n  ]\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "employees",
+                ":employee_id",
+                "prepare-payroll"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payroll_run\": {\n    \"date\": \"<dateTime>\"\n  },\n  \"hourly_payments\": [\n    {\n      \"hours\": \"<double>\",\n      \"lohnart\": \"<double>\"\n    },\n    {\n      \"hours\": \"<double>\",\n      \"lohnart\": \"<double>\"\n    }\n  ],\n  \"fixed_payments\": [\n    {\n      \"amount\": \"<double>\",\n      \"lohnart\": \"<double>\"\n    },\n    {\n      \"amount\": \"<double>\",\n      \"lohnart\": \"<double>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e599194-e3a3-4579-afe9-f3176daa22af",
+              "name": "PUT /custom/datev/employees/:employee_id/prepare-payroll Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "employees",
+                    ":employee_id",
+                    "prepare-payroll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payroll_run\": {\n    \"date\": \"2022-05-01\"\n  },\n  \"fixed_payments\": [\n    {\n      \"amount\": 560,\n      \"lohnart\": 100\n    }\n  ],\n  \"hourly_payments\": [\n    {\n      \"hours\": 14,\n      \"lohnart\": 200\n    },\n    {\n      \"hours\": 16,\n      \"lohnart\": 232\n    }\n  ],\n  \"custom_lodas\": [\n    {\n      \"amount\": 8,\n      \"lohnart\": 300,\n      \"bearbeitungsschluessel\": 4\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {},\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5350650b-0893-417c-8134-2cee986d8aba",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "employees",
+                    ":employee_id",
+                    "prepare-payroll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payroll_run\": {\n    \"date\": \"2022-05-01\"\n  },\n  \"fixed_payments\": [\n    {\n      \"amount\": 560,\n      \"lohnart\": 100\n    }\n  ],\n  \"hourly_payments\": [\n    {\n      \"hours\": 14,\n      \"lohnart\": 200\n    },\n    {\n      \"hours\": 16,\n      \"lohnart\": 232\n    }\n  ],\n  \"custom_lodas\": [\n    {\n      \"amount\": 8,\n      \"lohnart\": 300,\n      \"bearbeitungsschluessel\": 4\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97f22749-37eb-490a-8e71-b146ba9bad42",
+          "name": "Set DATEV compensations",
+          "request": {
+            "name": "Set DATEV compensations",
+            "description": {
+              "content": "Sets the compensations for an employee on the specified effective date.\n\n Other compensations will end at the effective date. That means, if you would like to add a compensation, you also have to include the compensations that you would like to keep.\n\n<Note>\n  This endpoint requires the permission **Manage payroll** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"employee_id\": \"3bdhemmSP1TPQDGWtRveRot9\",\n  \"effective_date\": \"2022-12-01\",\n  \"compensations\": [\n    {\n      \"amount\": 4500,\n      \"currency\": \"EUR\",\n      \"period\": \"MONTH\",\n      \"lohnart\": 200\n    },\n    {\n      \"amount\": 30,\n      \"currency\": \"EUR\",\n      \"period\": \"HOUR\"\n    }\n  ]\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "employees",
+                ":employee_id",
+                "compensations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"effective_date\": \"<dateTime>\",\n  \"compensations\": [\n    {\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"period\": \"<string>\",\n      \"lohnart\": \"<long>\"\n    },\n    {\n      \"amount\": \"<double>\",\n      \"currency\": \"<string>\",\n      \"period\": \"<string>\",\n      \"lohnart\": \"<long>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc2d1686-d7b0-458a-b121-0a7e7b82acab",
+              "name": "PUT /custom/datev/employees/:employee_id/compensations Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "employees",
+                    ":employee_id",
+                    "compensations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"effective_date\": \"2022-12-01\",\n  \"compensations\": [\n    {\n      \"amount\": 4500,\n      \"currency\": \"EUR\",\n      \"period\": \"MONTH\",\n      \"lohnart\": 200\n    },\n    {\n      \"amount\": 30,\n      \"currency\": \"EUR\",\n      \"period\": \"HOUR\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {},\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23ce091d-d7be-4955-81ae-de0a379782a8",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "employees",
+                    ":employee_id",
+                    "compensations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"effective_date\": \"2022-12-01\",\n  \"compensations\": [\n    {\n      \"amount\": 4500,\n      \"currency\": \"EUR\",\n      \"period\": \"MONTH\",\n      \"lohnart\": 200\n    },\n    {\n      \"amount\": 30,\n      \"currency\": \"EUR\",\n      \"period\": \"HOUR\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "376d6e57-400b-4fbc-a974-c39e78934c13",
+          "name": "Verify service is enabled",
+          "request": {
+            "name": "Verify service is enabled",
+            "description": {
+              "content": "This endpoint returns whether you can write to this DATEV integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "check-write-permission"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f84a423c-65ec-459f-a2db-dafe17c05084",
+              "name": "GET /custom/datev/check-write-permission Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "check-write-permission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"ready\": false,\n    \"error\": \"string\"\n  },\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c689e382-3b58-47f1-98aa-d7816dacb1f7",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "check-write-permission"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6bd542d-c184-4f9c-870d-26561336b8ac",
+          "name": "Get DATEV data pushes",
+          "request": {
+            "name": "Get DATEV data pushes",
+            "description": {
+              "content": "Returns all \"DATEV Data Pushes\" of the last 2 months. You can use this endpoint to give your users transparency about submitted \"ASCII-Files\" and their status. Each data push can contain multiple files that were submitted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "data-pushes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6962ecf-6e2b-4fe6-a9a0-1868af25f6fe",
+              "name": "GET /custom/datev/data-pushes Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "data-pushes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"data_pushes\": [\n      {\n        \"id\": \"string\",\n        \"type\": \"GENERAL\",\n        \"created_at\": \"1947-03-11T18:02:12.495Z\",\n        \"upload_jobs\": [\n          {\n            \"id\": \"string\",\n            \"file_name\": \"string\",\n            \"state\": \"UPLOADED\",\n            \"file\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"file_name\": \"string\",\n            \"state\": \"IMPORTED\",\n            \"file\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"type\": \"PAYROLL\",\n        \"created_at\": \"1998-12-19T04:55:42.967Z\",\n        \"upload_jobs\": [\n          {\n            \"id\": \"string\",\n            \"file_name\": \"string\",\n            \"state\": \"FAILED\",\n            \"file\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"file_name\": \"string\",\n            \"state\": \"UPLOADED\",\n            \"file\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e38c858-6e44-4bdc-82f6-31eb6ecc17bf",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "data-pushes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20feb647-993f-46ab-b331-51431490348d",
+          "name": "Push general data to DATEV",
+          "request": {
+            "name": "Push general data to DATEV",
+            "description": {
+              "content": "Uploads the currently relevant general data (employees, compensations, and time offs) to DATEV. This will create so called ASCII files that the accountant has to import in DATEV. You can call this endpoint to implement an on-demand sync to DATEV, for example if you want to offer your users a button to do that in your application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "push-data",
+                "general"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8798d96a-983c-4cd1-b844-55594cbd681b",
+              "name": "POST /custom/datev/push-data/general Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "push-data",
+                    "general"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"files\": [\n      {\n        \"name\": \"EXTF_Stammdaten.csv\",\n        \"content\": \"EXTF;700;21;Stammdaten;...\"\n      }\n    ]\n  },\n  \"warnings\": [\n    {\n      \"message\": \"This is an example warning!\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8b0f988-581a-483c-a9ec-340bfc96e911",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "push-data",
+                    "general"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84463f79-0c78-46fd-b068-bbc43bc58864",
+          "name": "Push payroll data to DATEV",
+          "request": {
+            "name": "Push payroll data to DATEV",
+            "description": {
+              "content": "Uploads the currently relevant payroll data (supplements) to DATEV. This will create so called ASCII files that the accountant has to import in DATEV. After finishing the payroll preparation or after correcting payroll, you can call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "datev",
+                "push-data",
+                "payroll"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payroll_month\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cae07b2a-fc0b-43ac-a06f-fbbbf7edadd1",
+              "name": "POST /custom/datev/push-data/payroll Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "push-data",
+                    "payroll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payroll_month\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"files\": [\n      {\n        \"name\": \"EXTF_Bewegungsdaten.csv\",\n        \"content\": \"EXTF;700;21;Bewegungsdaten;...\"\n      }\n    ]\n  },\n  \"warnings\": [\n    {\n      \"message\": \"This is an example warning!\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7b18efc-2867-40c7-875f-ac6b0407ae8b",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "datev",
+                    "push-data",
+                    "payroll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "datev:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payroll_month\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66f107ad-ca80-4de7-8663-c2c2bb306c19",
+          "name": "Write Payroll Supplement",
+          "request": {
+            "name": "Write Payroll Supplement",
+            "description": {
+              "content": "Write a payroll supplement to Silae using the supplement code.\n\n<Note>\n  This endpoint requires the permission **Manage payroll** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"employee_id\": \"EvLV61zdahkN4ftPJbmPCkdv\",\n  \"supplement_code\": \"200\",\n  \"effective_date\": \"2024-01-14\",\n  \"element_amount\": 6\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom",
+                "silae",
+                "employees",
+                ":employee_id",
+                "payroll-supplements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "employee_id",
+                  "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"supplement_code\": \"<string>\",\n  \"effective_date\": \"<dateTime>\",\n  \"element_amount\": \"<double>\",\n  \"element_string\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca34778c-e79a-4403-bde6-9efbd0019cda",
+              "name": "POST /custom/silae/employees/:employee_id/payroll-supplements Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "silae",
+                    "employees",
+                    ":employee_id",
+                    "payroll-supplements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "silae:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplement_code\": \"200\",\n  \"effective_date\": \"2024-01-14\",\n  \"element_amount\": 6\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {},\n  \"warnings\": [\n    {\n      \"message\": \"string\"\n    },\n    {\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54eb3b4e-8487-48ce-b7c3-55eea1b2bc8b",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom",
+                    "silae",
+                    "employees",
+                    ":employee_id",
+                    "payroll-supplements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "employee_id",
+                      "description": "(Required) ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "silae:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplement_code\": \"200\",\n  \"effective_date\": \"2024-01-14\",\n  \"element_amount\": 6\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kombo.dev/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d35b38ce-8f27-4b35-9d5a-eb1b1bd4b04f",
+    "name": "Kombo AI Apply Custom Endpoints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Endpoints for AI-powered job application features.",
+      "type": "text/plain"
+    }
+  }
+}

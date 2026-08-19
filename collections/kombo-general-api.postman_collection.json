@@ -1,0 +1,2334 @@
+{
+  "item": [
+    {
+      "id": "8eb30ca9-a4e9-40da-806c-afe2c67033dd",
+      "name": "General",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ccc35633-07c8-4c2e-a9c8-25778cc392fd",
+          "name": "Check API key",
+          "request": {
+            "name": "Check API key",
+            "description": {
+              "content": "Check whether your API key is working properly.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "check-api-key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55d08a07-0b3d-437a-99d1-8454c03b2379",
+              "name": "GET /check-api-key Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "check-api-key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"environment_id\": \"2Uev1YUTqLFdvMPD3Jtrg2FX\",\n    \"customer_id\": \"2Uev1YUTqLFdvMPD3Jtrg2FX\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39d142ef-e074-4b2f-973d-6dfe717afccb",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "check-api-key"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f6aa916-4c1f-4a6e-ba4a-54c91d8e0ab6",
+          "name": "Trigger sync",
+          "request": {
+            "name": "Trigger sync",
+            "description": {
+              "content": "Trigger a sync for a specific integration.\n\n<Warning>Please note that it is **not** necessary nor recommended to call this endpoint periodically on your side. Kombo already performs periodic syncs for you and you should only trigger syncs yourself in special cases (like when a user clicks on a \"Sync\" button in your app).</Warning>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "force-sync"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"FULL\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "00b38c2a-f60e-41d6-9585-e3031ead9047",
+              "name": "POST /force-sync Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "force-sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "workday:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"FULL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"already_queued\": false,\n    \"sync_id\": \"119ihtp91nA3dqRFiV67nXS6\",\n    \"type\": \"DELTA\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44572ca7-4f7e-466f-a5a5-90f66b092825",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "force-sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "workday:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"FULL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f9bac3d-daaa-449d-991a-b123c0c1f793",
+          "name": "Send passthrough request",
+          "request": {
+            "name": "Send passthrough request",
+            "description": {
+              "content": "Send a request to the specified integration's native API.\n\nAt Kombo we put a lot of work into making sure that our unified API covers all our customers' use cases and that they never have to think about integration-specific logic again. There are cases, however, where our customers want to build features that are very integration-specific. That's where this endpoint comes in.\n\nPass in details about the request you want to make to the integration's API and we'll forward it for you. We'll also take care of setting the right base URL and authenticating your requests.\n\nTo get started, please pick the relevant API (some tools provide multiple to due different base URLs or authentication schemes) from the table below and pass in the `{tool}/{api}` identifier as part of the path.\n\n|Integration|`{tool}/{api}`|Description|\n|---|---|---|\n|360Learning|`360learning/v2`|360Learning [API v2](https://360learning.readme.io/docs). We automatically handle authentication and use `https://app.360learning.com/api/v2/` as the base URL.|\n|a3innuva Nómina|`a3innuvanomina/laboral`|a3innuva Nómina API [docs](https://a3developers.wolterskluwer.es/). Requests are automatically authenticated using OAuth access tokens (refreshed when needed). Base URL: `https://a3api.wolterskluwer.es/Laboral/api`.|\n|Abacus Umantis|`abacusumantis/v1`|[Umantis API v1](https://recruitingapp-91005709.umantis.com/api/v1/swagger-ui). We automatically authenticate all requests and use `https://\\{subdomain\\}.umantis.com/api/v1` as the base URL.|\n|Abacus|`abacus/api`|Abacus [REST API](https://apihub.abacus.ch/). We automatically authenticate all requests and use `https://\\{\\{abacusUrl\\}\\}/api/entity/v1/mandants/\\{\\{mandantId\\}\\}` as the base URL.|\n|Absence.io|`absenceio/v2`|Absence.io [API](https://docs.absence.io/). We automatically authenticate all requests and use `https://app.absence.io/api/v2` as the base URL.|\n|ADP Workforce Now|`adpworkforcenow/default`|[ADP Workforce Now API v2](https://developers.adp.com/build/api-explorer/hcm-offrg-wfn). We automatically authenticate all requests and use the correct subdomain.|\n|AFAS Software|`afas/api`|AFAS' [API](https://connect.afas.nl/rest/get). We automatically authenticate all requests and use `https://\\{domain\\}/ProfitRestServices` as the base URL.|\n|AlexisHR|`alexishr/v1`|[AlexisHR's v1 API](https://docs.alexishr.com/) We automatically authenticate all requests and use `https://\\{subdomain\\}.alexishr.com` as base URL.|\n|ApplicantStack|`applicantstack/api`|ApplicantStack's [API](https://helpas.payrollservers.info/s/article/API-Integration-Guide). We automatically authenticate all requests and use `https://\\{subdomain\\}.applicantstack.com/api/` as the base URL.|\n|Apploi|`apploi/rest-api`|The [Apploi API](https://integrate.apploi.com/). We automatically authenticate all requests and use `https://partners.apploi.com/` as the base URL.|\n|Ashby|`ashby/v1`|Ashby's [V1 API](https://developers.ashbyhq.com/reference/introduction). We automatically authenticate all requests with the provided credentials and use `https://api.ashbyhq.com` as the base URL. Please note that Ashby uses an RPC-style API. Please check [the Ashby API documentation](https://developers.ashbyhq.com/reference/introduction) for details on how to use it.|\n|Asymbl|`asymbl/v63`|We use `https://\\{subdomain\\}.my.salesforce.com` as the base URL. Find the official docs [here](https://asymblinc.github.io/ats/ats.html).|\n|Avature|`avature/custom-api`|Avatures's Custom API. Call `Get /openapi` to retrieve the specific custom API schema. We automatically authenticate all requests and use the instance specific custom API URL as the base URL.|\n|Avionté|`avionte/front-office-v1`|Avionte's API. We automatically authenticate all requests and use `https://api.avionte.com/front-office/v1` as the base URL. Documentation for the BOLD Front Office API: https://developer.avionte.com/reference/get-all-talent-tags|\n|BambooHR|`bamboohr/v1`|BambooHR's [API](https://documentation.bamboohr.com/reference/get-employee). We automatically authenticate all requests using the customer credentials `https://api.bamboohr.com/api/gateway.php/\\{subdomain\\}/v1` as the base URL.|\n|BITE|`bite/v1`|[Bite's v1 API](https://api.b-ite.io/docs/#/). We automatically authenticate all requests and use 'https://api.b-ite.io/v1' as base URL.|\n|BoondManager|`boondmanager/api`|BoondManager [REST API](https://ui.boondmanager.com/administrator/developer/apisandbox). We automatically authenticate all requests and use `https://ui.boondmanager.com/api` as the base URL.|\n|Breezy HR|`breezyhr/v3`|[BreezyHR's v3 API](https://developer.breezy.hr/reference/overview). We automatically authenticate all requests and use \"https://api.breezy.hr/v3/\" as the base URL.|\n|Bullhorn|`bullhorn/default`|[Bullhorn's API](https://bullhorn.github.io/rest-api-docs/index.html). We automatically use the right `https://rest.bullhornstaffing.com/rest-services/\\{corpToken\\}` base URL.|\n|CareerPlug|`careerplug/api`|We use `https://api.careerplug.com` as the base URL. Find the official docs [here](https://api.careerplug.com/docs#api).|\n|Carerix|`carerix/api`|Carerix [REST API](https://docs.carerix.io/rest/introduction). We automatically authenticate all requests and use `https://api.carerix.com` as the base URL. Please note that Carerix uses XML for request and response bodies.|\n|CEGID TalentSoft Customer|`talentsoftcustomer/v1`|Cegid Talentsoft Recruiting FrontOffice API: [API Documentation](https://developers.cegid.com/api-details#api=cegid-talentsoft-recruiting-frontoffice) We automatically authenticate all requests and use `https://\\{customer_subdomain\\}.talent-soft.com/api/v1` as the base URL.|\n|CEGID TalentSoft FrontOffice|`talentsoft/v2`|Cegid Talentsoft Recruiting FrontOffice [API](https://developers.cegid.com/api-details). We automatically authenticate all requests using the provided credentials and use `https://\\{domain\\}/api/v2` as the base URL.|\n|Ceipal|`ceipal/v1`|We use `https://api.ceipal.com/v1` as the base URL. Find the official docs [here](https://developer.ceipal.com/ceipal-ats-version-one/ceipal-ats-v1-api-reference).|\n|Cezanne HR|`cezannehr/dataservice`|[CezanneHR's v7 dataservice API](https://api.cezannehr.com/).We automatically authenticate all requests and use the base URL `https://subdomain.cezanneondemand.com/cezanneondemand/v7/dataservice.svc`|\n|Compleet|`compleetpitcher/pitcher`|Compleet's Pitcher API. We automatically authenticate all requests and use the configured base URL.|\n|Connexys By Bullhorn|`connexys/api`|[Connexy's API](https://api.conexsys.com/client/v2/docs/#section/Overview). We automatically authenticate all requests and use `https://\\{connexys_domain\\}/` as the base URL.|\n|Cornerstone OnDemand|`cornerstoneondemand/learning`|Cornerstone's [Learning API](https://csod.dev/reference/learning/). We automatically authenticate all requests using the client ID and secret and use `https://\\{your_domain\\}.csod.com/services/api` as the base URL.|\n|Cornerstone OnDemand|`cornerstoneondemand/recruiting`|Cornerstone's [Recruiting API](https://csod.dev/reference/recruiting/). We automatically authenticate all requests using the client ID and secret and use `https://\\{your_domain\\}.csod.com/services/api` as the base URL.|\n|Cornerstone TalentLink|`cornerstonetalentlink/apply`|Cornerstone TalentLink's Apply API. We automatically authenticate all requests using the provided credentials and API key, and use `https://apiproxy.shared.lumessetalentlink.com/apply` as the base URL.|\n|Cornerstone TalentLink|`cornerstonetalentlink/rest`|Cornerstone TalentLink's [REST API](https://developer.lumesse-talenthub.com/rest-api-developers-guide/1.21.33/index.html?page=rest-api&subpage=introduction). We automatically authenticate all requests using the provided credentials and API key, and use `https://apiproxy.shared.lumessetalentlink.com/tlk/rest` as the base URL.|\n|Coveto (legacy SOAP API)|`coveto/public`|We automatically use `https://\\{subdomain\\}.coveto.de` as the base URL.|\n|Coveto (REST API)|`covetorest/v1`|We automatically use `https://\\{subdomain\\}.coveto.de/public/api/v1` as the base URL. https://demo.coveto.de/swagger-ui/index.html#/|\n|Crelate|`crelate/api`|Crelate [REST API](https://app.crelate.com/api3/docs/index.html). We automatically authenticate all requests and use `https://app.crelate.com/api3` as the base URL.|\n|d.vinci admin|`dvinciadmin/odata-api`|[DVinci ODATA API](https://dvinci.freshdesk.com/en/support/solutions/articles/75000059523-odata-reporting-api).|\n|d.vinci admin|`dvinciadmin/rest-api`|[DVinci REST API](https://static.dvinci-easy.com/files/d.vinci%20rest-api.html).|\n|d.vinci|`dvinci/apply-api`|The [DVinci Apply API](https://static.dvinci-easy.com/files/d.vinci%20application-apply-api.html). All requests are authenticated by Kombo and use `https://\\{dvinci_domain\\}/p/\\{portal_path\\}/` as the base URL.|\n|d.vinci|`dvinci/rest-api`|The [DVinci REST API](https://static.dvinci-easy.com/files/d.vinci%20rest-api.html). All requests are authenticated by Kombo and use `https://\\{dvinci_domain\\}/restApi/` as the base URL.|\n|DATEV LAUDS|`datevlauds/lauds`|DATEV's [hr-exchange](https://developer.datev.de/de/product-detail/hr-exchange/1.0.0/overview). We automatically authenticate all requests and use `https://hr-exchange.api.datev.de/\\{platform|platform-sandbox\\}/v1/clients/\\{client-id\\}` as the base URL.|\n|DATEV LODAS|`datev/eau`|DATEV's [eau](https://developer.datev.de/en/product-detail/eau-api/1.0.0/overview) API. We automatically authenticate all requests and use `https://eau.api.datev.de/\\{platform|platform-sandbox\\}/v1/clients/\\{client-id\\}/` as the base URL.|\n|DATEV|`datevhr/eau`|DATEV's [eau](https://developer.datev.de/en/product-detail/eau-api/1.0.0/overview) API. We automatically authenticate all requests and use `https://eau.api.datev.de/\\{platform|platform-sandbox\\}/v1/clients/\\{client-id\\}/` as the base URL.|\n|DATEV|`datevhr/hr-exports`|DATEV's [hr-exports](https://developer.datev.de/en/product-detail/hr-exports/1.0.0/overview). We automatically authenticate all requests and use `https://hr-exports.api.datev.de/\\{platform|platform-sandbox\\}/v1/clients/\\{client-id\\}` as the base URL.|\n|DATEV|`datevhr/hr:payrollreports`|DATEV's [hr:payrollreports](https://developer.datev.de/en/product-detail/hr-payrollreports/2.0.0/overview) API. We automatically authenticate all requests and use `https://hr-payrollreports.api.datev.de/\\{platform|platform-sandbox\\}/v1/clients/\\{client-id\\}/` as the base URL.|\n|Dayforce|`dayforce/V1`|[Dayforce's API](https://developers.dayforce.com/Build/Home.aspx). We automatically authenticate all requests and use `\\{\\{baseUrl\\}\\}/Api/\\{\\{clientNamespace\\}\\}/V1` as the base URL|\n|Deel|`deel/api`|Deel's [API](https://developer.deel.com/reference/). We automatically authenticate all requests using the provided credentials and use `https://\\{api_domain\\}/rest` as the base URL.|\n|Digital Recruiters|`digitalrecruiters/api`|Cegid Digital Recruiters [Talent Acquisition API](https://cegid-hr-developers.talentsoft.net/docs/tutorial-basics/Talent%20Acquisition/Getting%20Started). We automatically authenticate all requests by replacing `:token` in the request URL with your configured access token and use your configured Digital Recruiters domain as the base URL.|\n|Eightfold|`eightfold/api`|Eightfold's [API](https://apidocs.eightfold.ai/). We automatically authenticate all requests and use  `https://apiv2.\\{region\\}/api/v2/core/` as the base URL.|\n|Employment Hero|`employmenthero/default`|EmploymentHero [API](https://developer.employmenthero.com/api-references/#icon-book-open-introduction). We automatically authenticate all requests using the credentials supplied by the customer and use `https://api.employmenthero.com/api` as the base URL.|\n|Eploy|`eploy/api`|Eploy's [API](https://www.eploy.com/resources/developers/api-documentation/). We automatically authenticate all requests. The base URL is `https://\\{hostname\\}/api`, where `\\{hostname\\}` is either `\\{subdomain\\}.eploy.net` or your full custom hostname when applicable.|\n|eRecruiter|`erecruiter/api`|[eRecruiter's API](https://api.erecruiter.net/swagger/ui/index). We automatically authenticate all requests and use `https://\\{domain\\}/Api` as the base URL.|\n|Eurécia|`eurecia/api`|Eurécia [REST API](https://api.eurecia.com/eurecia/fw/swagger/index.html#/) We automatically authenticate all requests and use `https://\\{domain\\}/eurecia/rest` as the base URL.|\n|Factorial|`factorial/api`|Factorial's [API](https://apidoc.factorialhr.com/). We automatically authenticate all requests and use `https://api.factorialhr.com/api` or `https://api.demo.factorial.dev/api` as the base URL, depending on the connected instance.|\n|Flatchr|`flatchr/api`|Flatchr's [API](https://developers.flatchr.io/docs/getting_started). We automatically authenticate all requests and use `https://api.flatchr.io` as the base URL.|\n|Flatchr|`flatchr/career`|Flatchr's [Career API](https://developers.flatchr.io/docs/QuickStart/Candidats/Creer_un_candidat). We automatically authenticate all requests and use `https://career.flatchr.io` as the base URL.|\n|Fountain|`fountain/v2`|Fountain's [Hire API](https://developer.fountain.com/reference/get_v2-applicants). We automatically authenticate all requests and use `https://api.fountain.com/v2` as the base URL.|\n|Fourth|`fourth/uk-employee`|Fourth [UK Employee API](https://developer.fourth.com/en-gb/docs/uk-employee-api/reference) We automatically authenticate all requests and use `https://api.fourth.com/hr/organisations/\\{organisation_id\\}/` as the base URL. We also enforce the required query params for all requests.|\n|Gem|`gem/api`|Gem's [ATS API](https://api.gem.com/ats/v0/reference) We automatically authenticate all requests.|\n|Google Workspace|`googleworkspace/admin`|[Googles's API](https://developers.google.com/admin-sdk/directory/reference/rest). We automatically authenticate all requests and use 'https://admin.googleapis.com' as the base URL.|\n|Google Workspace|`googleworkspace/people`|[Googles's API](https://developers.google.com/people/api/rest). We automatically authenticate all requests and use 'https://people.googleapis.com' as the base URL.|\n|Greenhouse Job Board|`greenhousejobboard/boards-api`|[Greenhouse Job Board API](https://developers.greenhouse.io/job-board). We automatically authenticate all requests and use 'https://boards-api.greenhouse.io/v1/boards/\\{job_board_token\\}' as the base URL. Optionally, you can provide a custom job_board_token to use a different job board.|\n|Greenhouse|`greenhouse/harvest-v2`|Greenhouse [Harvest API v2](https://developers.greenhouse.io/harvest.html). We automatically authenticate all requests using the API key and use `https://harvest.greenhouse.io/v2` as the base URL.|\n|Greenhouse|`greenhouse/harvest`|Greenhouse [Harvest API v1](https://developers.greenhouse.io/harvest.html). We automatically authenticate all requests using the API key and use `https://harvest.greenhouse.io/v1` as the base URL.|\n|GuideCom|`guidecom/api`|GuideCom's API. We automatically authenticate all requests and use the configured API base URL.|\n|Gusto|`gusto/v1`|[Gusto API](https://docs.gusto.com/app-integrations/docs/introduction). We automatically authenticate all requests with OAuth and use `\\{api_base_url\\}/v1` as the base URL (`https://api.gusto.com/v1` in production, `https://api.gusto-demo.com/v1` in development).|\n|Hailey HR|`haileyhr/api`|Hailey HR's [API](https://api.haileyhr.app/docs/index.html). We automatically authenticate all requests using the provided credentials and use `https://api.haileyhr.app` as the base URL. Connections created against the `DEMO` remote environment are routed to `https://api.demo.haileyhr.app` instead.|\n|Hansalog|`hansalog/vision`|Hansalog's [Vision API](https://hansalog-vision.document360.io/docs/). We automatically authenticate all requests and use `https://\\{subdomain\\}.hansalog-cloud.de/vision` as the base URL.|\n|Haufe Umantis|`umantis/v1`|[Umantis API v1](https://recruitingapp-91005709.umantis.com/api/v1/swagger-ui). We automatically authenticate all requests and use `https://\\{subdomain\\}.umantis.com/api/v1` as the base URL.|\n|HeavenHR|`heavenhr/v2`|[HeavenHR API](https://api.heavenhr.com/). We automatically authenticate all requests using the provided credentials and use `https://api.heavenhr.com/api/v2` as the base URL.|\n|Heyrecruit|`heyrecruit/v2`|[Heyrecruit's v2 API](https://documenter.getpostman.com/view/23241256/2s9YysBLcf#47e271ac-47c8-4c75-9cc6-b8c506e9dad6). We automatically authenticate all requests using the client ID and secret and use `https://app.heyrecruit.de/api/v2` as the base URL.|\n|HiBob|`hibob/docs`|This passthrough is only used for fetching employee documents in HiBob. It is present as a workaround while we are working on a new endpoint for fetching documents in HRIS. It should not be used for any other purpose. We automatically authenticate all requests using the service user credentials and use `https://app.hibob.com/api/docs/employees/` as the base URL.|\n|HiBob|`hibob/hire`|[HiBob's Hire API](https://apidocs.hibob.com/docs/how-to-integrate-with-ats-hire-api). We automatically authenticate all requests using the hire service user credentials. The base URL is configured during the integration setup.|\n|HiBob|`hibob/v1`|[HiBob's v1 API](https://apidocs.hibob.com/reference/get_people). We automatically authenticate all requests using the service user credentials (or, for old integrations, the API key) and use `https://api.hibob.com/v1` as the base URL.|\n|HoorayHR|`hoorayhr/api`|[HoorayHR API](https://api.hoorayhr.io/documentation/). We automatically authenticate all requests and use `https://api.hoorayhr.io` as the base URL.|\n|HR Office|`hroffice/soap`|[HROffice SOAP API](https://api.hroffice.nl/HROfficeCoreService.asmx). We automatically authenticate all requests and wrap them in a SOAP envelope. Build the request `Body` with the raw XML parameters for your operation (e.g., `\\<languageId\\>1\\</languageId\\>`). Use `/` as your `path`. Set your `method` to `POST`. You need to specify the `api_options` object and set `operation_name` to the SOAP operation you want to call (e.g., `GetAllJobByLanguage`).|\n|HR WORKS|`hrworks/v2`|HRWorks's v2 [API](https://developers.hrworks.de/2.0/endpoints). We automatically authenticate all requests using the customer credentials.|\n|HR4YOU|`hr4you/v2`|[HR4YOU's v2 API](https://apiprodemo.hr4you.org/api2/docs). We automatically authenticate all requests and use the customers provided base URL (e.g., https://`\\{base_url\\}`/ or https://`\\{subdomain\\}.hr4you.org`/).|\n|Humaans|`humaans/api`|Humaans' [API](https://docs.humaans.io/api/). We automatically authenticate all requests using the API key and use `https://app.humaans.io/api` as the base URL.|\n|iCIMS|`icims/default`|[iCIMS Default API](https://developer-community.icims.com/). We automatically authenticate all requests and use `https://api.icims.com/customers/\\{customer_id\\}` as the base url.|\n|InRecruiting by Zucchetti|`inrecruiting/default`|[inRecruiting's v3 API](https://inrecruiting.intervieweb.it/api-docs/). We automatically authenticate all requests and use the customers domain as base URL|\n|Insperity|`insperity/api`|Insperity [APIs](https://developer.insperity.com/) We automatically authenticate all requests and use `https://api.insperity.com` as the base URL. For staging environments, we use `https://apistage.insperity.com`. Note that all requests require the company ID to be specified in the path or body.|\n|IRIS Cascade|`iriscascade/v2`|IRIS Cascade HR [API](https://swagger.hrapi.co.uk/). We automatically authenticate all requests using the provided credentials and use `https://api.iris.co.uk/hr/v2` as the base URL.|\n|JazzHR|`jazzhr/v1`|[JazzHR's v1 API](https://www.resumatorapi.com/v1/#!`).We automatically authenticate all requests and use \"https://api.resumatorapi.com/v1/\" as the base URL.|\n|JobDiva|`jobdiva/api`|We automatically authenticate all requests and use `https://api.jobdiva.com` as the base URL.|\n|Jobvite|`jobvite/api`|We automatically authenticate all requests and use 'https://api.jobvite.com/api/v2' as the base URL.|\n|Jobvite|`jobvite/v2`|We use `https://api.jobvite.com/api/v2` as the base URL. Find the official docs [here](https://help.jobvite.com/hc/en-us/articles/8870636608925-Jobvite-API).|\n|Jobylon|`jobylon/feed`|The [Jobylon Feed API](https://developer.jobylon.com/feed-api/). We automatically authenticate all requests and use `https://\\{subdomain\\}.jobylon.com/feeds/\\{job_hash\\}` as the base URL.|\n|Jobylon|`jobylon/push`|The [Jobylon Push API](https://developer.jobylon.com/push-api-and-webhooks/). We automatically authenticate all requests and use `https://\\{subdomain\\}.jobylon.com/p1` as the base URL.|\n|JOIN|`join/v2`|Join's [V2 API](https://docs.join.com/reference/getting-started). We automatically authenticate all requests and use `https://api.join.com/v2` as the base URL.|\n|Kenjo|`kenjo/api`|Kenjo's [API](https://kenjo.readme.io/reference/generate-the-api-key). We automatically authenticate all requests using the API key and use `https://api.kenjo.io/` as the base URL.|\n|Kula|`kula/v1`|Kula's [REST API](https://developers.kula.ai/docs/getting-started/overview). We automatically authenticate all requests with the provided credentials and use `https://api.kula.ai/v1` as the base URL.|\n|Lattice Talent|`latticetalent/talent`|Lattice's [Talent API](https://developers.lattice.com/reference/introduction). We automatically authenticate all requests using API key credentials with `https://api.latticehq.com` as the base URL.|\n|Lattice|`lattice/passthrough`|Lattice's [API](https://developers.lattice.com/v2/docs/base-url-1). We automatically authenticate all requests using OAuth credentials with `https://api.latticehq.com` as the base URL.|\n|Lattice|`lattice/talent`|Lattice's [Talent API](https://developers.lattice.com/docs/introduction-1). We automatically authenticate all requests using OAuth credentials with `https://api.latticehq.com` as the base URL.|\n|Laura|`laura/api`|We automatically authenticate all requests and use `https://\\{subdomain\\}.rekrytointi.com/api/v1.2` as the base URL.|\n|Leapsome|`leapsome/scim`|Leapsome [SCIM API](https://api.leapsome.com/scim/v1/api-docs/). We automatically authenticate all requests using the credentials supplied by the customer and use `https://api.leapsome.com/scim/v1` as the base URL.|\n|Leapsome|`leapsome/v1`|Leapsome [API](https://api.leapsome.com/v1/api-docs/). We automatically authenticate all requests using the credentials supplied by the customer and use `https://api.leapsome.com/v1` as the base URL.|\n|Lever|`lever/v1`|[Lever's v1 API](https://hire.lever.co/developer/documentation). We automatically authenticate all requests using the partner credentials which have been configured in the Lever tool settings (this uses Kombo's partner credentials by default).|\n|LinkedIn Learning|`linkedinlearning/v2`|LinkedIn Learning [API v2](https://learn.microsoft.com/en-us/linkedin/learning/). We automatically handle authentication and use `https://api.linkedin.com/v2` as the base URL.|\n|Loket|`loket/api`|[Loket's REST API](https://developers.loket.nl/). We automatically authenticate all requests and use `https://\\{api_domain\\}` as the base URL, where `api_domain` is the API domain configured during integration setup (e.g. `api.loket.nl`).|\n|Loxo|`loxo/v1`|[Loxo's API](https://loxo.readme.io/reference/loxo-api). We automatically authenticate all requests and use 'https://app.loxo.co/api/\\{agency_slug\\}' as base URL.|\n|Lucca|`lucca/api`|[Luccas's API](https://developers.lucca.fr/api-reference/legacy/introduction). We automatically authenticate all requests and use 'https://\\{account\\}.\\{ilucca|ilucca-demo\\}.\\{region\\}/' as the base URL.|\n|Manatal|`manatal/career-page`|Manatal's Career Page API. We use `https://api.manatal.com/open/v3/career-page/\\{client_slug\\}` as the base URL.|\n|Manatal|`manatal/open-api-v3`|[Manatal's Open API v3](https://developers.manatal.com/reference/getting-started). We automatically authenticate all requests and use `https://api.manatal.com/open/v3` as the base URL.|\n|Mercury|`mercury/v1`|Mercury's [V1 API](https://apim-uks-thirdpartyintegration-prod.azure-api.net/swagger/index.html?urls.primaryName=V1). We automatically authenticate all requests with the `subscription-key` and `tenant-id` headers and use the configured server URL with `/api/v1` as the base URL.|\n|Mercury|`mercury/v2`|Mercury's [V2 API](https://apim-uks-thirdpartyintegration-prod.azure-api.net/swagger/index.html?urls.primaryName=V2). We automatically authenticate all requests with the `subscription-key` and `tenant-id` headers and use the configured server URL with `/api/v2` as the base URL.|\n|Mercury|`mercury/v3`|Mercury's [V3 API](https://apim-uks-thirdpartyintegration-prod.azure-api.net/swagger/index.html?urls.primaryName=V3). We automatically authenticate all requests with the `subscription-key` and `tenant-id` headers and use the configured server URL with `/api/v3` as the base URL.|\n|MHR People First|`peoplefirst/v1`|MHR People First [v1 API](https://docs.people-first.com/api/api-docs/api-docs.html). We automatically authenticate all requests using the access token and tenant/environment codes. For default environments, we use `https://\\{tenant_code\\}.people-first.com/api/v1` as the base URL. For non-default environments, we use `https://\\{tenant_code\\}-\\{environment_code\\}.people-first.com/api/v1`.|\n|Microsoft Azure AD|`azuread/v1`|[AzureAD's API](https://learn.microsoft.com/en-us/graph/api/resources/identity-network-access-overview?view=graph-rest-1.0). We automatically authenticate all requests.|\n|Microsoft Entra ID|`entraid/v1`|[AzureAD's API](https://learn.microsoft.com/en-us/graph/api/resources/identity-network-access-overview?view=graph-rest-1.0). We automatically authenticate all requests.|\n|Moodle|`moodle/rest`|Moodle REST Web Services API. All calls go to `/webservice/rest/server.php` with `wsfunction` and `wstoken` parameters. We automatically handle authentication and use `\\{site_url\\}/webservice/rest/server.php` as the base URL. |\n|Mysolution|`mysolution/default`|[Mysolution's API](https://swagger.mysolution.nl/). We automatically authenticate all requests and use the customer's domain as base URL.|\n|Nmbrs|`nmbrs/soap`|[Nmbrs SOAP API](https://api.nmbrs.nl/soap/v3/). We automatically authenticate all requests and use `https://api.nmbrs.nl/soap/v3/` as the base URL. Set `data` to your raw XML string (the content that will be placed inside the `\\<soap:Body\\>` tag). Use `/` as your `path`, as we will always send requests to `https://api.nmbrs.nl/soap/v3/\\{service_name\\}.asmx`. Set your `method` to `POST`. You need to specify the `api_options` object and set `service_name` to the name of the service you want to call. Available services include `EmployeeService` and `CompanyService`.|\n|Odoo|`odoo/json2`|Odoo's [JSON-2 API](https://www.odoo.com/documentation/19.0/developer/reference/external_api.html). We automatically authenticate all requests and use `https://\\{domain\\}.odoo.com/json/2` as the base URL. Odoo JSON-2 requests are always `POST` requests and use paths like `/\\{model\\}/\\{method\\}` (e.g. `/res.partner/search_read`).|\n|Okta|`okta/v1`|[Okta's API](https://developer.okta.com/docs/api/openapi/okta-management/management/tag/ApiServiceIntegrations/). We automatically authenticate all request ans use 'https://\\<your-okta-domain\\>/api/v1' as the base URL.|\n|Onlyfy|`onlyfy/v1`|Onlyfy's [Public v1 REST API](https://onlyfy.io/doc/v1#section/Introduction). We automatically authenticate all requests using the `apikey` header and use `https://api.prescreenapp.io/v1` as the base URL.|\n|Oracle HCM|`oraclehcm/api`|Oracle HCM Cloud [REST API](https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/index.html). We automatically authenticate all requests and use `https://\\{domain\\}/` as the base URL, where domain is your Oracle Cloud domain.|\n|Oracle Recruiting Cloud|`oraclerecruiting/rest`|[Oracle's REST API](https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/rest-endpoints.html). We automatically authenticate all requests and use 'https://\\{company_url\\}' as the base url.|\n|Oracle Recruiting Cloud|`oraclerecruiting/rest`|[Oracles's REST API](https://docs.oracle.com/en/cloud/saas/human-resources/24d/farws/rest-endpoints.html). We automatically authenticate all requests and use 'https://\\{company_url\\}' as the base url.|\n|Oracle Taleo|`taleo/soap`|[Taleo's API](https://docs.oracle.com/en/cloud/saas/taleo-enterprise/23b/otwsu/c-taleoapi.html). We automatically authenticate all requests and use 'https://\\{your-subdomain\\}.taleo.net/enterprise/soap' as base URL.|\n|OTYS|`otys/json-rpc`|[OTYS JSON-RPC API](https://ows.otys.nl/info/). We authenticate with your stored API key and inject the session token as the first element of the JSON-RPC `params` array on each request (except `loginByUid`, which uses `params` as sent). Requests use `https://ows.otys.nl` as the base URL (for example `POST /jservice.php` with the RPC method in the URL fragment, matching OTYS conventions).|\n|Paradox|`paradox/v1`|We use `\\{api_url\\}/api/v1` as the base URL. Find the official docs [here](https://paradox.readme.io/).|\n|Paradox|`paradox/v1public`|We use `\\{api_url\\}/api/v1/public` as the base URL. Find the official docs [here](https://paradox.readme.io/).|\n|Paychex|`paychex/api`|Paychex [REST API](https://developer.paychex.com/documentation). We automatically authenticate all requests and use `https://api.paychex.com` as the base URL.|\n|Paycom|`paycom/v1`|Paycom's REST API. We automatically authenticate all requests using the provided SID and API Token and use `https://api.paycomonline.net/v4/rest/index.php/api/v1` as the base URL.|\n|Paycor|`paycor/v1`|[Paycors's v1 API](https://developers.paycor.com/explore#section/Getting-Started). We automatically authenticate all requests and use 'https://apis.paycor.com'.|\n|PayFit|`payfitcustomer/api`|PayFit [Partner API](https://developers.payfit.io/reference). We automatically authenticate all requests using the provided API key and use `https://partner-api.payfit.com` as the base URL.|\n|PayFit|`payfitpartner/partner-api`|PayFit [Partner API](https://developers.payfit.io/reference). We automatically authenticate all requests using the OAuth access token and use `https://partner-api.payfit.com` as the base URL.|\n|Paylocity|`paylocity/default`|[Paylocity's Weblink API](https://developer.paylocity.com/integrations/reference/authentication-weblink). We automatically authenticate all requests and use 'https://\\{api|dc1demogw\\}.paylocity.com/' as the base URL.|\n|Paylocity|`paylocity/next-gen`|[Paylocity's NextGen API](https://developer.paylocity.com/integrations/reference/authentication). We automatically authenticate all requests and use 'https://dc1prodgwext.paylocity.com/' as the base URL.|\n|PeopleHR|`peoplehr/default`|[PeopleHR's API](https://apidocs.peoplehr.com/#). We automatically authenticate all request ans use 'https://api.peoplehr.net' as the base URL.|\n|PeopleXD|`peoplexd/b2b`|PeopleXD's [B2B API](https://documenter.getpostman.com/view/3101638/TzeTHUDu#intro). We automatically authenticate all requests and use `https://api.corehr.com/ws/\\{tenant_id\\}/corehr` or `https://uatapi.corehr.com/ws/\\{tenant_id\\}/corehr` as the base URL.|\n|Personio|`personio/jobboard`|API endpoints exposed on Personio's public job board pages ([currently just the XML feed](https://developer.personio.de/reference/get_xml)). We automatically use the right `https://\\{company\\}.jobs.personio.de` base URL.|\n|Personio|`personio/personnel`|Personio's [Personnel Data API](https://developer.personio.de/reference/get_company-employees). We automatically authenticate all requests using the client ID and secret and use `https://api.personio.de/v1` as the base URL.|\n|Personio|`personio/personnelv2`|Personio's [V2 Personnel Data API](https://developer.personio.de/v2.0/reference/introduction). We automatically authenticate all requests using the client ID and secret and use `https://api.personio.de/v2` as the base URL.|\n|Personio|`personio/recruiting`|Personio's [Recruiting API](https://developer.personio.de/reference/get_company-employees). We automatically authenticate all requests using the Recruiting access token and use `https://api.personio.de/v1/recruiting` as the base URL.|\n|Personio|`personio/recruitingV2`|Personio's [V2 Recruiting API](https://developer.personio.de/reference/get_v2-recruiting-applications). We automatically authenticate all requests using the Recruiting access token, send the `Beta` header and use `https://api.personio.de/v2/recruiting` as the base URL.|\n|Phenom|`phenom/rest-api`|The [Phenom API](https://developer.phenom.com/). We automatically authenticate all requests and use `https://api-stg.phenompro.com` as the base URL.|\n|Pinpoint|`pinpoint/v1`|Pinpoint's [JSON:API](https://developers.pinpointhq.com/docs). We automatically authenticate all requests using the `X-API-KEY` header and use `https://\\{subdomain\\}.pinpointhq.com/api/v1` as the base URL.|\n|Planday|`planday/api`|Planday's [HR API v1.0](https://openapi.planday.com/api/hr?version=v1.0). We automatically authenticate all requests and use `https://openapi.planday.com` as the base URL.|\n|Recruit CRM|`recruitcrm/api`|We use `https://api.recruitcrm.io` as the base URL. Find the official docs [here](https://docs.recruitcrm.io/docs/rcrm-api-reference/ZG9jOjMyNzk0NA-getting-started).|\n|Recruitee|`recruitee/default`|The [Recruitee API](https://api.recruitee.com/docs/index.html). We automatically authenticate all requests and use `https://api.recruitee.com/c/\\{company_id\\}` as the base URL.|\n|Recruitee|`recruitee/v1`|We use `https://api.recruitee.com/c/\\{company_id\\}` as the base URL. Find the official docs [here](https://docs.recruitee.com/reference).|\n|RecruiterFlow|`recruiterflow/v1`|RecruiterFlow API [docs](https://docs.recruiterflow.com/). We automatically authenticate all requests using the RF-Api-Key header and use `https://api.recruiterflow.com` as the base URL.|\n|Remote|`remotecom/default`|Remote's [API](https://remote.com/resources/api/getting-started). We automatically authenticate all requests using provided credentials.|\n|rexx systems|`rexx/default`|Rexx's HRIS export API. There is only one endpoint: `Get /`|\n|Rippling|`rippling/api`|Rippling's [API](https://developer.rippling.com/documentation). We automatically authenticate all requests and use `https://api.rippling.com/platform/api` or`https://rest.ripplingapis.com` as the base URL.|\n|Sage HR|`sagehr/api`|Sage HR's [API](https://developer.sage.com/hr/reference/api-ref). We automatically authenticate all requests and use `https://\\{subdomain\\}.sage.hr/api` as the base URL.|\n|Sage People|`sagepeople/salesforce-rest-api`|Sage People is built on Salesforce's [API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm). We automatically authenticate all requests and use `https://\\{customer_name\\}.my.salesforce.com/` as the base URL.|\n|SAP SuccessFactors|`successfactors/lms-odata-v4`|We use `https://\\{api_domain\\}/learning/odatav4` as the base URL. Find the official docs [here](https://help.sap.com/docs/successfactors-learning/sap-successfactors-learning-odata-apis).|\n|SAP SuccessFactors|`successfactors/odata-v2`|[SuccessFactors' OData V2 API](https://help.sap.com/doc/74597e67f54d4f448252bad4c2b601c9/2211/en-US/SF_HCM_OData_API_REF_en.pdf). We automatically authenticate all requests and use `https://\\{api_domain\\}\\{path?\\}/odata/v2` as the base URL (the optional `\\{path\\}` is used when connecting via proxied/gateway domains).|\n|SD Worx|`sdworx/default`|SD Worx's [OData API](https://apistaging.cobra.sdworx.com/Resources). We automatically authenticate all requests using the client ID and secret and use `\\{api_url\\}` as the base URL.|\n|Silae|`silae/rest`|[Silae's REST API](https://silae-api.document360.io/docs). We automatically authenticate all requests and use 'https://payroll-api.silae.fr/payroll' as the base URL.|\n|Simployer|`simployer/v1`|[AlexisHR's v1 API](https://docs.alexishr.com/) We automatically authenticate all requests and use `https://\\{subdomain\\}.alexishr.com` as base URL.|\n|SmartRecruiters|`smartrecruiters/default`|Smartrecruiters [API](https://developers.smartrecruiters.com/reference/apply-api). We automatically authenticate all requests using OAuth and use `https://api.smartrecruiters.com` as the base URL.|\n|SmartRecruiters|`smartrecruiters/default`|Smartrecruiters [API](https://developers.smartrecruiters.com/reference/apply-api). We automatically authenticate all requests using the credentials supplied by the customer and use `https://api.smartrecruiters.com` as the base URL.|\n|Softgarden|`softgarden/apply-api`|[Softgarden's Apply API](https://dev.softgarden.de/apply-api/). We automatically authenticate all requests and use 'https://jobdb.softgarden.de/jobdb/public' as base URL.|\n|Softgarden|`softgarden/frontend-v3`|[Softgarden's Frontend API v3](https://dev.softgarden.de/frontend-v3/. We automatically authenticate all requests and use 'https://api.softgarden.io/api/rest' as base URL.|\n|Spark Hire Recruit|`comeet/api`|[Spark Hire Recruit's API.](https://developers.comeet.com/reference/recruiting-api-overview)We automatically authenticate all requests and use `https://api.comeet.com` as the base URL.|\n|Spott|`spott/protected`|The [Spott API](https://docs.gospott.com). We automatically authenticate all requests and use `https://api.gospott.com` as the base URL.|\n|Sympa|`sympa/api`|Sympa's [API](https://documenter.getpostman.com/view/33639379/2sA3kXG1vX#intro). We automatically authenticate all requests and use `https://api.sympahr.net/api/` as the base URL.|\n|Taleez|`taleez/0`|[Taleez's API](https://api.taleez.com/swagger-ui/index.html). We automatically authenticate all requests and use `https://api.taleez.com/0` as the base URL.|\n|Talention|`talention/v1`|Talention's API. We automatically authenticate all requests and use `https://\\{api_domain\\}/tms/\\{account_id\\}/external/api/1.0` as the base URL. Documentation is provided privately by Talention. Contact Kombo support for assistance with specific endpoints.|\n|TalentLMS|`talentlms/v2`|We use `https://\\{subdomain\\}.talentlms.com/api/v2` as the base URL.|\n|Teamtailor Job Boards|`teamtailorjobboards/direct-apply`|Teamtailor's [Job Board Direct Apply API](https://partner.teamtailor.com/job_boards/direct_apply/#direct-apply). We automatically authenticate all requests and use `https://5qbn6o9x4h.execute-api.eu-west-1.amazonaws.com/production` as the base URL. All requests are automatically signed with HMAC-SHA256 signature.|\n|Teamtailor|`teamtailor/v1`|We use `https://api.teamtailor.com/v1` as the base URL. Find the official docs [here](https://docs.teamtailor.com/).|\n|TRAFFIT|`traffit/v2`|Traffit's [v2 API](https://api.traffit.com). We authenticate all requests with the Traffit API key and use the base URL `https://yourdomain.traffit.com/api/integration/v2`.|\n|TriNet PEO|`trinetpeo/v1`|We use `https://api.trinet.com` as the base URL. Find the official docs [here](https://developers.trinet.com).|\n|Ubeeo|`ubeeo/api`|Ubeeo ATS API. We automatically authenticate all requests using OAuth client credentials and use `https://api.ats-platform.com` as the base URL (sandbox: `https://api.acc.ats-platform.com`).|\n|Udemy Business|`udemy/learning`|Udemy Business REST API. We automatically handle authentication and use `https://\\{account_name\\}.udemy.com/api-2.0/organizations/\\{account_id\\}/` as the base URL.|\n|UKG Pro WFM|`ukgprowfm/api`|UKG Pro WFM's [API](https://developer.ukg.com/wfm/reference/welcome-to-the-ukg-pro-workforce-management-api). We automatically authenticate all requests and use `https://\\{hostname\\}` as the base URL.|\n|UKG Pro|`ukgpro/default`|[UKG Pro's HRIS API](https://developer.ukg.com/hcm/reference/get_personnel-v1-person-details). We automatically authenticate all requests and use  `https://\\{hostname\\}` as the base URL.|\n|UKG Pro|`ukgpro/recruting`|[UKG Pro's Recruiting API](https://developer.ukg.com/hcm/reference/retrieveapplications). We automatically authenticate all requests and use  `https://\\{hostname\\}/talent/recruiting/v2/\\{tenantalias\\}/api` as the base URL.|\n|UKG Ready|`ukgready/api`|UKG Ready [API](https://secure.saashr.com/ta/docs/rest/public/). We automatically authenticate all requests using the provided credentials and use `https://\\{api_domain\\}` as the base URL.|\n|Visma Peple|`peple/hrm`|[Visma Payroll Reporting API](https://api.analytics1.hrm.visma.net/docs/openapi.html). We automatically authenticate all requests using the client credentials and use 'https://api.analytics1.hrm.visma.net' as the base URL.|\n|Visma Raet - Youforce|`youforce/v1.0`|[Youforce's basic v1.0 API](https://vr-api-integration.github.io/youforce-api-documentation/postman_collections.html). We automatically authenticate all requests and use 'https://api.youforce.com' as base URL.|\n|Visma YouServe|`youserve/learning`|Visma YouServe [Learning API](https://youserve-domain-api.github.io/SwaggerUI/learning.html). We automatically authenticate all requests using OAuth 2.0 with the provided credentials and use `https://api.youserve.nl/learning/v1.0` as the base URL.|\n|Workable|`workable/v1`|**Deprecated: Use `v3` instead.** Workable's [API](https://workable.readme.io/reference/generate-an-access-token). We automatically authenticate all requests using the client ID and secret and use `https://\\{subdomain\\}.\\{environment\\}.com/spi/v3` as the base URL.|\n|Workable|`workable/v3`|Workable's [API](https://workable.readme.io/reference/generate-an-access-token). We automatically authenticate all requests using the client ID and secret and use `https://\\{subdomain\\}.\\{environment\\}.com/spi/v3` as the base URL.|\n|Workday|`workday/rest`|[Workday's REST API](https://community.workday.com/sites/default/files/file-hosting/restapi/index.html). We automatically authenticate all requests and use the correct Workday REST base URL for your tenant. The base URL follows the format: https://\\{domain\\}/api/\\{service_name\\}/\\{version\\}/\\{tenant\\}. You can specify any valid REST endpoint and method. See the Workday REST API documentation for available endpoints. You must specify the `api_options` object and set `service_name` to the name of the service you want to call. You can also specify the `version` (e.g., \"v1\", \"v2\"); if omitted, it defaults to \"v1\".|\n|Workday|`workday/soap`|[Workday's SOAP API](https://community.workday.com/sites/default/files/file-hosting/productionapi/index.html). We automatically authenticate all requests. Set `data` to your raw xml string. Use `/` as your `path`, as we will always send requests to `https://\\{domain\\}/ccx/service/\\{tenant\\}/\\{service_name\\}`. Set your `method` to `POST`. You need to specify the `api_options` object and set `service_name` to the name of the service you want to call. Find all available services [here](https://community.workday.com/sites/default/files/file-hosting/productionapi/versions/v41.0/index.html). The string that you submit as `data` will be the content of the `soapenv:Body` tag in the request. You can set the `service_version` to any valid Workday service version (the default is `38.2`).|\n|workforce.com|`workforcecom/api`|Workforce.com [API](https://my.workforce.com/api/v2/documentation). We automatically authenticate all requests using the provided credentials and use `https://my.tanda.co` as the base URL.|\n|Zelt|`zelt/partner`|Zelt's [Partner API](https://go.zelt.app/apiv2/swagger). We automatically authenticate all requests using the connected OAuth credentials and use `https://go.zelt.app/apiv2/partner` as the base URL.|\n|Zoho Recruit|`zohorecruit/v2`|Zoho Recruit's [V2 API](https://www.zoho.com/recruit/developer-guide/apiv2/modules-api.html). We automatically authenticate all requests and use `https://recruit.\\{domain\\}/recruit/v2` as the base URL.|\n|Zvoove Recruit|`zvooverecruit/applicants`|[Zvoove Recruit's Applicants API](https://api.zvoove.com/docs/). We automatically authenticate all requests using the applicants API key and use 'https://\\{domain\\}/api/public' as base URL.|\n|Zvoove Recruit|`zvooverecruit/jobs`|[Zvoove Recruit's Jobs API](https://api.zvoove.com/docs/). We automatically authenticate all requests using the jobs API key and use 'https://\\{domain\\}/api/public' as base URL.|\n\n<Note>Please note that the passthrough API endpoints are only meant for edge cases. That's why we only expose them for new integrations after understanding a concrete customer use case. If you have such a use case in mind, please reach out to Kombo.</Note>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "passthrough",
+                ":tool",
+                ":api"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tool",
+                  "description": "(Required) The ID of the tool whose passthrough API you want to call (e.g., `personio`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "api",
+                  "description": "(Required) The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the integration you want to interact with.",
+                "key": "X-Integration-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"method\": \"<string>\",\n  \"path\": \"<string>\",\n  \"headers\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"params\": {\n    \"key_0\": \"<string>\"\n  },\n  \"data\": {},\n  \"response_as_base64\": \"<boolean>\",\n  \"multipart_form_data\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"api_options\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2cb9055-af6c-4a17-af01-53554dfd0f16",
+              "name": "POST /passthrough/:tool/:api Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passthrough",
+                    ":tool",
+                    ":api"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tool",
+                      "description": "(Required) The ID of the tool whose passthrough API you want to call (e.g., `personio`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api",
+                      "description": "(Required) The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "greenhouse:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"GET\",\n  \"path\": \"/company/employees\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"url\": \"https://api.personio.de/v1/company/employees\",\n    \"status\": 200,\n    \"headers\": {\n      \"content-type\": \"application/json\"\n    },\n    \"data\": {\n      \"success\": true,\n      \"data\": [\n        {\n          \"id\": 123,\n          \"first_name\": \"John\",\n          \"last_name\": \"Doe\"\n        }\n      ]\n    }\n  },\n  \"warnings\": [\n    {\n      \"message\": \"This is an example warning!\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "003f05e8-7fbf-4d93-9d84-652cbb809a7e",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passthrough",
+                    ":tool",
+                    ":api"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tool",
+                      "description": "(Required) The ID of the tool whose passthrough API you want to call (e.g., `personio`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "api",
+                      "description": "(Required) The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the integration you want to interact with.",
+                    "key": "X-Integration-Id",
+                    "value": "greenhouse:HWUTwvyx2wLoSUHphiWVrp28"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"GET\",\n  \"path\": \"/company/employees\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba762c8a-e269-40fc-9fcc-7b4dbdff3f82",
+          "name": "Delete integration",
+          "request": {
+            "name": "Delete integration",
+            "description": {
+              "content": "Delete the specified integration.\n**⚠️ This can not be undone!**",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integrations",
+                ":integration_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_id",
+                  "description": "(Required) DELETE /integrations/:integration_id Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45303054-f4d8-45bc-b1fe-1e2c43e7adc2",
+              "name": "DELETE /integrations/:integration_id Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) DELETE /integrations/:integration_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d52f974c-b760-49d3-a529-3e5bfb8c230e",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) DELETE /integrations/:integration_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff6a1a9c-14eb-4b7b-ab50-ebaf8cb6dba9",
+          "name": "Get integration details",
+          "request": {
+            "name": "Get integration details",
+            "description": {
+              "content": "Get the specified integration with everything you need to display it to your customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integrations",
+                ":integration_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_id",
+                  "description": "(Required) GET /integrations/:integration_id Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "919d8e52-54fb-4784-be18-cf51947c128a",
+              "name": "GET /integrations/:integration_id Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) GET /integrations/:integration_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"factorial:8d1hpPsbjxUkoCoa1veLZGe5\",\n    \"tool\": {\n      \"id\": \"factorial\",\n      \"label\": \"Factorial\",\n      \"internal_label\": null,\n      \"logo_url\": \"https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg\",\n      \"icon_url\": \"https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg\"\n    },\n    \"category\": \"HRIS\",\n    \"status\": \"ACTIVE\",\n    \"setup_status\": \"COMPLETED\",\n    \"end_user\": {\n      \"organization_name\": \"Acme\",\n      \"creator_email\": \"example-integration-creator@acme.com\",\n      \"origin_id\": \"2DQJAUtSzzzKP9buDTvUvPk3\"\n    },\n    \"scope_config\": {\n      \"id\": \"B1hu5NGyhdjSq5X3hxEz4bAN\",\n      \"name\": \"Anonymous Scopes\"\n    },\n    \"data_expired_at\": null,\n    \"created_at\": \"2022-08-07T14:01:29.196Z\",\n    \"beta\": false,\n    \"read_models\": [\n      {\n        \"id\": \"hris_employees\",\n        \"label\": \"Employees\",\n        \"is_available\": true,\n        \"coverage_status\": \"SUPPORTED\",\n        \"scope_config_setting\": \"ENABLED\",\n        \"opted_out_by_customer\": false,\n        \"fields\": [\n          {\n            \"id\": \"date_of_birth\",\n            \"is_available\": false,\n            \"coverage_status\": \"SUPPORTED\",\n            \"scope_config_setting\": \"OPTIONAL\",\n            \"opted_out_by_customer\": true\n          }\n        ]\n      }\n    ],\n    \"write_actions\": [\n      {\n        \"id\": \"hris_create_employee\",\n        \"label\": \"Create employee\",\n        \"is_available\": true,\n        \"coverage_status\": \"SUPPORTED\",\n        \"scope_config_setting\": \"ENABLED\",\n        \"opted_out_by_customer\": false,\n        \"fields\": [\n          {\n            \"id\": \"first_name\",\n            \"is_available\": true,\n            \"coverage_status\": \"SUPPORTED\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f6c5eb2-8a11-48c6-b194-c85d5079b646",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) GET /integrations/:integration_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d115275-6b25-43f6-9b5e-e1d56a521a02",
+          "name": "Set integration enabled",
+          "request": {
+            "name": "Set integration enabled",
+            "description": {
+              "content": "Enable or disable the specified integration. When disabling, all currently running syncs will be cancelled.\n\nAll authentication credentials and configuration are preserved. Syncs can be resumed by re-enabling the integration.\n\nYou may use this to, for example, pause syncing for customers that are temporarily not using the integration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integrations",
+                ":integration_id",
+                "enabled"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_id",
+                  "description": "(Required) PUT /integrations/:integration_id/enabled Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02136184-7e23-418f-b00a-e09c6b9fd84e",
+              "name": "PUT /integrations/:integration_id/enabled Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "enabled"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) PUT /integrations/:integration_id/enabled Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd78b2c7-6c0d-4347-9f26-54a6a9f5186a",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "enabled"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) PUT /integrations/:integration_id/enabled Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25f11516-89b6-4c46-9367-59f5d1e38187",
+          "name": "Create reconnection link",
+          "request": {
+            "name": "Create reconnection link",
+            "description": {
+              "content": "Create a link that will allow the user to reconnect an integration. This is useful if you want to allow your users to update the credentials if the old ones for example expired.\n\nEmbed this the same way you would [embed the connect link](/connect/embedded-flow). By default, the link will be valid for 1 hour.\n\n### Example Request Body\n\n```json\n{\n  \"language\": \"en\",\n  \"scope_config_id\": \"9Pv6aCFwNDEzPNmwjSsY9SQx\",\n  \"link_type\": \"EMBEDDED\"\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integrations",
+                ":integration_id",
+                "relink"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_id",
+                  "description": "(Required) POST /integrations/:integration_id/relink Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"language\": \"en\",\n  \"scope_config_id\": \"<string,null>\",\n  \"link_type\": \"EMBEDDED\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d89f07e-c1b3-41c0-ba78-94ff5c5c7aba",
+              "name": "POST /integrations/:integration_id/relink Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "relink"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) POST /integrations/:integration_id/relink Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language\": \"en\",\n  \"scope_config_id\": \"9Pv6aCFwNDEzPNmwjSsY9SQx\",\n  \"link_type\": \"EMBEDDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"link\": \"https://kcDwx.uvvvRC4qhwXGKgjvYBy703lIb0GaHx\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a89d5d5-47d1-436f-96f3-f4cd32c547cd",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "relink"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) POST /integrations/:integration_id/relink Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language\": \"en\",\n  \"scope_config_id\": \"9Pv6aCFwNDEzPNmwjSsY9SQx\",\n  \"link_type\": \"EMBEDDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "906d25a0-1624-43cf-9257-f77a7a63a0e6",
+          "name": "Create Setup Flow link",
+          "request": {
+            "name": "Create Setup Flow link",
+            "description": {
+              "content": "Create a link that lets your customer run the [Setup Flow](/hris/features/setup-flow/introduction) for an integration. Use this to send customers back into setup steps like field mapping or employee filtering without having to go through the initial connection flow again. Pass the returned URL to `showKomboConnect` from the Kombo Connect SDK, the same way you do with a connection link.\n\nThe integration must have at least one Setup Flow step enabled (e.g. field mapping or employee filtering); otherwise this endpoint returns a `PLATFORM.INPUT_INVALID` error. Steps can be enabled from the Integration Settings tab in the dashboard or via the [Create Connection Link endpoint](./post-connect-create-link).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integrations",
+                ":integration_id",
+                "setup-link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_id",
+                  "description": "(Required) POST /integrations/:integration_id/setup-link Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"link_type\": \"<string>\",\n  \"language\": \"en\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d34eb201-fb05-49db-9f10-226f1af8f0ca",
+              "name": "POST /integrations/:integration_id/setup-link Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "setup-link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) POST /integrations/:integration_id/setup-link Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language\": \"en\",\n  \"link_type\": \"EMBEDDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"data\": {\n    \"link\": \"https://kFkZTPNtDxhXKuqtWDFhDyEsH.tnytZzwLaFLtclks8t2UIjD.X4PHvNpMcSREWWAQ-4I\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dfc6a16-fbf7-4d5c-a1be-bf89de8846f0",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "setup-link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) POST /integrations/:integration_id/setup-link Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"language\": \"en\",\n  \"link_type\": \"EMBEDDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e23799db-a66d-4087-a35f-76dc6cffaed4",
+          "name": "Get integration fields",
+          "request": {
+            "name": "Get integration fields",
+            "description": {
+              "content": "Get all fields available on the specified integration.\n**This includes the mapping to your custom fields**",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integrations",
+                ":integration_id",
+                "integration-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 2000."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_id",
+                  "description": "(Required) GET /integrations/:integration_id/integration-fields Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12e8e6cf-c9ea-4b21-ad50-3b91c074bf6a",
+              "name": "GET /integrations/:integration_id/integration-fields Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "integration-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) GET /integrations/:integration_id/integration-fields Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"results\": [\n      {\n        \"id\": \"FFpTK47GhXnU6QAopPq2bdos\",\n        \"key\": \"tax_id\",\n        \"model\": \"hris_employees\",\n        \"type\": \"DEFAULT\",\n        \"label\": \"Tax ID\",\n        \"is_passthrough_enabled\": true,\n        \"is_writable\": false\n      }\n    ],\n    \"next_cursor\": null,\n    \"next\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5aa37221-0feb-4dc8-953f-fef3fb88a95e",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "integration-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) GET /integrations/:integration_id/integration-fields Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "732c6f57-1f8d-4544-9708-159e5dd60f6b",
+          "name": "Updates an integration fields passthrough setting",
+          "request": {
+            "name": "Updates an integration fields passthrough setting",
+            "description": {
+              "content": "When enabled, the integration field will be passed as part of the `integration_fields` array on the specific model endpoint. Providing false will disable the passthrough for the specified field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integrations",
+                ":integration_id",
+                "integration-fields",
+                ":integration_field_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_id",
+                  "description": "(Required) PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_field_id",
+                  "description": "(Required) PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enable_passthrough\": \"<boolean,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e72ab3f6-c0a2-4682-bedd-3da50908e5e4",
+              "name": "PATCH /integrations/:integration_id/integration-fields/:integration_field_id Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "integration-fields",
+                    ":integration_field_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_field_id",
+                      "description": "(Required) PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enable_passthrough\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"9suhxJU83Kon4kPTS47837uE\",\n    \"key\": \"tax_id\",\n    \"model\": \"hris_employees\",\n    \"type\": \"DEFAULT\",\n    \"label\": \"Tax ID\",\n    \"is_passthrough_enabled\": true,\n    \"is_writable\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "407f2af8-7a75-429c-9a0d-e5ed0942cc05",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "integration-fields",
+                    ":integration_field_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_field_id",
+                      "description": "(Required) PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enable_passthrough\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf5da09e-cf95-451e-982c-62fac18df3ae",
+          "name": "Get custom fields with current mappings",
+          "request": {
+            "name": "Get custom fields with current mappings",
+            "description": {
+              "content": "Get all custom fields available on the specified integration.\n**This includes the mapping to the corresponding integration field if applicable*",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integrations",
+                ":integration_id",
+                "custom-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "100",
+                  "description": "The number of results to return per page. Maximum is 250."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_id",
+                  "description": "(Required) GET /integrations/:integration_id/custom-fields Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03c6fdda-82b7-4f3a-a49c-fd352f7484a8",
+              "name": "GET /integrations/:integration_id/custom-fields Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) GET /integrations/:integration_id/custom-fields Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"results\": [\n      {\n        \"id\": \"D9CoSqqun6ix7uKEwb2kHBU1\",\n        \"key\": \"unified_tax_id\",\n        \"integration_field\": {\n          \"id\": \"FFpTK47GhXnU6QAopPq2bdos\",\n          \"key\": \"tax_id\",\n          \"type\": \"DEFAULT\",\n          \"label\": \"The employee's tax ID\"\n        },\n        \"model\": \"hris_employees\",\n        \"label\": null,\n        \"description\": null\n      }\n    ],\n    \"next_cursor\": null,\n    \"next\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca2a7f90-d5f8-4763-ab51-ccbe7b613edf",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "custom-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "string"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) GET /integrations/:integration_id/custom-fields Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ade760a-b7a7-4ecc-94e9-194e632468e8",
+          "name": "Put custom field mappings",
+          "request": {
+            "name": "Put custom field mappings",
+            "description": {
+              "content": "Updates the mapping of a given custom field. If the custom field is already mapped, it will be updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "integrations",
+                ":integration_id",
+                "custom-fields",
+                ":custom_field_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "integration_id",
+                  "description": "(Required) The unique ID of the integration where the custom field mapping should be updated"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "custom_field_id",
+                  "description": "(Required) The unique ID of the custom field that should be updated"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"integration_field_id\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "965d7d83-a145-4400-b2ae-3a9f0f76a55c",
+              "name": "PUT /integrations/:integration_id/custom-fields/:custom_field_id Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "custom-fields",
+                    ":custom_field_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) The unique ID of the integration where the custom field mapping should be updated"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom_field_id",
+                      "description": "(Required) The unique ID of the custom field that should be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"integration_field_id\": \"integration_field_id\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"id\": \"EU3Bwa4iDfGspEELW71WDvvu\",\n    \"key\": \"tshirt_size\",\n    \"integration_field\": {\n      \"id\": \"3n6geaAmKL5tFonXVAtsMDmr\",\n      \"key\": \"custom.tshirt_size\",\n      \"type\": \"CUSTOM\",\n      \"label\": \"T-Shirt Size\"\n    },\n    \"model\": \"hris_employees\",\n    \"label\": \"T-Shirt Size\",\n    \"description\": \"Map this to the employee's tshirt size\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f31d549f-a9db-4ecb-9b35-a900ff0b51b7",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "integrations",
+                    ":integration_id",
+                    "custom-fields",
+                    ":custom_field_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "integration_id",
+                      "description": "(Required) The unique ID of the integration where the custom field mapping should be updated"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "custom_field_id",
+                      "description": "(Required) The unique ID of the custom field that should be updated"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"integration_field_id\": \"integration_field_id\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5c6ff47-b7d4-4f19-b857-c38d0d3e4116",
+          "name": "Get tools",
+          "request": {
+            "name": "Get tools",
+            "description": {
+              "content": "Get a list of the tools (i.e., integrations) enabled in your environment.\n This can (in combination with the `integration_tool` parameter of [the \"Create Link\" endpoint](/v1/post-create-link)) be used to, for example, display a custom list or grid of available integrations to your end users instead of exposing Kombo Connect's standard tool selector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tools",
+                ":category"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "category",
+                  "description": "(Required) GET /tools/:category Parameter"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c1d5b62-1daf-4492-b7bb-beba712fe5ee",
+              "name": "GET /tools/:category Positive response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":category"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category",
+                      "description": "(Required) GET /tools/:category Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"data\": {\n    \"tools\": [\n      {\n        \"id\": \"factorial\",\n        \"label\": \"Factorial\",\n        \"internal_label\": null,\n        \"assets\": {\n          \"logo_url\": \"https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg\",\n          \"icon_url\": \"https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg\",\n          \"icon_black_url\": \"https://storage.googleapis.com/kombo-assets/integrations/factorial/icon-black.svg\"\n        },\n        \"paid_api_details_markdown\": null,\n        \"fast_track_details_markdown\": null,\n        \"partner_only_details_markdown\": null,\n        \"connection_guide_url\": \"https://help.kombo.dev/hc/en-us/articles/18743884123409-Factorial-HR-How-do-I-link-my-account\",\n        \"coverage\": {\n          \"read_models\": [\n            {\n              \"id\": \"hris_employees\",\n              \"label\": \"Employees\",\n              \"coverage_status\": \"SUPPORTED\",\n              \"fields\": [\n                {\n                  \"id\": \"date_of_birth\",\n                  \"coverage_status\": \"SUPPORTED\"\n                }\n              ]\n            },\n            {\n              \"id\": \"hris_teams\",\n              \"label\": \"Groups\",\n              \"coverage_status\": \"UNSUPPORTED\",\n              \"fields\": [\n                {\n                  \"id\": \"parent_id\",\n                  \"coverage_status\": \"UNSUPPORTED\"\n                }\n              ]\n            }\n          ],\n          \"write_actions\": [\n            {\n              \"id\": \"hris_create_employee\",\n              \"label\": \"Create employee\",\n              \"coverage_status\": \"SUPPORTED\",\n              \"fields\": [\n                {\n                  \"id\": \"first_name\",\n                  \"coverage_status\": \"SUPPORTED\"\n                }\n              ]\n            }\n          ],\n          \"features\": [\n            {\n              \"id\": \"automatic_source_writing\",\n              \"label\": \"Automatic Source Writing\",\n              \"coverage_status\": \"SUPPORTED\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7d3d10a-9c0e-46d8-a623-530147e08ce1",
+              "name": "The standard error response with just the platform error codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    ":category"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "category",
+                      "description": "(Required) GET /tools/:category Parameter"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"code\": \"INTEGRATION.MODEL_NOT_AVAILABLE\",\n    \"title\": \"This data model isn't supported for the selected integration.\",\n    \"message\": \"The \\\"employees\\\" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.\",\n    \"log_url\": \"https://app.kombo.dev/my-prod/logs?interactionId=123456\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.kombo.dev/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d5ea3a46-59da-42cc-9171-8a6cab05c2b4",
+    "name": "Kombo AI Apply General API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Endpoints for AI-powered job application features.",
+      "type": "text/plain"
+    }
+  }
+}
