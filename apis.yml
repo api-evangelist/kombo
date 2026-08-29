@@ -222,6 +222,9 @@ apis:
   - type: OpenAPI
     url: openapi/kombo-kombo-api-api-openapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/kombo-capability-edges.yml
+    name: Kombo Business Capability Map
   - type: AgenticAccess
     url: agentic-access/kombo-agentic-access.yml
   - type: TrustCenter

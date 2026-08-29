@@ -1,0 +1,71 @@
+slug: kombo
+provider: Kombo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Education
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Unified ATS API
+  spec_file: kombo-unified-ats-api-api-openapi.yml
+  capability_id: BC-300.10
+  capability_id_l1: BC-300
+  capability_name: Talent Acquisition Management
+  confidence: 0.92
+  evidence: PUT /ats/applications/{application_id}/stage "Move application to stage"; POST /ats/applications/{application_id}/reject
+    "Reject application"; POST /ats/applications/{application_id}/interviews "Create interview"; POST
+    /ats/candidates "Create candidate"
+  reason: Candidates, applications, stages, interviews and rejection reasons — canonical applicant tracking
+    / recruiting surface, plainly Talent Acquisition Management.
+- tag: AI Apply
+  spec_file: kombo-ai-apply-api-openapi.yml
+  capability_id: BC-300.10
+  capability_id_l1: BC-300
+  capability_name: Talent Acquisition Management
+  confidence: 0.82
+  evidence: POST /ai-apply/apply  "Submit job application"; GET /ai-apply/postings "Get job postings";
+    "Create a career site"
+  reason: Operations parse job postings from career sites and submit applications to jobs — recruiting/hiring
+    surface, i.e. Talent Acquisition. Vendor is an HR/ATS unified API, so the capability realised is HCM
+    recruiting rather than any education capability.
+- tag: Unified LMS API
+  spec_file: kombo-unified-lms-api-api-openapi.yml
+  capability_id: BC-300.40
+  capability_id_l1: BC-300
+  capability_name: Learning & Development Management
+  confidence: 0.8
+  evidence: POST /lms/course-progressions "Enroll user in course"; POST /lms/course-progressions/{id}/complete
+    "Complete course"; GET /lms/courses; GET /lms/skills
+  reason: 'Corporate learning-management integration: course catalogue, enrolment, completion tracking
+    and skills for employees — workforce Learning & Development, not academic programme delivery (vendor
+    serves HR systems, learners are employees).'
+- tag: Unified ATS (Assessment & Background Check) API
+  spec_file: kombo-unified-ats-assessment-background-check-api-api-openapi.yml
+  capability_id: BC-300.10
+  capability_id_l1: BC-300
+  capability_name: Talent Acquisition Management
+  confidence: 0.78
+  evidence: '"Unified endpoints to operate Assessments and Background Checks for many applicant tracking
+    systems"; PUT /assessment/orders/{assessment_order_id}/result "Update order result"'
+  reason: Candidate assessment packages and background-check orders/results inside applicant tracking
+    systems — part of the sourcing/screening/hiring process, i.e. Talent Acquisition. Not academic assessment
+    despite the word 'assessment'.
+- tag: Unified HRIS API
+  spec_file: kombo-unified-hris-api-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.72
+  evidence: GET /hris/employees "Get employees"; PATCH /hris/employees/{employee_id} "Update employee";
+    POST /hris/employees/{employee_id}/documents "Add document to employee"; GetHrisEmploymentsParameter...
+    "Get employments"
+  reason: 'Core HRIS master data: employee records, employments, documents, groups, legal entities, absences
+    — employee record keeping and HR service delivery. Some operations touch performance reviews and skills,
+    so the L2 is the dominant rather than exclusive reading.'
