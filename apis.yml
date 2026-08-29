@@ -211,6 +211,16 @@ apis:
     url: https://www.kombo.dev/categories/all
   - type: Security
     url: https://security.kombo.dev
+- aid: kombo:kombo-kombo-api-api
+  name: Kombo Kombo API
+  description: The Kombo API API from Kombo — 0 operation(s) for kombo api.
+  humanURL: https://www.kombo.dev
+  baseURL: https://api.kombo.dev
+  tags:
+  - Kombo API
+  properties:
+  - type: OpenAPI
+    url: openapi/kombo-kombo-api-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/kombo-agentic-access.yml

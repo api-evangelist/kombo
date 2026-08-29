@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kombo AI Apply Unified ATS (Assessment & Background Check) API API
+  title: Kombo Unified ATS (Assessment & Background Check) API
   version: 1.0.0
-  description: Endpoints for AI-powered job application features.
+  description: Unified endpoints to operate Assessments and Background Checks for many applicant tracking systems.
 servers:
 - url: https://api.kombo.dev/v1
   description: Kombo EU API
@@ -398,28 +398,13 @@ components:
       required:
       - status
       - result_url
-    PutAssessmentPackagesPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
+    GetAssessmentOrdersParameterCreatedAfter:
+      description: 'Filter orders by their creation date-timestamp in the format: `YYYY-MM-DDTHH:mm:ss.sssZ`. Only orders created on or after this date-timestamp will be returned.'
+      type: string
+      format: date-time
+      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+      externalDocs:
+        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
     GetAssessmentPackagesPositiveResponse:
       type: object
       properties:
@@ -476,304 +461,9 @@ components:
       required:
       - status
       - data
-    PutAssessmentPackagesRequestBody:
-      type: object
-      properties:
-        packages:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: A unique identifier for the assessment package.
-              type:
-                type: string
-                enum:
-                - BEHAVIORAL
-                - VIDEO_INTERVIEW
-                - SKILLS_TEST
-                - BACKGROUND_CHECK
-                - REFERENCE_CHECK
-              name:
-                type: string
-                description: The name of the assessment package.
-              description:
-                type: string
-                description: Description about the package. Some ATSs will display this in their UI.
-            required:
-            - id
-            - type
-            - name
-            - description
-      required:
-      - packages
-    GetAssessmentOrdersParameterCreatedAfter:
-      description: 'Filter orders by their creation date-timestamp in the format: `YYYY-MM-DDTHH:mm:ss.sssZ`. Only orders created on or after this date-timestamp will be returned.'
+    GetAssessmentOrdersOpenParameterCursor:
       type: string
-      format: date-time
-      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-      externalDocs:
-        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-    PutAssessmentOrdersAssessmentOrderIdResultParameterAssessmentOrderId:
-      type: string
-    GetAssessmentOrdersOpenPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            next:
-              type:
-              - string
-              - 'null'
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The unique identifier of the assessment order.
-                    examples:
-                    - B5KQKhAgTv6ZwzrfAbqbhipd
-                  package_id:
-                    type: string
-                    description: The identifier of the assessment package.
-                    examples:
-                    - typescript_test
-                  candidate:
-                    type: object
-                    properties:
-                      remote_id:
-                        type:
-                        - string
-                        - 'null'
-                        description: The candidate's identifier in the integrated system.
-                        examples:
-                        - '12345'
-                      email:
-                        type: string
-                        description: The candidate's email address.
-                        examples:
-                        - john.doe@gmail.com
-                        format: email
-                      first_name:
-                        type:
-                        - string
-                        - 'null'
-                        description: The candidate's first name.
-                        examples:
-                        - John
-                      last_name:
-                        type:
-                        - string
-                        - 'null'
-                        description: The candidate's last name.
-                        examples:
-                        - Doe
-                      phone:
-                        type:
-                        - string
-                        - 'null'
-                        description: The candidate's phone number.
-                        examples:
-                        - +1 123 456 7890
-                    required:
-                    - remote_id
-                    - email
-                    - first_name
-                    - last_name
-                    - phone
-                    description: Information about the candidate taking the assessment.
-                  application:
-                    type: object
-                    properties:
-                      remote_id:
-                        type:
-                        - string
-                        - 'null'
-                        description: The application's identifier in the integrated system.
-                        examples:
-                        - '54321'
-                    required:
-                    - remote_id
-                    description: Information about the job application.
-                  job:
-                    type: object
-                    properties:
-                      remote_id:
-                        type:
-                        - string
-                        - 'null'
-                        description: The job's identifier in the integrated system.
-                        examples:
-                        - '67890'
-                      name:
-                        type:
-                        - string
-                        - 'null'
-                        description: The job title.
-                        examples:
-                        - Bottle Opener
-                      job_code:
-                        type:
-                        - string
-                        - 'null'
-                        description: The human readable job code. Some systems expose this as the Requisition Code/ID.
-                        examples:
-                        - BO-2024-01
-                      description:
-                        type:
-                        - string
-                        - 'null'
-                        description: Description of the job. This field is usually returned as HTML.
-                        examples:
-                        - <p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>
-                      location:
-                        type:
-                        - object
-                        - 'null'
-                        properties:
-                          street_1:
-                            type:
-                            - string
-                            - 'null'
-                            description: If we can parse the address data, this field contains the first part of the street information.
-                          street_2:
-                            type:
-                            - string
-                            - 'null'
-                          city:
-                            type:
-                            - string
-                            - 'null'
-                          state:
-                            type:
-                            - string
-                            - 'null'
-                          zip_code:
-                            type:
-                            - string
-                            - 'null'
-                          country:
-                            type:
-                            - string
-                            - 'null'
-                            description: Contains the ISO2 country code if possible. If not, it contains the original value.
-                          raw:
-                            type:
-                            - string
-                            - 'null'
-                            description: If we have address data, this is filled with the raw address string.
-                        description: The job location information.
-                      hiring_team:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            remote_id:
-                              type:
-                              - string
-                              - 'null'
-                              description: The team member's identifier in the integrated system.
-                              examples:
-                              - '78901'
-                            email:
-                              type:
-                              - string
-                              - 'null'
-                              description: The team member's email address.
-                              examples:
-                              - jane.doe@gmail.com
-                            first_name:
-                              type:
-                              - string
-                              - 'null'
-                              description: The team member's first name.
-                              examples:
-                              - Jane
-                            last_name:
-                              type:
-                              - string
-                              - 'null'
-                              description: The team member's last name.
-                              examples:
-                              - Doe
-                            hiring_team_roles:
-                              type: array
-                              items:
-                                type: string
-                                enum:
-                                - RECRUITER
-                                - HIRING_MANAGER
-                                examples:
-                                - RECRUITER
-                              description: Array of the roles of the user for this specific job.
-                              examples:
-                              - - RECRUITER
-                          required:
-                          - remote_id
-                          - email
-                          - first_name
-                          - last_name
-                          - hiring_team_roles
-                          description: A member of the hiring team.
-                        description: The hiring team allows you to provision users into your system who can access the job and its applications.
-                    required:
-                    - remote_id
-                    - name
-                    - job_code
-                    - description
-                    - location
-                    - hiring_team
-                    description: Information about the job posting.
-                required:
-                - id
-                - package_id
-                - candidate
-                - application
-                - job
-                examples:
-                - id: B5KQKhAgTv6ZwzrfAbqbhipd
-                  package_id: typescript_test
-                  candidate:
-                    remote_id: '12345'
-                    email: john.doe@gmail.com
-                    first_name: John
-                    last_name: Doe
-                    phone: +1 123 456 7890
-                  application:
-                    remote_id: '54321'
-                  job:
-                    remote_id: '67890'
-                    name: Bottle Opener
-                    job_code: BO-2024-01
-                    description: <p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>
-                    location:
-                      street_1: Lohmühlenstraße 65
-                      street_2: null
-                      city: Berlin
-                      state: Berlin
-                      zip_code: '12435'
-                      country: DE
-                      raw: Berlin, Germany
-                    hiring_team:
-                    - remote_id: '78901'
-                      email: jane.doe@gmail.com
-                      first_name: Jane
-                      last_name: Doe
-                      hiring_team_roles:
-                      - RECRUITER
-          required:
-          - next
-          - results
-      required:
-      - status
-      - data
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
     PutAssessmentOrdersAssessmentOrderIdResultPositiveResponse:
       type: object
       properties:
@@ -796,9 +486,11 @@ components:
       - status
       - data
       - warnings
-    GetAssessmentOrdersParameterCursor:
+    PutAssessmentOrdersAssessmentOrderIdResultParameterAssessmentOrderId:
       type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAssessmentOrdersParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
     GetAssessmentOrdersPositiveResponse:
       type: object
       properties:
@@ -1068,12 +760,28 @@ components:
       required:
       - status
       - data
-    GetAssessmentOrdersParameterIds:
-      type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetAssessmentOrdersOpenParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    PutAssessmentPackagesPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
     GetAssessmentOrdersParameterPageSize:
       type: integer
       format: int64
@@ -1081,12 +789,295 @@ components:
       maximum: 250
       default: 100
       description: The number of results to return per page. Maximum is 250.
-    GetAssessmentOrdersParameterStatuses:
-      type: string
-      description: 'Filter by a comma-separated list of `OPEN`, `COMPLETED`, `CANCELLED`, `REJECTED`.
-
-
-        Leave this blank to get results matching all values.'
+    PutAssessmentPackagesRequestBody:
+      type: object
+      properties:
+        packages:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: A unique identifier for the assessment package.
+              type:
+                type: string
+                enum:
+                - BEHAVIORAL
+                - VIDEO_INTERVIEW
+                - SKILLS_TEST
+                - BACKGROUND_CHECK
+                - REFERENCE_CHECK
+              name:
+                type: string
+                description: The name of the assessment package.
+              description:
+                type: string
+                description: Description about the package. Some ATSs will display this in their UI.
+            required:
+            - id
+            - type
+            - name
+            - description
+      required:
+      - packages
+    GetAssessmentOrdersOpenPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The unique identifier of the assessment order.
+                    examples:
+                    - B5KQKhAgTv6ZwzrfAbqbhipd
+                  package_id:
+                    type: string
+                    description: The identifier of the assessment package.
+                    examples:
+                    - typescript_test
+                  candidate:
+                    type: object
+                    properties:
+                      remote_id:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's identifier in the integrated system.
+                        examples:
+                        - '12345'
+                      email:
+                        type: string
+                        description: The candidate's email address.
+                        examples:
+                        - john.doe@gmail.com
+                        format: email
+                      first_name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's first name.
+                        examples:
+                        - John
+                      last_name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's last name.
+                        examples:
+                        - Doe
+                      phone:
+                        type:
+                        - string
+                        - 'null'
+                        description: The candidate's phone number.
+                        examples:
+                        - +1 123 456 7890
+                    required:
+                    - remote_id
+                    - email
+                    - first_name
+                    - last_name
+                    - phone
+                    description: Information about the candidate taking the assessment.
+                  application:
+                    type: object
+                    properties:
+                      remote_id:
+                        type:
+                        - string
+                        - 'null'
+                        description: The application's identifier in the integrated system.
+                        examples:
+                        - '54321'
+                    required:
+                    - remote_id
+                    description: Information about the job application.
+                  job:
+                    type: object
+                    properties:
+                      remote_id:
+                        type:
+                        - string
+                        - 'null'
+                        description: The job's identifier in the integrated system.
+                        examples:
+                        - '67890'
+                      name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The job title.
+                        examples:
+                        - Bottle Opener
+                      job_code:
+                        type:
+                        - string
+                        - 'null'
+                        description: The human readable job code. Some systems expose this as the Requisition Code/ID.
+                        examples:
+                        - BO-2024-01
+                      description:
+                        type:
+                        - string
+                        - 'null'
+                        description: Description of the job. This field is usually returned as HTML.
+                        examples:
+                        - <p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>
+                      location:
+                        type:
+                        - object
+                        - 'null'
+                        properties:
+                          street_1:
+                            type:
+                            - string
+                            - 'null'
+                            description: If we can parse the address data, this field contains the first part of the street information.
+                          street_2:
+                            type:
+                            - string
+                            - 'null'
+                          city:
+                            type:
+                            - string
+                            - 'null'
+                          state:
+                            type:
+                            - string
+                            - 'null'
+                          zip_code:
+                            type:
+                            - string
+                            - 'null'
+                          country:
+                            type:
+                            - string
+                            - 'null'
+                            description: Contains the ISO2 country code if possible. If not, it contains the original value.
+                          raw:
+                            type:
+                            - string
+                            - 'null'
+                            description: If we have address data, this is filled with the raw address string.
+                        description: The job location information.
+                      hiring_team:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            remote_id:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's identifier in the integrated system.
+                              examples:
+                              - '78901'
+                            email:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's email address.
+                              examples:
+                              - jane.doe@gmail.com
+                            first_name:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's first name.
+                              examples:
+                              - Jane
+                            last_name:
+                              type:
+                              - string
+                              - 'null'
+                              description: The team member's last name.
+                              examples:
+                              - Doe
+                            hiring_team_roles:
+                              type: array
+                              items:
+                                type: string
+                                enum:
+                                - RECRUITER
+                                - HIRING_MANAGER
+                                examples:
+                                - RECRUITER
+                              description: Array of the roles of the user for this specific job.
+                              examples:
+                              - - RECRUITER
+                          required:
+                          - remote_id
+                          - email
+                          - first_name
+                          - last_name
+                          - hiring_team_roles
+                          description: A member of the hiring team.
+                        description: The hiring team allows you to provision users into your system who can access the job and its applications.
+                    required:
+                    - remote_id
+                    - name
+                    - job_code
+                    - description
+                    - location
+                    - hiring_team
+                    description: Information about the job posting.
+                required:
+                - id
+                - package_id
+                - candidate
+                - application
+                - job
+                examples:
+                - id: B5KQKhAgTv6ZwzrfAbqbhipd
+                  package_id: typescript_test
+                  candidate:
+                    remote_id: '12345'
+                    email: john.doe@gmail.com
+                    first_name: John
+                    last_name: Doe
+                    phone: +1 123 456 7890
+                  application:
+                    remote_id: '54321'
+                  job:
+                    remote_id: '67890'
+                    name: Bottle Opener
+                    job_code: BO-2024-01
+                    description: <p>We are looking for a skilled and energetic individual to join our team as the chief bottle open officer. This unique role requires precision, attention to detail, and the ability to handle a high volume of beverage bottles in a fast-paced environment. The ideal candidate will ensure bottles are opened swiftly and safely while maintaining hygiene standards.</p>
+                    location:
+                      street_1: Lohmühlenstraße 65
+                      street_2: null
+                      city: Berlin
+                      state: Berlin
+                      zip_code: '12435'
+                      country: DE
+                      raw: Berlin, Germany
+                    hiring_team:
+                    - remote_id: '78901'
+                      email: jane.doe@gmail.com
+                      first_name: Jane
+                      last_name: Doe
+                      hiring_team_roles:
+                      - RECRUITER
+          required:
+          - next
+          - results
+      required:
+      - status
+      - data
     GetAssessmentOrdersOpenParameterPageSize:
       type: integer
       format: int64
@@ -1094,6 +1085,15 @@ components:
       maximum: 250
       default: 100
       description: The number of results to return per page. Maximum is 250.
+    GetAssessmentOrdersParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAssessmentOrdersParameterStatuses:
+      type: string
+      description: 'Filter by a comma-separated list of `OPEN`, `COMPLETED`, `CANCELLED`, `REJECTED`.
+
+
+        Leave this blank to get results matching all values.'
   responses:
     ErrorResponseATS:
       description: The standard error response with the error codes for the ATS use case.

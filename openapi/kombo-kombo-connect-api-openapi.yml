@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kombo AI Apply Kombo Connect API
+  title: Kombo Connect API
   version: 1.0.0
-  description: Endpoints for AI-powered job application features.
+  description: Endpoints for Kombo Connect, our end-user-facing flow for setting up new integrations.
 servers:
 - url: https://api.kombo.dev/v1
   description: Kombo EU API
@@ -121,6 +121,25 @@ paths:
           $ref: '#/components/responses/ErrorResponseGeneral'
 components:
   schemas:
+    PostConnectCreateLinkPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            link:
+              type: string
+              format: uri
+          required:
+          - link
+          examples:
+          - link: https://connect.kombo.dev/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.SWYgeW91IGFyZSByZWFkaW5nIHRoaXMsIHdlIHdvdWxkIGxpa2UgdG8gbGV0IHlvdSBrbm93IHRoYXQgd2UgYXJlIGhpcmluZyBwZW9wbGUgbGlrZSB5b3UgOikuIFJlYWNoIG91dCB0byBhbGV4QGtvbWJvLmRldiB0byBnZXQgaW4gY29udGFjdCBhbmQgdGVsbCBoaW0geW91IGNvbWUgZnJvbSB0aGUgSldUIDsp._hhX5YTtHfLn9ZC806dZceRn2whzxHyrhft1ONzNgOE
+      required:
+      - status
+      - data
     GetConnectIntegrationByTokenTokenPositiveResponse:
       type: object
       properties:
@@ -176,32 +195,6 @@ components:
       required:
       - status
       - data
-    PostConnectCreateLinkPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            link:
-              type: string
-              format: uri
-          required:
-          - link
-          examples:
-          - link: https://connect.kombo.dev/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.SWYgeW91IGFyZSByZWFkaW5nIHRoaXMsIHdlIHdvdWxkIGxpa2UgdG8gbGV0IHlvdSBrbm93IHRoYXQgd2UgYXJlIGhpcmluZyBwZW9wbGUgbGlrZSB5b3UgOikuIFJlYWNoIG91dCB0byBhbGV4QGtvbWJvLmRldiB0byBnZXQgaW4gY29udGFjdCBhbmQgdGVsbCBoaW0geW91IGNvbWUgZnJvbSB0aGUgSldUIDsp._hhX5YTtHfLn9ZC806dZceRn2whzxHyrhft1ONzNgOE
-      required:
-      - status
-      - data
-    PostConnectActivateIntegrationRequestBody:
-      type: object
-      properties:
-        token:
-          type: string
-      required:
-      - token
     PostConnectActivateIntegrationPositiveResponse:
       type: object
       properties:
@@ -257,6 +250,13 @@ components:
       required:
       - status
       - data
+    PostConnectActivateIntegrationRequestBody:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
     PostConnectCreateLinkRequestBody:
       type: object
       properties:
