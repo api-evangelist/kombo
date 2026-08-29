@@ -4,6 +4,17 @@ description: >-
   Kombo is a unified API for HR and ATS integrations, enabling B2B SaaS companies to connect with HRIS, payroll,
   recruiting, and learning systems through a single integration.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
