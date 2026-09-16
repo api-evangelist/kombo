@@ -1,8 +1,7 @@
 aid: kombo
 name: Kombo
-description: >-
-  Kombo is a unified API for HR and ATS integrations, enabling B2B SaaS companies to connect with HRIS, payroll,
-  recruiting, and learning systems through a single integration.
+description: Kombo is a unified API for HR and ATS integrations, enabling B2B SaaS companies to connect
+  with HRIS, payroll, recruiting, and learning systems through a single integration.
 type: Index
 deliveryModel:
   model: unknown
@@ -31,22 +30,22 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/kombo.png
 tags:
-  - ATS
-  - Embedded iPaaS
-  - HRIS
-  - LMS
-  - Payroll
-  - Unified-API
+- ATS
+- Embedded iPaaS
+- HRIS
+- LMS
+- Payroll
+- Unified-API
 tags_raw:
-  - ATS
-  - Embedded iPaaS
-  - HRIS
-  - LMS
-  - Payroll
-  - Unified API
+- ATS
+- Embedded iPaaS
+- HRIS
+- LMS
+- Payroll
+- Unified API
 url: https://raw.githubusercontent.com/api-evangelist/kombo/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: kombo:kombo-ai-apply-api
@@ -111,7 +110,7 @@ apis:
   - type: Security
     url: https://security.kombo.dev
 - aid: kombo:kombo-kombo-connect-api
-  name: Kombo Kombo Connect API
+  name: Kombo Connect API
   description: Endpoints for Kombo Connect, our end-user-facing flow for setting up new integrations.
   humanURL: https://www.kombo.dev
   baseURL: https://api.kombo.dev
@@ -131,7 +130,7 @@ apis:
   - type: Security
     url: https://security.kombo.dev
 - aid: kombo:kombo-unified-ats-api-api
-  name: Kombo Unified ATS API API
+  name: Kombo Unified ATS API
   description: Unified endpoints to access all the ATS concepts you might need.
   humanURL: https://www.kombo.dev
   baseURL: https://api.kombo.dev
@@ -151,9 +150,9 @@ apis:
   - type: Security
     url: https://security.kombo.dev
 - aid: kombo:kombo-unified-ats-assessment-background-check-api-api
-  name: Kombo Unified ATS (Assessment & Background Check) API API
-  description: >-
-    Unified endpoints to operate Assessments and Background Checks for many applicant tracking systems.
+  name: Kombo Unified ATS (Assessment & Background Check) API
+  description: Unified endpoints to operate Assessments and Background Checks for many applicant tracking
+    systems.
   humanURL: https://www.kombo.dev
   baseURL: https://api.kombo.dev
   tags: []
@@ -173,7 +172,7 @@ apis:
   - type: Security
     url: https://security.kombo.dev
 - aid: kombo:kombo-unified-hris-api-api
-  name: Kombo Unified HRIS API API
+  name: Kombo Unified HRIS API
   description: Unified endpoints to access all the HR concepts you might need.
   humanURL: https://www.kombo.dev
   baseURL: https://api.kombo.dev
@@ -193,7 +192,7 @@ apis:
   - type: Security
     url: https://security.kombo.dev
 - aid: kombo:kombo-unified-lms-api-api
-  name: Kombo Unified LMS API API
+  name: Kombo Unified LMS API
   description: Unified endpoints to access all the LMS concepts you might need.
   humanURL: https://www.kombo.dev
   baseURL: https://api.kombo.dev
@@ -213,7 +212,7 @@ apis:
   - type: Security
     url: https://security.kombo.dev
 - aid: kombo:kombo-kombo-api-api
-  name: Kombo Kombo API
+  name: Kombo API
   description: The Kombo API API from Kombo — 0 operation(s) for kombo api.
   humanURL: https://www.kombo.dev
   baseURL: https://api.kombo.dev
@@ -223,42 +222,42 @@ apis:
   - type: OpenAPI
     url: openapi/kombo-kombo-api-api-openapi.yml
 common:
-  - type: CapabilityMap
-    url: capabilities/kombo-capability-edges.yml
-    name: Kombo Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/kombo-agentic-access.yml
-  - type: TrustCenter
-    url: security/kombo-trust-center.yml
-  - type: DomainSecurity
-    url: security/kombo-domain-security.yml
-  - type: Authentication
-    url: authentication/kombo-authentication.yml
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/kombo-api
-  - type: Website
-    url: https://www.kombo.dev
-  - type: Documentation
-    url: https://docs.kombo.dev
-  - type: OpenAPI
-    url: https://api.kombo.dev/openapi.json
-  - type: SDKs
-    url: https://kombo.dev/libraries-and-sdks
-  - type: Security
-    url: https://security.kombo.dev
-  - type: Support
-    url: mailto:support@kombo.dev
-  - type: GitHubOrganization
-    url: https://github.com/kombo-api
-  - type: LlmsText
-    url: https://docs.kombo.dev/llms.txt
-  - url: https://www.kombo.dev/blog
-    type: Blog
+- type: CapabilityMap
+  url: capabilities/kombo-capability-edges.yml
+  name: Kombo Business Capability Map
+- type: AgenticAccess
+  url: agentic-access/kombo-agentic-access.yml
+- type: TrustCenter
+  url: security/kombo-trust-center.yml
+- type: DomainSecurity
+  url: security/kombo-domain-security.yml
+- type: Authentication
+  url: authentication/kombo-authentication.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/kombo-api
+- type: Website
+  url: https://www.kombo.dev
+- type: Documentation
+  url: https://docs.kombo.dev
+- type: OpenAPI
+  url: https://api.kombo.dev/openapi.json
+- type: SDKs
+  url: https://kombo.dev/libraries-and-sdks
+- type: Security
+  url: https://security.kombo.dev
+- type: Support
+  url: mailto:support@kombo.dev
+- type: GitHubOrganization
+  url: https://github.com/kombo-api
+- type: LlmsText
+  url: https://docs.kombo.dev/llms.txt
+- url: https://www.kombo.dev/blog
+  type: Blog
 integrations:
-  - name: Microsoft Entra ID
-  - name: Google Workspace
-  - name: SCIM
-  - name: SFTP
+- name: Microsoft Entra ID
+- name: Google Workspace
+- name: SCIM
+- name: SFTP
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
