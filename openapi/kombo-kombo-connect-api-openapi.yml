@@ -18,7 +18,39 @@ paths:
     post:
       operationId: PostConnectCreateLink
       summary: Create connection link
-      description: "Generate a unique link that allows your user to enter the embedded Kombo Connect flow.\n\n> Check out [our full guide](/connect/embedded-flow) for more details about implementing the connection flow into your app.\n\n> Kombo will not deduplicate integrations for you that are created with this endpoint. You are responsible for keeping track of integrations in your system and prevent customers from connecting the same tool again. Use the [reconnection link](/v1/post-integrations-integration-id-relink) endpoint if you want a customer to update their credentials.\n\n### Example Request Body\n\n```json\n{\n  \"end_user_email\": \"test@example.com\",\n  \"end_user_organization_name\": \"Test Inc.\",\n  \"integration_category\": \"HRIS\",\n  \"integration_tool\": \"personio\",\n  \"end_user_origin_id\": \"123\",\n  \"language\": \"en\",\n  \"link_type\": \"EMBEDDED\"\n}\n```"
+      description: 'Generate a unique link that allows your user to enter the embedded Kombo Connect flow.
+
+
+        > Check out our full guide for more details about implementing the connection flow into your app.
+
+
+        > Kombo will not deduplicate integrations for you that are created with this endpoint. You are responsible for keeping track of integrations in your system and prevent customers from connecting the same tool again. Use the reconnection link endpoint if you want a customer to update their credentials.
+
+
+        ### Example Request Body
+
+
+        ```json
+
+        {
+
+        "end_user_email": "test@example.com",
+
+        "end_user_organization_name": "Test Inc.",
+
+        "integration_category": "HRIS",
+
+        "integration_tool": "personio",
+
+        "end_user_origin_id": "123",
+
+        "language": "en",
+
+        "link_type": "EMBEDDED"
+
+        }
+
+        ```'
       tags:
       - Kombo Connect
       requestBody:
@@ -56,7 +88,24 @@ paths:
     get:
       operationId: GetConnectIntegrationByTokenToken
       summary: Get integration by token
-      description: "Use this endpoint with the token you get from the connection flow to retrieve information about the created integration.\n\n  It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user.\n\n> Check out [our full guide](/connect/embedded-flow) for more details about implementing the connection flow into your app.\n\nThis endpoint is used to ensure users can't trick your system connecting their\naccount in your system to another customers integration. You don't get the integration ID\nfrom the `showKomboConnect(link)` function but only the short lived token used\nfor this endpoint so that users can't send you arbitrary data that you would put\ninto your system."
+      description: 'Use this endpoint with the token you get from the connection flow to retrieve information about the created integration.
+
+
+        It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user.
+
+
+        > Check out our full guide for more details about implementing the connection flow into your app.
+
+
+        This endpoint is used to ensure users can''t trick your system connecting their
+
+        account in your system to another customers integration. You don''t get the integration ID
+
+        from the `showKomboConnect(link)` function but only the short lived token used
+
+        for this endpoint so that users can''t send you arbitrary data that you would put
+
+        into your system.'
       tags:
       - Kombo Connect
       parameters:
@@ -90,7 +139,24 @@ paths:
     post:
       operationId: PostConnectActivateIntegration
       summary: Activate integration (optional)
-      description: "Use this endpoint with the token you get from the connection flow to retrieve information about the created integration. It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user. You do not need to call this endpoint for an integration to become active.\n\n<Warning>We are deprecating this endpoint in favour of the [get integration by code endpoint](/v1/get-integration-by-token-token). To migrate you only have to change to the new API endpoint.</Warning>\n\n### Example Request Body\n\n```json\n{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjoiVGhpcyBpcyBub3QgYW4gYWN0dWFsIHRva2VuLiJ9.JulqgOZBMKceI8vh9YLpVX51efND0ZyfUNHDXLrPz_4\"\n}\n```"
+      description: 'Use this endpoint with the token you get from the connection flow to retrieve information about the created integration. It works in a similar way as the OAuth2 code flow to securely retrieve information and connect the integration to your user. You do not need to call this endpoint for an integration to become active.
+
+
+        We are deprecating this endpoint in favour of the get integration by code endpoint. To migrate you only have to change to the new API endpoint.
+
+
+        ### Example Request Body
+
+
+        ```json
+
+        {
+
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjoiVGhpcyBpcyBub3QgYW4gYWN0dWFsIHRva2VuLiJ9.JulqgOZBMKceI8vh9YLpVX51efND0ZyfUNHDXLrPz_4"
+
+        }
+
+        ```'
       tags:
       - Kombo Connect
       requestBody:
@@ -121,25 +187,6 @@ paths:
           $ref: '#/components/responses/ErrorResponseGeneral'
 components:
   schemas:
-    PostConnectCreateLinkPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            link:
-              type: string
-              format: uri
-          required:
-          - link
-          examples:
-          - link: https://connect.kombo.dev/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.SWYgeW91IGFyZSByZWFkaW5nIHRoaXMsIHdlIHdvdWxkIGxpa2UgdG8gbGV0IHlvdSBrbm93IHRoYXQgd2UgYXJlIGhpcmluZyBwZW9wbGUgbGlrZSB5b3UgOikuIFJlYWNoIG91dCB0byBhbGV4QGtvbWJvLmRldiB0byBnZXQgaW4gY29udGFjdCBhbmQgdGVsbCBoaW0geW91IGNvbWUgZnJvbSB0aGUgSldUIDsp._hhX5YTtHfLn9ZC806dZceRn2whzxHyrhft1ONzNgOE
-      required:
-      - status
-      - data
     GetConnectIntegrationByTokenTokenPositiveResponse:
       type: object
       properties:
@@ -195,68 +242,6 @@ components:
       required:
       - status
       - data
-    PostConnectActivateIntegrationPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            tool:
-              type: string
-            id:
-              type: string
-            end_user_origin_id:
-              type:
-              - string
-              - 'null'
-            end_user_organization_name:
-              type: string
-            end_user_email:
-              type:
-              - string
-              - 'null'
-              pattern: ^(?!\.)(?!.*\.\.)([\w'+-.]*)[\w+-]@([\da-z][\da-z-]*\.)+[a-z]{2,}$
-            setup_status:
-              type: string
-              enum:
-              - INCOMPLETE
-              - FINAL_SYNC_PENDING
-              - COMPLETED
-              description: 'The setup_status is used in conjunction with the filtering and field mapping features. If these are enabled in the connection flow, the integration will start in an "INCOMPLETE" state and move to "COMPLETE" once all steps are finished.
-
-
-                - `INCOMPLETE`: Setup is still in progress. Some steps aren’t finished, so no data is available yet. Syncs only run as needed for setup.
-
-                - `FINAL_SYNC_PENDING`: Setup is complete, and the final sync is running. Data will be available after this sync is done.
-
-                - `COMPLETED`: Setup is fully finished, and the integration is ready to use.'
-          required:
-          - tool
-          - id
-          - end_user_origin_id
-          - end_user_organization_name
-          - end_user_email
-          - setup_status
-          examples:
-          - tool: personio
-            id: personio:CBNMt7dSNCzBdnRTx87dev4E
-            end_user_origin_id: '36123'
-            end_user_organization_name: Acme, Inc.
-            end_user_email: user@example.com
-            setup_status: COMPLETED
-      required:
-      - status
-      - data
-    PostConnectActivateIntegrationRequestBody:
-      type: object
-      properties:
-        token:
-          type: string
-      required:
-      - token
     PostConnectCreateLinkRequestBody:
       type: object
       properties:
@@ -522,8 +507,89 @@ components:
       required:
       - end_user_email
       - end_user_organization_name
+    PostConnectActivateIntegrationPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            tool:
+              type: string
+            id:
+              type: string
+            end_user_origin_id:
+              type:
+              - string
+              - 'null'
+            end_user_organization_name:
+              type: string
+            end_user_email:
+              type:
+              - string
+              - 'null'
+              pattern: ^(?!\.)(?!.*\.\.)([\w'+-.]*)[\w+-]@([\da-z][\da-z-]*\.)+[a-z]{2,}$
+            setup_status:
+              type: string
+              enum:
+              - INCOMPLETE
+              - FINAL_SYNC_PENDING
+              - COMPLETED
+              description: 'The setup_status is used in conjunction with the filtering and field mapping features. If these are enabled in the connection flow, the integration will start in an "INCOMPLETE" state and move to "COMPLETE" once all steps are finished.
+
+
+                - `INCOMPLETE`: Setup is still in progress. Some steps aren’t finished, so no data is available yet. Syncs only run as needed for setup.
+
+                - `FINAL_SYNC_PENDING`: Setup is complete, and the final sync is running. Data will be available after this sync is done.
+
+                - `COMPLETED`: Setup is fully finished, and the integration is ready to use.'
+          required:
+          - tool
+          - id
+          - end_user_origin_id
+          - end_user_organization_name
+          - end_user_email
+          - setup_status
+          examples:
+          - tool: personio
+            id: personio:CBNMt7dSNCzBdnRTx87dev4E
+            end_user_origin_id: '36123'
+            end_user_organization_name: Acme, Inc.
+            end_user_email: user@example.com
+            setup_status: COMPLETED
+      required:
+      - status
+      - data
     GetConnectIntegrationByTokenTokenParameterToken:
       type: string
+    PostConnectActivateIntegrationRequestBody:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
+    PostConnectCreateLinkPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            link:
+              type: string
+              format: uri
+          required:
+          - link
+          examples:
+          - link: https://connect.kombo.dev/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.SWYgeW91IGFyZSByZWFkaW5nIHRoaXMsIHdlIHdvdWxkIGxpa2UgdG8gbGV0IHlvdSBrbm93IHRoYXQgd2UgYXJlIGhpcmluZyBwZW9wbGUgbGlrZSB5b3UgOikuIFJlYWNoIG91dCB0byBhbGV4QGtvbWJvLmRldiB0byBnZXQgaW4gY29udGFjdCBhbmQgdGVsbCBoaW0geW91IGNvbWUgZnJvbSB0aGUgSldUIDsp._hhX5YTtHfLn9ZC806dZceRn2whzxHyrhft1ONzNgOE
+      required:
+      - status
+      - data
   responses:
     ErrorResponseGeneral:
       description: The standard error response with just the platform error codes.

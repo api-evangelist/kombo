@@ -408,6 +408,620 @@ webhooks:
       - Kombo API
 components:
   schemas:
+    SyncFinishedWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this webhook event
+        type:
+          type: string
+          enum:
+          - sync-finished
+          description: Type of the webhook event
+        data:
+          type: object
+          properties:
+            sync_id:
+              type: string
+              description: The unique identifier of the sync operation.
+            sync_state:
+              type: string
+              description: The final state of the sync operation (e.g., `SUCCEEDED`, `FAILED`).
+            sync_started_at:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp when the sync operation started.
+            sync_ended_at:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp when the sync operation completed.
+            sync_duration_seconds:
+              type: integer
+              minimum: 0
+              description: Duration of the sync operation in seconds.
+            integration_id:
+              type: string
+              description: The unique identifier of the integration.
+            integration_tool:
+              type: string
+              description: The name of the integrated tool (e.g., "personio", "greenhouse").
+            integration_category:
+              type: string
+              enum:
+              - HRIS
+              - ATS
+              - ASSESSMENT
+              - LMS
+              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
+            end_user:
+              type: object
+              properties:
+                organization_name:
+                  type: string
+                  description: The name of the organization that owns the integration.
+                creator_email:
+                  type: string
+                  nullable: true
+                  description: The email address of the user who created the integration.
+                  format: email
+                origin_id:
+                  type: string
+                  nullable: true
+                  description: The unique identifier of the organization in the integrated system.
+              required:
+              - organization_name
+              - creator_email
+              - origin_id
+              additionalProperties: false
+              description: Information about the end user who created the integration.
+            log_url:
+              type: string
+              format: uri
+              description: URL to view detailed logs for the operation.
+          required:
+          - sync_id
+          - sync_state
+          - sync_started_at
+          - sync_ended_at
+          - sync_duration_seconds
+          - integration_id
+          - integration_tool
+          - integration_category
+          - end_user
+          - log_url
+          additionalProperties: false
+      required:
+      - id
+      - type
+      - data
+      additionalProperties: false
+    IntegrationDeletedWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this webhook event
+        type:
+          type: string
+          enum:
+          - integration-deleted
+          description: Type of the webhook event
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique identifier of the deleted integration.
+            tool:
+              type: string
+              description: The name of the integrated tool.
+            category:
+              type: string
+              enum:
+              - HRIS
+              - ATS
+              - ASSESSMENT
+              - LMS
+              description: The category of the integration.
+            end_user:
+              type: object
+              properties:
+                organization_name:
+                  type: string
+                  description: The name of the organization that owns the integration.
+                creator_email:
+                  type: string
+                  nullable: true
+                  description: The email address of the user who created the integration.
+                  format: email
+                origin_id:
+                  type: string
+                  nullable: true
+                  description: The unique identifier of the organization in the integrated system.
+              required:
+              - organization_name
+              - creator_email
+              - origin_id
+              additionalProperties: false
+              description: Information about the end user who created the integration.
+            deleted_at:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp when the integration was deleted.
+          required:
+          - id
+          - tool
+          - category
+          - end_user
+          - deleted_at
+          additionalProperties: false
+      required:
+      - id
+      - type
+      - data
+      additionalProperties: false
+    AiApplyJobPostingStatusUpdatedWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this webhook event
+        type:
+          type: string
+          enum:
+          - ai-apply-job-posting-status-updated
+          description: Type of the webhook event
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            career_site:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                label:
+                  type: string
+              required:
+              - id
+              - label
+              additionalProperties: false
+            url:
+              type: string
+            job_code:
+              type: string
+              nullable: true
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+            archived_at:
+              type: string
+              format: date-time
+              nullable: true
+              description: The date and time the job posting was archived. You can only send applications if the job posting is not archived.
+            archived_reason:
+              type: string
+              enum:
+              - JOB_POSTING_TAKEN_OFFLINE
+              - MANUAL_ARCHIVE
+              - REMOVED_FROM_JOB_FEED
+              nullable: true
+            availability:
+              type: string
+              enum:
+              - APPLYABLE
+              - PENDING
+              - ARCHIVED
+              - UNAVAILABLE
+              description: The status of the job posting. You can only send applications if the job posting is "APPLYABLE".
+          required:
+          - id
+          - career_site
+          - url
+          - job_code
+          - created_at
+          - updated_at
+          - archived_at
+          - archived_reason
+          - availability
+          additionalProperties: false
+      required:
+      - id
+      - type
+      - data
+      additionalProperties: false
+    ConnectionFlowFailedWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this webhook event
+        type:
+          type: string
+          enum:
+          - connection-flow-failed
+          description: Type of the webhook event
+        data:
+          type: object
+          properties:
+            integration_tool:
+              type: string
+              description: The name of the integrated tool (e.g., "personio", "greenhouse").
+            integration_category:
+              type: string
+              enum:
+              - HRIS
+              - ATS
+              - ASSESSMENT
+              - LMS
+              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
+            end_user:
+              type: object
+              properties:
+                organization_name:
+                  type: string
+                  description: The name of the organization that owns the integration.
+                creator_email:
+                  type: string
+                  nullable: true
+                  description: The email address of the user who created the integration.
+                  format: email
+                origin_id:
+                  type: string
+                  nullable: true
+                  description: The unique identifier of the organization in the integrated system.
+              required:
+              - organization_name
+              - creator_email
+              - origin_id
+              additionalProperties: false
+              description: Information about the end user who created the integration.
+            log_url:
+              type: string
+              format: uri
+              description: URL to view detailed logs for the operation.
+          required:
+          - integration_tool
+          - integration_category
+          - end_user
+          - log_url
+          additionalProperties: false
+      required:
+      - id
+      - type
+      - data
+      additionalProperties: false
+    InlineAssessmentOrderReceivedWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this webhook event
+        type:
+          type: string
+          enum:
+          - inline-assessment:order-received
+          description: Type of the webhook event
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique identifier of the assessment order.
+            package_id:
+              type: string
+              description: The identifier of the assessment package.
+            status:
+              type: string
+              enum:
+              - OPEN
+              - COMPLETED
+              - CANCELLED
+              - REJECTED
+              description: The current status of the assessment order.
+            integration_id:
+              type: string
+              description: The unique identifier of the integration.
+            candidate:
+              type: object
+              properties:
+                remote_id:
+                  type: string
+                  nullable: true
+                  description: The candidate's identifier in the integrated system.
+                email:
+                  type: string
+                  description: The candidate's email address.
+                  format: email
+                first_name:
+                  type: string
+                  nullable: true
+                  description: The candidate's first name.
+                last_name:
+                  type: string
+                  nullable: true
+                  description: The candidate's last name.
+                phone:
+                  type: string
+                  nullable: true
+                  description: The candidate's phone number.
+              required:
+              - remote_id
+              - email
+              - first_name
+              - last_name
+              - phone
+              additionalProperties: false
+              description: Information about the candidate taking the assessment.
+            application:
+              type: object
+              properties:
+                remote_id:
+                  type: string
+                  nullable: true
+                  description: The application's identifier in the integrated system.
+              required:
+              - remote_id
+              additionalProperties: false
+              description: Information about the job application.
+            job:
+              type: object
+              properties:
+                remote_id:
+                  type: string
+                  nullable: true
+                  description: The job's identifier in the integrated system.
+                name:
+                  type: string
+                  nullable: true
+                  description: The job title.
+                job_code:
+                  type: string
+                  nullable: true
+                  description: The human readable job code. Some systems expose this as the Requisition Code/ID.
+                description:
+                  type: string
+                  nullable: true
+                  description: Description of the job. This field is usually returned as HTML.
+                location:
+                  type: object
+                  properties:
+                    street_1:
+                      type: string
+                      nullable: true
+                      description: If we can parse the address data, this field contains the first part of the street information.
+                    street_2:
+                      type: string
+                      nullable: true
+                    city:
+                      type: string
+                      nullable: true
+                    state:
+                      type: string
+                      nullable: true
+                    zip_code:
+                      type: string
+                      nullable: true
+                    country:
+                      type: string
+                      nullable: true
+                      description: Contains the ISO2 country code if possible. If not, it contains the original value.
+                    raw:
+                      type: string
+                      nullable: true
+                      description: If we have address data, this is filled with the raw address string.
+                  additionalProperties: false
+                  nullable: true
+                  description: The job location information.
+                hiring_team:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      remote_id:
+                        type: string
+                        nullable: true
+                        description: The team member's identifier in the integrated system.
+                      email:
+                        type: string
+                        nullable: true
+                        description: The team member's email address.
+                      first_name:
+                        type: string
+                        nullable: true
+                        description: The team member's first name.
+                      last_name:
+                        type: string
+                        nullable: true
+                        description: The team member's last name.
+                      hiring_team_roles:
+                        type: array
+                        items:
+                          type: string
+                          enum:
+                          - RECRUITER
+                          - HIRING_MANAGER
+                        description: Array of the roles of the user for this specific job.
+                    required:
+                    - remote_id
+                    - email
+                    - first_name
+                    - last_name
+                    - hiring_team_roles
+                    additionalProperties: false
+                    description: A member of the hiring team.
+                  description: The hiring team allows you to provision users into your system who can access the job and its applications.
+              required:
+              - remote_id
+              - name
+              - job_code
+              - description
+              - location
+              - hiring_team
+              additionalProperties: false
+              description: Information about the job posting.
+          required:
+          - id
+          - package_id
+          - status
+          - integration_id
+          - candidate
+          - application
+          - job
+          additionalProperties: false
+      required:
+      - id
+      - type
+      - data
+      additionalProperties: false
+    DataChangedWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this webhook event
+        type:
+          type: string
+          enum:
+          - data-changed
+          description: Type of the webhook event
+        data:
+          type: object
+          properties:
+            integration_id:
+              type: string
+              description: The unique identifier of the integration.
+            integration_tool:
+              type: string
+              description: The name of the integrated tool (e.g., "personio", "greenhouse").
+            integration_category:
+              type: string
+              enum:
+              - HRIS
+              - ATS
+              - ASSESSMENT
+              - LMS
+              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
+            changed_models:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    enum:
+                    - hris_legal_entities
+                    - hris_locations
+                    - hris_employees
+                    - hris_absence_types
+                    - hris_absences
+                    - hris_employments
+                    - hris_teams
+                    - hris_time_off_balances
+                    - hris_timesheets
+                    - hris_employee_document_categories
+                    - hris_performance_reviews
+                    - hris_performance_review_cycles
+                    - hris_staffing_entities
+                    - ats_users
+                    - ats_jobs
+                    - ats_job_postings
+                    - ats_candidates
+                    - ats_application_stages
+                    - ats_applications
+                    - ats_screening_questions
+                    - ats_tags
+                    - ats_interviews
+                    - ats_offers
+                    - ats_rejection_reasons
+                    - ats_roles
+                    - lms_users
+                    - lms_course_providers
+                    - lms_skills
+                    - lms_courses
+                    - lms_course_revisions
+                    - lms_course_progressions
+                    - hris_join_employees_teams
+                    - hris_join_staffing_entities_locations
+                    - hris_join_staffing_entities_legal_entities
+                    - hris_join_staffing_entities_groups
+                    - ats_join_candidates_tags
+                    - ats_join_jobs_application_stages
+                    - ats_join_jobs_screening_questions
+                    - ats_join_user_job_role_assignments
+                    - ats_join_jobs_users
+                    - ats_join_users_roles
+                    - ats_join_interviews_users
+                    - lms_join_revisions_skills
+                    description: The name of the Kombo model or connection that changed.
+                required:
+                - name
+                additionalProperties: false
+                description: A model or connection that has changed in the integration.
+              description: List of data models and connections for which one or more records were created, updated, or deleted.
+          required:
+          - integration_id
+          - integration_tool
+          - integration_category
+          - changed_models
+          additionalProperties: false
+      required:
+      - id
+      - type
+      - data
+      additionalProperties: false
+    AiApplyApplicationStatusUpdatedWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this webhook event
+        type:
+          type: string
+          enum:
+          - ai-apply-application-status-updated
+          description: Type of the webhook event
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            job_posting_id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            status:
+              type: string
+              enum:
+              - SUBMITTED
+              - DUPLICATE
+              - PENDING
+              - FAILED
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+          required:
+          - id
+          - job_posting_id
+          - status
+          - created_at
+          - updated_at
+          additionalProperties: false
+      required:
+      - id
+      - type
+      - data
+      additionalProperties: false
     AssessmentOrderReceivedWebhookPayload:
       type: object
       properties:
@@ -651,273 +1265,6 @@ components:
       - type
       - data
       additionalProperties: false
-    ConnectionFlowFailedWebhookPayload:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this webhook event
-        type:
-          type: string
-          enum:
-          - connection-flow-failed
-          description: Type of the webhook event
-        data:
-          type: object
-          properties:
-            integration_tool:
-              type: string
-              description: The name of the integrated tool (e.g., "personio", "greenhouse").
-            integration_category:
-              type: string
-              enum:
-              - HRIS
-              - ATS
-              - ASSESSMENT
-              - LMS
-              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
-            end_user:
-              type: object
-              properties:
-                organization_name:
-                  type: string
-                  description: The name of the organization that owns the integration.
-                creator_email:
-                  type: string
-                  nullable: true
-                  description: The email address of the user who created the integration.
-                  format: email
-                origin_id:
-                  type: string
-                  nullable: true
-                  description: The unique identifier of the organization in the integrated system.
-              required:
-              - organization_name
-              - creator_email
-              - origin_id
-              additionalProperties: false
-              description: Information about the end user who created the integration.
-            log_url:
-              type: string
-              format: uri
-              description: URL to view detailed logs for the operation.
-          required:
-          - integration_tool
-          - integration_category
-          - end_user
-          - log_url
-          additionalProperties: false
-      required:
-      - id
-      - type
-      - data
-      additionalProperties: false
-    IntegrationDeletedWebhookPayload:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this webhook event
-        type:
-          type: string
-          enum:
-          - integration-deleted
-          description: Type of the webhook event
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The unique identifier of the deleted integration.
-            tool:
-              type: string
-              description: The name of the integrated tool.
-            category:
-              type: string
-              enum:
-              - HRIS
-              - ATS
-              - ASSESSMENT
-              - LMS
-              description: The category of the integration.
-            end_user:
-              type: object
-              properties:
-                organization_name:
-                  type: string
-                  description: The name of the organization that owns the integration.
-                creator_email:
-                  type: string
-                  nullable: true
-                  description: The email address of the user who created the integration.
-                  format: email
-                origin_id:
-                  type: string
-                  nullable: true
-                  description: The unique identifier of the organization in the integrated system.
-              required:
-              - organization_name
-              - creator_email
-              - origin_id
-              additionalProperties: false
-              description: Information about the end user who created the integration.
-            deleted_at:
-              type: string
-              format: date-time
-              description: ISO 8601 timestamp when the integration was deleted.
-          required:
-          - id
-          - tool
-          - category
-          - end_user
-          - deleted_at
-          additionalProperties: false
-      required:
-      - id
-      - type
-      - data
-      additionalProperties: false
-    DataChangedWebhookPayload:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this webhook event
-        type:
-          type: string
-          enum:
-          - data-changed
-          description: Type of the webhook event
-        data:
-          type: object
-          properties:
-            integration_id:
-              type: string
-              description: The unique identifier of the integration.
-            integration_tool:
-              type: string
-              description: The name of the integrated tool (e.g., "personio", "greenhouse").
-            integration_category:
-              type: string
-              enum:
-              - HRIS
-              - ATS
-              - ASSESSMENT
-              - LMS
-              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
-            changed_models:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    enum:
-                    - hris_legal_entities
-                    - hris_locations
-                    - hris_employees
-                    - hris_absence_types
-                    - hris_absences
-                    - hris_employments
-                    - hris_teams
-                    - hris_time_off_balances
-                    - hris_timesheets
-                    - hris_employee_document_categories
-                    - hris_performance_reviews
-                    - hris_performance_review_cycles
-                    - hris_staffing_entities
-                    - ats_users
-                    - ats_jobs
-                    - ats_job_postings
-                    - ats_candidates
-                    - ats_application_stages
-                    - ats_applications
-                    - ats_screening_questions
-                    - ats_tags
-                    - ats_interviews
-                    - ats_offers
-                    - ats_rejection_reasons
-                    - ats_roles
-                    - lms_users
-                    - lms_course_providers
-                    - lms_skills
-                    - lms_courses
-                    - lms_course_revisions
-                    - lms_course_progressions
-                    - hris_join_employees_teams
-                    - hris_join_staffing_entities_locations
-                    - hris_join_staffing_entities_legal_entities
-                    - hris_join_staffing_entities_groups
-                    - ats_join_candidates_tags
-                    - ats_join_jobs_application_stages
-                    - ats_join_jobs_screening_questions
-                    - ats_join_user_job_role_assignments
-                    - ats_join_jobs_users
-                    - ats_join_users_roles
-                    - ats_join_interviews_users
-                    - lms_join_revisions_skills
-                    description: The name of the Kombo model or connection that changed.
-                required:
-                - name
-                additionalProperties: false
-                description: A model or connection that has changed in the integration.
-              description: List of data models and connections for which one or more records were created, updated, or deleted.
-          required:
-          - integration_id
-          - integration_tool
-          - integration_category
-          - changed_models
-          additionalProperties: false
-      required:
-      - id
-      - type
-      - data
-      additionalProperties: false
-    AiApplyApplicationStatusUpdatedWebhookPayload:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this webhook event
-        type:
-          type: string
-          enum:
-          - ai-apply-application-status-updated
-          description: Type of the webhook event
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            job_posting_id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            status:
-              type: string
-              enum:
-              - SUBMITTED
-              - DUPLICATE
-              - PENDING
-              - FAILED
-            created_at:
-              type: string
-              format: date-time
-            updated_at:
-              type: string
-              format: date-time
-          required:
-          - id
-          - job_posting_id
-          - status
-          - created_at
-          - updated_at
-          additionalProperties: false
-      required:
-      - id
-      - type
-      - data
-      additionalProperties: false
     IntegrationStateChangedWebhookPayload:
       type: object
       properties:
@@ -1001,353 +1348,6 @@ components:
           - setup_status
           - state
           - updated_at
-          additionalProperties: false
-      required:
-      - id
-      - type
-      - data
-      additionalProperties: false
-    InlineAssessmentOrderReceivedWebhookPayload:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this webhook event
-        type:
-          type: string
-          enum:
-          - inline-assessment:order-received
-          description: Type of the webhook event
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The unique identifier of the assessment order.
-            package_id:
-              type: string
-              description: The identifier of the assessment package.
-            status:
-              type: string
-              enum:
-              - OPEN
-              - COMPLETED
-              - CANCELLED
-              - REJECTED
-              description: The current status of the assessment order.
-            integration_id:
-              type: string
-              description: The unique identifier of the integration.
-            candidate:
-              type: object
-              properties:
-                remote_id:
-                  type: string
-                  nullable: true
-                  description: The candidate's identifier in the integrated system.
-                email:
-                  type: string
-                  description: The candidate's email address.
-                  format: email
-                first_name:
-                  type: string
-                  nullable: true
-                  description: The candidate's first name.
-                last_name:
-                  type: string
-                  nullable: true
-                  description: The candidate's last name.
-                phone:
-                  type: string
-                  nullable: true
-                  description: The candidate's phone number.
-              required:
-              - remote_id
-              - email
-              - first_name
-              - last_name
-              - phone
-              additionalProperties: false
-              description: Information about the candidate taking the assessment.
-            application:
-              type: object
-              properties:
-                remote_id:
-                  type: string
-                  nullable: true
-                  description: The application's identifier in the integrated system.
-              required:
-              - remote_id
-              additionalProperties: false
-              description: Information about the job application.
-            job:
-              type: object
-              properties:
-                remote_id:
-                  type: string
-                  nullable: true
-                  description: The job's identifier in the integrated system.
-                name:
-                  type: string
-                  nullable: true
-                  description: The job title.
-                job_code:
-                  type: string
-                  nullable: true
-                  description: The human readable job code. Some systems expose this as the Requisition Code/ID.
-                description:
-                  type: string
-                  nullable: true
-                  description: Description of the job. This field is usually returned as HTML.
-                location:
-                  type: object
-                  properties:
-                    street_1:
-                      type: string
-                      nullable: true
-                      description: If we can parse the address data, this field contains the first part of the street information.
-                    street_2:
-                      type: string
-                      nullable: true
-                    city:
-                      type: string
-                      nullable: true
-                    state:
-                      type: string
-                      nullable: true
-                    zip_code:
-                      type: string
-                      nullable: true
-                    country:
-                      type: string
-                      nullable: true
-                      description: Contains the ISO2 country code if possible. If not, it contains the original value.
-                    raw:
-                      type: string
-                      nullable: true
-                      description: If we have address data, this is filled with the raw address string.
-                  additionalProperties: false
-                  nullable: true
-                  description: The job location information.
-                hiring_team:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      remote_id:
-                        type: string
-                        nullable: true
-                        description: The team member's identifier in the integrated system.
-                      email:
-                        type: string
-                        nullable: true
-                        description: The team member's email address.
-                      first_name:
-                        type: string
-                        nullable: true
-                        description: The team member's first name.
-                      last_name:
-                        type: string
-                        nullable: true
-                        description: The team member's last name.
-                      hiring_team_roles:
-                        type: array
-                        items:
-                          type: string
-                          enum:
-                          - RECRUITER
-                          - HIRING_MANAGER
-                        description: Array of the roles of the user for this specific job.
-                    required:
-                    - remote_id
-                    - email
-                    - first_name
-                    - last_name
-                    - hiring_team_roles
-                    additionalProperties: false
-                    description: A member of the hiring team.
-                  description: The hiring team allows you to provision users into your system who can access the job and its applications.
-              required:
-              - remote_id
-              - name
-              - job_code
-              - description
-              - location
-              - hiring_team
-              additionalProperties: false
-              description: Information about the job posting.
-          required:
-          - id
-          - package_id
-          - status
-          - integration_id
-          - candidate
-          - application
-          - job
-          additionalProperties: false
-      required:
-      - id
-      - type
-      - data
-      additionalProperties: false
-    AiApplyJobPostingStatusUpdatedWebhookPayload:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this webhook event
-        type:
-          type: string
-          enum:
-          - ai-apply-job-posting-status-updated
-          description: Type of the webhook event
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            career_site:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                label:
-                  type: string
-              required:
-              - id
-              - label
-              additionalProperties: false
-            url:
-              type: string
-            job_code:
-              type: string
-              nullable: true
-            created_at:
-              type: string
-              format: date-time
-            updated_at:
-              type: string
-              format: date-time
-            archived_at:
-              type: string
-              format: date-time
-              nullable: true
-              description: The date and time the job posting was archived. You can only send applications if the job posting is not archived.
-            archived_reason:
-              type: string
-              enum:
-              - JOB_POSTING_TAKEN_OFFLINE
-              - MANUAL_ARCHIVE
-              - REMOVED_FROM_JOB_FEED
-              nullable: true
-            availability:
-              type: string
-              enum:
-              - APPLYABLE
-              - PENDING
-              - ARCHIVED
-              - UNAVAILABLE
-              description: The status of the job posting. You can only send applications if the job posting is "APPLYABLE".
-          required:
-          - id
-          - career_site
-          - url
-          - job_code
-          - created_at
-          - updated_at
-          - archived_at
-          - archived_reason
-          - availability
-          additionalProperties: false
-      required:
-      - id
-      - type
-      - data
-      additionalProperties: false
-    SyncFinishedWebhookPayload:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this webhook event
-        type:
-          type: string
-          enum:
-          - sync-finished
-          description: Type of the webhook event
-        data:
-          type: object
-          properties:
-            sync_id:
-              type: string
-              description: The unique identifier of the sync operation.
-            sync_state:
-              type: string
-              description: The final state of the sync operation (e.g., `SUCCEEDED`, `FAILED`).
-            sync_started_at:
-              type: string
-              format: date-time
-              description: ISO 8601 timestamp when the sync operation started.
-            sync_ended_at:
-              type: string
-              format: date-time
-              description: ISO 8601 timestamp when the sync operation completed.
-            sync_duration_seconds:
-              type: integer
-              minimum: 0
-              description: Duration of the sync operation in seconds.
-            integration_id:
-              type: string
-              description: The unique identifier of the integration.
-            integration_tool:
-              type: string
-              description: The name of the integrated tool (e.g., "personio", "greenhouse").
-            integration_category:
-              type: string
-              enum:
-              - HRIS
-              - ATS
-              - ASSESSMENT
-              - LMS
-              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
-            end_user:
-              type: object
-              properties:
-                organization_name:
-                  type: string
-                  description: The name of the organization that owns the integration.
-                creator_email:
-                  type: string
-                  nullable: true
-                  description: The email address of the user who created the integration.
-                  format: email
-                origin_id:
-                  type: string
-                  nullable: true
-                  description: The unique identifier of the organization in the integrated system.
-              required:
-              - organization_name
-              - creator_email
-              - origin_id
-              additionalProperties: false
-              description: Information about the end user who created the integration.
-            log_url:
-              type: string
-              format: uri
-              description: URL to view detailed logs for the operation.
-          required:
-          - sync_id
-          - sync_state
-          - sync_started_at
-          - sync_ended_at
-          - sync_duration_seconds
-          - integration_id
-          - integration_tool
-          - integration_category
-          - end_user
-          - log_url
           additionalProperties: false
       required:
       - id

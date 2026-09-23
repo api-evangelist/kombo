@@ -30,12 +30,14 @@
     "kombo-openapi.json: tagged webhooks POST ai-apply-application-status-updated -> Kombo API",
     "kombo-openapi.json: tagged webhooks POST ai-apply-job-posting-status-updated -> Kombo API",
     "kombo-openapi.json: tagged webhooks POST sync-finished -> Kombo API",
-    "kombo-openapi.json: declared missing tag: Kombo API"
+    "kombo-openapi.json: declared missing tag: Kombo API",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "kombo-ai-apply-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "kombo-custom-endpoints-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "kombo-general-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kombo-kombo-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "kombo-kombo-connect-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "kombo-unified-ats-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "kombo-unified-ats-assessment-background-check-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",

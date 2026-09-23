@@ -258,7 +258,26 @@ paths:
     post:
       operationId: PostLmsCourseProgressions
       summary: Enroll user in course
-      description: "Enroll a user in a course revision.\n\n<Note>\n  This endpoint requires the permission **Create and manage course progressions** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"user_id\": \"7xPdr68N8kG9EzLwjsN9xyz\",\n  \"course_revision_id\": \"3KMdr68N8kG9EzLwjsN9aoz\"\n}\n```"
+      description: 'Enroll a user in a course revision.
+
+
+        This endpoint requires the permission **Create and manage course progressions** to be enabled in your scope config.
+
+
+        ### Example Request Body
+
+
+        ```json
+
+        {
+
+        "user_id": "7xPdr68N8kG9EzLwjsN9xyz",
+
+        "course_revision_id": "3KMdr68N8kG9EzLwjsN9aoz"
+
+        }
+
+        ```'
       tags:
       - Unified LMS API
       parameters:
@@ -323,7 +342,26 @@ paths:
     post:
       operationId: PostLmsCourseProgressionsCourseProgressionIdComplete
       summary: Complete course
-      description: "Mark a course revision as completed for a user.\n\n<Note>\n  This endpoint requires the permission **Create and manage course progressions** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"completed_at\": \"2024-04-15\",\n  \"score\": 93\n}\n```"
+      description: 'Mark a course revision as completed for a user.
+
+
+        This endpoint requires the permission **Create and manage course progressions** to be enabled in your scope config.
+
+
+        ### Example Request Body
+
+
+        ```json
+
+        {
+
+        "completed_at": "2024-04-15",
+
+        "score": 93
+
+        }
+
+        ```'
       tags:
       - Unified LMS API
       parameters:
@@ -532,7 +570,89 @@ paths:
     post:
       operationId: PostLmsCoursesBulk
       summary: Upsert courses
-      description: "Create or update multiple courses in the LMS.\n\n<Info>\n  **Note:** This endpoint is asynchronous – it returns a `task_id` immediately and processes the request in the background. Use the corresponding `GET` endpoint to poll for the task status until it reaches `COMPLETED` or `FAILED`. Learn more in our [async endpoints guide](/lms/guides/async-endpoints).\n</Info>\n\n<Note>\n  This endpoint requires the permission **Upsert courses** to be enabled in [your scope config](/scopes).\n</Note>\n\n### Example Request Body\n\n```json\n{\n  \"items\": [\n    {\n      \"origin_id\": \"course-1\",\n      \"course\": {\n        \"type\": \"EXTERNAL\",\n        \"title\": \"Building LMS integrations with Kombo\",\n        \"description\": \"Learn how to build and integrate Learning Management System (LMS) integrations with Kombo. This course covers the unified LMS API, course management, user enrollment, progress tracking, and best practices for building robust LMS connectors.\",\n        \"course_url\": \"https://docs.kombo.dev/lms/introduction\",\n        \"thumbnail_url\": \"https://kombo.dev/images/courses/lms-integrations-thumbnail.png\",\n        \"duration\": 45,\n        \"languages\": [\n          \"en\",\n          \"de-CH\"\n        ]\n      }\n    },\n    {\n      \"origin_id\": \"course-2\",\n      \"course\": {\n        \"type\": \"EXTERNAL\",\n        \"title\": \"Introduction to TypeScript\",\n        \"description\": \"Learn one of the most popular programming languages of the recent years quickly and efficiently. Results guaranteed!\",\n        \"course_url\": \"https://example.com\",\n        \"thumbnail_url\": \"https://example.com/images/thumbnail.jpg\",\n        \"duration\": 60,\n        \"languages\": [\n          \"en-US\",\n          \"pl-PL\"\n        ]\n      }\n    }\n  ]\n}\n```"
+      description: 'Create or update multiple courses in the LMS.
+
+
+        **Note:** This endpoint is asynchronous – it returns a `task_id` immediately and processes the request in the background. Use the corresponding `GET` endpoint to poll for the task status until it reaches `COMPLETED` or `FAILED`. Learn more in our async endpoints guide.
+
+
+        This endpoint requires the permission **Upsert courses** to be enabled in your scope config.
+
+
+        ### Example Request Body
+
+
+        ```json
+
+        {
+
+        "items": [
+
+        {
+
+        "origin_id": "course-1",
+
+        "course": {
+
+        "type": "EXTERNAL",
+
+        "title": "Building LMS integrations with Kombo",
+
+        "description": "Learn how to build and integrate Learning Management System (LMS) integrations with Kombo. This course covers the unified LMS API, course management, user enrollment, progress tracking, and best practices for building robust LMS connectors.",
+
+        "course_url": "https://docs.kombo.dev/lms/introduction",
+
+        "thumbnail_url": "https://kombo.dev/images/courses/lms-integrations-thumbnail.png",
+
+        "duration": 45,
+
+        "languages": [
+
+        "en",
+
+        "de-CH"
+
+        ]
+
+        }
+
+        },
+
+        {
+
+        "origin_id": "course-2",
+
+        "course": {
+
+        "type": "EXTERNAL",
+
+        "title": "Introduction to TypeScript",
+
+        "description": "Learn one of the most popular programming languages of the recent years quickly and efficiently. Results guaranteed!",
+
+        "course_url": "https://example.com",
+
+        "thumbnail_url": "https://example.com/images/thumbnail.jpg",
+
+        "duration": 60,
+
+        "languages": [
+
+        "en-US",
+
+        "pl-PL"
+
+        ]
+
+        }
+
+        }
+
+        ]
+
+        }
+
+        ```'
       tags:
       - Unified LMS API
       parameters:
@@ -588,7 +708,16 @@ paths:
     get:
       operationId: GetLmsCoursesBulkTaskId
       summary: Get status of “Upsert courses” task
-      description: "Poll for the status of an existing “Upsert courses” task.\n\n<Info>\nThis endpoint returns the current status of a task. Poll it at regular intervals until the task reaches a terminal status. Learn more in our [async endpoints guide](/lms/guides/async-endpoints). The possible statuses are:\n  - `PENDING` – The task is still being processed.\n  - `COMPLETED` – The task finished successfully. The `data` field contains the results.\n  - `FAILED` – The task encountered an error. Check the `error` field for details.\n</Info>"
+      description: 'Poll for the status of an existing “Upsert courses” task.
+
+
+        This endpoint returns the current status of a task. Poll it at regular intervals until the task reaches a terminal status. Learn more in our async endpoints guide. The possible statuses are:
+
+        - `PENDING` – The task is still being processed.
+
+        - `COMPLETED` – The task finished successfully. The `data` field contains the results.
+
+        - `FAILED` – The task encountered an error. Check the `error` field for details.'
       tags:
       - Unified LMS API
       parameters:
@@ -618,7 +747,13 @@ paths:
     post:
       operationId: PostLmsCoursesCourseIdDeactivate
       summary: Deactivate course
-      description: "Deactivate a course in the LMS.\n\nDeactivates a course, making it unavailable for new enrollments while preserving existing progress records.\n\n<Note>\n  This endpoint requires the permission **Upsert courses** to be enabled in [your scope config](/scopes).\n</Note>"
+      description: 'Deactivate a course in the LMS.
+
+
+        Deactivates a course, making it unavailable for new enrollments while preserving existing progress records.
+
+
+        This endpoint requires the permission **Upsert courses** to be enabled in your scope config.'
       tags:
       - Unified LMS API
       parameters:
@@ -795,208 +930,20 @@ paths:
           $ref: '#/components/responses/ErrorResponseGeneral'
 components:
   schemas:
-    GetLmsCourseProgressionsParameterRemoteIds:
+    GetLmsCourseProgressionsParameterIncludeDeleted:
       type: string
-      description: Filter by a comma-separated list of remote IDs.
-    PostLmsCourseProgressionsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            remote_id:
-              type: string
-              description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-            user_id:
-              type: string
-              description: The Kombo ID of the user this progression relates to. The ID can be used to retrieve the user from the `get users` endpoint.
-            course_revision_id:
-              type: string
-              description: The Kombo ID of the revision this progression relates to. The ID can be used to retrieve the revision from the `get courses` endpoint.
-            status:
-              type:
-              - string
-              - 'null'
-              enum:
-              - ENROLLED
-              - IN_PROGRESS
-              - COMPLETED
-              - DROPPED
-              description: Current status of the learner in this course revision.
-            enrolled_at:
-              description: Date when the user enrolled in the course revision.
-              type:
-              - string
-              - 'null'
-              format: date-time
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            completed_at:
-              description: Date when the user completed the course revision.
-              type:
-              - string
-              - 'null'
-              format: date-time
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            changed_at:
-              description: The timestamp when this specific record was last modified. This field only updates when properties directly on this record change, NOT when related or nested models change. For filtering that considers nested data changes, use the `updated_after` parameter which will return records when either the record itself OR its related models have been updated.
-              type: string
-              format: date-time
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            remote_deleted_at:
-              description: The date and time the object was deleted in the remote system. Objects are automatically marked as deleted when Kombo can't retrieve them from the remote system anymore. Kombo will also anonymize entries 14 days after they disappear.
-              type:
-              - string
-              - 'null'
-              format: date-time
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            remote_data:
-              type:
-              - object
-              - 'null'
-              additionalProperties: true
-              description: 'Includes the data fetched from the remote system.
-
-                Please be aware that including this in you scope config might violate other
-
-                scopes that are set.
-
-
-                Remote data always has the endpoint path that we got the data from as the
-
-                top level key. For example, it could look like: `{ "/companies": { ... }}`
-
-
-                This is not available on all plans. Reach out to Kombo if you need it.'
-            user:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                remote_id:
-                  type: string
-                  description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-                first_name:
-                  type:
-                  - string
-                  - 'null'
-                  description: The user's first name.
-                last_name:
-                  type:
-                  - string
-                  - 'null'
-                  description: The user's last name.
-                work_email:
-                  type:
-                  - string
-                  - 'null'
-                  description: The user's work email address.
-              required:
-              - id
-              - remote_id
-              - first_name
-              - last_name
-              - work_email
-              examples:
-              - id: 26vafvWSRmbhNcxJYqjCzuJg
-                remote_id: '32'
-                first_name: Sarah
-                last_name: Johnson
-                work_email: sarah.johnson@example.com
-            course_revision:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                remote_id:
-                  type: string
-                  description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-                title:
-                  type:
-                  - string
-                  - 'null'
-                  description: The title of the course revision.
-                course:
-                  type:
-                  - object
-                  - 'null'
-                  properties:
-                    id:
-                      type: string
-                      description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                    remote_id:
-                      type: string
-                      description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-                  required:
-                  - id
-                  - remote_id
-              required:
-              - id
-              - remote_id
-              - title
-              - course
-          required:
-          - id
-          - remote_id
-          - user_id
-          - course_revision_id
-          - status
-          - enrolled_at
-          - completed_at
-          - changed_at
-          - remote_deleted_at
-          - remote_data
-          - user
-          - course_revision
-          examples:
-          - id: 26vafvWSRmbhNcxJYqjCzuJg
-            remote_id: progress-12345
-            user_id: 7xPdr68N8kG9EzLwjsN9xyz
-            course_revision_id: 3KMdr68N8kG9EzLwjsN9aoz
-            status: COMPLETED
-            enrolled_at: '2022-08-07T14:01:29.196Z'
-            completed_at: '2022-08-07T14:01:29.196Z'
-            changed_at: '2022-08-07T14:01:29.196Z'
-            remote_deleted_at: null
-            remote_data: null
-            user:
-              id: 26vafvWSRmbhNcxJYqjCzuJg
-              remote_id: '32'
-              first_name: Sarah
-              last_name: Johnson
-              work_email: sarah.johnson@example.com
-            course_revision:
-              id: 3KMdr68N8kG9EzLwjsN9aoz
-              remote_id: revision-12345
-              title: Building LMS integrations with Kombo
-              course:
-                id: 26vafvWSRmbhNcxJYqjCzuJg
-                remote_id: '32'
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
+      enum:
+      - 'true'
+      - 'false'
+      default: 'false'
+      description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too.
+    GetLmsUsersParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
     PostLmsCoursesCourseIdDeactivatePositiveResponse:
       type: object
       properties:
@@ -1391,13 +1338,9 @@ components:
       - status
       - data
       - warnings
-    GetLmsCourseProgressionsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
+    GetLmsSkillsParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
     GetLmsCourseProgressionsParameterUpdatedAfter:
       description: 'Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record''s own `changed_at` field remains unchanged.
 
@@ -1426,551 +1369,6 @@ components:
       pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
       externalDocs:
         url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-    GetLmsUsersParameterIds:
-      type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetLmsCourseProgressionsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    GetLmsCourseProgressionsParameterIds:
-      type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetLmsUsersParameterUpdatedAfter:
-      description: 'Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record''s own `changed_at` field remains unchanged.
-
-
-        If you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.
-
-
-        For more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).
-
-
-        For this endpoint, only changes to the returned record itself are considered.'
-      type: string
-      format: date-time
-      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-      externalDocs:
-        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-    GetLmsCoursesBulkTaskIdParameterTaskId:
-      type: string
-    GetLmsSkillsParameterRemoteIds:
-      type: string
-      description: Filter by a comma-separated list of remote IDs.
-    GetLmsUsersParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
-    PostLmsCoursesBulkPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            task_id:
-              type: string
-              description: The ID of the created task. Poll this to get the status and results.
-          required:
-          - task_id
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    PostLmsCoursesBulkRequestBody:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              origin_id:
-                type: string
-                description: A unique identifier for this item in the batch, used to correlate results and as a stable identifier for matching existing courses.
-              course:
-                discriminator:
-                  propertyName: type
-                oneOf:
-                - type: object
-                  properties:
-                    type:
-                      type: string
-                      const: EXTERNAL
-                      description: '`EXTERNAL` indicates that the content is not sent to the LMS, but the `course_url` links to the content in your system.'
-                    title:
-                      type: string
-                      description: The title of the course revision.
-                    description:
-                      type:
-                      - string
-                      - 'null'
-                      description: A description of the course revision.
-                    course_url:
-                      type: string
-                      description: URL to the course page. For content providers, this should be a deeplink into your product that allows users to access the course directly.
-                    thumbnail_url:
-                      type:
-                      - string
-                      - 'null'
-                      description: URL to the thumbnail image for the course.
-                    duration:
-                      type:
-                      - integer
-                      - 'null'
-                      format: int64
-                      exclusiveMinimum: 0
-                      description: The duration of the course in minutes.
-                    languages:
-                      type:
-                      - array
-                      - 'null'
-                      items:
-                        type: string
-                        pattern: ^[a-z]{2,3}(-[A-Z]{2})?$
-                        description: IETF language tag (BCP 47) in the format "ll-CC" (e.g., "en-US", "de-DE") or "ll" (e.g., "en", "de").
-                      description: 'A array containing the supported languages for the course content. If only one language is accepted by remote tool we default to the first one. '
-                  required:
-                  - type
-                  - title
-                  - course_url
-            required:
-            - origin_id
-            - course
-          description: Array of courses to create or update.
-      required:
-      - items
-    PostLmsCoursesCourseIdDeactivateParameterCourseId:
-      type: string
-      description: The ID of the course in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
-    GetLmsSkillsParameterIgnoreUnsupportedFilters:
-      type: string
-      enum:
-      - 'true'
-      - 'false'
-      default: 'false'
-      description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results.
-    GetLmsSkillsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  remote_id:
-                    type:
-                    - string
-                    - 'null'
-                    description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-                  name:
-                    type:
-                    - string
-                    - 'null'
-                    description: The name of the skill.
-                  remote_created_at:
-                    description: The date and time the object was created in the remote system.
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  remote_deleted_at:
-                    description: The date and time the object was deleted in the remote system. Objects are automatically marked as deleted when Kombo can't retrieve them from the remote system anymore. Kombo will also anonymize entries 14 days after they disappear.
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  changed_at:
-                    description: The timestamp when this specific record was last modified. This field only updates when properties directly on this record change, NOT when related or nested models change. For filtering that considers nested data changes, use the `updated_after` parameter which will return records when either the record itself OR its related models have been updated.
-                    type: string
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  remote_data:
-                    type:
-                    - object
-                    - 'null'
-                    additionalProperties: true
-                    description: 'Includes the data fetched from the remote system.
-
-                      Please be aware that including this in you scope config might violate other
-
-                      scopes that are set.
-
-
-                      Remote data always has the endpoint path that we got the data from as the
-
-                      top level key. For example, it could look like: `{ "/companies": { ... }}`
-
-
-                      This is not available on all plans. Reach out to Kombo if you need it.'
-                  custom_fields:
-                    type:
-                    - object
-                    - 'null'
-                    additionalProperties: true
-                    description: A key-value store of fields not covered by the schema. [Read more](/custom-fields)
-                  integration_fields:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          description: The globally unique ID of this object.
-                        key:
-                          type: string
-                          description: The key of the field in the remote system.
-                        type:
-                          type: string
-                          enum:
-                          - DEFAULT
-                          - CUSTOM
-                          description: '- `DEFAULT`: static fields in the remote system.
-
-                            - `CUSTOM`: fields that are created/editable by the user.'
-                        value:
-                          type: 'null'
-                          description: The field's value.
-                        label:
-                          type:
-                          - string
-                          - 'null'
-                          description: The label of the field. (not always available)
-                      required:
-                      - id
-                      - key
-                      - type
-                      - label
-                    description: An array of selected passthrough integration fields. [Read more](/integration-fields)
-                    examples:
-                    - - id: 5NVFhMpB9Ah6by44tzNjZLyE
-                        key: firstName
-                        type: DEFAULT
-                        value: Frank
-                        label: First Name
-                      - id: 8nuajYpoRd5GnxEQaaWKUDYQ
-                        key: customTshirtSize
-                        type: CUSTOM
-                        value: XL
-                        label: T-Shirt Size
-                required:
-                - id
-                - remote_id
-                - name
-                - remote_created_at
-                - remote_deleted_at
-                - changed_at
-                - remote_data
-                - custom_fields
-                - integration_fields
-                examples:
-                - id: 26vafvWSRmbhNcxJYqjCzuJg
-                  remote_id: skill-12345
-                  name: LMS Integration
-                  remote_created_at: '2022-08-07T14:01:29.196Z'
-                  remote_deleted_at: null
-                  changed_at: '2022-08-07T14:01:29.196Z'
-                  remote_data: null
-                  custom_fields: null
-                  integration_fields: []
-          required:
-          - next
-          - results
-          examples:
-          - next: eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=
-            results:
-            - id: 26vafvWSRmbhNcxJYqjCzuJg
-              remote_id: skill-12345
-              name: LMS Integration
-              remote_created_at: '2022-08-07T14:01:29.196Z'
-              remote_deleted_at: null
-              changed_at: '2022-08-07T14:01:29.196Z'
-              remote_data: null
-              custom_fields: null
-              integration_fields: []
-      required:
-      - status
-      - data
-    PostLmsCourseProgressionsCourseProgressionIdCompleteRequestBody:
-      type: object
-      properties:
-        completed_at:
-          description: Date when the user completed the course revision. Defaults to the current date if not provided.
-          type:
-          - string
-          - 'null'
-          format: date-time
-          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-          externalDocs:
-            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-        score:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          minimum: 0
-          maximum: 100
-          description: Score the user achieved for the course, as an integer between 0 and 100 (inclusive).
-    GetLmsUsersPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  remote_id:
-                    type: string
-                    description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-                  first_name:
-                    type:
-                    - string
-                    - 'null'
-                    description: The user's first name.
-                  last_name:
-                    type:
-                    - string
-                    - 'null'
-                    description: The user's last name.
-                  work_email:
-                    type:
-                    - string
-                    - 'null'
-                    description: The user's work email address.
-                  status:
-                    type:
-                    - string
-                    - 'null'
-                    enum:
-                    - ACTIVE
-                    - INACTIVE
-                    description: Current status of the user in the LMS.
-                  remote_created_at:
-                    description: The date and time the object was created in the remote system.
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  remote_deleted_at:
-                    description: The date and time the object was deleted in the remote system. Objects are automatically marked as deleted when Kombo can't retrieve them from the remote system anymore. Kombo will also anonymize entries 14 days after they disappear.
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  changed_at:
-                    description: The timestamp when this specific record was last modified. This field only updates when properties directly on this record change, NOT when related or nested models change. For filtering that considers nested data changes, use the `updated_after` parameter which will return records when either the record itself OR its related models have been updated.
-                    type: string
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  remote_data:
-                    type:
-                    - object
-                    - 'null'
-                    additionalProperties: true
-                    description: 'Includes the data fetched from the remote system.
-
-                      Please be aware that including this in you scope config might violate other
-
-                      scopes that are set.
-
-
-                      Remote data always has the endpoint path that we got the data from as the
-
-                      top level key. For example, it could look like: `{ "/companies": { ... }}`
-
-
-                      This is not available on all plans. Reach out to Kombo if you need it.'
-                  custom_fields:
-                    type:
-                    - object
-                    - 'null'
-                    additionalProperties: true
-                    description: A key-value store of fields not covered by the schema. [Read more](/custom-fields)
-                  integration_fields:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          description: The globally unique ID of this object.
-                        key:
-                          type: string
-                          description: The key of the field in the remote system.
-                        type:
-                          type: string
-                          enum:
-                          - DEFAULT
-                          - CUSTOM
-                          description: '- `DEFAULT`: static fields in the remote system.
-
-                            - `CUSTOM`: fields that are created/editable by the user.'
-                        value:
-                          type: 'null'
-                          description: The field's value.
-                        label:
-                          type:
-                          - string
-                          - 'null'
-                          description: The label of the field. (not always available)
-                      required:
-                      - id
-                      - key
-                      - type
-                      - label
-                    description: An array of selected passthrough integration fields. [Read more](/integration-fields)
-                    examples:
-                    - - id: 5NVFhMpB9Ah6by44tzNjZLyE
-                        key: firstName
-                        type: DEFAULT
-                        value: Frank
-                        label: First Name
-                      - id: 8nuajYpoRd5GnxEQaaWKUDYQ
-                        key: customTshirtSize
-                        type: CUSTOM
-                        value: XL
-                        label: T-Shirt Size
-                required:
-                - id
-                - remote_id
-                - first_name
-                - last_name
-                - work_email
-                - status
-                - remote_created_at
-                - remote_deleted_at
-                - changed_at
-                - remote_data
-                - custom_fields
-                - integration_fields
-                examples:
-                - id: 26vafvWSRmbhNcxJYqjCzuJg
-                  remote_id: '32'
-                  first_name: Sarah
-                  last_name: Johnson
-                  work_email: sarah.johnson@example.com
-                  status: ACTIVE
-                  remote_created_at: '2022-08-07T14:01:29.196Z'
-                  remote_deleted_at: null
-                  changed_at: '2022-08-07T14:01:29.196Z'
-                  remote_data: null
-                  custom_fields: null
-                  integration_fields: []
-          required:
-          - next
-          - results
-          examples:
-          - next: eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=
-            results:
-            - id: 26vafvWSRmbhNcxJYqjCzuJg
-              remote_id: '32'
-              first_name: Sarah
-              last_name: Johnson
-              work_email: sarah.johnson@example.com
-              status: ACTIVE
-              remote_created_at: '2022-08-07T14:01:29.196Z'
-              remote_deleted_at: null
-              changed_at: '2022-08-07T14:01:29.196Z'
-              remote_data: null
-              custom_fields: null
-              integration_fields: []
-      required:
-      - status
-      - data
-    GetLmsCoursesParameterRemoteIds:
-      type: string
-      description: Filter by a comma-separated list of remote IDs.
-    GetLmsCoursesParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    GetLmsSkillsParameterIncludeDeleted:
-      type: string
-      enum:
-      - 'true'
-      - 'false'
-      default: 'false'
-      description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too.
-    GetLmsCourseProgressionsParameterUserIds:
-      type: string
-      description: Filter by a comma-separated list of user IDs. We will only return progressions that are related to _any_ of the users.
-    GetLmsSkillsParameterUpdatedAfter:
-      description: 'Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record''s own `changed_at` field remains unchanged.
-
-
-        If you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.
-
-
-        For more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).
-
-
-        For this endpoint, only changes to the returned record itself are considered.'
-      type: string
-      format: date-time
-      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-      externalDocs:
-        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-    GetLmsUsersParameterWorkEmails:
-      type: string
-      description: Filter by a comma-separated list of work emails. We will only return users who have _any_ of the work emails. The format of the emails is case-insensitive.
-    GetLmsCoursesParameterIncludeDeleted:
-      type: string
-      enum:
-      - 'true'
-      - 'false'
-      default: 'false'
-      description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too.
     PostLmsCourseProgressionsCourseProgressionIdCompletePositiveResponse:
       type: object
       properties:
@@ -2170,7 +1568,17 @@ components:
       - status
       - data
       - warnings
-    GetLmsCourseProgressionsPositiveResponse:
+    GetLmsSkillsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
+    GetLmsSkillsParameterRemoteIds:
+      type: string
+      description: Filter by a comma-separated list of remote IDs.
+    PostLmsCoursesBulkPositiveResponse:
       type: object
       properties:
         status:
@@ -2179,282 +1587,325 @@ components:
         data:
           type: object
           properties:
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  remote_id:
-                    type: string
-                    description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-                  user_id:
-                    type: string
-                    description: The Kombo ID of the user this progression relates to. The ID can be used to retrieve the user from the `get users` endpoint.
-                  course_revision_id:
-                    type: string
-                    description: The Kombo ID of the revision this progression relates to. The ID can be used to retrieve the revision from the `get courses` endpoint.
-                  status:
-                    type:
-                    - string
-                    - 'null'
-                    enum:
-                    - ENROLLED
-                    - IN_PROGRESS
-                    - COMPLETED
-                    - DROPPED
-                    description: Current status of the learner in this course revision.
-                  enrolled_at:
-                    description: Date when the user enrolled in the course revision.
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  completed_at:
-                    description: Date when the user completed the course revision.
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  changed_at:
-                    description: The timestamp when this specific record was last modified. This field only updates when properties directly on this record change, NOT when related or nested models change. For filtering that considers nested data changes, use the `updated_after` parameter which will return records when either the record itself OR its related models have been updated.
-                    type: string
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  remote_deleted_at:
-                    description: The date and time the object was deleted in the remote system. Objects are automatically marked as deleted when Kombo can't retrieve them from the remote system anymore. Kombo will also anonymize entries 14 days after they disappear.
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  remote_data:
-                    type:
-                    - object
-                    - 'null'
-                    additionalProperties: true
-                    description: 'Includes the data fetched from the remote system.
-
-                      Please be aware that including this in you scope config might violate other
-
-                      scopes that are set.
-
-
-                      Remote data always has the endpoint path that we got the data from as the
-
-                      top level key. For example, it could look like: `{ "/companies": { ... }}`
-
-
-                      This is not available on all plans. Reach out to Kombo if you need it.'
-                  user:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                      remote_id:
-                        type: string
-                        description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-                      first_name:
-                        type:
-                        - string
-                        - 'null'
-                        description: The user's first name.
-                      last_name:
-                        type:
-                        - string
-                        - 'null'
-                        description: The user's last name.
-                      work_email:
-                        type:
-                        - string
-                        - 'null'
-                        description: The user's work email address.
-                    required:
-                    - id
-                    - remote_id
-                    - first_name
-                    - last_name
-                    - work_email
-                    examples:
-                    - id: 26vafvWSRmbhNcxJYqjCzuJg
-                      remote_id: '32'
-                      first_name: Sarah
-                      last_name: Johnson
-                      work_email: sarah.johnson@example.com
-                  course_revision:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                      remote_id:
-                        type: string
-                        description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-                      title:
-                        type:
-                        - string
-                        - 'null'
-                        description: The title of the course revision.
-                      course:
-                        type:
-                        - object
-                        - 'null'
-                        properties:
-                          id:
-                            type: string
-                            description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                          remote_id:
-                            type: string
-                            description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
-                        required:
-                        - id
-                        - remote_id
-                    required:
-                    - id
-                    - remote_id
-                    - title
-                    - course
-                required:
-                - id
-                - remote_id
-                - user_id
-                - course_revision_id
-                - status
-                - enrolled_at
-                - completed_at
-                - changed_at
-                - remote_deleted_at
-                - remote_data
-                - user
-                - course_revision
-                examples:
-                - id: 26vafvWSRmbhNcxJYqjCzuJg
-                  remote_id: progress-12345
-                  user_id: 7xPdr68N8kG9EzLwjsN9xyz
-                  course_revision_id: 3KMdr68N8kG9EzLwjsN9aoz
-                  status: COMPLETED
-                  enrolled_at: '2022-08-07T14:01:29.196Z'
-                  completed_at: '2022-08-07T14:01:29.196Z'
-                  changed_at: '2022-08-07T14:01:29.196Z'
-                  remote_deleted_at: null
-                  remote_data: null
-                  user:
-                    id: 26vafvWSRmbhNcxJYqjCzuJg
-                    remote_id: '32'
-                    first_name: Sarah
-                    last_name: Johnson
-                    work_email: sarah.johnson@example.com
-                  course_revision:
-                    id: 3KMdr68N8kG9EzLwjsN9aoz
-                    remote_id: revision-12345
-                    title: Building LMS integrations with Kombo
-                    course:
-                      id: 26vafvWSRmbhNcxJYqjCzuJg
-                      remote_id: '32'
+            task_id:
+              type: string
+              description: The ID of the created task. Poll this to get the status and results.
           required:
-          - next
-          - results
-          examples:
-          - next: eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=
-            results:
-            - id: 26vafvWSRmbhNcxJYqjCzuJg
-              remote_id: progress-12345
-              user_id: 7xPdr68N8kG9EzLwjsN9xyz
-              course_revision_id: 3KMdr68N8kG9EzLwjsN9aoz
-              status: COMPLETED
-              enrolled_at: '2022-08-07T14:01:29.196Z'
-              completed_at: '2022-08-07T14:01:29.196Z'
-              changed_at: '2022-08-07T14:01:29.196Z'
-              remote_deleted_at: null
-              remote_data: null
-              user:
-                id: 26vafvWSRmbhNcxJYqjCzuJg
-                remote_id: '32'
-                first_name: Sarah
-                last_name: Johnson
-                work_email: sarah.johnson@example.com
-              course_revision:
-                id: 3KMdr68N8kG9EzLwjsN9aoz
-                remote_id: revision-12345
-                title: Building LMS integrations with Kombo
-                course:
-                  id: 26vafvWSRmbhNcxJYqjCzuJg
-                  remote_id: '32'
+          - task_id
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
       required:
       - status
       - data
-    GetLmsCourseProgressionsParameterIgnoreUnsupportedFilters:
-      type: string
-      enum:
-      - 'true'
-      - 'false'
-      default: 'false'
-      description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results.
-    PostLmsCourseProgressionsRequestBody:
+      - warnings
+    PostLmsCoursesBulkRequestBody:
       type: object
       properties:
-        user_id:
-          type: string
-          description: The ID of the user in Kombo or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
-        course_revision_id:
-          type: string
-          description: The ID of the revision in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              origin_id:
+                type: string
+                description: A unique identifier for this item in the batch, used to correlate results and as a stable identifier for matching existing courses.
+              course:
+                discriminator:
+                  propertyName: type
+                oneOf:
+                - type: object
+                  properties:
+                    type:
+                      type: string
+                      const: EXTERNAL
+                      description: '`EXTERNAL` indicates that the content is not sent to the LMS, but the `course_url` links to the content in your system.'
+                    title:
+                      type: string
+                      description: The title of the course revision.
+                    description:
+                      type:
+                      - string
+                      - 'null'
+                      description: A description of the course revision.
+                    course_url:
+                      type: string
+                      description: URL to the course page. For content providers, this should be a deeplink into your product that allows users to access the course directly.
+                    thumbnail_url:
+                      type:
+                      - string
+                      - 'null'
+                      description: URL to the thumbnail image for the course.
+                    duration:
+                      type:
+                      - integer
+                      - 'null'
+                      format: int64
+                      exclusiveMinimum: 0
+                      description: The duration of the course in minutes.
+                    languages:
+                      type:
+                      - array
+                      - 'null'
+                      items:
+                        type: string
+                        pattern: ^[a-z]{2,3}(-[A-Z]{2})?$
+                        description: IETF language tag (BCP 47) in the format "ll-CC" (e.g., "en-US", "de-DE") or "ll" (e.g., "en", "de").
+                      description: 'A array containing the supported languages for the course content. If only one language is accepted by remote tool we default to the first one. '
+                  required:
+                  - type
+                  - title
+                  - course_url
+            required:
+            - origin_id
+            - course
+          description: Array of courses to create or update.
       required:
-      - user_id
-      - course_revision_id
-    GetLmsCourseProgressionsParameterIncludeDeleted:
-      type: string
-      enum:
-      - 'true'
-      - 'false'
-      default: 'false'
-      description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too.
-    GetLmsUsersParameterCursor:
+      - items
+    GetLmsSkillsParameterCursor:
       type: string
       description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    GetLmsUsersParameterRemoteIds:
-      type: string
-      description: Filter by a comma-separated list of remote IDs.
-    PostLmsCourseProgressionsCourseProgressionIdCompleteParameterCourseProgressionId:
-      type: string
-      description: The ID of the course progression in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
-    GetLmsSkillsParameterPageSize:
+    GetLmsCoursesParameterPageSize:
       type: integer
       format: int64
       minimum: 1
       maximum: 250
       default: 100
       description: The number of results to return per page. Maximum is 250.
-    GetLmsCoursesParameterIgnoreUnsupportedFilters:
+    GetLmsSkillsParameterIgnoreUnsupportedFilters:
       type: string
       enum:
       - 'true'
       - 'false'
       default: 'false'
       description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results.
-    GetLmsCourseProgressionsParameterCourseIds:
-      type: string
-      description: Filter by a comma-separated list of course IDs. We will only return progressions for revisions that belong to _any_ of the courses.
-    GetLmsCoursesParameterIds:
-      type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetLmsSkillsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetLmsCoursesBulkTaskIdPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          discriminator:
+            propertyName: status
+          anyOf:
+          - type: object
+            properties:
+              task_id:
+                type: string
+              created_at:
+                type: string
+                description: An ISO 8601 timestamp of when the task was created.
+              status:
+                type: string
+                const: PENDING
+                description: Indicates the task is still being processed.
+              completed_at:
+                type: 'null'
+                description: Always `null` while the task is pending.
+            required:
+            - task_id
+            - created_at
+            - status
+            - completed_at
+          - type: object
+            properties:
+              task_id:
+                type: string
+              created_at:
+                type: string
+                description: An ISO 8601 timestamp of when the task was created.
+              status:
+                type: string
+                const: COMPLETED
+                description: Indicates the task has finished successfully.
+              data:
+                type: array
+                items:
+                  discriminator:
+                    propertyName: status
+                  anyOf:
+                  - type: object
+                    properties:
+                      origin_id:
+                        type: string
+                        description: A unique identifier for this item in the batch, used to correlate results.
+                      status:
+                        type: string
+                        const: SUCCEEDED
+                      data:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: The Kombo ID of the course.
+                        required:
+                        - id
+                    required:
+                    - origin_id
+                    - status
+                    - data
+                  - type: object
+                    properties:
+                      origin_id:
+                        type: string
+                        description: A unique identifier for this item in the batch, used to correlate results.
+                      status:
+                        type: string
+                        const: FAILED
+                      error:
+                        type: object
+                        properties:
+                          code:
+                            type:
+                            - string
+                            - 'null'
+                            enum:
+                            - PLATFORM.RATE_LIMIT_EXCEEDED
+                            - PLATFORM.CONCURRENCY_LIMIT_EXCEEDED
+                            - PLATFORM.INTEGRATION_NOT_FOUND
+                            - PLATFORM.INPUT_INVALID
+                            - PLATFORM.UNKNOWN_ERROR
+                            - PLATFORM.IP_NOT_WHITELISTED
+                            - PLATFORM.AUTHENTICATION_INVALID
+                            - PLATFORM.TASK_TIMED_OUT
+                            - INTEGRATION.PERMISSION_MISSING
+                            - INTEGRATION.AUTHENTICATION_INVALID
+                            - INTEGRATION.QA_FAILED
+                            - INTEGRATION.SETUP_SYNC_PENDING
+                            - INTEGRATION.SETUP_INCOMPLETE
+                            - INTEGRATION.INACTIVE
+                            - INTEGRATION.MODEL_NOT_AVAILABLE
+                            - INTEGRATION.MODEL_DISABLED
+                            - INTEGRATION.ACTION_NOT_AVAILABLE
+                            - INTEGRATION.ACTION_DISABLED
+                            - REMOTE.SERVICE_UNAVAILABLE
+                            - REMOTE.RATE_LIMIT_EXCEEDED
+                            - REMOTE.INPUT_INVALID
+                            - REMOTE.UNKNOWN_HTTP_ERROR
+                            - HRIS.EMPLOYEE_ALREADY_EXISTS
+                            - ATS.JOB_CLOSED
+                            - ATS.APPLICATION_ALREADY_EXISTS
+                            - LMS.COURSE_UPDATE_NOT_SUPPORTED
+                            - AI_APPLY.JOB_FEED_IMPORT_ALREADY_RUNNING
+                            - AI_APPLY.JOB_FEED_IMPORT_TIMED_OUT
+                          title:
+                            type:
+                            - string
+                            - 'null'
+                          message:
+                            type: string
+                          log_url:
+                            type:
+                            - string
+                            - 'null'
+                        required:
+                        - code
+                        - title
+                        - message
+                        - log_url
+                    required:
+                    - origin_id
+                    - status
+                    - error
+                description: The results of the completed task, containing one entry per item in the original request.
+              completed_at:
+                description: An ISO 8601 timestamp of when the task was completed.
+                type: string
+                format: date-time
+                externalDocs:
+                  url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            required:
+            - task_id
+            - created_at
+            - status
+            - data
+            - completed_at
+          - type: object
+            properties:
+              task_id:
+                type: string
+              created_at:
+                type: string
+                description: An ISO 8601 timestamp of when the task was created.
+              status:
+                type: string
+                const: FAILED
+                description: Indicates the task failed before it could process all items.
+              error:
+                type: object
+                properties:
+                  code:
+                    type:
+                    - string
+                    - 'null'
+                    enum:
+                    - PLATFORM.RATE_LIMIT_EXCEEDED
+                    - PLATFORM.CONCURRENCY_LIMIT_EXCEEDED
+                    - PLATFORM.INTEGRATION_NOT_FOUND
+                    - PLATFORM.INPUT_INVALID
+                    - PLATFORM.UNKNOWN_ERROR
+                    - PLATFORM.IP_NOT_WHITELISTED
+                    - PLATFORM.AUTHENTICATION_INVALID
+                    - PLATFORM.TASK_TIMED_OUT
+                    - INTEGRATION.PERMISSION_MISSING
+                    - INTEGRATION.AUTHENTICATION_INVALID
+                    - INTEGRATION.QA_FAILED
+                    - INTEGRATION.SETUP_SYNC_PENDING
+                    - INTEGRATION.SETUP_INCOMPLETE
+                    - INTEGRATION.INACTIVE
+                    - INTEGRATION.MODEL_NOT_AVAILABLE
+                    - INTEGRATION.MODEL_DISABLED
+                    - INTEGRATION.ACTION_NOT_AVAILABLE
+                    - INTEGRATION.ACTION_DISABLED
+                    - REMOTE.SERVICE_UNAVAILABLE
+                    - REMOTE.RATE_LIMIT_EXCEEDED
+                    - REMOTE.INPUT_INVALID
+                    - REMOTE.UNKNOWN_HTTP_ERROR
+                    - HRIS.EMPLOYEE_ALREADY_EXISTS
+                    - ATS.JOB_CLOSED
+                    - ATS.APPLICATION_ALREADY_EXISTS
+                    - LMS.COURSE_UPDATE_NOT_SUPPORTED
+                    - AI_APPLY.JOB_FEED_IMPORT_ALREADY_RUNNING
+                    - AI_APPLY.JOB_FEED_IMPORT_TIMED_OUT
+                  title:
+                    type:
+                    - string
+                    - 'null'
+                  message:
+                    type: string
+                  log_url:
+                    type:
+                    - string
+                    - 'null'
+                required:
+                - code
+                - title
+                - message
+                - log_url
+                description: Details about why the task failed.
+              completed_at:
+                description: An ISO 8601 timestamp of when the task failed.
+                type: string
+                format: date-time
+                externalDocs:
+                  url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            required:
+            - task_id
+            - created_at
+            - status
+            - error
+            - completed_at
+      required:
+      - status
+      - data
     GetLmsCoursesPositiveResponse:
       type: object
       properties:
@@ -2887,236 +2338,431 @@ components:
       required:
       - status
       - data
-    GetLmsCoursesParameterPageSize:
+    GetLmsCourseProgressionsParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    GetLmsUsersParameterUpdatedAfter:
+      description: 'Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record''s own `changed_at` field remains unchanged.
+
+
+        If you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.
+
+
+        For more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).
+
+
+        For this endpoint, only changes to the returned record itself are considered.'
+      type: string
+      format: date-time
+      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+      externalDocs:
+        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+    GetLmsCourseProgressionsParameterPageSize:
       type: integer
       format: int64
       minimum: 1
       maximum: 250
       default: 100
       description: The number of results to return per page. Maximum is 250.
-    PostLmsCoursesCourseIdDeactivateRequestBody:
-      type: object
-      properties: {}
-    GetLmsCoursesBulkTaskIdPositiveResponse:
+    GetLmsCourseProgressionsParameterRemoteIds:
+      type: string
+      description: Filter by a comma-separated list of remote IDs.
+    GetLmsCoursesBulkTaskIdParameterTaskId:
+      type: string
+    GetLmsCourseProgressionsParameterCourseIds:
+      type: string
+      description: Filter by a comma-separated list of course IDs. We will only return progressions for revisions that belong to _any_ of the courses.
+    GetLmsUsersPositiveResponse:
       type: object
       properties:
         status:
           type: string
           const: success
         data:
-          discriminator:
-            propertyName: status
-          anyOf:
-          - type: object
-            properties:
-              task_id:
-                type: string
-              created_at:
-                type: string
-                description: An ISO 8601 timestamp of when the task was created.
-              status:
-                type: string
-                const: PENDING
-                description: Indicates the task is still being processed.
-              completed_at:
-                type: 'null'
-                description: Always `null` while the task is pending.
-            required:
-            - task_id
-            - created_at
-            - status
-            - completed_at
-          - type: object
-            properties:
-              task_id:
-                type: string
-              created_at:
-                type: string
-                description: An ISO 8601 timestamp of when the task was created.
-              status:
-                type: string
-                const: COMPLETED
-                description: Indicates the task has finished successfully.
-              data:
-                type: array
-                items:
-                  discriminator:
-                    propertyName: status
-                  anyOf:
-                  - type: object
-                    properties:
-                      origin_id:
-                        type: string
-                        description: A unique identifier for this item in the batch, used to correlate results.
-                      status:
-                        type: string
-                        const: SUCCEEDED
-                      data:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            description: The Kombo ID of the course.
-                        required:
-                        - id
-                    required:
-                    - origin_id
-                    - status
-                    - data
-                  - type: object
-                    properties:
-                      origin_id:
-                        type: string
-                        description: A unique identifier for this item in the batch, used to correlate results.
-                      status:
-                        type: string
-                        const: FAILED
-                      error:
-                        type: object
-                        properties:
-                          code:
-                            type:
-                            - string
-                            - 'null'
-                            enum:
-                            - PLATFORM.RATE_LIMIT_EXCEEDED
-                            - PLATFORM.CONCURRENCY_LIMIT_EXCEEDED
-                            - PLATFORM.INTEGRATION_NOT_FOUND
-                            - PLATFORM.INPUT_INVALID
-                            - PLATFORM.UNKNOWN_ERROR
-                            - PLATFORM.IP_NOT_WHITELISTED
-                            - PLATFORM.AUTHENTICATION_INVALID
-                            - PLATFORM.TASK_TIMED_OUT
-                            - INTEGRATION.PERMISSION_MISSING
-                            - INTEGRATION.AUTHENTICATION_INVALID
-                            - INTEGRATION.QA_FAILED
-                            - INTEGRATION.SETUP_SYNC_PENDING
-                            - INTEGRATION.SETUP_INCOMPLETE
-                            - INTEGRATION.INACTIVE
-                            - INTEGRATION.MODEL_NOT_AVAILABLE
-                            - INTEGRATION.MODEL_DISABLED
-                            - INTEGRATION.ACTION_NOT_AVAILABLE
-                            - INTEGRATION.ACTION_DISABLED
-                            - REMOTE.SERVICE_UNAVAILABLE
-                            - REMOTE.RATE_LIMIT_EXCEEDED
-                            - REMOTE.INPUT_INVALID
-                            - REMOTE.UNKNOWN_HTTP_ERROR
-                            - HRIS.EMPLOYEE_ALREADY_EXISTS
-                            - ATS.JOB_CLOSED
-                            - ATS.APPLICATION_ALREADY_EXISTS
-                            - LMS.COURSE_UPDATE_NOT_SUPPORTED
-                            - AI_APPLY.JOB_FEED_IMPORT_ALREADY_RUNNING
-                            - AI_APPLY.JOB_FEED_IMPORT_TIMED_OUT
-                          title:
-                            type:
-                            - string
-                            - 'null'
-                          message:
-                            type: string
-                          log_url:
-                            type:
-                            - string
-                            - 'null'
-                        required:
-                        - code
-                        - title
-                        - message
-                        - log_url
-                    required:
-                    - origin_id
-                    - status
-                    - error
-                description: The results of the completed task, containing one entry per item in the original request.
-              completed_at:
-                description: An ISO 8601 timestamp of when the task was completed.
-                type: string
-                format: date-time
-                externalDocs:
-                  url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            required:
-            - task_id
-            - created_at
-            - status
-            - data
-            - completed_at
-          - type: object
-            properties:
-              task_id:
-                type: string
-              created_at:
-                type: string
-                description: An ISO 8601 timestamp of when the task was created.
-              status:
-                type: string
-                const: FAILED
-                description: Indicates the task failed before it could process all items.
-              error:
+          type: object
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
+            results:
+              type: array
+              items:
                 type: object
                 properties:
-                  code:
+                  id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  remote_id:
+                    type: string
+                    description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+                  first_name:
+                    type:
+                    - string
+                    - 'null'
+                    description: The user's first name.
+                  last_name:
+                    type:
+                    - string
+                    - 'null'
+                    description: The user's last name.
+                  work_email:
+                    type:
+                    - string
+                    - 'null'
+                    description: The user's work email address.
+                  status:
                     type:
                     - string
                     - 'null'
                     enum:
-                    - PLATFORM.RATE_LIMIT_EXCEEDED
-                    - PLATFORM.CONCURRENCY_LIMIT_EXCEEDED
-                    - PLATFORM.INTEGRATION_NOT_FOUND
-                    - PLATFORM.INPUT_INVALID
-                    - PLATFORM.UNKNOWN_ERROR
-                    - PLATFORM.IP_NOT_WHITELISTED
-                    - PLATFORM.AUTHENTICATION_INVALID
-                    - PLATFORM.TASK_TIMED_OUT
-                    - INTEGRATION.PERMISSION_MISSING
-                    - INTEGRATION.AUTHENTICATION_INVALID
-                    - INTEGRATION.QA_FAILED
-                    - INTEGRATION.SETUP_SYNC_PENDING
-                    - INTEGRATION.SETUP_INCOMPLETE
-                    - INTEGRATION.INACTIVE
-                    - INTEGRATION.MODEL_NOT_AVAILABLE
-                    - INTEGRATION.MODEL_DISABLED
-                    - INTEGRATION.ACTION_NOT_AVAILABLE
-                    - INTEGRATION.ACTION_DISABLED
-                    - REMOTE.SERVICE_UNAVAILABLE
-                    - REMOTE.RATE_LIMIT_EXCEEDED
-                    - REMOTE.INPUT_INVALID
-                    - REMOTE.UNKNOWN_HTTP_ERROR
-                    - HRIS.EMPLOYEE_ALREADY_EXISTS
-                    - ATS.JOB_CLOSED
-                    - ATS.APPLICATION_ALREADY_EXISTS
-                    - LMS.COURSE_UPDATE_NOT_SUPPORTED
-                    - AI_APPLY.JOB_FEED_IMPORT_ALREADY_RUNNING
-                    - AI_APPLY.JOB_FEED_IMPORT_TIMED_OUT
-                  title:
+                    - ACTIVE
+                    - INACTIVE
+                    description: Current status of the user in the LMS.
+                  remote_created_at:
+                    description: The date and time the object was created in the remote system.
                     type:
                     - string
                     - 'null'
-                  message:
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  remote_deleted_at:
+                    description: The date and time the object was deleted in the remote system. Objects are automatically marked as deleted when Kombo can't retrieve them from the remote system anymore. Kombo will also anonymize entries 14 days after they disappear.
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  changed_at:
+                    description: The timestamp when this specific record was last modified. This field only updates when properties directly on this record change, NOT when related or nested models change. For filtering that considers nested data changes, use the `updated_after` parameter which will return records when either the record itself OR its related models have been updated.
                     type: string
-                  log_url:
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  remote_data:
                     type:
-                    - string
+                    - object
                     - 'null'
+                    additionalProperties: true
+                    description: 'Includes the data fetched from the remote system.
+
+                      Please be aware that including this in you scope config might violate other
+
+                      scopes that are set.
+
+
+                      Remote data always has the endpoint path that we got the data from as the
+
+                      top level key. For example, it could look like: `{ "/companies": { ... }}`
+
+
+                      This is not available on all plans. Reach out to Kombo if you need it.'
+                  custom_fields:
+                    type:
+                    - object
+                    - 'null'
+                    additionalProperties: true
+                    description: A key-value store of fields not covered by the schema. [Read more](/custom-fields)
+                  integration_fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The globally unique ID of this object.
+                        key:
+                          type: string
+                          description: The key of the field in the remote system.
+                        type:
+                          type: string
+                          enum:
+                          - DEFAULT
+                          - CUSTOM
+                          description: '- `DEFAULT`: static fields in the remote system.
+
+                            - `CUSTOM`: fields that are created/editable by the user.'
+                        value:
+                          type: 'null'
+                          description: The field's value.
+                        label:
+                          type:
+                          - string
+                          - 'null'
+                          description: The label of the field. (not always available)
+                      required:
+                      - id
+                      - key
+                      - type
+                      - label
+                    description: An array of selected passthrough integration fields. [Read more](/integration-fields)
+                    examples:
+                    - - id: 5NVFhMpB9Ah6by44tzNjZLyE
+                        key: firstName
+                        type: DEFAULT
+                        value: Frank
+                        label: First Name
+                      - id: 8nuajYpoRd5GnxEQaaWKUDYQ
+                        key: customTshirtSize
+                        type: CUSTOM
+                        value: XL
+                        label: T-Shirt Size
                 required:
-                - code
-                - title
-                - message
-                - log_url
-                description: Details about why the task failed.
-              completed_at:
-                description: An ISO 8601 timestamp of when the task failed.
-                type: string
-                format: date-time
-                externalDocs:
-                  url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            required:
-            - task_id
-            - created_at
-            - status
-            - error
-            - completed_at
+                - id
+                - remote_id
+                - first_name
+                - last_name
+                - work_email
+                - status
+                - remote_created_at
+                - remote_deleted_at
+                - changed_at
+                - remote_data
+                - custom_fields
+                - integration_fields
+                examples:
+                - id: 26vafvWSRmbhNcxJYqjCzuJg
+                  remote_id: '32'
+                  first_name: Sarah
+                  last_name: Johnson
+                  work_email: sarah.johnson@example.com
+                  status: ACTIVE
+                  remote_created_at: '2022-08-07T14:01:29.196Z'
+                  remote_deleted_at: null
+                  changed_at: '2022-08-07T14:01:29.196Z'
+                  remote_data: null
+                  custom_fields: null
+                  integration_fields: []
+          required:
+          - next
+          - results
+          examples:
+          - next: eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=
+            results:
+            - id: 26vafvWSRmbhNcxJYqjCzuJg
+              remote_id: '32'
+              first_name: Sarah
+              last_name: Johnson
+              work_email: sarah.johnson@example.com
+              status: ACTIVE
+              remote_created_at: '2022-08-07T14:01:29.196Z'
+              remote_deleted_at: null
+              changed_at: '2022-08-07T14:01:29.196Z'
+              remote_data: null
+              custom_fields: null
+              integration_fields: []
       required:
       - status
       - data
+    GetLmsCourseProgressionsParameterIgnoreUnsupportedFilters:
+      type: string
+      enum:
+      - 'true'
+      - 'false'
+      default: 'false'
+      description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results.
+    GetLmsUsersParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    GetLmsSkillsParameterIncludeDeleted:
+      type: string
+      enum:
+      - 'true'
+      - 'false'
+      default: 'false'
+      description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too.
+    GetLmsSkillsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  remote_id:
+                    type:
+                    - string
+                    - 'null'
+                    description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                    description: The name of the skill.
+                  remote_created_at:
+                    description: The date and time the object was created in the remote system.
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  remote_deleted_at:
+                    description: The date and time the object was deleted in the remote system. Objects are automatically marked as deleted when Kombo can't retrieve them from the remote system anymore. Kombo will also anonymize entries 14 days after they disappear.
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  changed_at:
+                    description: The timestamp when this specific record was last modified. This field only updates when properties directly on this record change, NOT when related or nested models change. For filtering that considers nested data changes, use the `updated_after` parameter which will return records when either the record itself OR its related models have been updated.
+                    type: string
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  remote_data:
+                    type:
+                    - object
+                    - 'null'
+                    additionalProperties: true
+                    description: 'Includes the data fetched from the remote system.
+
+                      Please be aware that including this in you scope config might violate other
+
+                      scopes that are set.
+
+
+                      Remote data always has the endpoint path that we got the data from as the
+
+                      top level key. For example, it could look like: `{ "/companies": { ... }}`
+
+
+                      This is not available on all plans. Reach out to Kombo if you need it.'
+                  custom_fields:
+                    type:
+                    - object
+                    - 'null'
+                    additionalProperties: true
+                    description: A key-value store of fields not covered by the schema. [Read more](/custom-fields)
+                  integration_fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The globally unique ID of this object.
+                        key:
+                          type: string
+                          description: The key of the field in the remote system.
+                        type:
+                          type: string
+                          enum:
+                          - DEFAULT
+                          - CUSTOM
+                          description: '- `DEFAULT`: static fields in the remote system.
+
+                            - `CUSTOM`: fields that are created/editable by the user.'
+                        value:
+                          type: 'null'
+                          description: The field's value.
+                        label:
+                          type:
+                          - string
+                          - 'null'
+                          description: The label of the field. (not always available)
+                      required:
+                      - id
+                      - key
+                      - type
+                      - label
+                    description: An array of selected passthrough integration fields. [Read more](/integration-fields)
+                    examples:
+                    - - id: 5NVFhMpB9Ah6by44tzNjZLyE
+                        key: firstName
+                        type: DEFAULT
+                        value: Frank
+                        label: First Name
+                      - id: 8nuajYpoRd5GnxEQaaWKUDYQ
+                        key: customTshirtSize
+                        type: CUSTOM
+                        value: XL
+                        label: T-Shirt Size
+                required:
+                - id
+                - remote_id
+                - name
+                - remote_created_at
+                - remote_deleted_at
+                - changed_at
+                - remote_data
+                - custom_fields
+                - integration_fields
+                examples:
+                - id: 26vafvWSRmbhNcxJYqjCzuJg
+                  remote_id: skill-12345
+                  name: LMS Integration
+                  remote_created_at: '2022-08-07T14:01:29.196Z'
+                  remote_deleted_at: null
+                  changed_at: '2022-08-07T14:01:29.196Z'
+                  remote_data: null
+                  custom_fields: null
+                  integration_fields: []
+          required:
+          - next
+          - results
+          examples:
+          - next: eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=
+            results:
+            - id: 26vafvWSRmbhNcxJYqjCzuJg
+              remote_id: skill-12345
+              name: LMS Integration
+              remote_created_at: '2022-08-07T14:01:29.196Z'
+              remote_deleted_at: null
+              changed_at: '2022-08-07T14:01:29.196Z'
+              remote_data: null
+              custom_fields: null
+              integration_fields: []
+      required:
+      - status
+      - data
+    GetLmsSkillsParameterUpdatedAfter:
+      description: 'Filter the entries based on the modification date in format `YYYY-MM-DDTHH:mm:ss.sssZ`. Returns records where either the record itself **OR** its nested data has been updated since this timestamp, even if the record''s own `changed_at` field remains unchanged.
+
+
+        If you want to track entry deletion, also set the `include_deleted=true` query parameter, because otherwise, deleted entries will be hidden.
+
+
+        For more details, see [Understanding changed_at vs updated_after Behavior](https://docs.kombo.dev/ats/getting-started/fetching-data#understanding-changed_at-vs-updated_after-behavior).
+
+
+        For this endpoint, only changes to the returned record itself are considered.'
+      type: string
+      format: date-time
+      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+      externalDocs:
+        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+    GetLmsCoursesParameterIgnoreUnsupportedFilters:
+      type: string
+      enum:
+      - 'true'
+      - 'false'
+      default: 'false'
+      description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results.
+    GetLmsUsersParameterRemoteIds:
+      type: string
+      description: Filter by a comma-separated list of remote IDs.
+    PostLmsCourseProgressionsCourseProgressionIdCompleteParameterCourseProgressionId:
+      type: string
+      description: The ID of the course progression in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
     GetLmsUsersParameterIgnoreUnsupportedFilters:
       type: string
       enum:
@@ -3124,10 +2770,285 @@ components:
       - 'false'
       default: 'false'
       description: When set to `true`, filters targeting fields not supported by this integration will be ignored instead of filtering out all results.
-    GetLmsSkillsParameterIds:
+    PostLmsCoursesCourseIdDeactivateRequestBody:
+      type: object
+      properties: {}
+    GetLmsUsersParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    PostLmsCoursesCourseIdDeactivateParameterCourseId:
+      type: string
+      description: The ID of the course in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
+    GetLmsCoursesParameterIds:
       type: string
       description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    GetLmsUsersParameterWorkEmails:
+      type: string
+      description: Filter by a comma-separated list of work emails. We will only return users who have _any_ of the work emails. The format of the emails is case-insensitive.
+    PostLmsCourseProgressionsCourseProgressionIdCompleteRequestBody:
+      type: object
+      properties:
+        completed_at:
+          description: Date when the user completed the course revision. Defaults to the current date if not provided.
+          type:
+          - string
+          - 'null'
+          format: date-time
+          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+          externalDocs:
+            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+        score:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          minimum: 0
+          maximum: 100
+          description: Score the user achieved for the course, as an integer between 0 and 100 (inclusive).
     GetLmsUsersParameterIncludeDeleted:
+      type: string
+      enum:
+      - 'true'
+      - 'false'
+      default: 'false'
+      description: By default, deleted entries are not returned. Use the `include_deleted` query param to include deleted entries too.
+    GetLmsCourseProgressionsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  remote_id:
+                    type: string
+                    description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+                  user_id:
+                    type: string
+                    description: The Kombo ID of the user this progression relates to. The ID can be used to retrieve the user from the `get users` endpoint.
+                  course_revision_id:
+                    type: string
+                    description: The Kombo ID of the revision this progression relates to. The ID can be used to retrieve the revision from the `get courses` endpoint.
+                  status:
+                    type:
+                    - string
+                    - 'null'
+                    enum:
+                    - ENROLLED
+                    - IN_PROGRESS
+                    - COMPLETED
+                    - DROPPED
+                    description: Current status of the learner in this course revision.
+                  enrolled_at:
+                    description: Date when the user enrolled in the course revision.
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  completed_at:
+                    description: Date when the user completed the course revision.
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  changed_at:
+                    description: The timestamp when this specific record was last modified. This field only updates when properties directly on this record change, NOT when related or nested models change. For filtering that considers nested data changes, use the `updated_after` parameter which will return records when either the record itself OR its related models have been updated.
+                    type: string
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  remote_deleted_at:
+                    description: The date and time the object was deleted in the remote system. Objects are automatically marked as deleted when Kombo can't retrieve them from the remote system anymore. Kombo will also anonymize entries 14 days after they disappear.
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  remote_data:
+                    type:
+                    - object
+                    - 'null'
+                    additionalProperties: true
+                    description: 'Includes the data fetched from the remote system.
+
+                      Please be aware that including this in you scope config might violate other
+
+                      scopes that are set.
+
+
+                      Remote data always has the endpoint path that we got the data from as the
+
+                      top level key. For example, it could look like: `{ "/companies": { ... }}`
+
+
+                      This is not available on all plans. Reach out to Kombo if you need it.'
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                      remote_id:
+                        type: string
+                        description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+                      first_name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The user's first name.
+                      last_name:
+                        type:
+                        - string
+                        - 'null'
+                        description: The user's last name.
+                      work_email:
+                        type:
+                        - string
+                        - 'null'
+                        description: The user's work email address.
+                    required:
+                    - id
+                    - remote_id
+                    - first_name
+                    - last_name
+                    - work_email
+                    examples:
+                    - id: 26vafvWSRmbhNcxJYqjCzuJg
+                      remote_id: '32'
+                      first_name: Sarah
+                      last_name: Johnson
+                      work_email: sarah.johnson@example.com
+                  course_revision:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                      remote_id:
+                        type: string
+                        description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+                      title:
+                        type:
+                        - string
+                        - 'null'
+                        description: The title of the course revision.
+                      course:
+                        type:
+                        - object
+                        - 'null'
+                        properties:
+                          id:
+                            type: string
+                            description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                          remote_id:
+                            type: string
+                            description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+                        required:
+                        - id
+                        - remote_id
+                    required:
+                    - id
+                    - remote_id
+                    - title
+                    - course
+                required:
+                - id
+                - remote_id
+                - user_id
+                - course_revision_id
+                - status
+                - enrolled_at
+                - completed_at
+                - changed_at
+                - remote_deleted_at
+                - remote_data
+                - user
+                - course_revision
+                examples:
+                - id: 26vafvWSRmbhNcxJYqjCzuJg
+                  remote_id: progress-12345
+                  user_id: 7xPdr68N8kG9EzLwjsN9xyz
+                  course_revision_id: 3KMdr68N8kG9EzLwjsN9aoz
+                  status: COMPLETED
+                  enrolled_at: '2022-08-07T14:01:29.196Z'
+                  completed_at: '2022-08-07T14:01:29.196Z'
+                  changed_at: '2022-08-07T14:01:29.196Z'
+                  remote_deleted_at: null
+                  remote_data: null
+                  user:
+                    id: 26vafvWSRmbhNcxJYqjCzuJg
+                    remote_id: '32'
+                    first_name: Sarah
+                    last_name: Johnson
+                    work_email: sarah.johnson@example.com
+                  course_revision:
+                    id: 3KMdr68N8kG9EzLwjsN9aoz
+                    remote_id: revision-12345
+                    title: Building LMS integrations with Kombo
+                    course:
+                      id: 26vafvWSRmbhNcxJYqjCzuJg
+                      remote_id: '32'
+          required:
+          - next
+          - results
+          examples:
+          - next: eyJwYWdlIjoxMiwibm90ZSI6InRoaXMgaXMganVzdCBhbiBleGFtcGxlIGFuZCBub3QgcmVwcmVzZW50YXRpdmUgZm9yIGEgcmVhbCBjdXJzb3IhIn0=
+            results:
+            - id: 26vafvWSRmbhNcxJYqjCzuJg
+              remote_id: progress-12345
+              user_id: 7xPdr68N8kG9EzLwjsN9xyz
+              course_revision_id: 3KMdr68N8kG9EzLwjsN9aoz
+              status: COMPLETED
+              enrolled_at: '2022-08-07T14:01:29.196Z'
+              completed_at: '2022-08-07T14:01:29.196Z'
+              changed_at: '2022-08-07T14:01:29.196Z'
+              remote_deleted_at: null
+              remote_data: null
+              user:
+                id: 26vafvWSRmbhNcxJYqjCzuJg
+                remote_id: '32'
+                first_name: Sarah
+                last_name: Johnson
+                work_email: sarah.johnson@example.com
+              course_revision:
+                id: 3KMdr68N8kG9EzLwjsN9aoz
+                remote_id: revision-12345
+                title: Building LMS integrations with Kombo
+                course:
+                  id: 26vafvWSRmbhNcxJYqjCzuJg
+                  remote_id: '32'
+      required:
+      - status
+      - data
+    GetLmsCoursesParameterRemoteIds:
+      type: string
+      description: Filter by a comma-separated list of remote IDs.
+    GetLmsCourseProgressionsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetLmsCourseProgressionsParameterUserIds:
+      type: string
+      description: Filter by a comma-separated list of user IDs. We will only return progressions that are related to _any_ of the users.
+    GetLmsCoursesParameterIncludeDeleted:
       type: string
       enum:
       - 'true'
@@ -3164,6 +3085,220 @@ components:
       pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
       externalDocs:
         url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+    GetLmsCoursesParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    PostLmsCourseProgressionsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            remote_id:
+              type: string
+              description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+            user_id:
+              type: string
+              description: The Kombo ID of the user this progression relates to. The ID can be used to retrieve the user from the `get users` endpoint.
+            course_revision_id:
+              type: string
+              description: The Kombo ID of the revision this progression relates to. The ID can be used to retrieve the revision from the `get courses` endpoint.
+            status:
+              type:
+              - string
+              - 'null'
+              enum:
+              - ENROLLED
+              - IN_PROGRESS
+              - COMPLETED
+              - DROPPED
+              description: Current status of the learner in this course revision.
+            enrolled_at:
+              description: Date when the user enrolled in the course revision.
+              type:
+              - string
+              - 'null'
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            completed_at:
+              description: Date when the user completed the course revision.
+              type:
+              - string
+              - 'null'
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            changed_at:
+              description: The timestamp when this specific record was last modified. This field only updates when properties directly on this record change, NOT when related or nested models change. For filtering that considers nested data changes, use the `updated_after` parameter which will return records when either the record itself OR its related models have been updated.
+              type: string
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            remote_deleted_at:
+              description: The date and time the object was deleted in the remote system. Objects are automatically marked as deleted when Kombo can't retrieve them from the remote system anymore. Kombo will also anonymize entries 14 days after they disappear.
+              type:
+              - string
+              - 'null'
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            remote_data:
+              type:
+              - object
+              - 'null'
+              additionalProperties: true
+              description: 'Includes the data fetched from the remote system.
+
+                Please be aware that including this in you scope config might violate other
+
+                scopes that are set.
+
+
+                Remote data always has the endpoint path that we got the data from as the
+
+                top level key. For example, it could look like: `{ "/companies": { ... }}`
+
+
+                This is not available on all plans. Reach out to Kombo if you need it.'
+            user:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                remote_id:
+                  type: string
+                  description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+                first_name:
+                  type:
+                  - string
+                  - 'null'
+                  description: The user's first name.
+                last_name:
+                  type:
+                  - string
+                  - 'null'
+                  description: The user's last name.
+                work_email:
+                  type:
+                  - string
+                  - 'null'
+                  description: The user's work email address.
+              required:
+              - id
+              - remote_id
+              - first_name
+              - last_name
+              - work_email
+              examples:
+              - id: 26vafvWSRmbhNcxJYqjCzuJg
+                remote_id: '32'
+                first_name: Sarah
+                last_name: Johnson
+                work_email: sarah.johnson@example.com
+            course_revision:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                remote_id:
+                  type: string
+                  description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+                title:
+                  type:
+                  - string
+                  - 'null'
+                  description: The title of the course revision.
+                course:
+                  type:
+                  - object
+                  - 'null'
+                  properties:
+                    id:
+                      type: string
+                      description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                    remote_id:
+                      type: string
+                      description: The raw ID of the object in the remote system. We don't recommend using this as a primary key on your side as it might sometimes be compromised of multiple identifiers if a system doesn't provide a clear primary key.
+                  required:
+                  - id
+                  - remote_id
+              required:
+              - id
+              - remote_id
+              - title
+              - course
+          required:
+          - id
+          - remote_id
+          - user_id
+          - course_revision_id
+          - status
+          - enrolled_at
+          - completed_at
+          - changed_at
+          - remote_deleted_at
+          - remote_data
+          - user
+          - course_revision
+          examples:
+          - id: 26vafvWSRmbhNcxJYqjCzuJg
+            remote_id: progress-12345
+            user_id: 7xPdr68N8kG9EzLwjsN9xyz
+            course_revision_id: 3KMdr68N8kG9EzLwjsN9aoz
+            status: COMPLETED
+            enrolled_at: '2022-08-07T14:01:29.196Z'
+            completed_at: '2022-08-07T14:01:29.196Z'
+            changed_at: '2022-08-07T14:01:29.196Z'
+            remote_deleted_at: null
+            remote_data: null
+            user:
+              id: 26vafvWSRmbhNcxJYqjCzuJg
+              remote_id: '32'
+              first_name: Sarah
+              last_name: Johnson
+              work_email: sarah.johnson@example.com
+            course_revision:
+              id: 3KMdr68N8kG9EzLwjsN9aoz
+              remote_id: revision-12345
+              title: Building LMS integrations with Kombo
+              course:
+                id: 26vafvWSRmbhNcxJYqjCzuJg
+                remote_id: '32'
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    PostLmsCourseProgressionsRequestBody:
+      type: object
+      properties:
+        user_id:
+          type: string
+          description: The ID of the user in Kombo or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
+        course_revision_id:
+          type: string
+          description: The ID of the revision in Kombo or its ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
+      required:
+      - user_id
+      - course_revision_id
   responses:
     ErrorResponseGeneral:
       description: The standard error response with just the platform error codes.
