@@ -408,7 +408,7 @@ webhooks:
       - Kombo API
 components:
   schemas:
-    SyncFinishedWebhookPayload:
+    IntegrationCreatedWebhookPayload:
       type: object
       properties:
         id:
@@ -417,102 +417,14 @@ components:
         type:
           type: string
           enum:
-          - sync-finished
-          description: Type of the webhook event
-        data:
-          type: object
-          properties:
-            sync_id:
-              type: string
-              description: The unique identifier of the sync operation.
-            sync_state:
-              type: string
-              description: The final state of the sync operation (e.g., `SUCCEEDED`, `FAILED`).
-            sync_started_at:
-              type: string
-              format: date-time
-              description: ISO 8601 timestamp when the sync operation started.
-            sync_ended_at:
-              type: string
-              format: date-time
-              description: ISO 8601 timestamp when the sync operation completed.
-            sync_duration_seconds:
-              type: integer
-              minimum: 0
-              description: Duration of the sync operation in seconds.
-            integration_id:
-              type: string
-              description: The unique identifier of the integration.
-            integration_tool:
-              type: string
-              description: The name of the integrated tool (e.g., "personio", "greenhouse").
-            integration_category:
-              type: string
-              enum:
-              - HRIS
-              - ATS
-              - ASSESSMENT
-              - LMS
-              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
-            end_user:
-              type: object
-              properties:
-                organization_name:
-                  type: string
-                  description: The name of the organization that owns the integration.
-                creator_email:
-                  type: string
-                  nullable: true
-                  description: The email address of the user who created the integration.
-                  format: email
-                origin_id:
-                  type: string
-                  nullable: true
-                  description: The unique identifier of the organization in the integrated system.
-              required:
-              - organization_name
-              - creator_email
-              - origin_id
-              additionalProperties: false
-              description: Information about the end user who created the integration.
-            log_url:
-              type: string
-              format: uri
-              description: URL to view detailed logs for the operation.
-          required:
-          - sync_id
-          - sync_state
-          - sync_started_at
-          - sync_ended_at
-          - sync_duration_seconds
-          - integration_id
-          - integration_tool
-          - integration_category
-          - end_user
-          - log_url
-          additionalProperties: false
-      required:
-      - id
-      - type
-      - data
-      additionalProperties: false
-    IntegrationDeletedWebhookPayload:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this webhook event
-        type:
-          type: string
-          enum:
-          - integration-deleted
+          - integration-created
           description: Type of the webhook event
         data:
           type: object
           properties:
             id:
               type: string
-              description: The unique identifier of the deleted integration.
+              description: The unique identifier of the newly created integration.
             tool:
               type: string
               description: The name of the integrated tool.
@@ -545,16 +457,11 @@ components:
               - origin_id
               additionalProperties: false
               description: Information about the end user who created the integration.
-            deleted_at:
-              type: string
-              format: date-time
-              description: ISO 8601 timestamp when the integration was deleted.
           required:
           - id
           - tool
           - category
           - end_user
-          - deleted_at
           additionalProperties: false
       required:
       - id
@@ -637,7 +544,7 @@ components:
       - type
       - data
       additionalProperties: false
-    ConnectionFlowFailedWebhookPayload:
+    SyncFinishedWebhookPayload:
       type: object
       properties:
         id:
@@ -646,11 +553,32 @@ components:
         type:
           type: string
           enum:
-          - connection-flow-failed
+          - sync-finished
           description: Type of the webhook event
         data:
           type: object
           properties:
+            sync_id:
+              type: string
+              description: The unique identifier of the sync operation.
+            sync_state:
+              type: string
+              description: The final state of the sync operation (e.g., `SUCCEEDED`, `FAILED`).
+            sync_started_at:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp when the sync operation started.
+            sync_ended_at:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp when the sync operation completed.
+            sync_duration_seconds:
+              type: integer
+              minimum: 0
+              description: Duration of the sync operation in seconds.
+            integration_id:
+              type: string
+              description: The unique identifier of the integration.
             integration_tool:
               type: string
               description: The name of the integrated tool (e.g., "personio", "greenhouse").
@@ -688,6 +616,12 @@ components:
               format: uri
               description: URL to view detailed logs for the operation.
           required:
+          - sync_id
+          - sync_state
+          - sync_started_at
+          - sync_ended_at
+          - sync_duration_seconds
+          - integration_id
           - integration_tool
           - integration_category
           - end_user
@@ -875,102 +809,6 @@ components:
           - candidate
           - application
           - job
-          additionalProperties: false
-      required:
-      - id
-      - type
-      - data
-      additionalProperties: false
-    DataChangedWebhookPayload:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for this webhook event
-        type:
-          type: string
-          enum:
-          - data-changed
-          description: Type of the webhook event
-        data:
-          type: object
-          properties:
-            integration_id:
-              type: string
-              description: The unique identifier of the integration.
-            integration_tool:
-              type: string
-              description: The name of the integrated tool (e.g., "personio", "greenhouse").
-            integration_category:
-              type: string
-              enum:
-              - HRIS
-              - ATS
-              - ASSESSMENT
-              - LMS
-              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
-            changed_models:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    enum:
-                    - hris_legal_entities
-                    - hris_locations
-                    - hris_employees
-                    - hris_absence_types
-                    - hris_absences
-                    - hris_employments
-                    - hris_teams
-                    - hris_time_off_balances
-                    - hris_timesheets
-                    - hris_employee_document_categories
-                    - hris_performance_reviews
-                    - hris_performance_review_cycles
-                    - hris_staffing_entities
-                    - ats_users
-                    - ats_jobs
-                    - ats_job_postings
-                    - ats_candidates
-                    - ats_application_stages
-                    - ats_applications
-                    - ats_screening_questions
-                    - ats_tags
-                    - ats_interviews
-                    - ats_offers
-                    - ats_rejection_reasons
-                    - ats_roles
-                    - lms_users
-                    - lms_course_providers
-                    - lms_skills
-                    - lms_courses
-                    - lms_course_revisions
-                    - lms_course_progressions
-                    - hris_join_employees_teams
-                    - hris_join_staffing_entities_locations
-                    - hris_join_staffing_entities_legal_entities
-                    - hris_join_staffing_entities_groups
-                    - ats_join_candidates_tags
-                    - ats_join_jobs_application_stages
-                    - ats_join_jobs_screening_questions
-                    - ats_join_user_job_role_assignments
-                    - ats_join_jobs_users
-                    - ats_join_users_roles
-                    - ats_join_interviews_users
-                    - lms_join_revisions_skills
-                    description: The name of the Kombo model or connection that changed.
-                required:
-                - name
-                additionalProperties: false
-                description: A model or connection that has changed in the integration.
-              description: List of data models and connections for which one or more records were created, updated, or deleted.
-          required:
-          - integration_id
-          - integration_tool
-          - integration_category
-          - changed_models
           additionalProperties: false
       required:
       - id
@@ -1205,7 +1043,7 @@ components:
       - type
       - data
       additionalProperties: false
-    IntegrationCreatedWebhookPayload:
+    IntegrationDeletedWebhookPayload:
       type: object
       properties:
         id:
@@ -1214,14 +1052,14 @@ components:
         type:
           type: string
           enum:
-          - integration-created
+          - integration-deleted
           description: Type of the webhook event
         data:
           type: object
           properties:
             id:
               type: string
-              description: The unique identifier of the newly created integration.
+              description: The unique identifier of the deleted integration.
             tool:
               type: string
               description: The name of the integrated tool.
@@ -1254,11 +1092,173 @@ components:
               - origin_id
               additionalProperties: false
               description: Information about the end user who created the integration.
+            deleted_at:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp when the integration was deleted.
           required:
           - id
           - tool
           - category
           - end_user
+          - deleted_at
+          additionalProperties: false
+      required:
+      - id
+      - type
+      - data
+      additionalProperties: false
+    DataChangedWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this webhook event
+        type:
+          type: string
+          enum:
+          - data-changed
+          description: Type of the webhook event
+        data:
+          type: object
+          properties:
+            integration_id:
+              type: string
+              description: The unique identifier of the integration.
+            integration_tool:
+              type: string
+              description: The name of the integrated tool (e.g., "personio", "greenhouse").
+            integration_category:
+              type: string
+              enum:
+              - HRIS
+              - ATS
+              - ASSESSMENT
+              - LMS
+              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
+            changed_models:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    enum:
+                    - hris_legal_entities
+                    - hris_locations
+                    - hris_employees
+                    - hris_absence_types
+                    - hris_absences
+                    - hris_employments
+                    - hris_teams
+                    - hris_time_off_balances
+                    - hris_timesheets
+                    - hris_employee_document_categories
+                    - hris_performance_reviews
+                    - hris_performance_review_cycles
+                    - hris_staffing_entities
+                    - ats_users
+                    - ats_jobs
+                    - ats_job_postings
+                    - ats_candidates
+                    - ats_application_stages
+                    - ats_applications
+                    - ats_screening_questions
+                    - ats_tags
+                    - ats_interviews
+                    - ats_offers
+                    - ats_rejection_reasons
+                    - ats_roles
+                    - lms_users
+                    - lms_course_providers
+                    - lms_skills
+                    - lms_courses
+                    - lms_course_revisions
+                    - lms_course_progressions
+                    - hris_join_employees_teams
+                    - hris_join_staffing_entities_locations
+                    - hris_join_staffing_entities_legal_entities
+                    - hris_join_staffing_entities_groups
+                    - ats_join_candidates_tags
+                    - ats_join_jobs_application_stages
+                    - ats_join_jobs_screening_questions
+                    - ats_join_user_job_role_assignments
+                    - ats_join_jobs_users
+                    - ats_join_users_roles
+                    - ats_join_interviews_users
+                    - lms_join_revisions_skills
+                    description: The name of the Kombo model or connection that changed.
+                required:
+                - name
+                additionalProperties: false
+                description: A model or connection that has changed in the integration.
+              description: List of data models and connections for which one or more records were created, updated, or deleted.
+          required:
+          - integration_id
+          - integration_tool
+          - integration_category
+          - changed_models
+          additionalProperties: false
+      required:
+      - id
+      - type
+      - data
+      additionalProperties: false
+    ConnectionFlowFailedWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for this webhook event
+        type:
+          type: string
+          enum:
+          - connection-flow-failed
+          description: Type of the webhook event
+        data:
+          type: object
+          properties:
+            integration_tool:
+              type: string
+              description: The name of the integrated tool (e.g., "personio", "greenhouse").
+            integration_category:
+              type: string
+              enum:
+              - HRIS
+              - ATS
+              - ASSESSMENT
+              - LMS
+              description: The category of the integration (HRIS, ATS, ASSESSMENT, or LMS).
+            end_user:
+              type: object
+              properties:
+                organization_name:
+                  type: string
+                  description: The name of the organization that owns the integration.
+                creator_email:
+                  type: string
+                  nullable: true
+                  description: The email address of the user who created the integration.
+                  format: email
+                origin_id:
+                  type: string
+                  nullable: true
+                  description: The unique identifier of the organization in the integrated system.
+              required:
+              - organization_name
+              - creator_email
+              - origin_id
+              additionalProperties: false
+              description: Information about the end user who created the integration.
+            log_url:
+              type: string
+              format: uri
+              description: URL to view detailed logs for the operation.
+          required:
+          - integration_tool
+          - integration_category
+          - end_user
+          - log_url
           additionalProperties: false
       required:
       - id

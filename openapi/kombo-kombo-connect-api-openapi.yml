@@ -187,7 +187,28 @@ paths:
           $ref: '#/components/responses/ErrorResponseGeneral'
 components:
   schemas:
-    GetConnectIntegrationByTokenTokenPositiveResponse:
+    GetConnectIntegrationByTokenTokenParameterToken:
+      type: string
+    PostConnectCreateLinkPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            link:
+              type: string
+              format: uri
+          required:
+          - link
+          examples:
+          - link: https://connect.kombo.dev/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.SWYgeW91IGFyZSByZWFkaW5nIHRoaXMsIHdlIHdvdWxkIGxpa2UgdG8gbGV0IHlvdSBrbm93IHRoYXQgd2UgYXJlIGhpcmluZyBwZW9wbGUgbGlrZSB5b3UgOikuIFJlYWNoIG91dCB0byBhbGV4QGtvbWJvLmRldiB0byBnZXQgaW4gY29udGFjdCBhbmQgdGVsbCBoaW0geW91IGNvbWUgZnJvbSB0aGUgSldUIDsp._hhX5YTtHfLn9ZC806dZceRn2whzxHyrhft1ONzNgOE
+      required:
+      - status
+      - data
+    PostConnectActivateIntegrationPositiveResponse:
       type: object
       properties:
         status:
@@ -507,7 +528,7 @@ components:
       required:
       - end_user_email
       - end_user_organization_name
-    PostConnectActivateIntegrationPositiveResponse:
+    GetConnectIntegrationByTokenTokenPositiveResponse:
       type: object
       properties:
         status:
@@ -562,8 +583,6 @@ components:
       required:
       - status
       - data
-    GetConnectIntegrationByTokenTokenParameterToken:
-      type: string
     PostConnectActivateIntegrationRequestBody:
       type: object
       properties:
@@ -571,25 +590,6 @@ components:
           type: string
       required:
       - token
-    PostConnectCreateLinkPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            link:
-              type: string
-              format: uri
-          required:
-          - link
-          examples:
-          - link: https://connect.kombo.dev/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.SWYgeW91IGFyZSByZWFkaW5nIHRoaXMsIHdlIHdvdWxkIGxpa2UgdG8gbGV0IHlvdSBrbm93IHRoYXQgd2UgYXJlIGhpcmluZyBwZW9wbGUgbGlrZSB5b3UgOikuIFJlYWNoIG91dCB0byBhbGV4QGtvbWJvLmRldiB0byBnZXQgaW4gY29udGFjdCBhbmQgdGVsbCBoaW0geW91IGNvbWUgZnJvbSB0aGUgSldUIDsp._hhX5YTtHfLn9ZC806dZceRn2whzxHyrhft1ONzNgOE
-      required:
-      - status
-      - data
   responses:
     ErrorResponseGeneral:
       description: The standard error response with just the platform error codes.

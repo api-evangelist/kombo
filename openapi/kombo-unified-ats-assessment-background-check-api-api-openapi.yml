@@ -365,101 +365,14 @@ paths:
         default:
           $ref: '#/components/responses/ErrorResponseATS'
 components:
-  responses:
-    ErrorResponseATS:
-      description: The standard error response with the error codes for the ATS use case.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                enum:
-                - error
-              error:
-                type: object
-                properties:
-                  code:
-                    type:
-                    - string
-                    - 'null'
-                    enum:
-                    - PLATFORM.RATE_LIMIT_EXCEEDED
-                    - PLATFORM.CONCURRENCY_LIMIT_EXCEEDED
-                    - PLATFORM.INTEGRATION_NOT_FOUND
-                    - PLATFORM.INPUT_INVALID
-                    - PLATFORM.UNKNOWN_ERROR
-                    - PLATFORM.IP_NOT_WHITELISTED
-                    - PLATFORM.AUTHENTICATION_INVALID
-                    - PLATFORM.TASK_TIMED_OUT
-                    - INTEGRATION.PERMISSION_MISSING
-                    - INTEGRATION.AUTHENTICATION_INVALID
-                    - INTEGRATION.QA_FAILED
-                    - INTEGRATION.SETUP_SYNC_PENDING
-                    - INTEGRATION.SETUP_INCOMPLETE
-                    - INTEGRATION.INACTIVE
-                    - INTEGRATION.MODEL_NOT_AVAILABLE
-                    - INTEGRATION.MODEL_DISABLED
-                    - INTEGRATION.ACTION_NOT_AVAILABLE
-                    - INTEGRATION.ACTION_DISABLED
-                    - REMOTE.SERVICE_UNAVAILABLE
-                    - REMOTE.RATE_LIMIT_EXCEEDED
-                    - REMOTE.INPUT_INVALID
-                    - REMOTE.UNKNOWN_HTTP_ERROR
-                    - ATS.JOB_CLOSED
-                    - ATS.APPLICATION_ALREADY_EXISTS
-                    example: ATS.JOB_CLOSED
-                    description: Some errors include an error code that can be used to identify their cause. See the [Error Handling Docs](https://docs.kombo.dev/guides/errors) for more information. For your error handling logic please use the error `code` instead of other properties (e.g. message, http status code, ...).
-                  title:
-                    type:
-                    - string
-                    - 'null'
-                    description: A static, human-readable label.
-                  message:
-                    type: string
-                    description: A dynamic, detailed description of what went wrong in this specific instance.
-                  log_url:
-                    type:
-                    - string
-                    - 'null'
-                    format: uri
-                    description: The log page in the Kombo UI lists every interaction with full details. If you need assistance, share that link with our support team.
-                required:
-                - code
-                - title
-                - message
-                - log_url
-                description: Error details with structured code for programmatic handling.
-            required:
-            - status
-            - error
-          examples:
-            Error Response:
-              description: When building error handling logic, always use the `code` field to identify specific error types programmatically. See the complete list of error codes in the [docs](https://docs.kombo.dev/guides/errors).
-              value:
-                status: error
-                error:
-                  code: INTEGRATION.MODEL_NOT_AVAILABLE
-                  title: This data model isn't supported for the selected integration.
-                  message: The "employees" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.
-                  log_url: https://app.kombo.dev/my-prod/logs?interactionId=123456
-            Minimal Error Response:
-              description: The "message" is always required while other fields can also be `null`. See the [docs](https://docs.kombo.dev/guides/errors) for more information.
-              value:
-                status: error
-                error:
-                  code: null
-                  title: null
-                  message: The message is always in the response.
-                  log_url: null
   schemas:
-    GetAssessmentOrdersParameterStatuses:
+    GetAssessmentOrdersParameterCreatedAfter:
+      description: 'Filter orders by their creation date-timestamp in the format: `YYYY-MM-DDTHH:mm:ss.sssZ`. Only orders created on or after this date-timestamp will be returned.'
       type: string
-      description: 'Filter by a comma-separated list of `OPEN`, `COMPLETED`, `CANCELLED`, `REJECTED`.
-
-
-        Leave this blank to get results matching all values.'
+      format: date-time
+      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+      externalDocs:
+        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
     GetAssessmentOrdersPositiveResponse:
       type: object
       properties:
@@ -729,7 +642,7 @@ components:
       required:
       - status
       - data
-    PutAssessmentOrdersAssessmentOrderIdResultPositiveResponse:
+    GetAssessmentPackagesPositiveResponse:
       type: object
       properties:
         status:
@@ -737,20 +650,54 @@ components:
           const: success
         data:
           type: object
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+          properties:
+            packages:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  updated_at:
+                    description: YYYY-MM-DDTHH:mm:ss.sssZ
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  type:
+                    type:
+                    - string
+                    - 'null'
+                    enum:
+                    - BEHAVIORAL
+                    - VIDEO_INTERVIEW
+                    - SKILLS_TEST
+                    - BACKGROUND_CHECK
+                    - REFERENCE_CHECK
+                required:
+                - id
+                - name
+                - description
+                - updated_at
+                - type
+          required:
+          - packages
+          examples:
+          - packages:
+            - id: '1001'
+              name: TypeScript
+              description: TypeScript coding skills assessments
+              updated_at: '2023-06-29T18:47:40.890Z'
+              type: SKILLS_TEST
       required:
       - status
       - data
-      - warnings
     GetAssessmentOrdersOpenPositiveResponse:
       type: object
       properties:
@@ -1030,6 +977,48 @@ components:
       - status
       - data
       - warnings
+    GetAssessmentOrdersParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    GetAssessmentOrdersParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
+    PutAssessmentPackagesRequestBody:
+      type: object
+      properties:
+        packages:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: A unique identifier for the assessment package.
+              type:
+                type: string
+                enum:
+                - BEHAVIORAL
+                - VIDEO_INTERVIEW
+                - SKILLS_TEST
+                - BACKGROUND_CHECK
+                - REFERENCE_CHECK
+              name:
+                type: string
+                description: The name of the assessment package.
+              description:
+                type: string
+                description: Description about the package. Some ATSs will display this in their UI.
+            required:
+            - id
+            - type
+            - name
+            - description
+      required:
+      - packages
     PutAssessmentOrdersAssessmentOrderIdResultRequestBody:
       type: object
       properties:
@@ -1180,114 +1169,6 @@ components:
       - result_url
     PutAssessmentOrdersAssessmentOrderIdResultParameterAssessmentOrderId:
       type: string
-    GetAssessmentOrdersOpenParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    PutAssessmentPackagesRequestBody:
-      type: object
-      properties:
-        packages:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                description: A unique identifier for the assessment package.
-              type:
-                type: string
-                enum:
-                - BEHAVIORAL
-                - VIDEO_INTERVIEW
-                - SKILLS_TEST
-                - BACKGROUND_CHECK
-                - REFERENCE_CHECK
-              name:
-                type: string
-                description: The name of the assessment package.
-              description:
-                type: string
-                description: Description about the package. Some ATSs will display this in their UI.
-            required:
-            - id
-            - type
-            - name
-            - description
-      required:
-      - packages
-    GetAssessmentPackagesPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            packages:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  updated_at:
-                    description: YYYY-MM-DDTHH:mm:ss.sssZ
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  type:
-                    type:
-                    - string
-                    - 'null'
-                    enum:
-                    - BEHAVIORAL
-                    - VIDEO_INTERVIEW
-                    - SKILLS_TEST
-                    - BACKGROUND_CHECK
-                    - REFERENCE_CHECK
-                required:
-                - id
-                - name
-                - description
-                - updated_at
-                - type
-          required:
-          - packages
-          examples:
-          - packages:
-            - id: '1001'
-              name: TypeScript
-              description: TypeScript coding skills assessments
-              updated_at: '2023-06-29T18:47:40.890Z'
-              type: SKILLS_TEST
-      required:
-      - status
-      - data
-    GetAssessmentOrdersParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
-    GetAssessmentOrdersParameterIds:
-      type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetAssessmentOrdersParameterCreatedAfter:
-      description: 'Filter orders by their creation date-timestamp in the format: `YYYY-MM-DDTHH:mm:ss.sssZ`. Only orders created on or after this date-timestamp will be returned.'
-      type: string
-      format: date-time
-      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-      externalDocs:
-        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
     GetAssessmentOrdersOpenParameterPageSize:
       type: integer
       format: int64
@@ -1298,6 +1179,125 @@ components:
     GetAssessmentOrdersParameterCursor:
       type: string
       description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAssessmentOrdersOpenParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAssessmentOrdersParameterStatuses:
+      type: string
+      description: 'Filter by a comma-separated list of `OPEN`, `COMPLETED`, `CANCELLED`, `REJECTED`.
+
+
+        Leave this blank to get results matching all values.'
+    PutAssessmentOrdersAssessmentOrderIdResultPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+  responses:
+    ErrorResponseATS:
+      description: The standard error response with the error codes for the ATS use case.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                enum:
+                - error
+              error:
+                type: object
+                properties:
+                  code:
+                    type:
+                    - string
+                    - 'null'
+                    enum:
+                    - PLATFORM.RATE_LIMIT_EXCEEDED
+                    - PLATFORM.CONCURRENCY_LIMIT_EXCEEDED
+                    - PLATFORM.INTEGRATION_NOT_FOUND
+                    - PLATFORM.INPUT_INVALID
+                    - PLATFORM.UNKNOWN_ERROR
+                    - PLATFORM.IP_NOT_WHITELISTED
+                    - PLATFORM.AUTHENTICATION_INVALID
+                    - PLATFORM.TASK_TIMED_OUT
+                    - INTEGRATION.PERMISSION_MISSING
+                    - INTEGRATION.AUTHENTICATION_INVALID
+                    - INTEGRATION.QA_FAILED
+                    - INTEGRATION.SETUP_SYNC_PENDING
+                    - INTEGRATION.SETUP_INCOMPLETE
+                    - INTEGRATION.INACTIVE
+                    - INTEGRATION.MODEL_NOT_AVAILABLE
+                    - INTEGRATION.MODEL_DISABLED
+                    - INTEGRATION.ACTION_NOT_AVAILABLE
+                    - INTEGRATION.ACTION_DISABLED
+                    - REMOTE.SERVICE_UNAVAILABLE
+                    - REMOTE.RATE_LIMIT_EXCEEDED
+                    - REMOTE.INPUT_INVALID
+                    - REMOTE.UNKNOWN_HTTP_ERROR
+                    - ATS.JOB_CLOSED
+                    - ATS.APPLICATION_ALREADY_EXISTS
+                    example: ATS.JOB_CLOSED
+                    description: Some errors include an error code that can be used to identify their cause. See the [Error Handling Docs](https://docs.kombo.dev/guides/errors) for more information. For your error handling logic please use the error `code` instead of other properties (e.g. message, http status code, ...).
+                  title:
+                    type:
+                    - string
+                    - 'null'
+                    description: A static, human-readable label.
+                  message:
+                    type: string
+                    description: A dynamic, detailed description of what went wrong in this specific instance.
+                  log_url:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                    description: The log page in the Kombo UI lists every interaction with full details. If you need assistance, share that link with our support team.
+                required:
+                - code
+                - title
+                - message
+                - log_url
+                description: Error details with structured code for programmatic handling.
+            required:
+            - status
+            - error
+          examples:
+            Error Response:
+              description: When building error handling logic, always use the `code` field to identify specific error types programmatically. See the complete list of error codes in the [docs](https://docs.kombo.dev/guides/errors).
+              value:
+                status: error
+                error:
+                  code: INTEGRATION.MODEL_NOT_AVAILABLE
+                  title: This data model isn't supported for the selected integration.
+                  message: The "employees" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.
+                  log_url: https://app.kombo.dev/my-prod/logs?interactionId=123456
+            Minimal Error Response:
+              description: The "message" is always required while other fields can also be `null`. See the [docs](https://docs.kombo.dev/guides/errors) for more information.
+              value:
+                status: error
+                error:
+                  code: null
+                  title: null
+                  message: The message is always in the response.
+                  log_url: null
   securitySchemes:
     ApiKey:
       type: http

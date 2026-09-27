@@ -896,227 +896,6 @@ paths:
           $ref: '#/components/responses/ErrorResponseGeneral'
 components:
   schemas:
-    GetCustomDatevCheckEauPermissionPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            ready:
-              type: boolean
-            error:
-              type: string
-          required:
-          - ready
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    PostCustomDatevEmployeesEmployeeIdDownloadDocumentPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            data_url:
-              type: string
-              format: uri
-              description: The URL to download the document from.
-            file_name:
-              type: string
-            content_type:
-              type: string
-          required:
-          - data_url
-          - file_name
-          - content_type
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    PostCustomDatevEmployeesEmployeeIdEauRequestsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            eau_id:
-              type: string
-          required:
-          - eau_id
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    GetCustomDatevCheckWritePermissionPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            ready:
-              type: boolean
-            error:
-              type: string
-          required:
-          - ready
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    PostCustomDatevDownloadDocumentPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            data_url:
-              type: string
-              format: uri
-              description: The URL to download the document from.
-            file_name:
-              type: string
-            content_type:
-              type: string
-          required:
-          - data_url
-          - file_name
-          - content_type
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsRequestBody:
-      type: object
-      properties:
-        supplement_code:
-          type: string
-          description: The ID code of the supplement that you want to add to Silae.
-        effective_date:
-          description: Date from which the submitted supplement should be active.
-          type: string
-          format: date-time
-          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-          externalDocs:
-            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-        element_amount:
-          type: number
-          format: double
-          minimum: -1.7976931348623157e+308
-          description: The amount of the supplement if it requires a number.
-        element_string:
-          type: string
-          description: The string of the supplement if it requires a string.
-      required:
-      - supplement_code
-      - effective_date
-    GetCustomDatevCheckDocumentPermissionPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          anyOf:
-          - type: object
-            properties:
-              ready:
-                type: boolean
-              documents_granted:
-                type: array
-                items:
-                  type: string
-            required:
-            - ready
-            - documents_granted
-          - type: object
-            properties:
-              ready:
-                type: boolean
-              error:
-                type: string
-            required:
-            - ready
-            - error
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
     PutCustomDatevEmployeesEmployeeIdPreparePayrollRequestBody:
       type: object
       properties:
@@ -1199,237 +978,62 @@ components:
       - payroll_run
       - hourly_payments
       - fixed_payments
+    PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsRequestBody:
+      type: object
+      properties:
+        supplement_code:
+          type: string
+          description: The ID code of the supplement that you want to add to Silae.
+        effective_date:
+          description: Date from which the submitted supplement should be active.
+          type: string
+          format: date-time
+          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+          externalDocs:
+            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+        element_amount:
+          type: number
+          format: double
+          minimum: -1.7976931348623157e+308
+          description: The amount of the supplement if it requires a number.
+        element_string:
+          type: string
+          description: The string of the supplement if it requires a string.
+      required:
+      - supplement_code
+      - effective_date
+    PostCustomDatevEmployeesEmployeeIdEauRequestsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            eau_id:
+              type: string
+          required:
+          - eau_id
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    PostCustomDatevPushDataGeneralRequestBody:
+      type: object
     PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsParameterEmployeeId:
       type: string
       description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
-    DeleteAtsCustomAvionteSyncedJobsJobRemoteIdPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-      required:
-      - status
-      - data
-    PostAtsCustomAvionteSyncedJobsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-      required:
-      - status
-      - data
-    DeleteAtsCustomAvionteSyncedJobsJobRemoteIdParameterJobRemoteId:
-      type: string
-    PostCustomDatevEmployeesEmployeeIdEauRequestsParameterEmployeeId:
-      type: string
-      description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
-    PostAtsCustomAvionteSyncedJobsRequestBody:
-      type: object
-      properties:
-        job_remote_id:
-          type: string
-          pattern: ^\d+$
-      required:
-      - job_remote_id
-    GetCustomDatevAvailableDocumentsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  document_type:
-                    type: string
-                    description: The document's type.
-                  available_for_employees:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type:
-                          - string
-                          - 'null'
-                        remote_id:
-                          type: string
-                      required:
-                      - id
-                      - remote_id
-                    description: List of employees this document is available for.
-                  is_company_document:
-                    type: boolean
-                    description: Is true if the document is a company document.
-                required:
-                - document_type
-                - available_for_employees
-                - is_company_document
-          required:
-          - results
-          examples:
-          - results:
-            - document_type: LOBN
-              available_for_employees:
-              - id: 8Xi6iZrwusZqJmDGXs49GBmJ
-                remote_id: '123456'
-              is_company_document: false
-            - document_type: LOJO
-              available_for_employees: []
-              is_company_document: true
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    GetCustomDatevSystemInformationPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            consultant_number:
-              type: number
-              format: double
-              minimum: 1000
-              maximum: 9999999
-              description: The consultant number used for this DATEV integration (BeraterNr).
-            client_number:
-              type: number
-              format: double
-              minimum: 1
-              maximum: 99999
-              description: The client number used for this DATEV integration (MandantenNr).
-            target_system:
-              type: string
-              enum:
-              - LODAS
-              - LuG
-              description: The target system's name (Ziel).
-          required:
-          - consultant_number
-          - client_number
-          - target_system
-          examples:
-          - consultant_number: 1234567
-            client_number: 99999
-            target_system: LODAS
-      required:
-      - status
-      - data
-    PostCustomDatevPushDataGeneralRequestBody:
-      type: object
-    GetCustomDatevDataPushesPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            data_pushes:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  type:
-                    type: string
-                    enum:
-                    - GENERAL
-                    - PAYROLL
-                    description: Type of the executed data push.
-                  created_at:
-                    description: Date when the push-data endpoint was called.
-                    type: string
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  upload_jobs:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        file_name:
-                          type: string
-                        state:
-                          type: string
-                          enum:
-                          - FAILED
-                          - UPLOADED
-                          - IMPORTED
-                          - CORRUPTED
-                          - DELETED
-                          - AUTO_DELETED
-                          description: If we were not able to send the file to DATEV, we will set the state "FAILED". The other values are synced from DATEV for the respective import jobs.
-                        file:
-                          type: string
-                          description: Actual content of the file.
-                      required:
-                      - id
-                      - file_name
-                      - state
-                      - file
-                    description: List of all the submitted files. This can include multiple files if data was edited for multiple months.
-                required:
-                - id
-                - type
-                - created_at
-                - upload_jobs
-          required:
-          - data_pushes
-      required:
-      - status
-      - data
-    PutCustomDatevEmployeesEmployeeIdPreparePayrollPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
     PostCustomDatevEmployeesEmployeeIdEauRequestsRequestBody:
       type: object
       properties:
@@ -1513,7 +1117,146 @@ components:
       description: The data to request an electronic certificate of incapacity for work (eAU).
       examples:
       - start_work_incapacity: '2022-01-01'
-    PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsPositiveResponse:
+    PutCustomDatevEmployeesEmployeeIdPreparePayrollParameterEmployeeId:
+      type: string
+      description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
+    PostCustomDatevPushDataPayrollPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            files:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - name
+                - content
+          required:
+          - files
+          examples:
+          - files:
+            - name: EXTF_Bewegungsdaten.csv
+              content: EXTF;700;21;Bewegungsdaten;...
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    GetCustomDatevCheckWritePermissionPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            ready:
+              type: boolean
+            error:
+              type: string
+          required:
+          - ready
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    GetCustomDatevCheckDocumentPermissionPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          anyOf:
+          - type: object
+            properties:
+              ready:
+                type: boolean
+              documents_granted:
+                type: array
+                items:
+                  type: string
+            required:
+            - ready
+            - documents_granted
+          - type: object
+            properties:
+              ready:
+                type: boolean
+              error:
+                type: string
+            required:
+            - ready
+            - error
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    PostCustomDatevPassthroughPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          examples:
+          - {}
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    PutCustomDatevEmployeesEmployeeIdPreparePayrollPositiveResponse:
       type: object
       properties:
         status:
@@ -1535,6 +1278,49 @@ components:
       - status
       - data
       - warnings
+    GetCustomDatevCheckEauPermissionPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            ready:
+              type: boolean
+            error:
+              type: string
+          required:
+          - ready
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    DeleteAtsCustomAvionteSyncedJobsJobRemoteIdPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+      required:
+      - status
+      - data
+    PostCustomDatevEmployeesEmployeeIdEauRequestsParameterEmployeeId:
+      type: string
+      description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
     PostCustomDatevPushDataPayrollRequestBody:
       type: object
       properties:
@@ -1547,6 +1333,172 @@ components:
             url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
       required:
       - payroll_month
+    PostCustomDatevPassthroughRequestBody:
+      type: object
+      properties:
+        file_content:
+          type: string
+          minLength: 1
+        accounting_month:
+          description: YYYY-MM-DDTHH:mm:ss.sssZ
+          type: string
+          format: date-time
+          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+          externalDocs:
+            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+        target_system:
+          type: string
+          enum:
+          - LODAS
+          - LuG
+        file_type:
+          type: string
+          enum:
+          - STAMMDATEN
+          - BEWEGUNGSDATEN
+        file_name:
+          type: string
+          examples:
+          - Stammdaten.txt
+      required:
+      - file_content
+      - accounting_month
+      - target_system
+      - file_type
+      - file_name
+    PostAtsCustomAvionteSyncedJobsRequestBody:
+      type: object
+      properties:
+        job_remote_id:
+          type: string
+          pattern: ^\d+$
+      required:
+      - job_remote_id
+    GetCustomDatevAvailableDocumentsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  document_type:
+                    type: string
+                    description: The document's type.
+                  available_for_employees:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type:
+                          - string
+                          - 'null'
+                        remote_id:
+                          type: string
+                      required:
+                      - id
+                      - remote_id
+                    description: List of employees this document is available for.
+                  is_company_document:
+                    type: boolean
+                    description: Is true if the document is a company document.
+                required:
+                - document_type
+                - available_for_employees
+                - is_company_document
+          required:
+          - results
+          examples:
+          - results:
+            - document_type: LOBN
+              available_for_employees:
+              - id: 8Xi6iZrwusZqJmDGXs49GBmJ
+                remote_id: '123456'
+              is_company_document: false
+            - document_type: LOJO
+              available_for_employees: []
+              is_company_document: true
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    DeleteAtsCustomAvionteSyncedJobsJobRemoteIdRequestBody:
+      type: object
+      properties: {}
+    PostAtsCustomAvionteSyncedJobsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+      required:
+      - status
+      - data
+    PutCustomDatevEmployeesEmployeeIdCompensationsRequestBody:
+      type: object
+      properties:
+        effective_date:
+          description: Date from which the submitted compensations should be valid. Please note that it might not be possible to set compensations for the past if the payroll was already run.
+          type: string
+          format: date-time
+          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+          externalDocs:
+            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+        compensations:
+          type: array
+          items:
+            type: object
+            properties:
+              amount:
+                type: number
+                format: double
+                minimum: -1.7976931348623157e+308
+                description: The amount that this employee will be paid.
+              currency:
+                type: string
+                const: EUR
+                description: The currency in which the employee gets paid. Currently, only euro is supported as integrated systems only work with Euro.
+              period:
+                type: string
+                enum:
+                - HOUR
+                - MONTH
+                description: The period for which the specified amount is paid. Currently, integrated systems only support "HOUR" and "MONTH".
+              lohnart:
+                type: integer
+                format: int64
+                minimum: 1
+                maximum: 9999
+                description: The Lohnart that should be used for this compensation. If not specified, the default Lohnart that was requested in the connection flow will be used. Generally Lohnart is only available for monthly compensations.
+            required:
+            - amount
+            - currency
+            - period
+      required:
+      - effective_date
+      - compensations
+    GetCustomDatevAvailableDocumentsParameterPeriod:
+      type: string
+      description: Provide the period in the format YYYY-MM-DD for which to check for available documents.
     GetCustomDatevEauRequestsEauIdPositiveResponse:
       type: object
       properties:
@@ -1792,213 +1744,114 @@ components:
       - status
       - data
       - warnings
-    PostCustomDatevDownloadDocumentRequestBody:
+    PostCustomDatevEmployeesEmployeeIdDownloadDocumentParameterEmployeeId:
+      type:
+      - string
+      - 'null'
+    GetCustomDatevDataPushesPositiveResponse:
       type: object
       properties:
-        accounting_month:
-          description: The month to request the document for.
+        status:
           type: string
-          format: date-time
-          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-          externalDocs:
-            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-        document_type:
-          type: string
-          enum:
-          - AANB
-          - ABEG
-          - BUBE
-          - DAWE
-          - KBNW
-          - KOST
-          - KOTR
-          - LKTO
-          - LOBN
-          - LJOE
-          - LOJE
-          - LOJO
-          - LOPE
-          - LOPN
-          - LOPS
-          - LORE
-          - LOWE
-          - LSTA
-          - LSTB
-          - LSTE
-          - PDAT
-          - PFAN
-          - PRZA
-          - SBNW
-          - SVNW
-          - WEAN
-          - ZABR
-          - ZAKF
-          - ZAUW
-          description: 'Brutto/Netto (LOBN)
-
-
-            Lohnsteuerbescheinigung (german/english) (LSTB/LSTE)
-
-
-            SV-Nachweis (SVNW)
-
-
-            A1-Bescheinigung (ABEG)
-
-
-            Antragsbestätigung A1-Bescheinigung (AANB)
-
-
-            Buchungsbeleg (BUBE)
-
-
-            Lohnjournal (german/english) (LOJO/LJOE)
-
-
-            Lohnsteueranmeldung (LSTA)
-
-
-            Beitragsnachweis (KBNW)
-
-
-            Beitragsnachweis-Erläuterung (SBNW)
-
-
-            Übersicht Zahlungen (ZAKF)
-
-
-            DÜ Zahlungen (PRZA)
-
-
-            Barauszahlungswerte (ZABR)
-
-
-            Überzahlungen-Werte (ZAUW)
-
-
-            Personalkostenübersicht (german/english) (LOPS/LOPE)
-
-
-            Kostenstellenwerte (KOST)
-
-
-            Kostenträgerwerte (KOTR)
-
-
-            Lohnartenwerte einfach/erweitert (LOWE/LOPN)
-
-
-            Lohnkonto (LKTO)
-
-
-            Personalreport (LORE)
-
-
-            Mitarbeiterstammdaten (PDAT)
-
-
-            Pfändungswerte (PFAN)
-
-
-            Darlehenswerte (DAWE)
-
-
-            Wertguthaben je Arbeitnehmer (WEAN)'
-        employee_id:
-          type:
-          - string
-          - 'null'
+          const: success
+        data:
+          type: object
+          properties:
+            data_pushes:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  type:
+                    type: string
+                    enum:
+                    - GENERAL
+                    - PAYROLL
+                    description: Type of the executed data push.
+                  created_at:
+                    description: Date when the push-data endpoint was called.
+                    type: string
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  upload_jobs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        file_name:
+                          type: string
+                        state:
+                          type: string
+                          enum:
+                          - FAILED
+                          - UPLOADED
+                          - IMPORTED
+                          - CORRUPTED
+                          - DELETED
+                          - AUTO_DELETED
+                          description: If we were not able to send the file to DATEV, we will set the state "FAILED". The other values are synced from DATEV for the respective import jobs.
+                        file:
+                          type: string
+                          description: Actual content of the file.
+                      required:
+                      - id
+                      - file_name
+                      - state
+                      - file
+                    description: List of all the submitted files. This can include multiple files if data was edited for multiple months.
+                required:
+                - id
+                - type
+                - created_at
+                - upload_jobs
+          required:
+          - data_pushes
       required:
-      - accounting_month
-      - document_type
-      - employee_id
-      description: The data to request an electronic certificate of incapacity for work (eAU).
-      examples:
-      - accounting_month: '2001-12-01'
-        document_type: LOJE
-        employee_id: null
-      - accounting_month: '2001-12-01'
-        document_type: LSTB
-        employee_id: remote:200
-    GetCustomDatevAvailableDocumentsParameterPeriod:
-      type: string
-      description: Provide the period in the format YYYY-MM-DD for which to check for available documents.
-    PostCustomDatevPassthroughRequestBody:
+      - status
+      - data
+    GetCustomDatevSystemInformationPositiveResponse:
       type: object
       properties:
-        file_content:
+        status:
           type: string
-          minLength: 1
-        accounting_month:
-          description: YYYY-MM-DDTHH:mm:ss.sssZ
-          type: string
-          format: date-time
-          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-          externalDocs:
-            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-        target_system:
-          type: string
-          enum:
-          - LODAS
-          - LuG
-        file_type:
-          type: string
-          enum:
-          - STAMMDATEN
-          - BEWEGUNGSDATEN
-        file_name:
-          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            consultant_number:
+              type: number
+              format: double
+              minimum: 1000
+              maximum: 9999999
+              description: The consultant number used for this DATEV integration (BeraterNr).
+            client_number:
+              type: number
+              format: double
+              minimum: 1
+              maximum: 99999
+              description: The client number used for this DATEV integration (MandantenNr).
+            target_system:
+              type: string
+              enum:
+              - LODAS
+              - LuG
+              description: The target system's name (Ziel).
+          required:
+          - consultant_number
+          - client_number
+          - target_system
           examples:
-          - Stammdaten.txt
+          - consultant_number: 1234567
+            client_number: 99999
+            target_system: LODAS
       required:
-      - file_content
-      - accounting_month
-      - target_system
-      - file_type
-      - file_name
-    PutCustomDatevEmployeesEmployeeIdCompensationsRequestBody:
-      type: object
-      properties:
-        effective_date:
-          description: Date from which the submitted compensations should be valid. Please note that it might not be possible to set compensations for the past if the payroll was already run.
-          type: string
-          format: date-time
-          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-          externalDocs:
-            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-        compensations:
-          type: array
-          items:
-            type: object
-            properties:
-              amount:
-                type: number
-                format: double
-                minimum: -1.7976931348623157e+308
-                description: The amount that this employee will be paid.
-              currency:
-                type: string
-                const: EUR
-                description: The currency in which the employee gets paid. Currently, only euro is supported as integrated systems only work with Euro.
-              period:
-                type: string
-                enum:
-                - HOUR
-                - MONTH
-                description: The period for which the specified amount is paid. Currently, integrated systems only support "HOUR" and "MONTH".
-              lohnart:
-                type: integer
-                format: int64
-                minimum: 1
-                maximum: 9999
-                description: The Lohnart that should be used for this compensation. If not specified, the default Lohnart that was requested in the connection flow will be used. Generally Lohnart is only available for monthly compensations.
-            required:
-            - amount
-            - currency
-            - period
-      required:
-      - effective_date
-      - compensations
+      - status
+      - data
     PutCustomDatevEmployeesEmployeeIdCompensationsPositiveResponse:
       type: object
       properties:
@@ -2021,13 +1874,7 @@ components:
       - status
       - data
       - warnings
-    PutCustomDatevEmployeesEmployeeIdCompensationsParameterEmployeeId:
-      type: string
-      description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
-    DeleteAtsCustomAvionteSyncedJobsJobRemoteIdRequestBody:
-      type: object
-      properties: {}
-    PostCustomDatevPushDataPayrollPositiveResponse:
+    PostCustomDatevEmployeesEmployeeIdDownloadDocumentPositiveResponse:
       type: object
       properties:
         status:
@@ -2036,98 +1883,18 @@ components:
         data:
           type: object
           properties:
-            files:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  content:
-                    type: string
-                required:
-                - name
-                - content
+            data_url:
+              type: string
+              format: uri
+              description: The URL to download the document from.
+            file_name:
+              type: string
+            content_type:
+              type: string
           required:
-          - files
-          examples:
-          - files:
-            - name: EXTF_Bewegungsdaten.csv
-              content: EXTF;700;21;Bewegungsdaten;...
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    PostCustomDatevPassthroughPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          examples:
-          - {}
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    GetCustomDatevEauRequestsEauIdParameterEauId:
-      type: string
-    PostCustomDatevEmployeesEmployeeIdDownloadDocumentParameterEmployeeId:
-      type:
-      - string
-      - 'null'
-    PutCustomDatevEmployeesEmployeeIdPreparePayrollParameterEmployeeId:
-      type: string
-      description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
-    PostCustomDatevPushDataGeneralPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            files:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  content:
-                    type: string
-                required:
-                - name
-                - content
-          required:
-          - files
-          examples:
-          - files:
-            - name: EXTF_Stammdaten.csv
-              content: EXTF;700;21;Stammdaten;...
+          - data_url
+          - file_name
+          - content_type
         warnings:
           type: array
           items:
@@ -2263,6 +2030,239 @@ components:
         document_type: LOJE
       - accounting_month: '2001-12-01'
         document_type: LSTB
+    PostCustomDatevDownloadDocumentPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            data_url:
+              type: string
+              format: uri
+              description: The URL to download the document from.
+            file_name:
+              type: string
+            content_type:
+              type: string
+          required:
+          - data_url
+          - file_name
+          - content_type
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    PostCustomDatevPushDataGeneralPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            files:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  content:
+                    type: string
+                required:
+                - name
+                - content
+          required:
+          - files
+          examples:
+          - files:
+            - name: EXTF_Stammdaten.csv
+              content: EXTF;700;21;Stammdaten;...
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    PutCustomDatevEmployeesEmployeeIdCompensationsParameterEmployeeId:
+      type: string
+      description: ID of the employee that should be updated. You can use their Kombo `id` or their ID in the remote system by prefixing it with `remote:` (e.g., `remote:12312`)
+    DeleteAtsCustomAvionteSyncedJobsJobRemoteIdParameterJobRemoteId:
+      type: string
+    PostCustomSilaeEmployeesEmployeeIdPayrollSupplementsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    PostCustomDatevDownloadDocumentRequestBody:
+      type: object
+      properties:
+        accounting_month:
+          description: The month to request the document for.
+          type: string
+          format: date-time
+          pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+          externalDocs:
+            url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+        document_type:
+          type: string
+          enum:
+          - AANB
+          - ABEG
+          - BUBE
+          - DAWE
+          - KBNW
+          - KOST
+          - KOTR
+          - LKTO
+          - LOBN
+          - LJOE
+          - LOJE
+          - LOJO
+          - LOPE
+          - LOPN
+          - LOPS
+          - LORE
+          - LOWE
+          - LSTA
+          - LSTB
+          - LSTE
+          - PDAT
+          - PFAN
+          - PRZA
+          - SBNW
+          - SVNW
+          - WEAN
+          - ZABR
+          - ZAKF
+          - ZAUW
+          description: 'Brutto/Netto (LOBN)
+
+
+            Lohnsteuerbescheinigung (german/english) (LSTB/LSTE)
+
+
+            SV-Nachweis (SVNW)
+
+
+            A1-Bescheinigung (ABEG)
+
+
+            Antragsbestätigung A1-Bescheinigung (AANB)
+
+
+            Buchungsbeleg (BUBE)
+
+
+            Lohnjournal (german/english) (LOJO/LJOE)
+
+
+            Lohnsteueranmeldung (LSTA)
+
+
+            Beitragsnachweis (KBNW)
+
+
+            Beitragsnachweis-Erläuterung (SBNW)
+
+
+            Übersicht Zahlungen (ZAKF)
+
+
+            DÜ Zahlungen (PRZA)
+
+
+            Barauszahlungswerte (ZABR)
+
+
+            Überzahlungen-Werte (ZAUW)
+
+
+            Personalkostenübersicht (german/english) (LOPS/LOPE)
+
+
+            Kostenstellenwerte (KOST)
+
+
+            Kostenträgerwerte (KOTR)
+
+
+            Lohnartenwerte einfach/erweitert (LOWE/LOPN)
+
+
+            Lohnkonto (LKTO)
+
+
+            Personalreport (LORE)
+
+
+            Mitarbeiterstammdaten (PDAT)
+
+
+            Pfändungswerte (PFAN)
+
+
+            Darlehenswerte (DAWE)
+
+
+            Wertguthaben je Arbeitnehmer (WEAN)'
+        employee_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - accounting_month
+      - document_type
+      - employee_id
+      description: The data to request an electronic certificate of incapacity for work (eAU).
+      examples:
+      - accounting_month: '2001-12-01'
+        document_type: LOJE
+        employee_id: null
+      - accounting_month: '2001-12-01'
+        document_type: LSTB
+        employee_id: remote:200
+    GetCustomDatevEauRequestsEauIdParameterEauId:
+      type: string
   responses:
     ErrorResponseGeneral:
       description: The standard error response with just the platform error codes.
