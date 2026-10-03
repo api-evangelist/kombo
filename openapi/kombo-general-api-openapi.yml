@@ -675,216 +675,6 @@ paths:
           $ref: '#/components/responses/ErrorResponseGeneral'
 components:
   schemas:
-    PostPassthroughToolApiPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            url:
-              type: string
-              format: uri
-              description: The full URL of the request that we automatically assemble for you based on the specified `api`, the specified `path`, and the integration's auth credentials. You can use this to debug path-related issues (e.g., the API returning 404 errors).
-            status:
-              type: integer
-              format: int64
-              description: The HTTP status code returned from the remote system.
-            headers:
-              type: object
-              additionalProperties:
-                oneOf:
-                - type: string
-                - type: array
-                  items:
-                    type: string
-              description: The HTTP headers returned from the remote system.
-            data:
-              description: The HTTP body returned from the remote system. This will either be an array or object (in the case that JSON was returned) or a string (in any other case).
-          required:
-          - url
-          - status
-          - headers
-          examples:
-          - url: https://api.personio.de/v1/company/employees
-            status: 200
-            headers:
-              content-type: application/json
-            data:
-              success: true
-              data:
-              - id: 123
-                first_name: John
-                last_name: Doe
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody:
-      type: object
-      properties:
-        integration_field_id:
-          type:
-          - string
-          - 'null'
-          description: The integration field's unique ID which the custom field should be mapped to. Null to remove a mapping.
-      required:
-      - integration_field_id
-    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationId:
-      type: string
-    PostIntegrationsIntegrationIdSetupLinkParameterIntegrationId:
-      type: string
-    PutIntegrationsIntegrationIdEnabledParameterIntegrationId:
-      type: string
-    PostIntegrationsIntegrationIdSetupLinkPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            link:
-              type: string
-              format: uri
-              description: The setup link URL to pass to the Kombo Connect SDK.
-          required:
-          - link
-      required:
-      - status
-      - data
-    GetIntegrationsIntegrationIdIntegrationFieldsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 2000
-      default: 100
-      description: The number of results to return per page. Maximum is 2000.
-    PostIntegrationsIntegrationIdRelinkParameterIntegrationId:
-      type: string
-    PostForceSyncRequestBody:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - FULL
-          - DELTA
-          default: FULL
-          description: The type of the triggered sync.
-    DeleteIntegrationsIntegrationIdParameterIntegrationId:
-      type: string
-    GetIntegrationsIntegrationIdIntegrationFieldsParameterIntegrationId:
-      type: string
-    PostIntegrationsIntegrationIdRelinkRequestBody:
-      type: object
-      properties:
-        language:
-          type:
-          - string
-          - 'null'
-          enum:
-          - en
-          - de
-          - fr
-          - it
-          - es
-          default: en
-          description: Language of the connection flow UI.
-        scope_config_id:
-          type:
-          - string
-          - 'null'
-          description: 'Specify a scope config which the integration will start using once the reconnection flow has been completed.
-
-
-            This can be useful if you want to update the permissions of an integration, but only want the change to take effect once the user has updated their API credentials to prevent sync issues.'
-        link_type:
-          type: string
-          enum:
-          - EMBEDDED
-          - MAGIC_LINK
-          default: EMBEDDED
-          description: 'The type of link you want to create. `EMBEDDED` is for the [embedded flow](../guides/connect/embedded-flow) using the Kombo Connect SDK (these links are valid for 1 hour) and `MAGIC_LINK` is for [magic links](../guides/connect/magic-links) which you send out manually to customers (there are valid for 1 year).
-
-
-            This defaults to `EMBEDDED`, which is our recommended method of implementing the connection flow for a seamless user experience.'
-    GetIntegrationsIntegrationIdIntegrationFieldsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    PutIntegrationsIntegrationIdEnabledPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-      required:
-      - status
-      - data
-    PostIntegrationsIntegrationIdRelinkPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            link:
-              type: string
-              format: uri
-          required:
-          - link
-      required:
-      - status
-      - data
-    GetIntegrationsIntegrationIdParameterIntegrationId:
-      type: string
-    GetCheckApiKeyPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            environment_id:
-              type: string
-            customer_id:
-              type: string
-              description: '**(⚠️ Deprecated)** Renamed to `environment_id`.'
-          required:
-          - environment_id
-          - customer_id
-          examples:
-          - environment_id: 2Uev1YUTqLFdvMPD3Jtrg2FX
-            customer_id: 2Uev1YUTqLFdvMPD3Jtrg2FX
-      required:
-      - status
-      - data
-    GetIntegrationsIntegrationIdCustomFieldsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
     GetIntegrationsIntegrationIdCustomFieldsPositiveResponse:
       type: object
       properties:
@@ -1003,6 +793,188 @@ components:
           description: The desired state of the integration (e.g., `true` for enabled, `false` for disabled).
       required:
       - value
+    GetIntegrationsIntegrationIdIntegrationFieldsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The unique ID of the field.
+                  key:
+                    type: string
+                    description: The key of the field in the remote system.
+                  model:
+                    type: string
+                    description: The model the field is associated with.
+                  type:
+                    type: string
+                    enum:
+                    - DEFAULT
+                    - CUSTOM
+                    description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
+                  label:
+                    type:
+                    - string
+                    - 'null'
+                    description: The label of the field in the remote system.
+                  is_passthrough_enabled:
+                    type: boolean
+                    description: Whether the field is included in the integrations_fields array of the corresponding model.
+                  is_writable:
+                    type: boolean
+                    const: false
+                    description: This field is related to a deprecated feature and means nothing, but is kept for backwards compatibility.
+                required:
+                - id
+                - key
+                - model
+                - type
+                - label
+                - is_passthrough_enabled
+                - is_writable
+                examples:
+                - id: 9suhxJU83Kon4kPTS47837uE
+                  key: tax_id
+                  model: hris_employees
+                  type: DEFAULT
+                  label: Tax ID
+                  is_passthrough_enabled: true
+                  is_writable: false
+            next_cursor:
+              type:
+              - string
+              - 'null'
+              description: '**(⚠️ Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.'
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
+          required:
+          - results
+          - next_cursor
+          - next
+          examples:
+          - results:
+            - id: FFpTK47GhXnU6QAopPq2bdos
+              key: tax_id
+              model: hris_employees
+              type: DEFAULT
+              label: Tax ID
+              is_passthrough_enabled: true
+              is_writable: false
+            next_cursor: null
+            next: null
+      required:
+      - status
+      - data
+    PostPassthroughToolApiRequestBody:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - DELETE
+          - PUT
+          - PATCH
+          description: The HTTP method (e.g., `GET`) of the request.
+        path:
+          type: string
+          description: The path of the endpoint you want to call. We automatically prepend the base URL of the API (all base URLs are documented in the endpoint description).
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: The headers to send with the request. Note that we automatically supply any authentication-related headers.
+        params:
+          type: object
+          additionalProperties:
+            type: string
+          description: The query parameters to send in addition to the ones in the `path`.
+        data:
+          description: The data to submit as part of the request body. This can either be an array or object (in which case we will forward it as JSON) or a string (in which case we will forward it raw).
+        response_as_base64:
+          type: boolean
+          description: If set to `true`, the response will be returned as a base64-encoded string. This is useful for binary data (e.g., PDFs).
+        multipart_form_data:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The key of the form data
+              value:
+                oneOf:
+                - type: string
+                  description: The value of the form data (Can be an object if the field is of the type file)
+                - type: object
+                  properties:
+                    name:
+                      type: string
+                      description: File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system.
+                    content_type:
+                      type: string
+                      pattern: ^[\w.-]+\/[\w.-]+$
+                      description: 'Content/MIME type of the file (e.g., `application/pdf`).
+
+
+                        If you provide `data`, this is required. If you provide `data_url`, this is optional and we''ll attempt to use the `Content-Type` header of the response.
+
+
+                        **Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it''s easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types)).'
+                    data_url:
+                      type: string
+                      format: uri
+                      description: 'URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.
+
+
+                        If you''re using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
+
+
+                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+                    data:
+                      type: string
+                      description: 'Base64-encoded contents of the file you want to upload.
+
+
+                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+                  required:
+                  - name
+            required:
+            - name
+            - value
+            description: The data to submit as part of the request body if the request's `Content-Type` is `multipart/form-data`.
+        api_options:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom options interpreted by the passthrough API adapter you've selected. These options are not documented right now as they're only for very advanced use cases.
+      required:
+      - method
+      - path
+    GetToolsCategoryParameterCategory:
+      type: string
+      enum:
+      - hris
+      - ats
+      - assessment
+      - lms
+    PostPassthroughToolApiParameterApi:
+      type: string
+      description: The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs.
     GetIntegrationsIntegrationIdPositiveResponse:
       type: object
       properties:
@@ -1362,124 +1334,131 @@ components:
     PostPassthroughToolApiParameterTool:
       type: string
       description: The ID of the tool whose passthrough API you want to call (e.g., `personio`).
-    GetIntegrationsIntegrationIdCustomFieldsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    PostPassthroughToolApiRequestBody:
+    DeleteIntegrationsIntegrationIdPositiveResponse:
       type: object
       properties:
-        method:
+        status:
           type: string
-          enum:
-          - GET
-          - POST
-          - DELETE
-          - PUT
-          - PATCH
-          description: The HTTP method (e.g., `GET`) of the request.
-        path:
-          type: string
-          description: The path of the endpoint you want to call. We automatically prepend the base URL of the API (all base URLs are documented in the endpoint description).
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-          description: The headers to send with the request. Note that we automatically supply any authentication-related headers.
-        params:
-          type: object
-          additionalProperties:
-            type: string
-          description: The query parameters to send in addition to the ones in the `path`.
+          const: success
         data:
-          description: The data to submit as part of the request body. This can either be an array or object (in which case we will forward it as JSON) or a string (in which case we will forward it raw).
-        response_as_base64:
-          type: boolean
-          description: If set to `true`, the response will be returned as a base64-encoded string. This is useful for binary data (e.g., PDFs).
-        multipart_form_data:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: The key of the form data
-              value:
-                oneOf:
-                - type: string
-                  description: The value of the form data (Can be an object if the field is of the type file)
-                - type: object
-                  properties:
-                    name:
-                      type: string
-                      description: File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system.
-                    content_type:
-                      type: string
-                      pattern: ^[\w.-]+\/[\w.-]+$
-                      description: 'Content/MIME type of the file (e.g., `application/pdf`).
-
-
-                        If you provide `data`, this is required. If you provide `data_url`, this is optional and we''ll attempt to use the `Content-Type` header of the response.
-
-
-                        **Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it''s easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types)).'
-                    data_url:
-                      type: string
-                      format: uri
-                      description: 'URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.
-
-
-                        If you''re using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
-
-
-                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
-                    data:
-                      type: string
-                      description: 'Base64-encoded contents of the file you want to upload.
-
-
-                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
-                  required:
-                  - name
-            required:
-            - name
-            - value
-            description: The data to submit as part of the request body if the request's `Content-Type` is `multipart/form-data`.
-        api_options:
           type: object
-          additionalProperties:
-            type: string
-          description: Custom options interpreted by the passthrough API adapter you've selected. These options are not documented right now as they're only for very advanced use cases.
       required:
-      - method
-      - path
-    PostPassthroughToolApiParameterApi:
-      type: string
-      description: The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs.
-    PostIntegrationsIntegrationIdSetupLinkRequestBody:
+      - status
+      - data
+    DeleteIntegrationsIntegrationIdRequestBody:
+      type: object
+      properties: {}
+    PostIntegrationsIntegrationIdSetupLinkPositiveResponse:
       type: object
       properties:
-        language:
-          type:
-          - string
-          - 'null'
-          enum:
-          - en
-          - de
-          - fr
-          - it
-          - es
-          default: en
-          description: Language of the setup flow UI.
-        link_type:
+        status:
           type: string
-          enum:
-          - EMBEDDED
-          - MAGIC_LINK
-          description: The type of link you want to create. `EMBEDDED` is for the [embedded flow](../guides/connect/embedded-flow) using the Kombo Connect SDK (these links are valid for 1 hour) and `MAGIC_LINK` is for [magic links](../guides/connect/magic-links) which you send out manually to customers (these are valid for 1 year).
+          const: success
+        data:
+          type: object
+          properties:
+            link:
+              type: string
+              format: uri
+              description: The setup link URL to pass to the Kombo Connect SDK.
+          required:
+          - link
       required:
-      - link_type
-    GetIntegrationsIntegrationIdCustomFieldsParameterIntegrationId:
+      - status
+      - data
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterIntegrationId:
       type: string
+      description: The unique ID of the integration where the custom field mapping should be updated
+    PutIntegrationsIntegrationIdEnabledPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+      required:
+      - status
+      - data
+    DeleteIntegrationsIntegrationIdParameterIntegrationId:
+      type: string
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique ID of the field
+            key:
+              type: string
+              description: The key of the custom field as it will be used in the custom_field object of the corresponding model
+            integration_field:
+              type:
+              - object
+              - 'null'
+              properties:
+                id:
+                  type: string
+                  description: The integration field's unique ID
+                key:
+                  type: string
+                  description: The key of the integration field in the remote system
+                type:
+                  type: string
+                  enum:
+                  - DEFAULT
+                  - CUSTOM
+                  description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
+                label:
+                  type:
+                  - string
+                  - 'null'
+                  description: The label of the integration field in the remote system
+              required:
+              - id
+              - key
+              - type
+              - label
+              description: The integration field the custom field is mapped to. Null if not mapped.
+            model:
+              type: string
+              description: The model the field is associated with
+            label:
+              type:
+              - string
+              - 'null'
+              description: The label of the custom field
+            description:
+              type:
+              - string
+              - 'null'
+              description: The description of the custom field
+          required:
+          - id
+          - key
+          - integration_field
+          - model
+          - label
+          - description
+          examples:
+          - id: EU3Bwa4iDfGspEELW71WDvvu
+            key: tshirt_size
+            integration_field:
+              id: 3n6geaAmKL5tFonXVAtsMDmr
+              key: custom.tshirt_size
+              type: CUSTOM
+              label: T-Shirt Size
+            model: hris_employees
+            label: T-Shirt Size
+            description: Map this to the employee's tshirt size
+      required:
+      - status
+      - data
     PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdPositiveResponse:
       type: object
       properties:
@@ -1535,9 +1514,6 @@ components:
       required:
       - status
       - data
-    DeleteIntegrationsIntegrationIdRequestBody:
-      type: object
-      properties: {}
     PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdRequestBody:
       type: object
       properties:
@@ -1547,18 +1523,64 @@ components:
           - 'null'
       required:
       - enable_passthrough
-    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterCustomFieldId:
+    GetCheckApiKeyPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            environment_id:
+              type: string
+            customer_id:
+              type: string
+              description: '**(⚠️ Deprecated)** Renamed to `environment_id`.'
+          required:
+          - environment_id
+          - customer_id
+          examples:
+          - environment_id: 2Uev1YUTqLFdvMPD3Jtrg2FX
+            customer_id: 2Uev1YUTqLFdvMPD3Jtrg2FX
+      required:
+      - status
+      - data
+    GetIntegrationsIntegrationIdIntegrationFieldsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 2000
+      default: 100
+      description: The number of results to return per page. Maximum is 2000.
+    GetIntegrationsIntegrationIdCustomFieldsParameterCursor:
       type: string
-      description: The unique ID of the custom field that should be updated
-    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationFieldId:
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    PostIntegrationsIntegrationIdSetupLinkRequestBody:
+      type: object
+      properties:
+        language:
+          type:
+          - string
+          - 'null'
+          enum:
+          - en
+          - de
+          - fr
+          - it
+          - es
+          default: en
+          description: Language of the setup flow UI.
+        link_type:
+          type: string
+          enum:
+          - EMBEDDED
+          - MAGIC_LINK
+          description: The type of link you want to create. `EMBEDDED` is for the [embedded flow](../guides/connect/embedded-flow) using the Kombo Connect SDK (these links are valid for 1 hour) and `MAGIC_LINK` is for [magic links](../guides/connect/magic-links) which you send out manually to customers (these are valid for 1 year).
+      required:
+      - link_type
+    PostIntegrationsIntegrationIdRelinkParameterIntegrationId:
       type: string
-    GetToolsCategoryParameterCategory:
-      type: string
-      enum:
-      - hris
-      - ats
-      - assessment
-      - lms
     GetToolsCategoryPositiveResponse:
       type: object
       properties:
@@ -1828,17 +1850,72 @@ components:
       required:
       - status
       - data
-    DeleteIntegrationsIntegrationIdPositiveResponse:
+    PostForceSyncRequestBody:
       type: object
       properties:
-        status:
+        type:
           type: string
-          const: success
-        data:
-          type: object
-      required:
-      - status
-      - data
+          enum:
+          - FULL
+          - DELTA
+          default: FULL
+          description: The type of the triggered sync.
+    GetIntegrationsIntegrationIdCustomFieldsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
+    GetIntegrationsIntegrationIdIntegrationFieldsParameterIntegrationId:
+      type: string
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterCustomFieldId:
+      type: string
+      description: The unique ID of the custom field that should be updated
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationFieldId:
+      type: string
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationId:
+      type: string
+    GetIntegrationsIntegrationIdParameterIntegrationId:
+      type: string
+    PostIntegrationsIntegrationIdRelinkRequestBody:
+      type: object
+      properties:
+        language:
+          type:
+          - string
+          - 'null'
+          enum:
+          - en
+          - de
+          - fr
+          - it
+          - es
+          default: en
+          description: Language of the connection flow UI.
+        scope_config_id:
+          type:
+          - string
+          - 'null'
+          description: 'Specify a scope config which the integration will start using once the reconnection flow has been completed.
+
+
+            This can be useful if you want to update the permissions of an integration, but only want the change to take effect once the user has updated their API credentials to prevent sync issues.'
+        link_type:
+          type: string
+          enum:
+          - EMBEDDED
+          - MAGIC_LINK
+          default: EMBEDDED
+          description: 'The type of link you want to create. `EMBEDDED` is for the [embedded flow](../guides/connect/embedded-flow) using the Kombo Connect SDK (these links are valid for 1 hour) and `MAGIC_LINK` is for [magic links](../guides/connect/magic-links) which you send out manually to customers (there are valid for 1 year).
+
+
+            This defaults to `EMBEDDED`, which is our recommended method of implementing the connection flow for a seamless user experience.'
+    PutIntegrationsIntegrationIdEnabledParameterIntegrationId:
+      type: string
+    GetIntegrationsIntegrationIdIntegrationFieldsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
     PostForceSyncPositiveResponse:
       type: object
       properties:
@@ -1871,7 +1948,7 @@ components:
       required:
       - status
       - data
-    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdPositiveResponse:
+    PostIntegrationsIntegrationIdRelinkPositiveResponse:
       type: object
       properties:
         status:
@@ -1880,78 +1957,27 @@ components:
         data:
           type: object
           properties:
-            id:
+            link:
               type: string
-              description: The unique ID of the field
-            key:
-              type: string
-              description: The key of the custom field as it will be used in the custom_field object of the corresponding model
-            integration_field:
-              type:
-              - object
-              - 'null'
-              properties:
-                id:
-                  type: string
-                  description: The integration field's unique ID
-                key:
-                  type: string
-                  description: The key of the integration field in the remote system
-                type:
-                  type: string
-                  enum:
-                  - DEFAULT
-                  - CUSTOM
-                  description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
-                label:
-                  type:
-                  - string
-                  - 'null'
-                  description: The label of the integration field in the remote system
-              required:
-              - id
-              - key
-              - type
-              - label
-              description: The integration field the custom field is mapped to. Null if not mapped.
-            model:
-              type: string
-              description: The model the field is associated with
-            label:
-              type:
-              - string
-              - 'null'
-              description: The label of the custom field
-            description:
-              type:
-              - string
-              - 'null'
-              description: The description of the custom field
+              format: uri
           required:
-          - id
-          - key
-          - integration_field
-          - model
-          - label
-          - description
-          examples:
-          - id: EU3Bwa4iDfGspEELW71WDvvu
-            key: tshirt_size
-            integration_field:
-              id: 3n6geaAmKL5tFonXVAtsMDmr
-              key: custom.tshirt_size
-              type: CUSTOM
-              label: T-Shirt Size
-            model: hris_employees
-            label: T-Shirt Size
-            description: Map this to the employee's tshirt size
+          - link
       required:
       - status
       - data
-    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterIntegrationId:
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody:
+      type: object
+      properties:
+        integration_field_id:
+          type:
+          - string
+          - 'null'
+          description: The integration field's unique ID which the custom field should be mapped to. Null to remove a mapping.
+      required:
+      - integration_field_id
+    GetIntegrationsIntegrationIdCustomFieldsParameterIntegrationId:
       type: string
-      description: The unique ID of the integration where the custom field mapping should be updated
-    GetIntegrationsIntegrationIdIntegrationFieldsPositiveResponse:
+    PostPassthroughToolApiPositiveResponse:
       type: object
       properties:
         status:
@@ -1960,82 +1986,56 @@ components:
         data:
           type: object
           properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
+            url:
+              type: string
+              format: uri
+              description: The full URL of the request that we automatically assemble for you based on the specified `api`, the specified `path`, and the integration's auth credentials. You can use this to debug path-related issues (e.g., the API returning 404 errors).
+            status:
+              type: integer
+              format: int64
+              description: The HTTP status code returned from the remote system.
+            headers:
+              type: object
+              additionalProperties:
+                oneOf:
+                - type: string
+                - type: array
+                  items:
                     type: string
-                    description: The unique ID of the field.
-                  key:
-                    type: string
-                    description: The key of the field in the remote system.
-                  model:
-                    type: string
-                    description: The model the field is associated with.
-                  type:
-                    type: string
-                    enum:
-                    - DEFAULT
-                    - CUSTOM
-                    description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
-                  label:
-                    type:
-                    - string
-                    - 'null'
-                    description: The label of the field in the remote system.
-                  is_passthrough_enabled:
-                    type: boolean
-                    description: Whether the field is included in the integrations_fields array of the corresponding model.
-                  is_writable:
-                    type: boolean
-                    const: false
-                    description: This field is related to a deprecated feature and means nothing, but is kept for backwards compatibility.
-                required:
-                - id
-                - key
-                - model
-                - type
-                - label
-                - is_passthrough_enabled
-                - is_writable
-                examples:
-                - id: 9suhxJU83Kon4kPTS47837uE
-                  key: tax_id
-                  model: hris_employees
-                  type: DEFAULT
-                  label: Tax ID
-                  is_passthrough_enabled: true
-                  is_writable: false
-            next_cursor:
-              type:
-              - string
-              - 'null'
-              description: '**(⚠️ Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.'
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
+              description: The HTTP headers returned from the remote system.
+            data:
+              description: The HTTP body returned from the remote system. This will either be an array or object (in the case that JSON was returned) or a string (in any other case).
           required:
-          - results
-          - next_cursor
-          - next
+          - url
+          - status
+          - headers
           examples:
-          - results:
-            - id: FFpTK47GhXnU6QAopPq2bdos
-              key: tax_id
-              model: hris_employees
-              type: DEFAULT
-              label: Tax ID
-              is_passthrough_enabled: true
-              is_writable: false
-            next_cursor: null
-            next: null
+          - url: https://api.personio.de/v1/company/employees
+            status: 200
+            headers:
+              content-type: application/json
+            data:
+              success: true
+              data:
+              - id: 123
+                first_name: John
+                last_name: Doe
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
       required:
       - status
       - data
+      - warnings
+    PostIntegrationsIntegrationIdSetupLinkParameterIntegrationId:
+      type: string
   responses:
     ErrorResponseGeneral:
       description: The standard error response with just the platform error codes.

@@ -781,6 +781,1726 @@ paths:
           $ref: '#/components/responses/ErrorResponseAiApply'
 components:
   schemas:
+    GetAiApplyUnifiedApiJobsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 5
+      default: 5
+      description: The number of results to return per page. Maximum is 5.
+    GetAiApplyUnifiedApiJobsParameterRemoteIds:
+      type: string
+      description: This parameter exists for backwards compatibility with Kombo's unified API. Supplying a comma-separated list of remote IDs such as `32,33` will return no jobs because AI Apply does not interface with a remote system that issues remote IDs.
+    GetAiApplyCareerSitesParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    PostAiApplyPostingsRequestBody:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          pattern: ^https?:\/\/
+          description: The URL of the job posting to parse
+        job_code:
+          type: string
+          description: Job code to associate with the job posting
+        location:
+          type:
+          - object
+          - 'null'
+          properties:
+            country:
+              type: string
+              enum:
+              - AD
+              - AE
+              - AF
+              - AG
+              - AI
+              - AL
+              - AM
+              - AO
+              - AQ
+              - AR
+              - AS
+              - AT
+              - AU
+              - AW
+              - AX
+              - AZ
+              - BA
+              - BB
+              - BD
+              - BE
+              - BF
+              - BG
+              - BH
+              - BI
+              - BJ
+              - BL
+              - BM
+              - BN
+              - BO
+              - BQ
+              - BR
+              - BS
+              - BT
+              - BV
+              - BW
+              - BY
+              - BZ
+              - CA
+              - CC
+              - CD
+              - CF
+              - CG
+              - CH
+              - CI
+              - CK
+              - CL
+              - CM
+              - CN
+              - CO
+              - CR
+              - CU
+              - CV
+              - CW
+              - CX
+              - CY
+              - CZ
+              - DE
+              - DJ
+              - DK
+              - DM
+              - DO
+              - DZ
+              - EC
+              - EE
+              - EG
+              - EH
+              - ER
+              - ES
+              - ET
+              - FI
+              - FJ
+              - FK
+              - FM
+              - FO
+              - FR
+              - GA
+              - GB
+              - GD
+              - GE
+              - GF
+              - GG
+              - GH
+              - GI
+              - GL
+              - GM
+              - GN
+              - GP
+              - GQ
+              - GR
+              - GS
+              - GT
+              - GU
+              - GW
+              - GY
+              - HK
+              - HM
+              - HN
+              - HR
+              - HT
+              - HU
+              - ID
+              - IE
+              - IL
+              - IM
+              - IN
+              - IO
+              - IQ
+              - IR
+              - IS
+              - IT
+              - JE
+              - JM
+              - JO
+              - JP
+              - KE
+              - KG
+              - KH
+              - KI
+              - KM
+              - KN
+              - KP
+              - KR
+              - KW
+              - KY
+              - KZ
+              - LA
+              - LB
+              - LC
+              - LI
+              - LK
+              - LR
+              - LS
+              - LT
+              - LU
+              - LV
+              - LY
+              - MA
+              - MC
+              - MD
+              - ME
+              - MF
+              - MG
+              - MH
+              - MK
+              - ML
+              - MM
+              - MN
+              - MO
+              - MP
+              - MQ
+              - MR
+              - MS
+              - MT
+              - MU
+              - MV
+              - MW
+              - MX
+              - MY
+              - MZ
+              - NA
+              - NC
+              - NE
+              - NF
+              - NG
+              - NI
+              - NL
+              - 'NO'
+              - NP
+              - NR
+              - NU
+              - NZ
+              - OM
+              - PA
+              - PE
+              - PF
+              - PG
+              - PH
+              - PK
+              - PL
+              - PM
+              - PN
+              - PR
+              - PS
+              - PT
+              - PW
+              - PY
+              - QA
+              - RE
+              - RO
+              - RS
+              - RU
+              - RW
+              - SA
+              - SB
+              - SC
+              - SD
+              - SE
+              - SG
+              - SH
+              - SI
+              - SJ
+              - SK
+              - SL
+              - SM
+              - SN
+              - SO
+              - SR
+              - SS
+              - ST
+              - SV
+              - SX
+              - SY
+              - SZ
+              - TC
+              - TD
+              - TF
+              - TG
+              - TH
+              - TJ
+              - TK
+              - TL
+              - TM
+              - TN
+              - TO
+              - TR
+              - TT
+              - TV
+              - TW
+              - TZ
+              - UA
+              - UG
+              - UM
+              - US
+              - UY
+              - UZ
+              - VA
+              - VC
+              - VE
+              - VG
+              - VI
+              - VN
+              - VU
+              - WF
+              - WS
+              - YE
+              - YT
+              - ZA
+              - ZM
+              - ZW
+              description: The country in which the job is located
+            postal_code:
+              type: string
+              description: The postal/zip code in which the job is located
+          required:
+          - country
+          description: The location in which the job is located. When omitted, the existing location is preserved. Pass null to explicitly clear an existing location.
+        career_site_id:
+          type: string
+          description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+      required:
+      - url
+      - career_site_id
+    GetAiApplyPostingsParameterJobCodes:
+      type: string
+      description: Filter by a comma-separated list of job codes such as `ACME_13,ACME_14`.
+    GetAiApplyUnifiedApiJobsParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    GetAiApplyCareerSitesPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  label:
+                    type: string
+                    description: The label of the career site
+                required:
+                - id
+                - label
+            next:
+              type:
+              - string
+              - 'null'
+          required:
+          - results
+          - next
+          examples:
+          - results:
+            - id: mK7pQw9xNvEr2LdY5sGh8TcZ
+              label: Acme Inc. California
+            next: null
+      required:
+      - status
+      - data
+    GetAiApplyPostingsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  career_site:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                      label:
+                        type: string
+                    required:
+                    - id
+                    - label
+                  url:
+                    type: string
+                  job_code:
+                    type:
+                    - string
+                    - 'null'
+                  created_at:
+                    description: YYYY-MM-DDTHH:mm:ss.sssZ
+                    type: string
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  updated_at:
+                    description: YYYY-MM-DDTHH:mm:ss.sssZ
+                    type: string
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  archived_at:
+                    description: The date and time the job posting was archived. You can only send applications if the job posting is not archived.
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  archived_reason:
+                    type:
+                    - string
+                    - 'null'
+                    enum:
+                    - JOB_POSTING_TAKEN_OFFLINE
+                    - MANUAL_ARCHIVE
+                    - REMOVED_FROM_JOB_FEED
+                  availability:
+                    type: string
+                    enum:
+                    - APPLYABLE
+                    - PENDING
+                    - ARCHIVED
+                    - UNAVAILABLE
+                    description: The status of the job posting. You can only send applications if the job posting is "APPLYABLE".
+                required:
+                - id
+                - career_site
+                - url
+                - job_code
+                - created_at
+                - updated_at
+                - archived_at
+                - archived_reason
+                - availability
+            next:
+              type:
+              - string
+              - 'null'
+          required:
+          - results
+          - next
+          examples:
+          - results:
+            - id: 9QGNv3B98kL3hyELE1qsZ86s
+              career_site:
+                id: Chc4dua5asAQ48KUERDVF1bs
+                label: Acme
+              url: https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102
+              job_code: ACME_13
+              created_at: '2025-01-01T00:00:00.000Z'
+              updated_at: '2025-03-02T23:12:32.000Z'
+              archived_at: null
+              archived_reason: null
+              availability: PENDING
+            next: null
+      required:
+      - status
+      - data
+    PostAiApplyUnifiedApiJobsJobIdApplicationsRequestBody:
+      type: object
+      properties:
+        stage_id:
+          type: string
+          description: Stage this candidate should be in. If left out, the default stage for this job will be used. You can obtain the possible `stage_id`s from the `get-jobs` endpoint.
+        candidate:
+          type: object
+          properties:
+            first_name:
+              type: string
+              description: The first name of the candidate.
+            last_name:
+              type: string
+              description: The last name of the candidate.
+            email_address:
+              type: string
+              description: The primary email address this application will be created with.
+              format: email
+            additional_email_addresses:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - PERSONAL
+                    - WORK
+                    - OTHER
+                  email_address:
+                    type: string
+                    format: email
+                required:
+                - type
+                - email_address
+            company:
+              type: string
+              description: The company where the candidate is currently working.
+            title:
+              type: string
+              description: The current job title of the candidate.
+            phone_number:
+              type: string
+              description: The phone number of the candidate.
+            additional_phone_numbers:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - PERSONAL
+                    - WORK
+                    - OTHER
+                  phone_number:
+                    type: string
+                required:
+                - type
+                - phone_number
+            location:
+              type: object
+              properties:
+                city:
+                  type: string
+                country:
+                  type: string
+                  pattern: ^[A-Z]{2}$
+                  description: The uppercase two-letter ISO country (e.g., `DE`). For systems that use codes in formats other than `ISO 3166-1 alpha-2`, Kombo transforms the ISO Codes to the appropriate value.
+                state:
+                  type: string
+                street_1:
+                  type: string
+                zip_code:
+                  type: string
+              required:
+              - country
+              description: The location of the candidate.
+            gender:
+              type: string
+              enum:
+              - MALE
+              - FEMALE
+              - OTHER
+              description: The gender of the candidate. Must be one of `MALE`, `FEMALE`, or `OTHER`.
+            availability_date:
+              description: The date the candidate is available to start working.
+              type: string
+              format: date-time
+              pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            salary_expectations:
+              type: object
+              properties:
+                period:
+                  type: string
+                  enum:
+                  - MONTH
+                  - YEAR
+                  description: The period of the salary expectations. Must be one of `MONTH` or `YEAR`.
+                amount:
+                  type: number
+                  format: double
+                  minimum: -1.7976931348623157e+308
+                  description: The amount of the salary expectations.
+              required:
+              - period
+              - amount
+              description: The salary expectations of the applicant. We will automatically convert the amount to a format that is suitable for the ATS you are using. For example, if you are using monthly salary expectations, we will convert the amount to a yearly salary if the ATS expects yearly salary expectations.
+            social_links:
+              type: array
+              items:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: uri
+                required:
+                - url
+              default: []
+              description: A list of social media links of the candidate. The links must be valid URLs.
+          required:
+          - first_name
+          - last_name
+          - email_address
+        attachments:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system.
+              content_type:
+                type: string
+                pattern: ^[\w.-]+\/[\w.-]+$
+                description: 'Content/MIME type of the file (e.g., `application/pdf`).
+
+
+                  If you provide `data`, this is required. If you provide `data_url`, this is optional and we''ll attempt to use the `Content-Type` header of the response.
+
+
+                  **Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it''s easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types)).'
+              data_url:
+                type: string
+                format: uri
+                description: 'URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.
+
+
+                  If you''re using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
+
+
+                  **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+              data:
+                type: string
+                description: 'Base64-encoded contents of the file you want to upload.
+
+
+                  **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+              type:
+                type: string
+                enum:
+                - CV
+                - COVER_LETTER
+                - OTHER
+                description: Type of the attachment in the ATS. This may affect where the uploaded file will be shown in your customer's system.
+            required:
+            - name
+            - type
+          default: []
+          description: Array of the attachments you would like to upload. The first CV in the attachments will be treated as the resume of the candidate when the tool allows previewing a resume.
+        source:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Name of the source (e.g., `"Example Job Board"`).
+            unified_key:
+              type: string
+            id:
+              type: string
+          description: '**(⚠️ Deprecated - Use [automatic source writing](/ats/features/application-attribution#automatic-attribution) instead)** Optional source information that will be attached to the candidate. If
+
+            you''re a job board or recruiting service, you can use this to make sure your
+
+            customers can see which candidates came from you.
+
+
+            This is deprecated because writing sources requires users to do some setup in most ATSs.'
+        sourced_by:
+          type: object
+          properties:
+            user_id:
+              type: string
+              description: The Kombo ID or Remote ID of the User. Use the Kombo ID directly, or prefix the remote ID with "remote:" to reference the user by their ID in the remote system.
+          required:
+          - user_id
+          description: 'Credit the recruiter or team member who sourced this candidate.
+
+
+            While the `source` field tracks the channel/platform (e.g., "Awesome Jobboard"), the `sourced_by` field tracks the individual person responsible for finding the candidate.'
+        gdpr_consent:
+          type: object
+          properties:
+            expires_at:
+              description: Until when the candidate has granted the company they're applying to permission to process their personal data.
+              type: string
+              format: date-time
+              pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            given:
+              type: boolean
+              description: Whether the candidate has given consent.
+          description: Optional GDPR consent information required in some jurisdictions (like the Czech Republic or Slovakia).
+        remote_fields:
+          allOf:
+          - type: object
+            properties:
+              successfactors:
+                type: object
+                properties:
+                  Candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to SuccessFactor's `Candidate` object.
+                  JobApplication:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to SuccessFactor's `JobApplication` object.
+                  copyJobApplicationAttachments:
+                    type: boolean
+                    description: If set to true, we will copy custom attachments from the JobApplication to the Candidate.
+                  update_existing_candidate:
+                    type:
+                    - boolean
+                    - 'null'
+                    description: When the candidate already exists, whether to update the Candidate with the remote fields found under the Candidate entity.
+                description: Fields specific to SAP SuccessFactors.
+              personio:
+                type: object
+                properties:
+                  application:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Personio's `application` object.
+                description: Fields specific to Personio.
+              talentsoft:
+                type: object
+                properties:
+                  applicant:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to TalentSoft's `applicant` object.
+                  application:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to TalentSoft's `application` object.
+                description: Fields specific to TalentSoft.
+              teamtailor:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Teamtailor's `Candidate` object.
+                  application:
+                    type: object
+                    properties:
+                      attributes:
+                        type: object
+                        additionalProperties: true
+                        description: Fields that we will pass through to Teamtailor's attributes section `Job application` object.
+              greenhouse:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Greenhouse's `Candidate` object.
+                  application:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Greenhouse's `Application` object.
+                description: Fields specific to Greenhouse.
+              lever:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: 'Fields that we will pass through to Lever''s `Candidate` object. Note: make sure to submit the keys and values in the correct form data format.'
+                description: Fields specific to Lever.
+              workable:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Workable's `Candidate` object.
+                description: Fields specific to Workable.
+              workday:
+                type: object
+                properties:
+                  Candidate_Data:
+                    type: object
+                    properties:
+                      Name_Detail_Data:
+                        type: object
+                        properties:
+                          Middle_Name:
+                            type: string
+                            description: The candidate's middle name
+                          Social_Suffix_Reference:
+                            type: object
+                            properties:
+                              Predefined_Name_Component_ID:
+                                type: string
+                            required:
+                            - Predefined_Name_Component_ID
+                            description: The WID of the social suffix reference for the candidate
+                      Language_Reference:
+                        type: object
+                        properties:
+                          WID:
+                            type: string
+                        required:
+                        - WID
+                        description: Used to set the candidate's primary language
+                      Job_Application_Data:
+                        type: object
+                        properties:
+                          Job_Applied_To_Data:
+                            type: object
+                            properties:
+                              Global_Personal_Information_Data:
+                                type: object
+                                properties:
+                                  Date_of_Birth:
+                                    type: string
+                          Resume_Data:
+                            type: object
+                            properties:
+                              Education_Data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    School_Name:
+                                      type: string
+                                    First_Year_Attended:
+                                      type: number
+                                      format: double
+                                      minimum: -1.7976931348623157e+308
+                                    Last_Year_Attended:
+                                      type: number
+                                      format: double
+                                      minimum: -1.7976931348623157e+308
+                                    Field_of_Study_Reference:
+                                      type: object
+                                      properties:
+                                        WID:
+                                          type: string
+                                      required:
+                                      - WID
+                                    Degree_Reference:
+                                      type: object
+                                      properties:
+                                        WID:
+                                          type: string
+                                      required:
+                                      - WID
+                                    Grade_Average:
+                                      type: string
+                              Skill_Data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    Skill_Name:
+                                      type: string
+                              Language_Data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    Language_Reference:
+                                      type: object
+                                      properties:
+                                        WID:
+                                          type: string
+                                    Language:
+                                      type: object
+                                      properties:
+                                        Native:
+                                          type: boolean
+                                        Language_Ability:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              Language_Ability_Data:
+                                                type: object
+                                                properties:
+                                                  Language_Proficiency_Reference:
+                                                    type: object
+                                                    properties:
+                                                      WID:
+                                                        type: string
+                                                    required:
+                                                    - WID
+                                                  Language_Ability_Type_Reference:
+                                                    type: object
+                                                    properties:
+                                                      WID:
+                                                        type: string
+                                                    required:
+                                                    - WID
+                                      required:
+                                      - Language_Ability
+                              Experience_Data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    Company_Name:
+                                      type: string
+                                    Title:
+                                      type: string
+                                    Location:
+                                      type: string
+                                    Start_Date:
+                                      description: YYYY-MM-DDTHH:mm:ss.sssZ
+                                      type: string
+                                      format: date-time
+                                      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+                                      externalDocs:
+                                        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                                    End_Date:
+                                      description: YYYY-MM-DDTHH:mm:ss.sssZ
+                                      type: string
+                                      format: date-time
+                                      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+                                      externalDocs:
+                                        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                                    Currently_Work_Here:
+                                      type: boolean
+                                    Description:
+                                      type: string
+                                  required:
+                                  - Company_Name
+                                  - Title
+                                  - Start_Date
+                      Contact_Data:
+                        type: object
+                        properties:
+                          Location_Data:
+                            type: object
+                            properties:
+                              Address_Line_1:
+                                type: string
+                              Address_Line_2:
+                                type: string
+                              Region_Subdivision_1:
+                                type: string
+                              Country_Region_Reference:
+                                type: object
+                                properties:
+                                  Country_Region_ID:
+                                    type: string
+                                required:
+                                - Country_Region_ID
+                              Country_City_Reference:
+                                type: object
+                                properties:
+                                  WID:
+                                    type: string
+                                required:
+                                - WID
+                      Worker_Reference:
+                        type: object
+                        properties:
+                          WID:
+                            type: string
+                          Employee_ID:
+                            type: string
+                        description: Reference to the Worker (employee) to link the candidate to. Provide either WID or Employee_ID.
+                  Override_Source_Reference_WID:
+                    type: string
+                    description: Used to override the automatic source WID.
+                description: Fields specific to Workday. The remote fields schema follows the documentation at https://community.workday.com/sites/default/files/file-hosting/productionapi/Recruiting/v43.0/Put_Candidate.html. Only defined fields are supported, if you need additional field support please reach out to Kombo support.
+              zohorecruit:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Zoho Recruit's `Candidate` object.
+                description: Fields specific to Zoho Recruit.
+              bullhorn:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Bullhorn's `Candidate` object.
+                  job_submission:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Bullhorn's `JobSubmission` object.
+                description: Fields specific to Bullhorn.
+              smartrecruiters:
+                type: object
+                properties:
+                  candidate_with_questions:
+                    type: object
+                    additionalProperties: true
+                    description: '**(⚠️ Deprecated - Use the `candidate` field instead.)** Fields that we will pass through to the SmartRecruiters''s `Candidate` object when created with screening question answers. This API is used: https://developers.smartrecruiters.com/reference/createcandidate-1'
+                  candidate_without_questions:
+                    type: object
+                    additionalProperties: true
+                    description: '**(⚠️ Deprecated - Use the `candidate` field instead.)** Fields that we will pass through to the SmartRecruiters''s `Candidate` object when created with screening question answers. This API is used: https://developers.smartrecruiters.com/reference/candidatesaddtojob-1'
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: 'Fields that we will pass through to the SmartRecruiters''s `Candidate` object. This API is used: https://developers.smartrecruiters.com/reference/createcandidate-1'
+                  consent_decisions:
+                    type: object
+                    properties:
+                      SINGLE:
+                        type: boolean
+                      SMART_RECRUIT:
+                        type: boolean
+                      SMART_CRM:
+                        type: boolean
+                      SMART_MESSAGE_SMS:
+                        type: boolean
+                      SMART_MESSAGE_WHATSAPP:
+                        type: boolean
+                    description: 'The consent decisions for the candidate. SmartRecruiters supports two consent models: ''Single'' (use the `SINGLE` key) and ''Separated'' (use `SMART_RECRUIT`, `SMART_CRM`, `SMART_MESSAGE_SMS`, and/or `SMART_MESSAGE_WHATSAPP` keys). When this field is provided, it takes precedence over the `gdpr_consent` field for the `consentDecisions` property. See: https://developers.smartrecruiters.com/docs/partners-post-an-application'
+                description: Fields specific to SmartRecruiters.
+              talentadore:
+                type: object
+                properties:
+                  applications:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to the Talentadore's when creating applications.
+                description: Fields specific to Talentadore.
+              guidecom:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to GuideCom's `Candidate` object.
+                description: Fields specific to GuideCom.
+              dvinci:
+                type: object
+                properties:
+                  application:
+                    type: object
+                    additionalProperties: true
+                    description: 'Fields that we will pass through to d.vinci''s application object. This API is used: https://static.dvinci-easy.com/files/d.vinci%20application-apply-api.html#jobs__id__applyApi_post'
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to d.vinci's candidate/application payload as top-level fields (e.g., dateOfBirth).
+                description: Fields specific to d.vinci.
+              hrworks:
+                type: object
+                properties:
+                  jobApplication:
+                    type: object
+                    additionalProperties: true
+                    description: 'Fields that we will pass through to HRWorks''s `Job Application` object. This API is used: https://developers.hrworks.de/docs/hrworks-api-v2/53021f035f62d-post-job-applications'
+                description: Fields specific to GuideCom.
+              jobylon:
+                type: object
+                properties:
+                  application:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        description: The `message` field of Jobylon's create application endpoint's request body.
+                    description: Fields that we will pass through to Jobylon's create application [endpoint](https://developer.jobylon.com/push-api-and-webhooks#-xL0v)'s request body.
+                description: Fields specific to Jobylon.
+              avature:
+                type: object
+                properties:
+                  workflow:
+                    type: object
+                    properties:
+                      step:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            format: int64
+                            description: The ID of the workflow step to assign to the candidate.
+                        required:
+                        - id
+                description: Fields specific to Avature.
+              recruitee:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    properties:
+                      cover_letter_text:
+                        type: string
+                        description: The cover letter text as a string. This will be visible on the main candidate page. Can be provided together with the `cover_letter` attachment, which will end up in a separate `file` section.
+                description: Fields specific to Recruitee.
+              rexx:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Rexx's application form fields.
+                description: Fields specific to Rexx.
+              umantis:
+                type: object
+                properties:
+                  person:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Abacus Umantis's "Create a person" endpoint's `attributes` when creating a candidate.
+                description: Fields specific to Abacus Umantis.
+              piloga:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    properties:
+                      street:
+                        type: string
+                        description: The street address of the candidate.
+                    description: Additional candidate fields for P&I Loga that will be mapped to the application form.
+                description: Fields specific to P&I Loga.
+              pinpoint:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    additionalProperties: true
+                    description: Fields that we will pass through to Pinpoint's `Candidate` object.
+                description: Fields specific to Pinpoint.
+              covetorest:
+                type: object
+                properties:
+                  candidate:
+                    type: object
+                    properties:
+                      mandant:
+                        type: number
+                        format: double
+                        minimum: -1.7976931348623157e+308
+                        description: The mandant field for the candidate in Coveto.
+                    description: Additional candidate fields that will be passed to the Coveto candidate creation.
+                description: Fields specific to Coveto REST.
+            description: Additional fields that we will pass through to specific ATS systems.
+          - type: object
+            properties:
+              greenhouse:
+                type: object
+                properties:
+                  post_headers:
+                    type: object
+                    properties:
+                      On-Behalf-Of:
+                        type:
+                        - string
+                        - 'null'
+                        description: ID of the the user that will show up as having performed the action in Greenhouse. We already pass a value by default, but you can use this to override it.
+                    description: Headers we will pass with `POST` requests to Greenhouse.
+                description: Fields specific to Greenhouse.
+              workable:
+                type: object
+                properties:
+                  on_behalf_of_user_remote_id:
+                    type: string
+                    description: The remote ID of the user that will be displayed in the UI as the one that performed the action.
+                description: Workable specific remote fields for ATS actions.
+            description: Additional fields that we will pass through to specific ATS systems.
+          description: Additional fields that we will pass through to specific ATS systems.
+        screening_question_answers:
+          type: array
+          items:
+            type: object
+            properties:
+              question_id:
+                type: string
+                description: ID of the question returned by the Kombo API. We'll report a warning in the logs if the question can't be found on the job.
+              answer:
+                anyOf:
+                - type: string
+                  description: Answer to a `TEXT` question or the option ID of the answer to a `SINGLE_SELECT` question.
+                - type: boolean
+                  description: Answer to a `BOOLEAN` question.
+                - type: number
+                  format: double
+                  minimum: -1.7976931348623157e+308
+                  description: Answer to a `NUMBER` question.
+                - type: array
+                  items:
+                    type: string
+                  description: Answer to a `MULTI_SELECT` question. The array elements are the IDs of the selected options.
+                - description: Answer to a `DATE` question as an ISO 8601 date string.
+                  type: string
+                  format: date-time
+                  pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
+                  externalDocs:
+                    url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                - type: object
+                  properties:
+                    name:
+                      type: string
+                      description: File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system.
+                    content_type:
+                      type: string
+                      pattern: ^[\w.-]+\/[\w.-]+$
+                      description: 'Content/MIME type of the file (e.g., `application/pdf`).
+
+
+                        If you provide `data`, this is required. If you provide `data_url`, this is optional and we''ll attempt to use the `Content-Type` header of the response.
+
+
+                        **Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it''s easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types)).'
+                    data_url:
+                      type: string
+                      format: uri
+                      description: 'URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.
+
+
+                        If you''re using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
+
+
+                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+                    data:
+                      type: string
+                      description: 'Base64-encoded contents of the file you want to upload.
+
+
+                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+                  required:
+                  - name
+                  description: Answer to a `FILE` question.
+                description: 'Answer to a question. This will be validated based on the question format and throw an error if the answer is invalid. Here is a description of each question type and the required answer format:
+
+
+                  `TEXT` - Simply provide a "string" answer.
+
+
+                  `SINGLE_SELECT` - Provide the ID of the answer as a string.
+
+
+                  `MULTI_SELECT` - Provide a string array containing the question IDs of the selected options.
+
+
+                  `BOOLEAN` - Either `true` or `false`.
+
+
+                  `NUMBER` - A number.
+
+
+                  `DATE` - Provide the answer as an ISO 8601 date string.
+
+
+                  `FILE` - Please select Option 6 in the dropdown above to see the required format.'
+            required:
+            - question_id
+            - answer
+          description: 'Array of answers to screening questions. Currently, not all question types are supported, and unsupported ones will not be submitted.
+
+
+            The available questions for a job can be retrieved from the get jobs endpoint. The answers will be validated based on the format of the questions. Make sure to follow this schema to avoid errors.'
+          examples:
+          - - question_id: D8yPrjXXvA2XeBksTmrVvKSn
+              answer: 'Yes'
+        query_params:
+          type: object
+          additionalProperties:
+            type: string
+          description: Query parameters to be appended to the job posting URL when applying.
+      required:
+      - candidate
+    PostAiApplyPostingsPostingIdInquireRequestBody:
+      type: object
+      properties: {}
+    GetAiApplyUnifiedApiJobsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  remote_id:
+                    type: string
+                  name:
+                    type:
+                    - string
+                    - 'null'
+                  job_code:
+                    type:
+                    - string
+                    - 'null'
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                  confidential:
+                    type:
+                    - boolean
+                    - 'null'
+                  weekly_hours:
+                    type:
+                    - number
+                    - 'null'
+                    format: double
+                    minimum: -1.7976931348623157e+308
+                  category:
+                    type:
+                    - string
+                    - 'null'
+                  department:
+                    type:
+                    - string
+                    - 'null'
+                  post_url:
+                    type:
+                    - string
+                    - 'null'
+                  experience_level:
+                    type:
+                    - string
+                    - 'null'
+                  salary_amount:
+                    type:
+                    - number
+                    - 'null'
+                    format: double
+                    minimum: -1.7976931348623157e+308
+                  salary_amount_from:
+                    type:
+                    - number
+                    - 'null'
+                    format: double
+                    minimum: -1.7976931348623157e+308
+                  salary_amount_to:
+                    type:
+                    - number
+                    - 'null'
+                    format: double
+                    minimum: -1.7976931348623157e+308
+                  salary_currency:
+                    type:
+                    - string
+                    - 'null'
+                  custom_fields:
+                    type:
+                    - object
+                    - 'null'
+                  integration_fields:
+                    type: array
+                    items:
+                      type: object
+                  opened_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
+                  closed_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
+                  remote_created_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
+                  remote_updated_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
+                  contact_id:
+                    type:
+                    - string
+                    - 'null'
+                  remote_data:
+                    type:
+                    - object
+                    - 'null'
+                  changed_at:
+                    type: string
+                    format: date-time
+                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
+                  remote_deleted_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
+                  remote_url:
+                    type:
+                    - string
+                    - 'null'
+                  stages:
+                    type: array
+                    items:
+                      type: object
+                  screening_questions:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        remote_id:
+                          type:
+                          - string
+                          - 'null'
+                        title:
+                          type:
+                          - string
+                          - 'null'
+                        description:
+                          type:
+                          - string
+                          - 'null'
+                        format:
+                          anyOf:
+                          - type: object
+                            properties:
+                              display_type:
+                                type:
+                                - string
+                                - 'null'
+                                enum:
+                                - SINGLE_LINE
+                                - MULTI_LINE
+                                - EMAIL
+                                - URL
+                                description: If unavailable, we recommend displaying a single-line input.
+                              max_length:
+                                type:
+                                - integer
+                                - 'null'
+                                format: int64
+                              type:
+                                type: string
+                                const: TEXT
+                            required:
+                            - type
+                          - type: object
+                            properties:
+                              display_type:
+                                type:
+                                - string
+                                - 'null'
+                                enum:
+                                - SLIDER
+                                - FIELD
+                                default: FIELD
+                              max:
+                                type:
+                                - number
+                                - 'null'
+                                format: double
+                                minimum: -1.7976931348623157e+308
+                              min:
+                                type:
+                                - number
+                                - 'null'
+                                format: double
+                                minimum: -1.7976931348623157e+308
+                              type:
+                                type: string
+                                const: NUMBER
+                            required:
+                            - type
+                          - type: object
+                            properties:
+                              accepted_mime_types:
+                                type:
+                                - array
+                                - 'null'
+                                items:
+                                  type: string
+                              max_file_size_bytes:
+                                type:
+                                - integer
+                                - 'null'
+                                format: int64
+                              type:
+                                type: string
+                                const: FILE
+                            required:
+                            - type
+                          - type: object
+                            properties:
+                              display_type:
+                                type:
+                                - string
+                                - 'null'
+                                enum:
+                                - DROPDOWN
+                                - RADIO
+                              options:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      description: The Kombo ID of this question option. Use this ID to specify the answer to this question.
+                                    remote_id:
+                                      type:
+                                      - string
+                                      - 'null'
+                                      description: ID in the connected ATS. This might be null as some systems only use the name to identify the option.
+                                    name:
+                                      type: string
+                                      description: Content of the question option.
+                                  required:
+                                  - id
+                                  - name
+                              type:
+                                type: string
+                                const: SINGLE_SELECT
+                            required:
+                            - options
+                            - type
+                          - type: object
+                            properties:
+                              type:
+                                type: string
+                                const: BOOLEAN
+                            required:
+                            - type
+                          - type: object
+                            properties:
+                              type:
+                                type: string
+                                const: DATE
+                            required:
+                            - type
+                          - type: object
+                            properties:
+                              options:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      description: The Kombo ID of this question option. Use this ID to specify the answer to this question.
+                                    remote_id:
+                                      type:
+                                      - string
+                                      - 'null'
+                                      description: ID in the connected ATS. This might be null as some systems only use the name to identify the option.
+                                    name:
+                                      type: string
+                                      description: Content of the question option.
+                                  required:
+                                  - id
+                                  - name
+                              type:
+                                type: string
+                                const: MULTI_SELECT
+                            required:
+                            - options
+                            - type
+                          - type: object
+                            properties:
+                              type:
+                                type: string
+                                const: INFORMATION
+                                description: This is just a text block.
+                            required:
+                            - type
+                          - type: object
+                            properties:
+                              raw_question:
+                                description: We pass the original question data along so you can handle it.
+                              type:
+                                type: string
+                                const: UNKNOWN
+                                description: When we're not able to map a specific question type yet, we will return this type. Every `UNKNOWN` question will also be parsed and unified by us at some point.
+                            required:
+                            - type
+                          - type: 'null'
+                        category:
+                          type:
+                          - string
+                          - 'null'
+                          enum:
+                          - EEO
+                        index:
+                          type:
+                          - integer
+                          - 'null'
+                          format: int64
+                        required:
+                          type:
+                          - boolean
+                          - 'null'
+                        precondition_question_id:
+                          type:
+                          - string
+                          - 'null'
+                        precondition_options:
+                          anyOf:
+                          - type: array
+                            items:
+                              type: string
+                          - type: array
+                            items:
+                              type: boolean
+                          - type: 'null'
+                          default: null
+                      required:
+                      - id
+                      - remote_id
+                      - title
+                      - description
+                      - category
+                      - required
+                  job_postings:
+                    type: array
+                    items:
+                      type: object
+                  hiring_team:
+                    type: array
+                    items:
+                      type: object
+                  employment_type:
+                    anyOf:
+                    - type: string
+                      enum:
+                      - FULL_TIME
+                      - PART_TIME
+                      - CONTRACT
+                      - SEASONAL
+                      - INTERNSHIP
+                    - type: string
+                      description: 'If we can''t find a clear mapping: The original string passed through.'
+                    - type: 'null'
+                    description: One of 5 standardized values or — in rare cases where we can’t find a clear mapping — the original string passed through.
+                  status:
+                    anyOf:
+                    - type: string
+                      enum:
+                      - OPEN
+                      - CLOSED
+                      - DRAFT
+                      - ARCHIVED
+                    - type: string
+                      description: 'If we can''t find a clear mapping: The original string passed through.'
+                    - type: 'null'
+                    description: "The job's current status.\n\n*Note: For any checks (e.g., \"can we publish this job?\"), always evaluate both `status` and `visibility`. For example, a job can be `status=OPEN` with `visibility=INTERNAL`, meaning only existing employees can apply.*\n\n In rare cases where we can’t find a clear mapping, the original string is passed through."
+                  visibility:
+                    type:
+                    - string
+                    - 'null'
+                  remote_work_status:
+                    type:
+                    - string
+                    - 'null'
+                  salary_period:
+                    type:
+                    - string
+                    - 'null'
+                  location:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      city:
+                        type:
+                        - string
+                        - 'null'
+                      country:
+                        type:
+                        - string
+                        - 'null'
+                        description: Contains the ISO2 country code if possible. If not, it contains the original value.
+                      raw:
+                        type:
+                        - string
+                        - 'null'
+                        description: If we have address data, this is filled with the raw address string.
+                      state:
+                        type:
+                        - string
+                        - 'null'
+                      street_1:
+                        type:
+                        - string
+                        - 'null'
+                        description: If we can parse the address data, this field contains the first part of the street information.
+                      street_2:
+                        type:
+                        - string
+                        - 'null'
+                      zip_code:
+                        type:
+                        - string
+                        - 'null'
+                required:
+                - id
+                - remote_id
+                - name
+                - job_code
+                - description
+                - confidential
+                - weekly_hours
+                - category
+                - department
+                - post_url
+                - experience_level
+                - salary_amount
+                - salary_amount_from
+                - salary_amount_to
+                - salary_currency
+                - custom_fields
+                - integration_fields
+                - opened_at
+                - closed_at
+                - remote_created_at
+                - remote_updated_at
+                - contact_id
+                - remote_data
+                - changed_at
+                - remote_deleted_at
+                - remote_url
+                - stages
+                - screening_questions
+                - job_postings
+                - hiring_team
+                - visibility
+                - remote_work_status
+                - salary_period
+            next:
+              type:
+              - string
+              - 'null'
+          required:
+          - results
+          - next
+      required:
+      - status
+      - data
+    GetAiApplyApplicationsParameterJobPostingIds:
+      type: string
+      description: Filter by a comma-separated list of job posting IDs such as `89V6GEKpdZwqbxQz59n1ftFb,kcGHREEXCMF26Yhpuyh1gDVE`.
     GetAiApplyJobFeedsParameterPageSize:
       type: integer
       format: int64
@@ -788,6 +2508,234 @@ components:
       maximum: 250
       default: 100
       description: The number of results to return per page. Maximum is 250.
+    GetAiApplyJobFeedsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAiApplyUnifiedApiJobsParameterCareerSiteIds:
+      type: string
+      description: Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`.
+    GetAiApplyUnifiedApiJobsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    PostAiApplyCareerSitesRequestBody:
+      type: object
+      properties:
+        label:
+          type: string
+          description: The label of the career site
+      required:
+      - label
+    GetAiApplyCareerSitesParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    GetAiApplyUnifiedApiJobsParameterJobCodes:
+      type: string
+      description: Filter by a comma-separated list of job codes such as `ACME_12,ACME_14`.
+    GetAiApplyApplicationsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    PostAiApplyJobFeedsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            label:
+              type: string
+              description: The label of the job feed
+          required:
+          - id
+          - label
+          examples:
+          - id: mK7pQw9xNvEr2LdY5sGh8TcZ
+            label: Standard Acquisition Services LLC
+      required:
+      - status
+      - data
+    PostAiApplyUnifiedApiJobsJobIdApplicationsParameterJobId:
+      type: string
+      description: The Kombo ID or Remote ID of the Job this candidate should apply for. If you want to use the ID of the integrated system (remote_id) you need to prefix the id with "remote:". You can use the remote ID if you do not want to sync jobs.
+    GetAiApplyPostingsParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    PostAiApplyApplyPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            posting_id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            status:
+              type: string
+            created_at:
+              description: YYYY-MM-DDTHH:mm:ss.sssZ
+              type: string
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            updated_at:
+              description: YYYY-MM-DDTHH:mm:ss.sssZ
+              type: string
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+          required:
+          - id
+          - posting_id
+          - status
+          - created_at
+          - updated_at
+          examples:
+          - id: ADbmw5XSkeCSE1fAucoxEGnwZ
+            posting_id: JDn252PEYa4rMhKbJBjtn3ng
+            status: PENDING
+            created_at: '2025-01-01T00:00:00.000Z'
+            updated_at: '2025-03-02T23:12:32.000Z'
+      required:
+      - status
+      - data
+    PostAiApplyPostingsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            career_site:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                label:
+                  type: string
+              required:
+              - id
+              - label
+            url:
+              type: string
+            job_code:
+              type:
+              - string
+              - 'null'
+            created_at:
+              description: YYYY-MM-DDTHH:mm:ss.sssZ
+              type: string
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            updated_at:
+              description: YYYY-MM-DDTHH:mm:ss.sssZ
+              type: string
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            archived_at:
+              description: The date and time the job posting was archived. You can only send applications if the job posting is not archived.
+              type:
+              - string
+              - 'null'
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            archived_reason:
+              type:
+              - string
+              - 'null'
+              enum:
+              - JOB_POSTING_TAKEN_OFFLINE
+              - MANUAL_ARCHIVE
+              - REMOVED_FROM_JOB_FEED
+            availability:
+              type: string
+              enum:
+              - APPLYABLE
+              - PENDING
+              - ARCHIVED
+              - UNAVAILABLE
+              description: The status of the job posting. You can only send applications if the job posting is "APPLYABLE".
+          required:
+          - id
+          - career_site
+          - url
+          - job_code
+          - created_at
+          - updated_at
+          - archived_at
+          - archived_reason
+          - availability
+          examples:
+          - id: 9QGNv3B98kL3hyELE1qsZ86s
+            career_site:
+              id: Chc4dua5asAQ48KUERDVF1bs
+              label: Acme
+            url: https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102
+            job_code: ACME_13
+            created_at: '2025-01-01T00:00:00.000Z'
+            updated_at: '2025-03-02T23:12:32.000Z'
+            archived_at: null
+            archived_reason: null
+            availability: PENDING
+      required:
+      - status
+      - data
+    GetAiApplyJobFeedsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  label:
+                    type: string
+                    description: The label of the job feed
+                required:
+                - id
+                - label
+            next:
+              type:
+              - string
+              - 'null'
+          required:
+          - results
+          - next
+          examples:
+          - results:
+            - id: mK7pQw9xNvEr2LdY5sGh8TcZ
+              label: Standard Acquisition Services LLC
+            next: null
+      required:
+      - status
+      - data
     PostAiApplyUnifiedApiJobsJobIdApplicationsPositiveResponse:
       type: object
       properties:
@@ -1595,10 +3543,40 @@ components:
       required:
       - status
       - data
-    PostAiApplyPostingsPostingIdInquireParameterPostingId:
-      type: string
-      description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-    PostAiApplyPostingsPositiveResponse:
+    BulkImportResponse:
+      type: object
+      description: Response from the bulk import endpoint
+      properties:
+        status:
+          type: string
+          enum:
+          - success
+        data:
+          type: object
+          properties:
+            created:
+              type: integer
+              description: Number of new job postings created
+            processed:
+              type: integer
+              description: Number of job postings processed
+            archived:
+              type: integer
+              description: Number of job postings archived (not included in this import)
+          required:
+          - created
+          - processed
+          - archived
+      required:
+      - status
+      - data
+      example:
+        status: success
+        data:
+          created: 150
+          processed: 197
+          archived: 10
+    PostAiApplyCareerSitesPositiveResponse:
       type: object
       properties:
         status:
@@ -1610,85 +3588,28 @@ components:
             id:
               type: string
               description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            career_site:
-              type: object
-              properties:
-                id:
-                  type: string
-                  description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                label:
-                  type: string
-              required:
-              - id
-              - label
-            url:
+            label:
               type: string
-            job_code:
-              type:
-              - string
-              - 'null'
-            created_at:
-              description: YYYY-MM-DDTHH:mm:ss.sssZ
-              type: string
-              format: date-time
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            updated_at:
-              description: YYYY-MM-DDTHH:mm:ss.sssZ
-              type: string
-              format: date-time
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            archived_at:
-              description: The date and time the job posting was archived. You can only send applications if the job posting is not archived.
-              type:
-              - string
-              - 'null'
-              format: date-time
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            archived_reason:
-              type:
-              - string
-              - 'null'
-              enum:
-              - JOB_POSTING_TAKEN_OFFLINE
-              - MANUAL_ARCHIVE
-              - REMOVED_FROM_JOB_FEED
-            availability:
-              type: string
-              enum:
-              - APPLYABLE
-              - PENDING
-              - ARCHIVED
-              - UNAVAILABLE
-              description: The status of the job posting. You can only send applications if the job posting is "APPLYABLE".
+              description: The label of the career site
           required:
           - id
-          - career_site
-          - url
-          - job_code
-          - created_at
-          - updated_at
-          - archived_at
-          - archived_reason
-          - availability
+          - label
           examples:
-          - id: 9QGNv3B98kL3hyELE1qsZ86s
-            career_site:
-              id: Chc4dua5asAQ48KUERDVF1bs
-              label: Acme
-            url: https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102
-            job_code: ACME_13
-            created_at: '2025-01-01T00:00:00.000Z'
-            updated_at: '2025-03-02T23:12:32.000Z'
-            archived_at: null
-            archived_reason: null
-            availability: PENDING
+          - id: mK7pQw9xNvEr2LdY5sGh8TcZ
+            label: Acme Inc. California
       required:
       - status
       - data
-    GetAiApplyCareerSitesParameterIds:
+    PostAiApplyJobFeedsRequestBody:
+      type: object
+      properties:
+        label:
+          type: string
+          minLength: 1
+          description: The label of the job feed
+      required:
+      - label
+    GetAiApplyJobFeedsParameterIds:
       type: string
       description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
     GetAiApplyApplicationsPositiveResponse:
@@ -1754,1372 +3675,6 @@ components:
       required:
       - status
       - data
-    GetAiApplyUnifiedApiJobsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 5
-      default: 5
-      description: The number of results to return per page. Maximum is 5.
-    PostAiApplyPostingsRequestBody:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          pattern: ^https?:\/\/
-          description: The URL of the job posting to parse
-        job_code:
-          type: string
-          description: Job code to associate with the job posting
-        location:
-          type:
-          - object
-          - 'null'
-          properties:
-            country:
-              type: string
-              enum:
-              - AD
-              - AE
-              - AF
-              - AG
-              - AI
-              - AL
-              - AM
-              - AO
-              - AQ
-              - AR
-              - AS
-              - AT
-              - AU
-              - AW
-              - AX
-              - AZ
-              - BA
-              - BB
-              - BD
-              - BE
-              - BF
-              - BG
-              - BH
-              - BI
-              - BJ
-              - BL
-              - BM
-              - BN
-              - BO
-              - BQ
-              - BR
-              - BS
-              - BT
-              - BV
-              - BW
-              - BY
-              - BZ
-              - CA
-              - CC
-              - CD
-              - CF
-              - CG
-              - CH
-              - CI
-              - CK
-              - CL
-              - CM
-              - CN
-              - CO
-              - CR
-              - CU
-              - CV
-              - CW
-              - CX
-              - CY
-              - CZ
-              - DE
-              - DJ
-              - DK
-              - DM
-              - DO
-              - DZ
-              - EC
-              - EE
-              - EG
-              - EH
-              - ER
-              - ES
-              - ET
-              - FI
-              - FJ
-              - FK
-              - FM
-              - FO
-              - FR
-              - GA
-              - GB
-              - GD
-              - GE
-              - GF
-              - GG
-              - GH
-              - GI
-              - GL
-              - GM
-              - GN
-              - GP
-              - GQ
-              - GR
-              - GS
-              - GT
-              - GU
-              - GW
-              - GY
-              - HK
-              - HM
-              - HN
-              - HR
-              - HT
-              - HU
-              - ID
-              - IE
-              - IL
-              - IM
-              - IN
-              - IO
-              - IQ
-              - IR
-              - IS
-              - IT
-              - JE
-              - JM
-              - JO
-              - JP
-              - KE
-              - KG
-              - KH
-              - KI
-              - KM
-              - KN
-              - KP
-              - KR
-              - KW
-              - KY
-              - KZ
-              - LA
-              - LB
-              - LC
-              - LI
-              - LK
-              - LR
-              - LS
-              - LT
-              - LU
-              - LV
-              - LY
-              - MA
-              - MC
-              - MD
-              - ME
-              - MF
-              - MG
-              - MH
-              - MK
-              - ML
-              - MM
-              - MN
-              - MO
-              - MP
-              - MQ
-              - MR
-              - MS
-              - MT
-              - MU
-              - MV
-              - MW
-              - MX
-              - MY
-              - MZ
-              - NA
-              - NC
-              - NE
-              - NF
-              - NG
-              - NI
-              - NL
-              - 'NO'
-              - NP
-              - NR
-              - NU
-              - NZ
-              - OM
-              - PA
-              - PE
-              - PF
-              - PG
-              - PH
-              - PK
-              - PL
-              - PM
-              - PN
-              - PR
-              - PS
-              - PT
-              - PW
-              - PY
-              - QA
-              - RE
-              - RO
-              - RS
-              - RU
-              - RW
-              - SA
-              - SB
-              - SC
-              - SD
-              - SE
-              - SG
-              - SH
-              - SI
-              - SJ
-              - SK
-              - SL
-              - SM
-              - SN
-              - SO
-              - SR
-              - SS
-              - ST
-              - SV
-              - SX
-              - SY
-              - SZ
-              - TC
-              - TD
-              - TF
-              - TG
-              - TH
-              - TJ
-              - TK
-              - TL
-              - TM
-              - TN
-              - TO
-              - TR
-              - TT
-              - TV
-              - TW
-              - TZ
-              - UA
-              - UG
-              - UM
-              - US
-              - UY
-              - UZ
-              - VA
-              - VC
-              - VE
-              - VG
-              - VI
-              - VN
-              - VU
-              - WF
-              - WS
-              - YE
-              - YT
-              - ZA
-              - ZM
-              - ZW
-              description: The country in which the job is located
-            postal_code:
-              type: string
-              description: The postal/zip code in which the job is located
-          required:
-          - country
-          description: The location in which the job is located. When omitted, the existing location is preserved. Pass null to explicitly clear an existing location.
-        career_site_id:
-          type: string
-          description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-      required:
-      - url
-      - career_site_id
-    GetAiApplyJobFeedsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  label:
-                    type: string
-                    description: The label of the job feed
-                required:
-                - id
-                - label
-            next:
-              type:
-              - string
-              - 'null'
-          required:
-          - results
-          - next
-          examples:
-          - results:
-            - id: mK7pQw9xNvEr2LdY5sGh8TcZ
-              label: Standard Acquisition Services LLC
-            next: null
-      required:
-      - status
-      - data
-    GetAiApplyCareerSitesPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  label:
-                    type: string
-                    description: The label of the career site
-                required:
-                - id
-                - label
-            next:
-              type:
-              - string
-              - 'null'
-          required:
-          - results
-          - next
-          examples:
-          - results:
-            - id: mK7pQw9xNvEr2LdY5sGh8TcZ
-              label: Acme Inc. California
-            next: null
-      required:
-      - status
-      - data
-    GetAiApplyApplicationsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    GetAiApplyPostingsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  career_site:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                      label:
-                        type: string
-                    required:
-                    - id
-                    - label
-                  url:
-                    type: string
-                  job_code:
-                    type:
-                    - string
-                    - 'null'
-                  created_at:
-                    description: YYYY-MM-DDTHH:mm:ss.sssZ
-                    type: string
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  updated_at:
-                    description: YYYY-MM-DDTHH:mm:ss.sssZ
-                    type: string
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  archived_at:
-                    description: The date and time the job posting was archived. You can only send applications if the job posting is not archived.
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  archived_reason:
-                    type:
-                    - string
-                    - 'null'
-                    enum:
-                    - JOB_POSTING_TAKEN_OFFLINE
-                    - MANUAL_ARCHIVE
-                    - REMOVED_FROM_JOB_FEED
-                  availability:
-                    type: string
-                    enum:
-                    - APPLYABLE
-                    - PENDING
-                    - ARCHIVED
-                    - UNAVAILABLE
-                    description: The status of the job posting. You can only send applications if the job posting is "APPLYABLE".
-                required:
-                - id
-                - career_site
-                - url
-                - job_code
-                - created_at
-                - updated_at
-                - archived_at
-                - archived_reason
-                - availability
-            next:
-              type:
-              - string
-              - 'null'
-          required:
-          - results
-          - next
-          examples:
-          - results:
-            - id: 9QGNv3B98kL3hyELE1qsZ86s
-              career_site:
-                id: Chc4dua5asAQ48KUERDVF1bs
-                label: Acme
-              url: https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102
-              job_code: ACME_13
-              created_at: '2025-01-01T00:00:00.000Z'
-              updated_at: '2025-03-02T23:12:32.000Z'
-              archived_at: null
-              archived_reason: null
-              availability: PENDING
-            next: null
-      required:
-      - status
-      - data
-    GetAiApplyPostingsParameterCareerSiteIds:
-      type: string
-      description: Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`.
-    GetAiApplyUnifiedApiJobsParameterCareerSiteIds:
-      type: string
-      description: Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`.
-    GetAiApplyPostingsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
-    GetAiApplyUnifiedApiJobsParameterRemoteIds:
-      type: string
-      description: This parameter exists for backwards compatibility with Kombo's unified API. Supplying a comma-separated list of remote IDs such as `32,33` will return no jobs because AI Apply does not interface with a remote system that issues remote IDs.
-    PostAiApplyCareerSitesPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            label:
-              type: string
-              description: The label of the career site
-          required:
-          - id
-          - label
-          examples:
-          - id: mK7pQw9xNvEr2LdY5sGh8TcZ
-            label: Acme Inc. California
-      required:
-      - status
-      - data
-    PostAiApplyCareerSitesRequestBody:
-      type: object
-      properties:
-        label:
-          type: string
-          description: The label of the career site
-      required:
-      - label
-    PostAiApplyJobFeedsRequestBody:
-      type: object
-      properties:
-        label:
-          type: string
-          minLength: 1
-          description: The label of the job feed
-      required:
-      - label
-    GetAiApplyPostingsParameterJobCodes:
-      type: string
-      description: Filter by a comma-separated list of job codes such as `ACME_13,ACME_14`.
-    PostAiApplyUnifiedApiJobsJobIdApplicationsRequestBody:
-      type: object
-      properties:
-        stage_id:
-          type: string
-          description: Stage this candidate should be in. If left out, the default stage for this job will be used. You can obtain the possible `stage_id`s from the `get-jobs` endpoint.
-        candidate:
-          type: object
-          properties:
-            first_name:
-              type: string
-              description: The first name of the candidate.
-            last_name:
-              type: string
-              description: The last name of the candidate.
-            email_address:
-              type: string
-              description: The primary email address this application will be created with.
-              format: email
-            additional_email_addresses:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - PERSONAL
-                    - WORK
-                    - OTHER
-                  email_address:
-                    type: string
-                    format: email
-                required:
-                - type
-                - email_address
-            company:
-              type: string
-              description: The company where the candidate is currently working.
-            title:
-              type: string
-              description: The current job title of the candidate.
-            phone_number:
-              type: string
-              description: The phone number of the candidate.
-            additional_phone_numbers:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - PERSONAL
-                    - WORK
-                    - OTHER
-                  phone_number:
-                    type: string
-                required:
-                - type
-                - phone_number
-            location:
-              type: object
-              properties:
-                city:
-                  type: string
-                country:
-                  type: string
-                  pattern: ^[A-Z]{2}$
-                  description: The uppercase two-letter ISO country (e.g., `DE`). For systems that use codes in formats other than `ISO 3166-1 alpha-2`, Kombo transforms the ISO Codes to the appropriate value.
-                state:
-                  type: string
-                street_1:
-                  type: string
-                zip_code:
-                  type: string
-              required:
-              - country
-              description: The location of the candidate.
-            gender:
-              type: string
-              enum:
-              - MALE
-              - FEMALE
-              - OTHER
-              description: The gender of the candidate. Must be one of `MALE`, `FEMALE`, or `OTHER`.
-            availability_date:
-              description: The date the candidate is available to start working.
-              type: string
-              format: date-time
-              pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            salary_expectations:
-              type: object
-              properties:
-                period:
-                  type: string
-                  enum:
-                  - MONTH
-                  - YEAR
-                  description: The period of the salary expectations. Must be one of `MONTH` or `YEAR`.
-                amount:
-                  type: number
-                  format: double
-                  minimum: -1.7976931348623157e+308
-                  description: The amount of the salary expectations.
-              required:
-              - period
-              - amount
-              description: The salary expectations of the applicant. We will automatically convert the amount to a format that is suitable for the ATS you are using. For example, if you are using monthly salary expectations, we will convert the amount to a yearly salary if the ATS expects yearly salary expectations.
-            social_links:
-              type: array
-              items:
-                type: object
-                properties:
-                  url:
-                    type: string
-                    format: uri
-                required:
-                - url
-              default: []
-              description: A list of social media links of the candidate. The links must be valid URLs.
-          required:
-          - first_name
-          - last_name
-          - email_address
-        attachments:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system.
-              content_type:
-                type: string
-                pattern: ^[\w.-]+\/[\w.-]+$
-                description: 'Content/MIME type of the file (e.g., `application/pdf`).
-
-
-                  If you provide `data`, this is required. If you provide `data_url`, this is optional and we''ll attempt to use the `Content-Type` header of the response.
-
-
-                  **Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it''s easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types)).'
-              data_url:
-                type: string
-                format: uri
-                description: 'URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.
-
-
-                  If you''re using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
-
-
-                  **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
-              data:
-                type: string
-                description: 'Base64-encoded contents of the file you want to upload.
-
-
-                  **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
-              type:
-                type: string
-                enum:
-                - CV
-                - COVER_LETTER
-                - OTHER
-                description: Type of the attachment in the ATS. This may affect where the uploaded file will be shown in your customer's system.
-            required:
-            - name
-            - type
-          default: []
-          description: Array of the attachments you would like to upload. The first CV in the attachments will be treated as the resume of the candidate when the tool allows previewing a resume.
-        source:
-          type: object
-          properties:
-            name:
-              type: string
-              description: Name of the source (e.g., `"Example Job Board"`).
-            unified_key:
-              type: string
-            id:
-              type: string
-          description: '**(⚠️ Deprecated - Use [automatic source writing](/ats/features/application-attribution#automatic-attribution) instead)** Optional source information that will be attached to the candidate. If
-
-            you''re a job board or recruiting service, you can use this to make sure your
-
-            customers can see which candidates came from you.
-
-
-            This is deprecated because writing sources requires users to do some setup in most ATSs.'
-        sourced_by:
-          type: object
-          properties:
-            user_id:
-              type: string
-              description: The Kombo ID or Remote ID of the User. Use the Kombo ID directly, or prefix the remote ID with "remote:" to reference the user by their ID in the remote system.
-          required:
-          - user_id
-          description: 'Credit the recruiter or team member who sourced this candidate.
-
-
-            While the `source` field tracks the channel/platform (e.g., "Awesome Jobboard"), the `sourced_by` field tracks the individual person responsible for finding the candidate.'
-        gdpr_consent:
-          type: object
-          properties:
-            expires_at:
-              description: Until when the candidate has granted the company they're applying to permission to process their personal data.
-              type: string
-              format: date-time
-              pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            given:
-              type: boolean
-              description: Whether the candidate has given consent.
-          description: Optional GDPR consent information required in some jurisdictions (like the Czech Republic or Slovakia).
-        remote_fields:
-          allOf:
-          - type: object
-            properties:
-              successfactors:
-                type: object
-                properties:
-                  Candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to SuccessFactor's `Candidate` object.
-                  JobApplication:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to SuccessFactor's `JobApplication` object.
-                  copyJobApplicationAttachments:
-                    type: boolean
-                    description: If set to true, we will copy custom attachments from the JobApplication to the Candidate.
-                  update_existing_candidate:
-                    type:
-                    - boolean
-                    - 'null'
-                    description: When the candidate already exists, whether to update the Candidate with the remote fields found under the Candidate entity.
-                description: Fields specific to SAP SuccessFactors.
-              personio:
-                type: object
-                properties:
-                  application:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Personio's `application` object.
-                description: Fields specific to Personio.
-              talentsoft:
-                type: object
-                properties:
-                  applicant:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to TalentSoft's `applicant` object.
-                  application:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to TalentSoft's `application` object.
-                description: Fields specific to TalentSoft.
-              teamtailor:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Teamtailor's `Candidate` object.
-                  application:
-                    type: object
-                    properties:
-                      attributes:
-                        type: object
-                        additionalProperties: true
-                        description: Fields that we will pass through to Teamtailor's attributes section `Job application` object.
-              greenhouse:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Greenhouse's `Candidate` object.
-                  application:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Greenhouse's `Application` object.
-                description: Fields specific to Greenhouse.
-              lever:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: 'Fields that we will pass through to Lever''s `Candidate` object. Note: make sure to submit the keys and values in the correct form data format.'
-                description: Fields specific to Lever.
-              workable:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Workable's `Candidate` object.
-                description: Fields specific to Workable.
-              workday:
-                type: object
-                properties:
-                  Candidate_Data:
-                    type: object
-                    properties:
-                      Name_Detail_Data:
-                        type: object
-                        properties:
-                          Middle_Name:
-                            type: string
-                            description: The candidate's middle name
-                          Social_Suffix_Reference:
-                            type: object
-                            properties:
-                              Predefined_Name_Component_ID:
-                                type: string
-                            required:
-                            - Predefined_Name_Component_ID
-                            description: The WID of the social suffix reference for the candidate
-                      Language_Reference:
-                        type: object
-                        properties:
-                          WID:
-                            type: string
-                        required:
-                        - WID
-                        description: Used to set the candidate's primary language
-                      Job_Application_Data:
-                        type: object
-                        properties:
-                          Job_Applied_To_Data:
-                            type: object
-                            properties:
-                              Global_Personal_Information_Data:
-                                type: object
-                                properties:
-                                  Date_of_Birth:
-                                    type: string
-                          Resume_Data:
-                            type: object
-                            properties:
-                              Education_Data:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    School_Name:
-                                      type: string
-                                    First_Year_Attended:
-                                      type: number
-                                      format: double
-                                      minimum: -1.7976931348623157e+308
-                                    Last_Year_Attended:
-                                      type: number
-                                      format: double
-                                      minimum: -1.7976931348623157e+308
-                                    Field_of_Study_Reference:
-                                      type: object
-                                      properties:
-                                        WID:
-                                          type: string
-                                      required:
-                                      - WID
-                                    Degree_Reference:
-                                      type: object
-                                      properties:
-                                        WID:
-                                          type: string
-                                      required:
-                                      - WID
-                                    Grade_Average:
-                                      type: string
-                              Skill_Data:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    Skill_Name:
-                                      type: string
-                              Language_Data:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    Language_Reference:
-                                      type: object
-                                      properties:
-                                        WID:
-                                          type: string
-                                    Language:
-                                      type: object
-                                      properties:
-                                        Native:
-                                          type: boolean
-                                        Language_Ability:
-                                          type: array
-                                          items:
-                                            type: object
-                                            properties:
-                                              Language_Ability_Data:
-                                                type: object
-                                                properties:
-                                                  Language_Proficiency_Reference:
-                                                    type: object
-                                                    properties:
-                                                      WID:
-                                                        type: string
-                                                    required:
-                                                    - WID
-                                                  Language_Ability_Type_Reference:
-                                                    type: object
-                                                    properties:
-                                                      WID:
-                                                        type: string
-                                                    required:
-                                                    - WID
-                                      required:
-                                      - Language_Ability
-                              Experience_Data:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    Company_Name:
-                                      type: string
-                                    Title:
-                                      type: string
-                                    Location:
-                                      type: string
-                                    Start_Date:
-                                      description: YYYY-MM-DDTHH:mm:ss.sssZ
-                                      type: string
-                                      format: date-time
-                                      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-                                      externalDocs:
-                                        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                                    End_Date:
-                                      description: YYYY-MM-DDTHH:mm:ss.sssZ
-                                      type: string
-                                      format: date-time
-                                      pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-                                      externalDocs:
-                                        url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                                    Currently_Work_Here:
-                                      type: boolean
-                                    Description:
-                                      type: string
-                                  required:
-                                  - Company_Name
-                                  - Title
-                                  - Start_Date
-                      Contact_Data:
-                        type: object
-                        properties:
-                          Location_Data:
-                            type: object
-                            properties:
-                              Address_Line_1:
-                                type: string
-                              Address_Line_2:
-                                type: string
-                              Region_Subdivision_1:
-                                type: string
-                              Country_Region_Reference:
-                                type: object
-                                properties:
-                                  Country_Region_ID:
-                                    type: string
-                                required:
-                                - Country_Region_ID
-                              Country_City_Reference:
-                                type: object
-                                properties:
-                                  WID:
-                                    type: string
-                                required:
-                                - WID
-                      Worker_Reference:
-                        type: object
-                        properties:
-                          WID:
-                            type: string
-                          Employee_ID:
-                            type: string
-                        description: Reference to the Worker (employee) to link the candidate to. Provide either WID or Employee_ID.
-                  Override_Source_Reference_WID:
-                    type: string
-                    description: Used to override the automatic source WID.
-                description: Fields specific to Workday. The remote fields schema follows the documentation at https://community.workday.com/sites/default/files/file-hosting/productionapi/Recruiting/v43.0/Put_Candidate.html. Only defined fields are supported, if you need additional field support please reach out to Kombo support.
-              zohorecruit:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Zoho Recruit's `Candidate` object.
-                description: Fields specific to Zoho Recruit.
-              bullhorn:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Bullhorn's `Candidate` object.
-                  job_submission:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Bullhorn's `JobSubmission` object.
-                description: Fields specific to Bullhorn.
-              smartrecruiters:
-                type: object
-                properties:
-                  candidate_with_questions:
-                    type: object
-                    additionalProperties: true
-                    description: '**(⚠️ Deprecated - Use the `candidate` field instead.)** Fields that we will pass through to the SmartRecruiters''s `Candidate` object when created with screening question answers. This API is used: https://developers.smartrecruiters.com/reference/createcandidate-1'
-                  candidate_without_questions:
-                    type: object
-                    additionalProperties: true
-                    description: '**(⚠️ Deprecated - Use the `candidate` field instead.)** Fields that we will pass through to the SmartRecruiters''s `Candidate` object when created with screening question answers. This API is used: https://developers.smartrecruiters.com/reference/candidatesaddtojob-1'
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: 'Fields that we will pass through to the SmartRecruiters''s `Candidate` object. This API is used: https://developers.smartrecruiters.com/reference/createcandidate-1'
-                  consent_decisions:
-                    type: object
-                    properties:
-                      SINGLE:
-                        type: boolean
-                      SMART_RECRUIT:
-                        type: boolean
-                      SMART_CRM:
-                        type: boolean
-                      SMART_MESSAGE_SMS:
-                        type: boolean
-                      SMART_MESSAGE_WHATSAPP:
-                        type: boolean
-                    description: 'The consent decisions for the candidate. SmartRecruiters supports two consent models: ''Single'' (use the `SINGLE` key) and ''Separated'' (use `SMART_RECRUIT`, `SMART_CRM`, `SMART_MESSAGE_SMS`, and/or `SMART_MESSAGE_WHATSAPP` keys). When this field is provided, it takes precedence over the `gdpr_consent` field for the `consentDecisions` property. See: https://developers.smartrecruiters.com/docs/partners-post-an-application'
-                description: Fields specific to SmartRecruiters.
-              talentadore:
-                type: object
-                properties:
-                  applications:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to the Talentadore's when creating applications.
-                description: Fields specific to Talentadore.
-              guidecom:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to GuideCom's `Candidate` object.
-                description: Fields specific to GuideCom.
-              dvinci:
-                type: object
-                properties:
-                  application:
-                    type: object
-                    additionalProperties: true
-                    description: 'Fields that we will pass through to d.vinci''s application object. This API is used: https://static.dvinci-easy.com/files/d.vinci%20application-apply-api.html#jobs__id__applyApi_post'
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to d.vinci's candidate/application payload as top-level fields (e.g., dateOfBirth).
-                description: Fields specific to d.vinci.
-              hrworks:
-                type: object
-                properties:
-                  jobApplication:
-                    type: object
-                    additionalProperties: true
-                    description: 'Fields that we will pass through to HRWorks''s `Job Application` object. This API is used: https://developers.hrworks.de/docs/hrworks-api-v2/53021f035f62d-post-job-applications'
-                description: Fields specific to GuideCom.
-              jobylon:
-                type: object
-                properties:
-                  application:
-                    type: object
-                    properties:
-                      message:
-                        type: string
-                        description: The `message` field of Jobylon's create application endpoint's request body.
-                    description: Fields that we will pass through to Jobylon's create application [endpoint](https://developer.jobylon.com/push-api-and-webhooks#-xL0v)'s request body.
-                description: Fields specific to Jobylon.
-              avature:
-                type: object
-                properties:
-                  workflow:
-                    type: object
-                    properties:
-                      step:
-                        type: object
-                        properties:
-                          id:
-                            type: integer
-                            format: int64
-                            description: The ID of the workflow step to assign to the candidate.
-                        required:
-                        - id
-                description: Fields specific to Avature.
-              recruitee:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    properties:
-                      cover_letter_text:
-                        type: string
-                        description: The cover letter text as a string. This will be visible on the main candidate page. Can be provided together with the `cover_letter` attachment, which will end up in a separate `file` section.
-                description: Fields specific to Recruitee.
-              rexx:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Rexx's application form fields.
-                description: Fields specific to Rexx.
-              umantis:
-                type: object
-                properties:
-                  person:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Abacus Umantis's "Create a person" endpoint's `attributes` when creating a candidate.
-                description: Fields specific to Abacus Umantis.
-              piloga:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    properties:
-                      street:
-                        type: string
-                        description: The street address of the candidate.
-                    description: Additional candidate fields for P&I Loga that will be mapped to the application form.
-                description: Fields specific to P&I Loga.
-              pinpoint:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    additionalProperties: true
-                    description: Fields that we will pass through to Pinpoint's `Candidate` object.
-                description: Fields specific to Pinpoint.
-              covetorest:
-                type: object
-                properties:
-                  candidate:
-                    type: object
-                    properties:
-                      mandant:
-                        type: number
-                        format: double
-                        minimum: -1.7976931348623157e+308
-                        description: The mandant field for the candidate in Coveto.
-                    description: Additional candidate fields that will be passed to the Coveto candidate creation.
-                description: Fields specific to Coveto REST.
-            description: Additional fields that we will pass through to specific ATS systems.
-          - type: object
-            properties:
-              greenhouse:
-                type: object
-                properties:
-                  post_headers:
-                    type: object
-                    properties:
-                      On-Behalf-Of:
-                        type:
-                        - string
-                        - 'null'
-                        description: ID of the the user that will show up as having performed the action in Greenhouse. We already pass a value by default, but you can use this to override it.
-                    description: Headers we will pass with `POST` requests to Greenhouse.
-                description: Fields specific to Greenhouse.
-              workable:
-                type: object
-                properties:
-                  on_behalf_of_user_remote_id:
-                    type: string
-                    description: The remote ID of the user that will be displayed in the UI as the one that performed the action.
-                description: Workable specific remote fields for ATS actions.
-            description: Additional fields that we will pass through to specific ATS systems.
-          description: Additional fields that we will pass through to specific ATS systems.
-        screening_question_answers:
-          type: array
-          items:
-            type: object
-            properties:
-              question_id:
-                type: string
-                description: ID of the question returned by the Kombo API. We'll report a warning in the logs if the question can't be found on the job.
-              answer:
-                anyOf:
-                - type: string
-                  description: Answer to a `TEXT` question or the option ID of the answer to a `SINGLE_SELECT` question.
-                - type: boolean
-                  description: Answer to a `BOOLEAN` question.
-                - type: number
-                  format: double
-                  minimum: -1.7976931348623157e+308
-                  description: Answer to a `NUMBER` question.
-                - type: array
-                  items:
-                    type: string
-                  description: Answer to a `MULTI_SELECT` question. The array elements are the IDs of the selected options.
-                - description: Answer to a `DATE` question as an ISO 8601 date string.
-                  type: string
-                  format: date-time
-                  pattern: ^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d+)?)?Z?$
-                  externalDocs:
-                    url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                - type: object
-                  properties:
-                    name:
-                      type: string
-                      description: File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system.
-                    content_type:
-                      type: string
-                      pattern: ^[\w.-]+\/[\w.-]+$
-                      description: 'Content/MIME type of the file (e.g., `application/pdf`).
-
-
-                        If you provide `data`, this is required. If you provide `data_url`, this is optional and we''ll attempt to use the `Content-Type` header of the response.
-
-
-                        **Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it''s easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types)).'
-                    data_url:
-                      type: string
-                      format: uri
-                      description: 'URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.
-
-
-                        If you''re using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
-
-
-                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
-                    data:
-                      type: string
-                      description: 'Base64-encoded contents of the file you want to upload.
-
-
-                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
-                  required:
-                  - name
-                  description: Answer to a `FILE` question.
-                description: 'Answer to a question. This will be validated based on the question format and throw an error if the answer is invalid. Here is a description of each question type and the required answer format:
-
-
-                  `TEXT` - Simply provide a "string" answer.
-
-
-                  `SINGLE_SELECT` - Provide the ID of the answer as a string.
-
-
-                  `MULTI_SELECT` - Provide a string array containing the question IDs of the selected options.
-
-
-                  `BOOLEAN` - Either `true` or `false`.
-
-
-                  `NUMBER` - A number.
-
-
-                  `DATE` - Provide the answer as an ISO 8601 date string.
-
-
-                  `FILE` - Please select Option 6 in the dropdown above to see the required format.'
-            required:
-            - question_id
-            - answer
-          description: 'Array of answers to screening questions. Currently, not all question types are supported, and unsupported ones will not be submitted.
-
-
-            The available questions for a job can be retrieved from the get jobs endpoint. The answers will be validated based on the format of the questions. Make sure to follow this schema to avoid errors.'
-          examples:
-          - - question_id: D8yPrjXXvA2XeBksTmrVvKSn
-              answer: 'Yes'
-        query_params:
-          type: object
-          additionalProperties:
-            type: string
-          description: Query parameters to be appended to the job posting URL when applying.
-      required:
-      - candidate
-    GetAiApplyJobFeedsParameterIds:
-      type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetAiApplyPostingsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    BulkImportResponse:
-      type: object
-      description: Response from the bulk import endpoint
-      properties:
-        status:
-          type: string
-          enum:
-          - success
-        data:
-          type: object
-          properties:
-            created:
-              type: integer
-              description: Number of new job postings created
-            processed:
-              type: integer
-              description: Number of job postings processed
-            archived:
-              type: integer
-              description: Number of job postings archived (not included in this import)
-          required:
-          - created
-          - processed
-          - archived
-      required:
-      - status
-      - data
-      example:
-        status: success
-        data:
-          created: 150
-          processed: 197
-          archived: 10
-    GetAiApplyCareerSitesParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    PostAiApplyUnifiedApiJobsJobIdApplicationsParameterJobId:
-      type: string
-      description: The Kombo ID or Remote ID of the Job this candidate should apply for. If you want to use the ID of the integrated system (remote_id) you need to prefix the id with "remote:". You can use the remote ID if you do not want to sync jobs.
     PostAiApplyPostingsPostingIdInquirePositiveResponse:
       type: object
       properties:
@@ -3639,12 +4194,13 @@ components:
       required:
       - status
       - data
-    GetAiApplyApplicationsParameterJobPostingIds:
-      type: string
-      description: Filter by a comma-separated list of job posting IDs such as `89V6GEKpdZwqbxQz59n1ftFb,kcGHREEXCMF26Yhpuyh1gDVE`.
-    PostAiApplyPostingsPostingIdInquireRequestBody:
-      type: object
-      properties: {}
+    GetAiApplyPostingsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
     PostAiApplyApplyRequestBody:
       type: object
       properties:
@@ -3717,22 +4273,12 @@ components:
       - submission_token
       - candidate_email
       - screening_question_answers
-    GetAiApplyUnifiedApiJobsParameterIds:
+    PostAiApplyPostingsPostingIdInquireParameterPostingId:
       type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetAiApplyUnifiedApiJobsParameterCursor:
+      description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+    GetAiApplyPostingsParameterCareerSiteIds:
       type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    GetAiApplyPostingsParameterIds:
-      type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetAiApplyApplicationsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
+      description: Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`.
     GetAiApplyCareerSitesParameterPageSize:
       type: integer
       format: int64
@@ -3740,565 +4286,19 @@ components:
       maximum: 250
       default: 100
       description: The number of results to return per page. Maximum is 250.
-    GetAiApplyUnifiedApiJobsParameterJobCodes:
-      type: string
-      description: Filter by a comma-separated list of job codes such as `ACME_12,ACME_14`.
     GetAiApplyApplicationsParameterIds:
       type: string
       description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetAiApplyUnifiedApiJobsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  remote_id:
-                    type: string
-                  name:
-                    type:
-                    - string
-                    - 'null'
-                  job_code:
-                    type:
-                    - string
-                    - 'null'
-                  description:
-                    type:
-                    - string
-                    - 'null'
-                  confidential:
-                    type:
-                    - boolean
-                    - 'null'
-                  weekly_hours:
-                    type:
-                    - number
-                    - 'null'
-                    format: double
-                    minimum: -1.7976931348623157e+308
-                  category:
-                    type:
-                    - string
-                    - 'null'
-                  department:
-                    type:
-                    - string
-                    - 'null'
-                  post_url:
-                    type:
-                    - string
-                    - 'null'
-                  experience_level:
-                    type:
-                    - string
-                    - 'null'
-                  salary_amount:
-                    type:
-                    - number
-                    - 'null'
-                    format: double
-                    minimum: -1.7976931348623157e+308
-                  salary_amount_from:
-                    type:
-                    - number
-                    - 'null'
-                    format: double
-                    minimum: -1.7976931348623157e+308
-                  salary_amount_to:
-                    type:
-                    - number
-                    - 'null'
-                    format: double
-                    minimum: -1.7976931348623157e+308
-                  salary_currency:
-                    type:
-                    - string
-                    - 'null'
-                  custom_fields:
-                    type:
-                    - object
-                    - 'null'
-                  integration_fields:
-                    type: array
-                    items:
-                      type: object
-                  opened_at:
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
-                  closed_at:
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
-                  remote_created_at:
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
-                  remote_updated_at:
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
-                  contact_id:
-                    type:
-                    - string
-                    - 'null'
-                  remote_data:
-                    type:
-                    - object
-                    - 'null'
-                  changed_at:
-                    type: string
-                    format: date-time
-                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
-                  remote_deleted_at:
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    pattern: ^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$
-                  remote_url:
-                    type:
-                    - string
-                    - 'null'
-                  stages:
-                    type: array
-                    items:
-                      type: object
-                  screening_questions:
-                    type:
-                    - array
-                    - 'null'
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        remote_id:
-                          type:
-                          - string
-                          - 'null'
-                        title:
-                          type:
-                          - string
-                          - 'null'
-                        description:
-                          type:
-                          - string
-                          - 'null'
-                        format:
-                          anyOf:
-                          - type: object
-                            properties:
-                              display_type:
-                                type:
-                                - string
-                                - 'null'
-                                enum:
-                                - SINGLE_LINE
-                                - MULTI_LINE
-                                - EMAIL
-                                - URL
-                                description: If unavailable, we recommend displaying a single-line input.
-                              max_length:
-                                type:
-                                - integer
-                                - 'null'
-                                format: int64
-                              type:
-                                type: string
-                                const: TEXT
-                            required:
-                            - type
-                          - type: object
-                            properties:
-                              display_type:
-                                type:
-                                - string
-                                - 'null'
-                                enum:
-                                - SLIDER
-                                - FIELD
-                                default: FIELD
-                              max:
-                                type:
-                                - number
-                                - 'null'
-                                format: double
-                                minimum: -1.7976931348623157e+308
-                              min:
-                                type:
-                                - number
-                                - 'null'
-                                format: double
-                                minimum: -1.7976931348623157e+308
-                              type:
-                                type: string
-                                const: NUMBER
-                            required:
-                            - type
-                          - type: object
-                            properties:
-                              accepted_mime_types:
-                                type:
-                                - array
-                                - 'null'
-                                items:
-                                  type: string
-                              max_file_size_bytes:
-                                type:
-                                - integer
-                                - 'null'
-                                format: int64
-                              type:
-                                type: string
-                                const: FILE
-                            required:
-                            - type
-                          - type: object
-                            properties:
-                              display_type:
-                                type:
-                                - string
-                                - 'null'
-                                enum:
-                                - DROPDOWN
-                                - RADIO
-                              options:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    id:
-                                      type: string
-                                      description: The Kombo ID of this question option. Use this ID to specify the answer to this question.
-                                    remote_id:
-                                      type:
-                                      - string
-                                      - 'null'
-                                      description: ID in the connected ATS. This might be null as some systems only use the name to identify the option.
-                                    name:
-                                      type: string
-                                      description: Content of the question option.
-                                  required:
-                                  - id
-                                  - name
-                              type:
-                                type: string
-                                const: SINGLE_SELECT
-                            required:
-                            - options
-                            - type
-                          - type: object
-                            properties:
-                              type:
-                                type: string
-                                const: BOOLEAN
-                            required:
-                            - type
-                          - type: object
-                            properties:
-                              type:
-                                type: string
-                                const: DATE
-                            required:
-                            - type
-                          - type: object
-                            properties:
-                              options:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    id:
-                                      type: string
-                                      description: The Kombo ID of this question option. Use this ID to specify the answer to this question.
-                                    remote_id:
-                                      type:
-                                      - string
-                                      - 'null'
-                                      description: ID in the connected ATS. This might be null as some systems only use the name to identify the option.
-                                    name:
-                                      type: string
-                                      description: Content of the question option.
-                                  required:
-                                  - id
-                                  - name
-                              type:
-                                type: string
-                                const: MULTI_SELECT
-                            required:
-                            - options
-                            - type
-                          - type: object
-                            properties:
-                              type:
-                                type: string
-                                const: INFORMATION
-                                description: This is just a text block.
-                            required:
-                            - type
-                          - type: object
-                            properties:
-                              raw_question:
-                                description: We pass the original question data along so you can handle it.
-                              type:
-                                type: string
-                                const: UNKNOWN
-                                description: When we're not able to map a specific question type yet, we will return this type. Every `UNKNOWN` question will also be parsed and unified by us at some point.
-                            required:
-                            - type
-                          - type: 'null'
-                        category:
-                          type:
-                          - string
-                          - 'null'
-                          enum:
-                          - EEO
-                        index:
-                          type:
-                          - integer
-                          - 'null'
-                          format: int64
-                        required:
-                          type:
-                          - boolean
-                          - 'null'
-                        precondition_question_id:
-                          type:
-                          - string
-                          - 'null'
-                        precondition_options:
-                          anyOf:
-                          - type: array
-                            items:
-                              type: string
-                          - type: array
-                            items:
-                              type: boolean
-                          - type: 'null'
-                          default: null
-                      required:
-                      - id
-                      - remote_id
-                      - title
-                      - description
-                      - category
-                      - required
-                  job_postings:
-                    type: array
-                    items:
-                      type: object
-                  hiring_team:
-                    type: array
-                    items:
-                      type: object
-                  employment_type:
-                    anyOf:
-                    - type: string
-                      enum:
-                      - FULL_TIME
-                      - PART_TIME
-                      - CONTRACT
-                      - SEASONAL
-                      - INTERNSHIP
-                    - type: string
-                      description: 'If we can''t find a clear mapping: The original string passed through.'
-                    - type: 'null'
-                    description: One of 5 standardized values or — in rare cases where we can’t find a clear mapping — the original string passed through.
-                  status:
-                    anyOf:
-                    - type: string
-                      enum:
-                      - OPEN
-                      - CLOSED
-                      - DRAFT
-                      - ARCHIVED
-                    - type: string
-                      description: 'If we can''t find a clear mapping: The original string passed through.'
-                    - type: 'null'
-                    description: "The job's current status.\n\n*Note: For any checks (e.g., \"can we publish this job?\"), always evaluate both `status` and `visibility`. For example, a job can be `status=OPEN` with `visibility=INTERNAL`, meaning only existing employees can apply.*\n\n In rare cases where we can’t find a clear mapping, the original string is passed through."
-                  visibility:
-                    type:
-                    - string
-                    - 'null'
-                  remote_work_status:
-                    type:
-                    - string
-                    - 'null'
-                  salary_period:
-                    type:
-                    - string
-                    - 'null'
-                  location:
-                    type:
-                    - object
-                    - 'null'
-                    properties:
-                      city:
-                        type:
-                        - string
-                        - 'null'
-                      country:
-                        type:
-                        - string
-                        - 'null'
-                        description: Contains the ISO2 country code if possible. If not, it contains the original value.
-                      raw:
-                        type:
-                        - string
-                        - 'null'
-                        description: If we have address data, this is filled with the raw address string.
-                      state:
-                        type:
-                        - string
-                        - 'null'
-                      street_1:
-                        type:
-                        - string
-                        - 'null'
-                        description: If we can parse the address data, this field contains the first part of the street information.
-                      street_2:
-                        type:
-                        - string
-                        - 'null'
-                      zip_code:
-                        type:
-                        - string
-                        - 'null'
-                required:
-                - id
-                - remote_id
-                - name
-                - job_code
-                - description
-                - confidential
-                - weekly_hours
-                - category
-                - department
-                - post_url
-                - experience_level
-                - salary_amount
-                - salary_amount_from
-                - salary_amount_to
-                - salary_currency
-                - custom_fields
-                - integration_fields
-                - opened_at
-                - closed_at
-                - remote_created_at
-                - remote_updated_at
-                - contact_id
-                - remote_data
-                - changed_at
-                - remote_deleted_at
-                - remote_url
-                - stages
-                - screening_questions
-                - job_postings
-                - hiring_team
-                - visibility
-                - remote_work_status
-                - salary_period
-            next:
-              type:
-              - string
-              - 'null'
-          required:
-          - results
-          - next
-      required:
-      - status
-      - data
-    PostAiApplyJobFeedsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            label:
-              type: string
-              description: The label of the job feed
-          required:
-          - id
-          - label
-          examples:
-          - id: mK7pQw9xNvEr2LdY5sGh8TcZ
-            label: Standard Acquisition Services LLC
-      required:
-      - status
-      - data
-    PostAiApplyApplyPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            posting_id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            status:
-              type: string
-            created_at:
-              description: YYYY-MM-DDTHH:mm:ss.sssZ
-              type: string
-              format: date-time
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-            updated_at:
-              description: YYYY-MM-DDTHH:mm:ss.sssZ
-              type: string
-              format: date-time
-              externalDocs:
-                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-          required:
-          - id
-          - posting_id
-          - status
-          - created_at
-          - updated_at
-          examples:
-          - id: ADbmw5XSkeCSE1fAucoxEGnwZ
-            posting_id: JDn252PEYa4rMhKbJBjtn3ng
-            status: PENDING
-            created_at: '2025-01-01T00:00:00.000Z'
-            updated_at: '2025-03-02T23:12:32.000Z'
-      required:
-      - status
-      - data
-    GetAiApplyJobFeedsParameterCursor:
+    GetAiApplyPostingsParameterCursor:
       type: string
       description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAiApplyApplicationsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
   responses:
     ErrorResponseAiApply:
       description: The standard error response with the error codes for AI Apply.
