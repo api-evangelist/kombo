@@ -781,6 +781,20 @@ paths:
           $ref: '#/components/responses/ErrorResponseAiApply'
 components:
   schemas:
+    GetAiApplyJobFeedsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
+    GetAiApplyCareerSitesParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
     GetAiApplyUnifiedApiJobsParameterPageSize:
       type: integer
       format: int64
@@ -788,299 +802,596 @@ components:
       maximum: 5
       default: 5
       description: The number of results to return per page. Maximum is 5.
-    GetAiApplyUnifiedApiJobsParameterRemoteIds:
-      type: string
-      description: This parameter exists for backwards compatibility with Kombo's unified API. Supplying a comma-separated list of remote IDs such as `32,33` will return no jobs because AI Apply does not interface with a remote system that issues remote IDs.
-    GetAiApplyCareerSitesParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    PostAiApplyPostingsRequestBody:
+    BulkImportResponse:
+      type: object
+      description: Response from the bulk import endpoint
+      properties:
+        status:
+          type: string
+          enum:
+          - success
+        data:
+          type: object
+          properties:
+            created:
+              type: integer
+              description: Number of new job postings created
+            processed:
+              type: integer
+              description: Number of job postings processed
+            archived:
+              type: integer
+              description: Number of job postings archived (not included in this import)
+          required:
+          - created
+          - processed
+          - archived
+      required:
+      - status
+      - data
+      example:
+        status: success
+        data:
+          created: 150
+          processed: 197
+          archived: 10
+    GetAiApplyJobFeedsPositiveResponse:
       type: object
       properties:
-        url:
+        status:
           type: string
-          format: uri
-          pattern: ^https?:\/\/
-          description: The URL of the job posting to parse
-        job_code:
-          type: string
-          description: Job code to associate with the job posting
-        location:
-          type:
-          - object
-          - 'null'
+          const: success
+        data:
+          type: object
           properties:
-            country:
-              type: string
-              enum:
-              - AD
-              - AE
-              - AF
-              - AG
-              - AI
-              - AL
-              - AM
-              - AO
-              - AQ
-              - AR
-              - AS
-              - AT
-              - AU
-              - AW
-              - AX
-              - AZ
-              - BA
-              - BB
-              - BD
-              - BE
-              - BF
-              - BG
-              - BH
-              - BI
-              - BJ
-              - BL
-              - BM
-              - BN
-              - BO
-              - BQ
-              - BR
-              - BS
-              - BT
-              - BV
-              - BW
-              - BY
-              - BZ
-              - CA
-              - CC
-              - CD
-              - CF
-              - CG
-              - CH
-              - CI
-              - CK
-              - CL
-              - CM
-              - CN
-              - CO
-              - CR
-              - CU
-              - CV
-              - CW
-              - CX
-              - CY
-              - CZ
-              - DE
-              - DJ
-              - DK
-              - DM
-              - DO
-              - DZ
-              - EC
-              - EE
-              - EG
-              - EH
-              - ER
-              - ES
-              - ET
-              - FI
-              - FJ
-              - FK
-              - FM
-              - FO
-              - FR
-              - GA
-              - GB
-              - GD
-              - GE
-              - GF
-              - GG
-              - GH
-              - GI
-              - GL
-              - GM
-              - GN
-              - GP
-              - GQ
-              - GR
-              - GS
-              - GT
-              - GU
-              - GW
-              - GY
-              - HK
-              - HM
-              - HN
-              - HR
-              - HT
-              - HU
-              - ID
-              - IE
-              - IL
-              - IM
-              - IN
-              - IO
-              - IQ
-              - IR
-              - IS
-              - IT
-              - JE
-              - JM
-              - JO
-              - JP
-              - KE
-              - KG
-              - KH
-              - KI
-              - KM
-              - KN
-              - KP
-              - KR
-              - KW
-              - KY
-              - KZ
-              - LA
-              - LB
-              - LC
-              - LI
-              - LK
-              - LR
-              - LS
-              - LT
-              - LU
-              - LV
-              - LY
-              - MA
-              - MC
-              - MD
-              - ME
-              - MF
-              - MG
-              - MH
-              - MK
-              - ML
-              - MM
-              - MN
-              - MO
-              - MP
-              - MQ
-              - MR
-              - MS
-              - MT
-              - MU
-              - MV
-              - MW
-              - MX
-              - MY
-              - MZ
-              - NA
-              - NC
-              - NE
-              - NF
-              - NG
-              - NI
-              - NL
-              - 'NO'
-              - NP
-              - NR
-              - NU
-              - NZ
-              - OM
-              - PA
-              - PE
-              - PF
-              - PG
-              - PH
-              - PK
-              - PL
-              - PM
-              - PN
-              - PR
-              - PS
-              - PT
-              - PW
-              - PY
-              - QA
-              - RE
-              - RO
-              - RS
-              - RU
-              - RW
-              - SA
-              - SB
-              - SC
-              - SD
-              - SE
-              - SG
-              - SH
-              - SI
-              - SJ
-              - SK
-              - SL
-              - SM
-              - SN
-              - SO
-              - SR
-              - SS
-              - ST
-              - SV
-              - SX
-              - SY
-              - SZ
-              - TC
-              - TD
-              - TF
-              - TG
-              - TH
-              - TJ
-              - TK
-              - TL
-              - TM
-              - TN
-              - TO
-              - TR
-              - TT
-              - TV
-              - TW
-              - TZ
-              - UA
-              - UG
-              - UM
-              - US
-              - UY
-              - UZ
-              - VA
-              - VC
-              - VE
-              - VG
-              - VI
-              - VN
-              - VU
-              - WF
-              - WS
-              - YE
-              - YT
-              - ZA
-              - ZM
-              - ZW
-              description: The country in which the job is located
-            postal_code:
-              type: string
-              description: The postal/zip code in which the job is located
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  label:
+                    type: string
+                    description: The label of the job feed
+                required:
+                - id
+                - label
+            next:
+              type:
+              - string
+              - 'null'
           required:
-          - country
-          description: The location in which the job is located. When omitted, the existing location is preserved. Pass null to explicitly clear an existing location.
-        career_site_id:
-          type: string
-          description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+          - results
+          - next
+          examples:
+          - results:
+            - id: mK7pQw9xNvEr2LdY5sGh8TcZ
+              label: Standard Acquisition Services LLC
+            next: null
       required:
-      - url
-      - career_site_id
-    GetAiApplyPostingsParameterJobCodes:
-      type: string
-      description: Filter by a comma-separated list of job codes such as `ACME_13,ACME_14`.
-    GetAiApplyUnifiedApiJobsParameterIds:
-      type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+      - status
+      - data
+    PostAiApplyPostingsPostingIdInquirePositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            application_form:
+              type: array
+              items:
+                anyOf:
+                - type: object
+                  properties:
+                    block_type:
+                      type: string
+                      const: QUESTION
+                    question_id:
+                      type: string
+                      description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                    label:
+                      type: string
+                    description:
+                      type:
+                      - string
+                      - 'null'
+                    required:
+                      type: boolean
+                    category:
+                      type:
+                      - string
+                      - 'null'
+                      enum:
+                      - EEO
+                    question_type:
+                      type: string
+                      enum:
+                      - TEXT
+                      - NUMBER
+                      - BOOLEAN
+                      - FILE
+                      - DATE
+                      - SINGLE_SELECT
+                      - MULTI_SELECT
+                    unified_key:
+                      type:
+                      - string
+                      - 'null'
+                      enum:
+                      - EMAIL
+                      - RESIDENCE_TYPE
+                      - RESIDENCE_FULL_STRING
+                      - RESIDENCE_COUNTRY
+                      - RESIDENCE_CITY
+                      - RESIDENCE_STATE
+                      - RESIDENCE_LINE_1
+                      - RESIDENCE_LINE_2
+                      - RESIDENCE_ZIP_CODE
+                      - APPLICANT_POOL_CONSENT
+                      - TERMS_AND_CONDITIONS
+                      - FIRST_NAME
+                      - LAST_NAME
+                      - FULL_NAME
+                      - GENDER
+                      - EXPECTED_START_DATE
+                      - RESUME
+                      - BIRTH_DATE
+                      - PHONE_NUMBER_TYPE
+                      - FULL_PHONE_NUMBER
+                      - PHONE_COUNTRY_CODE
+                      - PHONE_NATIONAL_NUMBER
+                      - PHONE_EXTENSION
+                    options:
+                      type:
+                      - array
+                      - 'null'
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                          label:
+                            type: string
+                          unified_key:
+                            type:
+                            - string
+                            - 'null'
+                            enum:
+                            - HOME
+                            - WORK
+                            - MAILING
+                            - AD
+                            - AE
+                            - AF
+                            - AG
+                            - AI
+                            - AL
+                            - AM
+                            - AO
+                            - AQ
+                            - AR
+                            - AS
+                            - AT
+                            - AU
+                            - AW
+                            - AX
+                            - AZ
+                            - BA
+                            - BB
+                            - BD
+                            - BE
+                            - BF
+                            - BG
+                            - BH
+                            - BI
+                            - BJ
+                            - BL
+                            - BM
+                            - BN
+                            - BO
+                            - BQ
+                            - BR
+                            - BS
+                            - BT
+                            - BV
+                            - BW
+                            - BY
+                            - BZ
+                            - CA
+                            - CC
+                            - CD
+                            - CF
+                            - CG
+                            - CH
+                            - CI
+                            - CK
+                            - CL
+                            - CM
+                            - CN
+                            - CO
+                            - CR
+                            - CU
+                            - CV
+                            - CW
+                            - CX
+                            - CY
+                            - CZ
+                            - DE
+                            - DJ
+                            - DK
+                            - DM
+                            - DO
+                            - DZ
+                            - EC
+                            - EE
+                            - EG
+                            - EH
+                            - ER
+                            - ES
+                            - ET
+                            - FI
+                            - FJ
+                            - FK
+                            - FM
+                            - FO
+                            - FR
+                            - GA
+                            - GB
+                            - GD
+                            - GE
+                            - GF
+                            - GG
+                            - GH
+                            - GI
+                            - GL
+                            - GM
+                            - GN
+                            - GP
+                            - GQ
+                            - GR
+                            - GS
+                            - GT
+                            - GU
+                            - GW
+                            - GY
+                            - HK
+                            - HM
+                            - HN
+                            - HR
+                            - HT
+                            - HU
+                            - ID
+                            - IE
+                            - IL
+                            - IM
+                            - IN
+                            - IO
+                            - IQ
+                            - IR
+                            - IS
+                            - IT
+                            - JE
+                            - JM
+                            - JO
+                            - JP
+                            - KE
+                            - KG
+                            - KH
+                            - KI
+                            - KM
+                            - KN
+                            - KP
+                            - KR
+                            - KW
+                            - KY
+                            - KZ
+                            - LA
+                            - LB
+                            - LC
+                            - LI
+                            - LK
+                            - LR
+                            - LS
+                            - LT
+                            - LU
+                            - LV
+                            - LY
+                            - MA
+                            - MC
+                            - MD
+                            - ME
+                            - MF
+                            - MG
+                            - MH
+                            - MK
+                            - ML
+                            - MM
+                            - MN
+                            - MO
+                            - MP
+                            - MQ
+                            - MR
+                            - MS
+                            - MT
+                            - MU
+                            - MV
+                            - MW
+                            - MX
+                            - MY
+                            - MZ
+                            - NA
+                            - NC
+                            - NE
+                            - NF
+                            - NG
+                            - NI
+                            - NL
+                            - 'NO'
+                            - NP
+                            - NR
+                            - NU
+                            - NZ
+                            - OM
+                            - PA
+                            - PE
+                            - PF
+                            - PG
+                            - PH
+                            - PK
+                            - PL
+                            - PM
+                            - PN
+                            - PR
+                            - PS
+                            - PT
+                            - PW
+                            - PY
+                            - QA
+                            - RE
+                            - RO
+                            - RS
+                            - RU
+                            - RW
+                            - SA
+                            - SB
+                            - SC
+                            - SD
+                            - SE
+                            - SG
+                            - SH
+                            - SI
+                            - SJ
+                            - SK
+                            - SL
+                            - SM
+                            - SN
+                            - SO
+                            - SR
+                            - SS
+                            - ST
+                            - SV
+                            - SX
+                            - SY
+                            - SZ
+                            - TC
+                            - TD
+                            - TF
+                            - TG
+                            - TH
+                            - TJ
+                            - TK
+                            - TL
+                            - TM
+                            - TN
+                            - TO
+                            - TR
+                            - TT
+                            - TV
+                            - TW
+                            - TZ
+                            - UA
+                            - UG
+                            - UM
+                            - US
+                            - UY
+                            - UZ
+                            - VA
+                            - VC
+                            - VE
+                            - VG
+                            - VI
+                            - VN
+                            - VU
+                            - WF
+                            - WS
+                            - YE
+                            - YT
+                            - ZA
+                            - ZM
+                            - ZW
+                            - MALE
+                            - FEMALE
+                            - NON_BINARY
+                            - NOT_SPECIFIED
+                            - MOBILE
+                            - LANDLINE
+                            - SOURCE_OTHER
+                            - SOURCE_OTHER_JOB_BOARD
+                        required:
+                        - id
+                        - label
+                        - unified_key
+                    display_when:
+                      type:
+                      - object
+                      - 'null'
+                      properties:
+                        question_id:
+                          type: string
+                          description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                        answer_equals:
+                          oneOf:
+                          - type: string
+                            description: Answer to a `TEXT` question, the option ID of the answer to a `SINGLE_SELECT` question, or the answer to a `DATE` question as an ISO 8601 date string (e.g. "2021-12-31T23:59:59.000Z").
+                          - type: array
+                            items:
+                              type: string
+                            description: Answer to a `MULTI_SELECT` question, contains the IDs of the selected options.
+                          - type: number
+                            format: double
+                            minimum: -1.7976931348623157e+308
+                            description: Answer to a `NUMBER` question.
+                          - type: boolean
+                            description: Answer to a `BOOLEAN` question.
+                          - type: object
+                            properties:
+                              name:
+                                type: string
+                                description: The original name (e.g., "resume.pdf")
+                              content_type:
+                                type: string
+                                description: The MIME type of the file (e.g., "application/pdf", "image/jpeg")
+                              data:
+                                description: The file content encoded as a base64 string
+                            required:
+                            - name
+                            - content_type
+                            - data
+                            description: Answer to a `FILE` question.
+                      required:
+                      - question_id
+                      - answer_equals
+                  required:
+                  - block_type
+                  - question_id
+                  - label
+                  - description
+                  - required
+                  - category
+                  - question_type
+                  - unified_key
+                  - options
+                  - display_when
+                - type: object
+                  properties:
+                    block_type:
+                      type: string
+                      const: SECTION
+                    label:
+                      type: string
+                    children:
+                      type: array
+                      items:
+                        type: object
+                  required:
+                  - block_type
+                  - label
+                  - children
+            submission_token:
+              type: string
+              description: JWT token for submitting the application. Valid for 12 hours from generation.
+          required:
+          - application_form
+          - submission_token
+          examples:
+          - application_form:
+            - block_type: SECTION
+              label: Personal Information
+              children:
+              - block_type: QUESTION
+                question_id: 6VrjehyBk685vubNydiR1hSn
+                label: First name
+                description: null
+                required: true
+                category: null
+                question_type: TEXT
+                unified_key: FIRST_NAME
+                options: null
+                display_when: null
+              - block_type: QUESTION
+                question_id: Hjsapofs69cx2iAu6MtTfhoh
+                label: Last name
+                description: null
+                required: true
+                category: null
+                question_type: TEXT
+                unified_key: LAST_NAME
+                options: null
+                display_when: null
+            - block_type: QUESTION
+              question_id: EKaumKPGjeA97cb8ystMmkCe
+              label: What is your desired working location?
+              description: Select your preferred work arrangement
+              required: true
+              category: null
+              question_type: SINGLE_SELECT
+              unified_key: null
+              options:
+              - id: BsnL4pAhNQc26uSc4JopTP3P
+                label: Remote
+                unified_key: null
+              - id: 8T4fcKgzLxbKFUo4saXaoMTG
+                label: On-site
+                unified_key: null
+              - id: 2cJDK3dq4WNjovohSG7dSpfd
+                label: Hybrid
+                unified_key: null
+              display_when: null
+            - block_type: QUESTION
+              question_id: 2H26BKTbDn2ygN2GfEcCsUP8
+              label: What timezone are you in?
+              description: This helps us schedule meetings at convenient times
+              required: true
+              category: null
+              question_type: TEXT
+              unified_key: null
+              options: null
+              display_when:
+                question_id: EKaumKPGjeA97cb8ystMmkCe
+                answer_equals: BsnL4pAhNQc26uSc4JopTP3P
+            - block_type: QUESTION
+              question_id: AdM1EuwBKE4pz94SSRHMgmba
+              label: Which office would you prefer?
+              description: null
+              required: true
+              category: null
+              question_type: SINGLE_SELECT
+              unified_key: null
+              options:
+              - id: EHCqUb5E6xzfjnfHT2LEgmM7
+                label: San Francisco
+                unified_key: null
+              - id: 5RbHT73StFM5tHdF3aVr4do1
+                label: New York
+                unified_key: null
+              - id: F4rRwGTNeLQZV5VLwstERpsT
+                label: London
+                unified_key: null
+              display_when:
+                question_id: EKaumKPGjeA97cb8ystMmkCe
+                answer_equals: 8T4fcKgzLxbKFUo4saXaoMTG
+            - block_type: QUESTION
+              question_id: FuVZvF26NueKcN46o5euHeGx
+              label: How many days per week would you like to work in the office?
+              description: null
+              required: true
+              category: null
+              question_type: NUMBER
+              unified_key: null
+              options: null
+              display_when:
+                question_id: EKaumKPGjeA97cb8ystMmkCe
+                answer_equals: 2cJDK3dq4WNjovohSG7dSpfd
+            submission_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+      required:
+      - status
+      - data
     GetAiApplyCareerSitesPositiveResponse:
       type: object
       properties:
@@ -1119,7 +1430,94 @@ components:
       required:
       - status
       - data
-    GetAiApplyPostingsPositiveResponse:
+    GetAiApplyApplicationsParameterJobPostingIds:
+      type: string
+      description: Filter by a comma-separated list of job posting IDs such as `89V6GEKpdZwqbxQz59n1ftFb,kcGHREEXCMF26Yhpuyh1gDVE`.
+    GetAiApplyApplicationsParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    PostAiApplyApplyRequestBody:
+      type: object
+      properties:
+        submission_token:
+          type: string
+          description: JWT token obtained from the POST /postings/:id/inquire endpoint. Valid for 12 hours.
+        candidate_email:
+          type: string
+          description: The email address of the candidate. This is used for deduplication (preventing duplicate applications from the same candidate) and internal tracking purposes. This field is required but should not be displayed to the candidate on your application form - you should provide this from your own system.
+          format: email
+        query_params:
+          type: object
+          additionalProperties:
+            type: string
+          description: Query parameters to be appended to the job posting URL when applying.
+        screening_question_answers:
+          type: array
+          items:
+            type: object
+            properties:
+              question_id:
+                type: string
+                description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+              answer:
+                oneOf:
+                - type: string
+                  description: Answer to a `TEXT` question, the option ID of the answer to a `SINGLE_SELECT` question, or the answer to a `DATE` question as an ISO 8601 date string (e.g. "2021-12-31T23:59:59.000Z").
+                - type: array
+                  items:
+                    type: string
+                  description: Answer to a `MULTI_SELECT` question, contains the IDs of the selected options.
+                - type: number
+                  format: double
+                  minimum: -1.7976931348623157e+308
+                  description: Answer to a `NUMBER` question.
+                - type: boolean
+                  description: Answer to a `BOOLEAN` question.
+                - type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The original name (e.g., "resume.pdf")
+                    content_type:
+                      type: string
+                      description: The MIME type of the file (e.g., "application/pdf", "image/jpeg")
+                    data:
+                      type: string
+                      description: The file content encoded as a base64 string
+                  required:
+                  - name
+                  - content_type
+                  - data
+                  description: Answer to a `FILE` question.
+            required:
+            - question_id
+            - answer
+          description: Array of screening question answers. The answers need to match exactly with the questions you received on the POST /postings/:id/inquire endpoint. Otherwise, the application will be rejected.
+        additional_clicks:
+          type: integer
+          format: int64
+          minimum: 0
+          maximum: 30
+          description: Number of times to simulate the job being opened in addition to the actual click related to the application. When set without `additional_clicks_scatter_duration`, uses the default 60-minute scatter window.
+        additional_clicks_scatter_duration:
+          type: integer
+          format: int64
+          minimum: 1
+          description: Optional scatter window for `additional_clicks`, in minutes. Cannot be used without `additional_clicks`.
+      required:
+      - submission_token
+      - candidate_email
+      - screening_question_answers
+    GetAiApplyPostingsParameterCareerSiteIds:
+      type: string
+      description: Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`.
+    PostAiApplyUnifiedApiJobsJobIdApplicationsParameterJobId:
+      type: string
+      description: The Kombo ID or Remote ID of the Job this candidate should apply for. If you want to use the ID of the integrated system (remote_id) you need to prefix the id with "remote:". You can use the remote ID if you do not want to sync jobs.
+    GetAiApplyCareerSitesParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    PostAiApplyJobFeedsPositiveResponse:
       type: object
       properties:
         status:
@@ -1128,101 +1526,48 @@ components:
         data:
           type: object
           properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  career_site:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                      label:
-                        type: string
-                    required:
-                    - id
-                    - label
-                  url:
-                    type: string
-                  job_code:
-                    type:
-                    - string
-                    - 'null'
-                  created_at:
-                    description: YYYY-MM-DDTHH:mm:ss.sssZ
-                    type: string
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  updated_at:
-                    description: YYYY-MM-DDTHH:mm:ss.sssZ
-                    type: string
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  archived_at:
-                    description: The date and time the job posting was archived. You can only send applications if the job posting is not archived.
-                    type:
-                    - string
-                    - 'null'
-                    format: date-time
-                    externalDocs:
-                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
-                  archived_reason:
-                    type:
-                    - string
-                    - 'null'
-                    enum:
-                    - JOB_POSTING_TAKEN_OFFLINE
-                    - MANUAL_ARCHIVE
-                    - REMOVED_FROM_JOB_FEED
-                  availability:
-                    type: string
-                    enum:
-                    - APPLYABLE
-                    - PENDING
-                    - ARCHIVED
-                    - UNAVAILABLE
-                    description: The status of the job posting. You can only send applications if the job posting is "APPLYABLE".
-                required:
-                - id
-                - career_site
-                - url
-                - job_code
-                - created_at
-                - updated_at
-                - archived_at
-                - archived_reason
-                - availability
-            next:
-              type:
-              - string
-              - 'null'
+            id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            label:
+              type: string
+              description: The label of the job feed
           required:
-          - results
-          - next
+          - id
+          - label
           examples:
-          - results:
-            - id: 9QGNv3B98kL3hyELE1qsZ86s
-              career_site:
-                id: Chc4dua5asAQ48KUERDVF1bs
-                label: Acme
-              url: https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102
-              job_code: ACME_13
-              created_at: '2025-01-01T00:00:00.000Z'
-              updated_at: '2025-03-02T23:12:32.000Z'
-              archived_at: null
-              archived_reason: null
-              availability: PENDING
-            next: null
+          - id: mK7pQw9xNvEr2LdY5sGh8TcZ
+            label: Standard Acquisition Services LLC
       required:
       - status
       - data
+    PostAiApplyPostingsPostingIdInquireParameterPostingId:
+      type: string
+      description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+    GetAiApplyApplicationsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
+    GetAiApplyCareerSitesParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAiApplyPostingsParameterJobCodes:
+      type: string
+      description: Filter by a comma-separated list of job codes such as `ACME_13,ACME_14`.
+    GetAiApplyUnifiedApiJobsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    PostAiApplyCareerSitesRequestBody:
+      type: object
+      properties:
+        label:
+          type: string
+          description: The label of the career site
+      required:
+      - label
     PostAiApplyUnifiedApiJobsJobIdApplicationsRequestBody:
       type: object
       properties:
@@ -2013,9 +2358,329 @@ components:
           description: Query parameters to be appended to the job posting URL when applying.
       required:
       - candidate
+    PostAiApplyPostingsRequestBody:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          pattern: ^https?:\/\/
+          description: The URL of the job posting to parse
+        job_code:
+          type: string
+          description: Job code to associate with the job posting
+        location:
+          type:
+          - object
+          - 'null'
+          properties:
+            country:
+              type: string
+              enum:
+              - AD
+              - AE
+              - AF
+              - AG
+              - AI
+              - AL
+              - AM
+              - AO
+              - AQ
+              - AR
+              - AS
+              - AT
+              - AU
+              - AW
+              - AX
+              - AZ
+              - BA
+              - BB
+              - BD
+              - BE
+              - BF
+              - BG
+              - BH
+              - BI
+              - BJ
+              - BL
+              - BM
+              - BN
+              - BO
+              - BQ
+              - BR
+              - BS
+              - BT
+              - BV
+              - BW
+              - BY
+              - BZ
+              - CA
+              - CC
+              - CD
+              - CF
+              - CG
+              - CH
+              - CI
+              - CK
+              - CL
+              - CM
+              - CN
+              - CO
+              - CR
+              - CU
+              - CV
+              - CW
+              - CX
+              - CY
+              - CZ
+              - DE
+              - DJ
+              - DK
+              - DM
+              - DO
+              - DZ
+              - EC
+              - EE
+              - EG
+              - EH
+              - ER
+              - ES
+              - ET
+              - FI
+              - FJ
+              - FK
+              - FM
+              - FO
+              - FR
+              - GA
+              - GB
+              - GD
+              - GE
+              - GF
+              - GG
+              - GH
+              - GI
+              - GL
+              - GM
+              - GN
+              - GP
+              - GQ
+              - GR
+              - GS
+              - GT
+              - GU
+              - GW
+              - GY
+              - HK
+              - HM
+              - HN
+              - HR
+              - HT
+              - HU
+              - ID
+              - IE
+              - IL
+              - IM
+              - IN
+              - IO
+              - IQ
+              - IR
+              - IS
+              - IT
+              - JE
+              - JM
+              - JO
+              - JP
+              - KE
+              - KG
+              - KH
+              - KI
+              - KM
+              - KN
+              - KP
+              - KR
+              - KW
+              - KY
+              - KZ
+              - LA
+              - LB
+              - LC
+              - LI
+              - LK
+              - LR
+              - LS
+              - LT
+              - LU
+              - LV
+              - LY
+              - MA
+              - MC
+              - MD
+              - ME
+              - MF
+              - MG
+              - MH
+              - MK
+              - ML
+              - MM
+              - MN
+              - MO
+              - MP
+              - MQ
+              - MR
+              - MS
+              - MT
+              - MU
+              - MV
+              - MW
+              - MX
+              - MY
+              - MZ
+              - NA
+              - NC
+              - NE
+              - NF
+              - NG
+              - NI
+              - NL
+              - 'NO'
+              - NP
+              - NR
+              - NU
+              - NZ
+              - OM
+              - PA
+              - PE
+              - PF
+              - PG
+              - PH
+              - PK
+              - PL
+              - PM
+              - PN
+              - PR
+              - PS
+              - PT
+              - PW
+              - PY
+              - QA
+              - RE
+              - RO
+              - RS
+              - RU
+              - RW
+              - SA
+              - SB
+              - SC
+              - SD
+              - SE
+              - SG
+              - SH
+              - SI
+              - SJ
+              - SK
+              - SL
+              - SM
+              - SN
+              - SO
+              - SR
+              - SS
+              - ST
+              - SV
+              - SX
+              - SY
+              - SZ
+              - TC
+              - TD
+              - TF
+              - TG
+              - TH
+              - TJ
+              - TK
+              - TL
+              - TM
+              - TN
+              - TO
+              - TR
+              - TT
+              - TV
+              - TW
+              - TZ
+              - UA
+              - UG
+              - UM
+              - US
+              - UY
+              - UZ
+              - VA
+              - VC
+              - VE
+              - VG
+              - VI
+              - VN
+              - VU
+              - WF
+              - WS
+              - YE
+              - YT
+              - ZA
+              - ZM
+              - ZW
+              description: The country in which the job is located
+            postal_code:
+              type: string
+              description: The postal/zip code in which the job is located
+          required:
+          - country
+          description: The location in which the job is located. When omitted, the existing location is preserved. Pass null to explicitly clear an existing location.
+        career_site_id:
+          type: string
+          description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+      required:
+      - url
+      - career_site_id
     PostAiApplyPostingsPostingIdInquireRequestBody:
       type: object
       properties: {}
+    PostAiApplyJobFeedsRequestBody:
+      type: object
+      properties:
+        label:
+          type: string
+          minLength: 1
+          description: The label of the job feed
+      required:
+      - label
+    PostAiApplyCareerSitesPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+            label:
+              type: string
+              description: The label of the career site
+          required:
+          - id
+          - label
+          examples:
+          - id: mK7pQw9xNvEr2LdY5sGh8TcZ
+            label: Acme Inc. California
+      required:
+      - status
+      - data
+    GetAiApplyPostingsParameterIds:
+      type: string
+      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
+    GetAiApplyPostingsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
     GetAiApplyUnifiedApiJobsPositiveResponse:
       type: object
       properties:
@@ -2498,43 +3163,7 @@ components:
       required:
       - status
       - data
-    GetAiApplyApplicationsParameterJobPostingIds:
-      type: string
-      description: Filter by a comma-separated list of job posting IDs such as `89V6GEKpdZwqbxQz59n1ftFb,kcGHREEXCMF26Yhpuyh1gDVE`.
-    GetAiApplyJobFeedsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
-    GetAiApplyJobFeedsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    GetAiApplyUnifiedApiJobsParameterCareerSiteIds:
-      type: string
-      description: Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`.
-    GetAiApplyUnifiedApiJobsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    PostAiApplyCareerSitesRequestBody:
-      type: object
-      properties:
-        label:
-          type: string
-          description: The label of the career site
-      required:
-      - label
-    GetAiApplyCareerSitesParameterIds:
-      type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetAiApplyUnifiedApiJobsParameterJobCodes:
-      type: string
-      description: Filter by a comma-separated list of job codes such as `ACME_12,ACME_14`.
-    GetAiApplyApplicationsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    PostAiApplyJobFeedsPositiveResponse:
+    GetAiApplyApplicationsPositiveResponse:
       type: object
       properties:
         status:
@@ -2543,25 +3172,64 @@ components:
         data:
           type: object
           properties:
-            id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            label:
-              type: string
-              description: The label of the job feed
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  job_posting_id:
+                    type: string
+                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                  status:
+                    type: string
+                    enum:
+                    - SUBMITTED
+                    - DUPLICATE
+                    - PENDING
+                    - FAILED
+                  created_at:
+                    description: YYYY-MM-DDTHH:mm:ss.sssZ
+                    type: string
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  updated_at:
+                    description: YYYY-MM-DDTHH:mm:ss.sssZ
+                    type: string
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                required:
+                - id
+                - job_posting_id
+                - status
+                - created_at
+                - updated_at
+            next:
+              type:
+              - string
+              - 'null'
           required:
-          - id
-          - label
+          - results
+          - next
           examples:
-          - id: mK7pQw9xNvEr2LdY5sGh8TcZ
-            label: Standard Acquisition Services LLC
+          - results:
+            - id: ADbmw5XSkeCSE1fAucoxEGnwZ
+              job_posting_id: JDn252PEYa4rMhKbJBjtn3ng
+              status: PENDING
+              created_at: '2025-01-01T00:00:00.000Z'
+              updated_at: '2025-03-02T23:12:32.000Z'
+            next: null
       required:
       - status
       - data
-    PostAiApplyUnifiedApiJobsJobIdApplicationsParameterJobId:
+    GetAiApplyUnifiedApiJobsParameterRemoteIds:
       type: string
-      description: The Kombo ID or Remote ID of the Job this candidate should apply for. If you want to use the ID of the integrated system (remote_id) you need to prefix the id with "remote:". You can use the remote ID if you do not want to sync jobs.
-    GetAiApplyPostingsParameterIds:
+      description: This parameter exists for backwards compatibility with Kombo's unified API. Supplying a comma-separated list of remote IDs such as `32,33` will return no jobs because AI Apply does not interface with a remote system that issues remote IDs.
+    GetAiApplyUnifiedApiJobsParameterIds:
       type: string
       description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
     PostAiApplyApplyPositiveResponse:
@@ -2695,44 +3363,6 @@ components:
             archived_at: null
             archived_reason: null
             availability: PENDING
-      required:
-      - status
-      - data
-    GetAiApplyJobFeedsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  label:
-                    type: string
-                    description: The label of the job feed
-                required:
-                - id
-                - label
-            next:
-              type:
-              - string
-              - 'null'
-          required:
-          - results
-          - next
-          examples:
-          - results:
-            - id: mK7pQw9xNvEr2LdY5sGh8TcZ
-              label: Standard Acquisition Services LLC
-            next: null
       required:
       - status
       - data
@@ -3543,76 +4173,10 @@ components:
       required:
       - status
       - data
-    BulkImportResponse:
-      type: object
-      description: Response from the bulk import endpoint
-      properties:
-        status:
-          type: string
-          enum:
-          - success
-        data:
-          type: object
-          properties:
-            created:
-              type: integer
-              description: Number of new job postings created
-            processed:
-              type: integer
-              description: Number of job postings processed
-            archived:
-              type: integer
-              description: Number of job postings archived (not included in this import)
-          required:
-          - created
-          - processed
-          - archived
-      required:
-      - status
-      - data
-      example:
-        status: success
-        data:
-          created: 150
-          processed: 197
-          archived: 10
-    PostAiApplyCareerSitesPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-            label:
-              type: string
-              description: The label of the career site
-          required:
-          - id
-          - label
-          examples:
-          - id: mK7pQw9xNvEr2LdY5sGh8TcZ
-            label: Acme Inc. California
-      required:
-      - status
-      - data
-    PostAiApplyJobFeedsRequestBody:
-      type: object
-      properties:
-        label:
-          type: string
-          minLength: 1
-          description: The label of the job feed
-      required:
-      - label
-    GetAiApplyJobFeedsParameterIds:
+    GetAiApplyUnifiedApiJobsParameterCareerSiteIds:
       type: string
-      description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetAiApplyApplicationsPositiveResponse:
+      description: Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`.
+    GetAiApplyPostingsPositiveResponse:
       type: object
       properties:
         status:
@@ -3629,16 +4193,23 @@ components:
                   id:
                     type: string
                     description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  job_posting_id:
+                  career_site:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
+                      label:
+                        type: string
+                    required:
+                    - id
+                    - label
+                  url:
                     type: string
-                    description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                  status:
-                    type: string
-                    enum:
-                    - SUBMITTED
-                    - DUPLICATE
-                    - PENDING
-                    - FAILED
+                  job_code:
+                    type:
+                    - string
+                    - 'null'
                   created_at:
                     description: YYYY-MM-DDTHH:mm:ss.sssZ
                     type: string
@@ -3651,12 +4222,40 @@ components:
                     format: date-time
                     externalDocs:
                       url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  archived_at:
+                    description: The date and time the job posting was archived. You can only send applications if the job posting is not archived.
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                    externalDocs:
+                      url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+                  archived_reason:
+                    type:
+                    - string
+                    - 'null'
+                    enum:
+                    - JOB_POSTING_TAKEN_OFFLINE
+                    - MANUAL_ARCHIVE
+                    - REMOVED_FROM_JOB_FEED
+                  availability:
+                    type: string
+                    enum:
+                    - APPLYABLE
+                    - PENDING
+                    - ARCHIVED
+                    - UNAVAILABLE
+                    description: The status of the job posting. You can only send applications if the job posting is "APPLYABLE".
                 required:
                 - id
-                - job_posting_id
-                - status
+                - career_site
+                - url
+                - job_code
                 - created_at
                 - updated_at
+                - archived_at
+                - archived_reason
+                - availability
             next:
               type:
               - string
@@ -3666,534 +4265,30 @@ components:
           - next
           examples:
           - results:
-            - id: ADbmw5XSkeCSE1fAucoxEGnwZ
-              job_posting_id: JDn252PEYa4rMhKbJBjtn3ng
-              status: PENDING
+            - id: 9QGNv3B98kL3hyELE1qsZ86s
+              career_site:
+                id: Chc4dua5asAQ48KUERDVF1bs
+                label: Acme
+              url: https://careers.acme.com/jobs/fullstack-engineer-ai-infra-14102
+              job_code: ACME_13
               created_at: '2025-01-01T00:00:00.000Z'
               updated_at: '2025-03-02T23:12:32.000Z'
+              archived_at: null
+              archived_reason: null
+              availability: PENDING
             next: null
       required:
       - status
       - data
-    PostAiApplyPostingsPostingIdInquirePositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            application_form:
-              type: array
-              items:
-                anyOf:
-                - type: object
-                  properties:
-                    block_type:
-                      type: string
-                      const: QUESTION
-                    question_id:
-                      type: string
-                      description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                    label:
-                      type: string
-                    description:
-                      type:
-                      - string
-                      - 'null'
-                    required:
-                      type: boolean
-                    category:
-                      type:
-                      - string
-                      - 'null'
-                      enum:
-                      - EEO
-                    question_type:
-                      type: string
-                      enum:
-                      - TEXT
-                      - NUMBER
-                      - BOOLEAN
-                      - FILE
-                      - DATE
-                      - SINGLE_SELECT
-                      - MULTI_SELECT
-                    unified_key:
-                      type:
-                      - string
-                      - 'null'
-                      enum:
-                      - EMAIL
-                      - RESIDENCE_TYPE
-                      - RESIDENCE_FULL_STRING
-                      - RESIDENCE_COUNTRY
-                      - RESIDENCE_CITY
-                      - RESIDENCE_STATE
-                      - RESIDENCE_LINE_1
-                      - RESIDENCE_LINE_2
-                      - RESIDENCE_ZIP_CODE
-                      - APPLICANT_POOL_CONSENT
-                      - TERMS_AND_CONDITIONS
-                      - FIRST_NAME
-                      - LAST_NAME
-                      - FULL_NAME
-                      - GENDER
-                      - EXPECTED_START_DATE
-                      - RESUME
-                      - BIRTH_DATE
-                      - PHONE_NUMBER_TYPE
-                      - FULL_PHONE_NUMBER
-                      - PHONE_COUNTRY_CODE
-                      - PHONE_NATIONAL_NUMBER
-                      - PHONE_EXTENSION
-                    options:
-                      type:
-                      - array
-                      - 'null'
-                      items:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                            description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                          label:
-                            type: string
-                          unified_key:
-                            type:
-                            - string
-                            - 'null'
-                            enum:
-                            - HOME
-                            - WORK
-                            - MAILING
-                            - AD
-                            - AE
-                            - AF
-                            - AG
-                            - AI
-                            - AL
-                            - AM
-                            - AO
-                            - AQ
-                            - AR
-                            - AS
-                            - AT
-                            - AU
-                            - AW
-                            - AX
-                            - AZ
-                            - BA
-                            - BB
-                            - BD
-                            - BE
-                            - BF
-                            - BG
-                            - BH
-                            - BI
-                            - BJ
-                            - BL
-                            - BM
-                            - BN
-                            - BO
-                            - BQ
-                            - BR
-                            - BS
-                            - BT
-                            - BV
-                            - BW
-                            - BY
-                            - BZ
-                            - CA
-                            - CC
-                            - CD
-                            - CF
-                            - CG
-                            - CH
-                            - CI
-                            - CK
-                            - CL
-                            - CM
-                            - CN
-                            - CO
-                            - CR
-                            - CU
-                            - CV
-                            - CW
-                            - CX
-                            - CY
-                            - CZ
-                            - DE
-                            - DJ
-                            - DK
-                            - DM
-                            - DO
-                            - DZ
-                            - EC
-                            - EE
-                            - EG
-                            - EH
-                            - ER
-                            - ES
-                            - ET
-                            - FI
-                            - FJ
-                            - FK
-                            - FM
-                            - FO
-                            - FR
-                            - GA
-                            - GB
-                            - GD
-                            - GE
-                            - GF
-                            - GG
-                            - GH
-                            - GI
-                            - GL
-                            - GM
-                            - GN
-                            - GP
-                            - GQ
-                            - GR
-                            - GS
-                            - GT
-                            - GU
-                            - GW
-                            - GY
-                            - HK
-                            - HM
-                            - HN
-                            - HR
-                            - HT
-                            - HU
-                            - ID
-                            - IE
-                            - IL
-                            - IM
-                            - IN
-                            - IO
-                            - IQ
-                            - IR
-                            - IS
-                            - IT
-                            - JE
-                            - JM
-                            - JO
-                            - JP
-                            - KE
-                            - KG
-                            - KH
-                            - KI
-                            - KM
-                            - KN
-                            - KP
-                            - KR
-                            - KW
-                            - KY
-                            - KZ
-                            - LA
-                            - LB
-                            - LC
-                            - LI
-                            - LK
-                            - LR
-                            - LS
-                            - LT
-                            - LU
-                            - LV
-                            - LY
-                            - MA
-                            - MC
-                            - MD
-                            - ME
-                            - MF
-                            - MG
-                            - MH
-                            - MK
-                            - ML
-                            - MM
-                            - MN
-                            - MO
-                            - MP
-                            - MQ
-                            - MR
-                            - MS
-                            - MT
-                            - MU
-                            - MV
-                            - MW
-                            - MX
-                            - MY
-                            - MZ
-                            - NA
-                            - NC
-                            - NE
-                            - NF
-                            - NG
-                            - NI
-                            - NL
-                            - 'NO'
-                            - NP
-                            - NR
-                            - NU
-                            - NZ
-                            - OM
-                            - PA
-                            - PE
-                            - PF
-                            - PG
-                            - PH
-                            - PK
-                            - PL
-                            - PM
-                            - PN
-                            - PR
-                            - PS
-                            - PT
-                            - PW
-                            - PY
-                            - QA
-                            - RE
-                            - RO
-                            - RS
-                            - RU
-                            - RW
-                            - SA
-                            - SB
-                            - SC
-                            - SD
-                            - SE
-                            - SG
-                            - SH
-                            - SI
-                            - SJ
-                            - SK
-                            - SL
-                            - SM
-                            - SN
-                            - SO
-                            - SR
-                            - SS
-                            - ST
-                            - SV
-                            - SX
-                            - SY
-                            - SZ
-                            - TC
-                            - TD
-                            - TF
-                            - TG
-                            - TH
-                            - TJ
-                            - TK
-                            - TL
-                            - TM
-                            - TN
-                            - TO
-                            - TR
-                            - TT
-                            - TV
-                            - TW
-                            - TZ
-                            - UA
-                            - UG
-                            - UM
-                            - US
-                            - UY
-                            - UZ
-                            - VA
-                            - VC
-                            - VE
-                            - VG
-                            - VI
-                            - VN
-                            - VU
-                            - WF
-                            - WS
-                            - YE
-                            - YT
-                            - ZA
-                            - ZM
-                            - ZW
-                            - MALE
-                            - FEMALE
-                            - NON_BINARY
-                            - NOT_SPECIFIED
-                            - MOBILE
-                            - LANDLINE
-                            - SOURCE_OTHER
-                            - SOURCE_OTHER_JOB_BOARD
-                        required:
-                        - id
-                        - label
-                        - unified_key
-                    display_when:
-                      type:
-                      - object
-                      - 'null'
-                      properties:
-                        question_id:
-                          type: string
-                          description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-                        answer_equals:
-                          oneOf:
-                          - type: string
-                            description: Answer to a `TEXT` question, the option ID of the answer to a `SINGLE_SELECT` question, or the answer to a `DATE` question as an ISO 8601 date string (e.g. "2021-12-31T23:59:59.000Z").
-                          - type: array
-                            items:
-                              type: string
-                            description: Answer to a `MULTI_SELECT` question, contains the IDs of the selected options.
-                          - type: number
-                            format: double
-                            minimum: -1.7976931348623157e+308
-                            description: Answer to a `NUMBER` question.
-                          - type: boolean
-                            description: Answer to a `BOOLEAN` question.
-                          - type: object
-                            properties:
-                              name:
-                                type: string
-                                description: The original name (e.g., "resume.pdf")
-                              content_type:
-                                type: string
-                                description: The MIME type of the file (e.g., "application/pdf", "image/jpeg")
-                              data:
-                                description: The file content encoded as a base64 string
-                            required:
-                            - name
-                            - content_type
-                            - data
-                            description: Answer to a `FILE` question.
-                      required:
-                      - question_id
-                      - answer_equals
-                  required:
-                  - block_type
-                  - question_id
-                  - label
-                  - description
-                  - required
-                  - category
-                  - question_type
-                  - unified_key
-                  - options
-                  - display_when
-                - type: object
-                  properties:
-                    block_type:
-                      type: string
-                      const: SECTION
-                    label:
-                      type: string
-                    children:
-                      type: array
-                      items:
-                        type: object
-                  required:
-                  - block_type
-                  - label
-                  - children
-            submission_token:
-              type: string
-              description: JWT token for submitting the application. Valid for 12 hours from generation.
-          required:
-          - application_form
-          - submission_token
-          examples:
-          - application_form:
-            - block_type: SECTION
-              label: Personal Information
-              children:
-              - block_type: QUESTION
-                question_id: 6VrjehyBk685vubNydiR1hSn
-                label: First name
-                description: null
-                required: true
-                category: null
-                question_type: TEXT
-                unified_key: FIRST_NAME
-                options: null
-                display_when: null
-              - block_type: QUESTION
-                question_id: Hjsapofs69cx2iAu6MtTfhoh
-                label: Last name
-                description: null
-                required: true
-                category: null
-                question_type: TEXT
-                unified_key: LAST_NAME
-                options: null
-                display_when: null
-            - block_type: QUESTION
-              question_id: EKaumKPGjeA97cb8ystMmkCe
-              label: What is your desired working location?
-              description: Select your preferred work arrangement
-              required: true
-              category: null
-              question_type: SINGLE_SELECT
-              unified_key: null
-              options:
-              - id: BsnL4pAhNQc26uSc4JopTP3P
-                label: Remote
-                unified_key: null
-              - id: 8T4fcKgzLxbKFUo4saXaoMTG
-                label: On-site
-                unified_key: null
-              - id: 2cJDK3dq4WNjovohSG7dSpfd
-                label: Hybrid
-                unified_key: null
-              display_when: null
-            - block_type: QUESTION
-              question_id: 2H26BKTbDn2ygN2GfEcCsUP8
-              label: What timezone are you in?
-              description: This helps us schedule meetings at convenient times
-              required: true
-              category: null
-              question_type: TEXT
-              unified_key: null
-              options: null
-              display_when:
-                question_id: EKaumKPGjeA97cb8ystMmkCe
-                answer_equals: BsnL4pAhNQc26uSc4JopTP3P
-            - block_type: QUESTION
-              question_id: AdM1EuwBKE4pz94SSRHMgmba
-              label: Which office would you prefer?
-              description: null
-              required: true
-              category: null
-              question_type: SINGLE_SELECT
-              unified_key: null
-              options:
-              - id: EHCqUb5E6xzfjnfHT2LEgmM7
-                label: San Francisco
-                unified_key: null
-              - id: 5RbHT73StFM5tHdF3aVr4do1
-                label: New York
-                unified_key: null
-              - id: F4rRwGTNeLQZV5VLwstERpsT
-                label: London
-                unified_key: null
-              display_when:
-                question_id: EKaumKPGjeA97cb8ystMmkCe
-                answer_equals: 8T4fcKgzLxbKFUo4saXaoMTG
-            - block_type: QUESTION
-              question_id: FuVZvF26NueKcN46o5euHeGx
-              label: How many days per week would you like to work in the office?
-              description: null
-              required: true
-              category: null
-              question_type: NUMBER
-              unified_key: null
-              options: null
-              display_when:
-                question_id: EKaumKPGjeA97cb8ystMmkCe
-                answer_equals: 2cJDK3dq4WNjovohSG7dSpfd
-            submission_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-      required:
-      - status
-      - data
+    GetAiApplyApplicationsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAiApplyJobFeedsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetAiApplyUnifiedApiJobsParameterJobCodes:
+      type: string
+      description: Filter by a comma-separated list of job codes such as `ACME_12,ACME_14`.
     GetAiApplyPostingsParameterPageSize:
       type: integer
       format: int64
@@ -4201,104 +4296,9 @@ components:
       maximum: 250
       default: 100
       description: The number of results to return per page. Maximum is 250.
-    PostAiApplyApplyRequestBody:
-      type: object
-      properties:
-        submission_token:
-          type: string
-          description: JWT token obtained from the POST /postings/:id/inquire endpoint. Valid for 12 hours.
-        candidate_email:
-          type: string
-          description: The email address of the candidate. This is used for deduplication (preventing duplicate applications from the same candidate) and internal tracking purposes. This field is required but should not be displayed to the candidate on your application form - you should provide this from your own system.
-          format: email
-        query_params:
-          type: object
-          additionalProperties:
-            type: string
-          description: Query parameters to be appended to the job posting URL when applying.
-        screening_question_answers:
-          type: array
-          items:
-            type: object
-            properties:
-              question_id:
-                type: string
-                description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-              answer:
-                oneOf:
-                - type: string
-                  description: Answer to a `TEXT` question, the option ID of the answer to a `SINGLE_SELECT` question, or the answer to a `DATE` question as an ISO 8601 date string (e.g. "2021-12-31T23:59:59.000Z").
-                - type: array
-                  items:
-                    type: string
-                  description: Answer to a `MULTI_SELECT` question, contains the IDs of the selected options.
-                - type: number
-                  format: double
-                  minimum: -1.7976931348623157e+308
-                  description: Answer to a `NUMBER` question.
-                - type: boolean
-                  description: Answer to a `BOOLEAN` question.
-                - type: object
-                  properties:
-                    name:
-                      type: string
-                      description: The original name (e.g., "resume.pdf")
-                    content_type:
-                      type: string
-                      description: The MIME type of the file (e.g., "application/pdf", "image/jpeg")
-                    data:
-                      type: string
-                      description: The file content encoded as a base64 string
-                  required:
-                  - name
-                  - content_type
-                  - data
-                  description: Answer to a `FILE` question.
-            required:
-            - question_id
-            - answer
-          description: Array of screening question answers. The answers need to match exactly with the questions you received on the POST /postings/:id/inquire endpoint. Otherwise, the application will be rejected.
-        additional_clicks:
-          type: integer
-          format: int64
-          minimum: 0
-          maximum: 30
-          description: Number of times to simulate the job being opened in addition to the actual click related to the application. When set without `additional_clicks_scatter_duration`, uses the default 60-minute scatter window.
-        additional_clicks_scatter_duration:
-          type: integer
-          format: int64
-          minimum: 1
-          description: Optional scatter window for `additional_clicks`, in minutes. Cannot be used without `additional_clicks`.
-      required:
-      - submission_token
-      - candidate_email
-      - screening_question_answers
-    PostAiApplyPostingsPostingIdInquireParameterPostingId:
-      type: string
-      description: The globally unique ID of this object generated by Kombo. We recommend using this as a stable primary key for syncing.
-    GetAiApplyPostingsParameterCareerSiteIds:
-      type: string
-      description: Filter by a comma-separated list of career site IDs such as `A8m9k9RhjNokMfRTWtpQ99VtH,rCbkAA3pvcKjsFYwEeXtCQkc`.
-    GetAiApplyCareerSitesParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
-    GetAiApplyApplicationsParameterIds:
+    GetAiApplyJobFeedsParameterIds:
       type: string
       description: Filter by a comma-separated list of IDs such as `222k7eCGyUdgt2JWZDNnkDs3,B5DVmypWENfU6eMe6gYDyJG3`.
-    GetAiApplyPostingsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    GetAiApplyApplicationsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
   responses:
     ErrorResponseAiApply:
       description: The standard error response with the error codes for AI Apply.
