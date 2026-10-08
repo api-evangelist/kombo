@@ -231,6 +231,12 @@ apis:
   - type: OpenAPI
     url: openapi/kombo-kombo-api-api-openapi.yml
 common:
+- type: Plans
+  url: plans/kombo-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/kombo-rate-limits.yml
+- type: FinOps
+  url: finops/kombo-finops.yml
 - type: CapabilityMap
   url: capabilities/kombo-capability-edges.yml
   name: Kombo Business Capability Map
