@@ -7,6 +7,8 @@ servers:
   description: Kombo EU API
 - url: https://api.us.kombo.dev/v1
   description: Kombo US API
+- url: https://api.ca.kombo.dev/v1
+  description: Kombo CA API
 security:
 - ApiKey: []
 tags:
@@ -35,6 +37,16 @@ paths:
                       customer_id: 2Uev1YUTqLFdvMPD3Jtrg2FX
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: GetCheckApiKey
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.check_api_key()\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: GetCheckApiKey
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.checkApiKey();\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: GetCheckApiKey
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.check_api_key\n\nunless res.get_check_api_key_positive_response.nil?\n  # handle response\nend"
   /force-sync:
     post:
       operationId: PostForceSync
@@ -76,11 +88,61 @@ paths:
                       type: DELTA
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: PostForceSync
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    integration_id=\"workday:HWUTwvyx2wLoSUHphiWVrp28\",\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.trigger_sync(type_=\"FULL\")\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: PostForceSync
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  integration_id: \"workday:HWUTwvyx2wLoSUHphiWVrp28\",\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.triggerSync({});\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: PostForceSync
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  integration_id: 'workday:HWUTwvyx2wLoSUHphiWVrp28',\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.trigger_sync(body: Models::Shared::PostForceSyncRequestBody.new)\n\nunless res.post_force_sync_positive_response.nil?\n  # handle response\nend"
   /passthrough/{tool}/{api}:
     post:
       operationId: PostPassthroughToolApi
       summary: Send passthrough request
-      description: Send a request to the specified integration's native API.
+      description: 'Send a request to the specified integration''s native API. At Kombo we put a lot of work into making sure that our unified API covers all our customers'' use cases and that they never have to think about integration-specific logic again. There are cases, however, where our customers want to build features that are very integration-specific. That''s where this endpoint comes in. Pass in details about the request you want to make to the integration''s API and we''ll forward it for you. We''ll also take care of setting the right base URL and authenticating your requests. To get started, please pick the relevant API (some tools provide multiple to due different base URLs or authentication schemes) from the table below and pass in the `{tool}/{api}` identifier as part of the path. |Integration|`{tool}/{api}`|Description|
+
+        |---|---|---|
+
+        |360Learning|`360learning/v2`|360Learning API v2. We automatically handle authentication and use `https://app.360learning.com/api/v2/` as the base URL.|
+
+        |a3innuva Nómina|`a3innuvanomina/laboral`|a3innuva Nómina API docs. Requests are automatically authenticated using OAuth access tokens (refreshed when needed). Base URL: `https://a3api.wolterskluwer.es/Laboral/api`.|
+
+        |Abacus Umantis|`abacusumantis/v1`|Umantis API v1. We automatically authenticate all requests and use `https://\{subdomain\}.umantis.com/api/v1` as the base URL.|
+
+        |Abacus|`abacus/api`|Abacus REST API. We automatically authenticate all requests and use `https://\{\{abacusUrl\}\}/api/entity/v1/mandants/\{\{mandantId\}\}` as the base URL.|
+
+        |Absence.io|`absenceio/v2`|Absence.io API. We automatically authenticate all requests and use `https://app.absence.io/api/v2` as the base URL.|
+
+        |ADP Decidium|`adpdecidium/default`|ADP Decidium API. We automatically authenticate all requests and use `https://api.eu.adp.com` as the base URL.|
+
+        |ADP Link|`adplink/default`|ADP Link API. We automatically authenticate all requests and use `https://api.eu.adp.com` as the base URL.|
+
+        |ADP Workforce Now|`adpworkforcenow/default`|ADP Workforce Now API v2. We automatically authenticate all requests and use the correct subdomain.|
+
+        |AFAS Software|`afas/api`|AFAS'' API. We automatically authenticate all requests and use `https://\{domain\}/ProfitRestServices` as the base URL.|
+
+        |AlexisHR|`alexishr/v1`|AlexisHR''s v1 API We automatically authenticate all requests and use `https://\{subdomain\}.alexishr.com` as base URL.|
+
+        |ApplicantStack|`applicantstack/api`|ApplicantStack''s API. We automatically authenticate all requests and use `https://\{subdomain\}.applicantstack.com/api/` as the base URL.|
+
+        |Apploi|`apploi/rest-api`|The Apploi API. We automatically authenticate all requests and use `https://partners.apploi.com/` as the base URL.|
+
+        |Ashby|`ashby/v1`|Ashby''s V1 API. We automatically authenticate all requests with the provided credentials and use `https://api.ashbyhq.com` as the base URL. Please note that Ashby uses an RPC-style API. Please check the Ashby API documentation for details on how to use it.|
+
+        |Asymbl|`asymbl/v63`|We use `https://\{subdomain\}.my.salesforce.com` as the base URL. Find the official docs here.|
+
+        |Atlas|`atlas/v1`|We use `https://api.recruitwithatlas.com/api/v1/` as the base URL. Find the official docs here.|
+
+        |Avature|`avature/custom-api`|Avatures''s Custom API. Call `Get /openapi` to retrieve the specific custom API schema. We automatically authenticate all requests and use the instance specific custom API URL as the base URL.|
+
+        |Avionté|`avionte/front-office-v1`|Avionte''s API. We automatically authenticate all requests and use `https://api.avionte.com/front-office/v1` as the base URL. Documentation for the BOLD Front Office API: https://developer.avionte.com/reference/get-all-talent-tags|
+
+        |BambooHR|`bamboohr/v1`|BambooHR''s API. We automatically authenticate all requests using the customer credentials `https://api.bamboohr.com/api/gateway.php/\{subdomain\}/v1` as the base URL.|
+
+        |BITE|`bite/v1`|Bite''s v1 API.'
       tags:
       - General
       parameters:
@@ -146,6 +208,16 @@ paths:
                     - message: This is an example warning!
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: PostPassthroughToolApi
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    integration_id=\"workday:HWUTwvyx2wLoSUHphiWVrp28\",\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.send_passthrough_request(tool=\"personio\", api=\"personnel\", method=\"GET\", path=\"/company/employees\")\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: PostPassthroughToolApi
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  integration_id: \"workday:HWUTwvyx2wLoSUHphiWVrp28\",\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.sendPassthroughRequest({\n    tool: \"personio\",\n    api: \"personnel\",\n    body: {\n      method: \"GET\",\n      path: \"/company/employees\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: PostPassthroughToolApi
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  integration_id: 'workday:HWUTwvyx2wLoSUHphiWVrp28',\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.send_passthrough_request(tool: 'personio', api: 'personnel', body: Models::Shared::PostPassthroughToolApiRequestBody.new(\n  method: Models::Shared::Method::GET,\n  path: '/company/employees'\n))\n\nunless res.post_passthrough_tool_api_positive_response.nil?\n  # handle response\nend"
   /integrations/{integration_id}:
     delete:
       operationId: DeleteIntegrationsIntegrationId
@@ -177,6 +249,16 @@ paths:
                 $ref: '#/components/schemas/DeleteIntegrationsIntegrationIdPositiveResponse'
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: DeleteIntegrationsIntegrationId
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.delete_integration(integration_id=\"<id>\", body={})\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: DeleteIntegrationsIntegrationId
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.deleteIntegration({\n    integration_id: \"<id>\",\n    body: {},\n  });\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: DeleteIntegrationsIntegrationId
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.delete_integration(integration_id: '<id>', body: Models::Shared::DeleteIntegrationsIntegrationIdRequestBody.new)\n\nunless res.delete_integrations_integration_id_positive_response.nil?\n  # handle response\nend"
     get:
       operationId: GetIntegrationsIntegrationId
       summary: Get integration details
@@ -248,6 +330,16 @@ paths:
                           coverage_status: SUPPORTED
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: GetIntegrationsIntegrationId
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.get_integration_details(integration_id=\"<id>\")\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: GetIntegrationsIntegrationId
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.getIntegrationDetails({\n    integration_id: \"<id>\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: GetIntegrationsIntegrationId
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.get_integration_details(integration_id: '<id>')\n\nunless res.get_integrations_integration_id_positive_response.nil?\n  # handle response\nend"
   /integrations/{integration_id}/enabled:
     put:
       operationId: PutIntegrationsIntegrationIdEnabled
@@ -283,6 +375,16 @@ paths:
                 $ref: '#/components/schemas/PutIntegrationsIntegrationIdEnabledPositiveResponse'
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: PutIntegrationsIntegrationIdEnabled
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.set_integration_enabled(integration_id=\"<id>\", value=False)\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: PutIntegrationsIntegrationIdEnabled
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.setIntegrationEnabled({\n    integration_id: \"<id>\",\n    body: {\n      value: false,\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: PutIntegrationsIntegrationIdEnabled
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.set_integration_enabled(integration_id: '<id>', body: Models::Shared::PutIntegrationsIntegrationIdEnabledRequestBody.new(\n  value: false\n))\n\nunless res.put_integrations_integration_id_enabled_positive_response.nil?\n  # handle response\nend"
   /integrations/{integration_id}/relink:
     post:
       operationId: PostIntegrationsIntegrationIdRelink
@@ -342,6 +444,16 @@ paths:
                 $ref: '#/components/schemas/PostIntegrationsIntegrationIdRelinkPositiveResponse'
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: PostIntegrationsIntegrationIdRelink
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.create_reconnection_link(integration_id=\"personio:93fCvorjZ2jas7ZekX1V1n5d\", language=\"en\", scope_config_id=\"9Pv6aCFwNDEzPNmwjSsY9SQx\", link_type=\"EMBEDDED\")\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: PostIntegrationsIntegrationIdRelink
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.createReconnectionLink({\n    integration_id: \"personio:93fCvorjZ2jas7ZekX1V1n5d\",\n    body: {\n      scope_config_id: \"9Pv6aCFwNDEzPNmwjSsY9SQx\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: PostIntegrationsIntegrationIdRelink
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.create_reconnection_link(integration_id: 'personio:93fCvorjZ2jas7ZekX1V1n5d', body: Models::Shared::PostIntegrationsIntegrationIdRelinkRequestBody.new(\n  scope_config_id: '9Pv6aCFwNDEzPNmwjSsY9SQx'\n))\n\nunless res.post_integrations_integration_id_relink_positive_response.nil?\n  # handle response\nend"
   /integrations/{integration_id}/setup-link:
     post:
       operationId: PostIntegrationsIntegrationIdSetupLink
@@ -382,6 +494,16 @@ paths:
                 $ref: '#/components/schemas/PostIntegrationsIntegrationIdSetupLinkPositiveResponse'
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: PostIntegrationsIntegrationIdSetupLink
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.create_setup_link(integration_id=\"personio:93fCvorjZ2jas7ZekX1V1n5d\", link_type=\"EMBEDDED\", language=\"en\")\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: PostIntegrationsIntegrationIdSetupLink
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.createSetupLink({\n    integration_id: \"personio:93fCvorjZ2jas7ZekX1V1n5d\",\n    body: {\n      link_type: \"EMBEDDED\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: PostIntegrationsIntegrationIdSetupLink
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.create_setup_link(integration_id: 'personio:93fCvorjZ2jas7ZekX1V1n5d', body: Models::Shared::PostIntegrationsIntegrationIdSetupLinkRequestBody.new(\n  link_type: Models::Shared::PostIntegrationsIntegrationIdSetupLinkRequestBodyLinkType::EMBEDDED\n))\n\nunless res.post_integrations_integration_id_setup_link_positive_response.nil?\n  # handle response\nend"
   /integrations/{integration_id}/integration-fields:
     get:
       operationId: GetIntegrationsIntegrationIdIntegrationFields
@@ -434,6 +556,16 @@ paths:
                       next: null
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: GetIntegrationsIntegrationIdIntegrationFields
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.get_integration_fields(integration_id=\"<id>\", page_size=100)\n\n    while res is not None:\n        # Handle items\n\n        res = res.next()"
+      - lang: typescript
+        label: GetIntegrationsIntegrationIdIntegrationFields
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.getIntegrationFields({\n    integration_id: \"<id>\",\n  });\n\n  for await (const page of result) {\n    console.log(page);\n  }\n}\n\nrun();"
+      - lang: ruby
+        label: GetIntegrationsIntegrationIdIntegrationFields
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.get_integration_fields(integration_id: '<id>', page_size: 100)\n\nunless res.get_integrations_integration_id_integration_fields_positive_response.nil?\n  # handle response\nend"
   /integrations/{integration_id}/integration-fields/{integration_field_id}:
     patch:
       operationId: PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldId
@@ -491,6 +623,16 @@ paths:
                       is_writable: false
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldId
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.update_integration_field(integration_id=\"integration_id\", integration_field_id=\"integration_field_id\", enable_passthrough=True)\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldId
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.updateIntegrationField({\n    integration_id: \"integration_id\",\n    integration_field_id: \"integration_field_id\",\n    body: {\n      enable_passthrough: true,\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldId
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.update_integration_field(integration_id: 'integration_id', integration_field_id: 'integration_field_id', body: Models::Shared::PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdRequestBody.new(\n  enable_passthrough: true\n))\n\nunless res.patch_integrations_integration_id_integration_fields_integration_field_id_positive_response.nil?\n  # handle response\nend"
   /integrations/{integration_id}/custom-fields:
     get:
       operationId: GetIntegrationsIntegrationIdCustomFields
@@ -546,6 +688,16 @@ paths:
                       next: null
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: GetIntegrationsIntegrationIdCustomFields
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.get_custom_fields(integration_id=\"<id>\", page_size=100)\n\n    while res is not None:\n        # Handle items\n\n        res = res.next()"
+      - lang: typescript
+        label: GetIntegrationsIntegrationIdCustomFields
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.getCustomFields({\n    integration_id: \"<id>\",\n  });\n\n  for await (const page of result) {\n    console.log(page);\n  }\n}\n\nrun();"
+      - lang: ruby
+        label: GetIntegrationsIntegrationIdCustomFields
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.get_custom_fields(integration_id: '<id>', page_size: 100)\n\nunless res.get_integrations_integration_id_custom_fields_positive_response.nil?\n  # handle response\nend"
   /integrations/{integration_id}/custom-fields/{custom_field_id}:
     put:
       operationId: PutIntegrationsIntegrationIdCustomFieldsCustomFieldId
@@ -606,6 +758,16 @@ paths:
                       description: Map this to the employee's tshirt size
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: PutIntegrationsIntegrationIdCustomFieldsCustomFieldId
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.update_custom_field_mapping(integration_id=\"integration_id\", custom_field_id=\"custom_field_id\", integration_field_id=\"integration_field_id\")\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: PutIntegrationsIntegrationIdCustomFieldsCustomFieldId
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.updateCustomFieldMapping({\n    integration_id: \"integration_id\",\n    custom_field_id: \"custom_field_id\",\n    body: {\n      integration_field_id: \"integration_field_id\",\n    },\n  });\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: PutIntegrationsIntegrationIdCustomFieldsCustomFieldId
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.update_custom_field_mapping(integration_id: 'integration_id', custom_field_id: 'custom_field_id', body: Models::Shared::PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody.new(\n  integration_field_id: 'integration_field_id'\n))\n\nunless res.put_integrations_integration_id_custom_fields_custom_field_id_positive_response.nil?\n  # handle response\nend"
   /tools/{category}:
     get:
       operationId: GetToolsCategory
@@ -673,36 +835,19 @@ paths:
                             coverage_status: SUPPORTED
         default:
           $ref: '#/components/responses/ErrorResponseGeneral'
+      x-codeSamples:
+      - lang: python
+        label: GetToolsCategory
+        source: "from kombo import Kombo\n\n\nwith Kombo(\n    api_key=\"<YOUR_BEARER_TOKEN_HERE>\",\n) as k_client:\n\n    res = k_client.general.get_tools(category=\"ats\")\n\n    # Handle response\n    print(res)"
+      - lang: typescript
+        label: GetToolsCategory
+        source: "import { Kombo } from \"@kombo-api/sdk\";\n\nconst kombo = new Kombo({\n  api_key: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await kombo.general.getTools({\n    category: \"ats\",\n  });\n\n  console.log(result);\n}\n\nrun();"
+      - lang: ruby
+        label: GetToolsCategory
+        source: "require 'kombo'\n\nModels = ::Kombo::Models\ns = ::Kombo::Kombo.new(\n  security: Models::Shared::Security.new(\n    api_key: '<YOUR_BEARER_TOKEN_HERE>'\n  )\n)\nres = s.general.get_tools(category: Models::Shared::GetToolsCategoryParameterCategory::ATS)\n\nunless res.get_tools_category_positive_response.nil?\n  # handle response\nend"
 components:
   schemas:
-    GetIntegrationsIntegrationIdIntegrationFieldsParameterIntegrationId:
-      type: string
-    PostIntegrationsIntegrationIdSetupLinkRequestBody:
-      type: object
-      properties:
-        language:
-          type:
-          - string
-          - 'null'
-          enum:
-          - en
-          - de
-          - fr
-          - it
-          - es
-          default: en
-          description: Language of the setup flow UI.
-        link_type:
-          type: string
-          enum:
-          - EMBEDDED
-          - MAGIC_LINK
-          description: The type of link you want to create. `EMBEDDED` is for the [embedded flow](../guides/connect/embedded-flow) using the Kombo Connect SDK (these links are valid for 1 hour) and `MAGIC_LINK` is for [magic links](../guides/connect/magic-links) which you send out manually to customers (these are valid for 1 year).
-      required:
-      - link_type
-    GetIntegrationsIntegrationIdCustomFieldsParameterIntegrationId:
-      type: string
-    GetIntegrationsIntegrationIdCustomFieldsPositiveResponse:
+    PutIntegrationsIntegrationIdEnabledPositiveResponse:
       type: object
       properties:
         status:
@@ -710,335 +855,20 @@ components:
           const: success
         data:
           type: object
-          properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The unique ID of the field
-                  key:
-                    type: string
-                    description: The key of the custom field as it will be used in the custom_field object of the corresponding model
-                  integration_field:
-                    type:
-                    - object
-                    - 'null'
-                    properties:
-                      id:
-                        type: string
-                        description: The integration field's unique ID
-                      key:
-                        type: string
-                        description: The key of the integration field in the remote system
-                      type:
-                        type: string
-                        enum:
-                        - DEFAULT
-                        - CUSTOM
-                        description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
-                      label:
-                        type:
-                        - string
-                        - 'null'
-                        description: The label of the integration field in the remote system
-                    required:
-                    - id
-                    - key
-                    - type
-                    - label
-                    description: The integration field the custom field is mapped to. Null if not mapped.
-                  model:
-                    type: string
-                    description: The model the field is associated with
-                  label:
-                    type:
-                    - string
-                    - 'null'
-                    description: The label of the custom field
-                  description:
-                    type:
-                    - string
-                    - 'null'
-                    description: The description of the custom field
-                required:
-                - id
-                - key
-                - integration_field
-                - model
-                - label
-                - description
-                examples:
-                - id: EU3Bwa4iDfGspEELW71WDvvu
-                  key: tshirt_size
-                  integration_field:
-                    id: 3n6geaAmKL5tFonXVAtsMDmr
-                    key: custom.tshirt_size
-                    type: CUSTOM
-                    label: T-Shirt Size
-                  model: hris_employees
-                  label: T-Shirt Size
-                  description: Map this to the employee's tshirt size
-            next_cursor:
-              type:
-              - string
-              - 'null'
-              description: '**(⚠️ Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.'
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
-          required:
-          - results
-          - next_cursor
-          - next
-          examples:
-          - results:
-            - id: D9CoSqqun6ix7uKEwb2kHBU1
-              key: unified_tax_id
-              integration_field:
-                id: FFpTK47GhXnU6QAopPq2bdos
-                key: tax_id
-                type: DEFAULT
-                label: The employee's tax ID
-              model: hris_employees
-              label: null
-              description: null
-            next_cursor: null
-            next: null
       required:
       - status
       - data
-    PostIntegrationsIntegrationIdSetupLinkPositiveResponse:
+    DeleteIntegrationsIntegrationIdRequestBody:
       type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            link:
-              type: string
-              format: uri
-              description: The setup link URL to pass to the Kombo Connect SDK.
-          required:
-          - link
-      required:
-      - status
-      - data
-    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationFieldId:
-      type: string
-    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationId:
-      type: string
-    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              description: The unique ID of the field.
-            key:
-              type: string
-              description: The key of the field in the remote system.
-            model:
-              type: string
-              description: The model the field is associated with.
-            type:
-              type: string
-              enum:
-              - DEFAULT
-              - CUSTOM
-              description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
-            label:
-              type:
-              - string
-              - 'null'
-              description: The label of the field in the remote system.
-            is_passthrough_enabled:
-              type: boolean
-              description: Whether the field is included in the integrations_fields array of the corresponding model.
-            is_writable:
-              type: boolean
-              const: false
-              description: This field is related to a deprecated feature and means nothing, but is kept for backwards compatibility.
-          required:
-          - id
-          - key
-          - model
-          - type
-          - label
-          - is_passthrough_enabled
-          - is_writable
-          examples:
-          - id: 9suhxJU83Kon4kPTS47837uE
-            key: tax_id
-            model: hris_employees
-            type: DEFAULT
-            label: Tax ID
-            is_passthrough_enabled: true
-            is_writable: false
-      required:
-      - status
-      - data
-    GetIntegrationsIntegrationIdIntegrationFieldsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 2000
-      default: 100
-      description: The number of results to return per page. Maximum is 2000.
+      properties: {}
     PutIntegrationsIntegrationIdEnabledParameterIntegrationId:
       type: string
-    PostForceSyncRequestBody:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - FULL
-          - DELTA
-          default: FULL
-          description: The type of the triggered sync.
-    PostPassthroughToolApiParameterApi:
-      type: string
-      description: The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs.
-    DeleteIntegrationsIntegrationIdParameterIntegrationId:
-      type: string
-    PostForceSyncPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            already_queued:
-              type: boolean
-              description: We only allow 1 concurrent sync to be running or queued.
-            sync_id:
-              type: string
-              description: ID of the newly-created or already-queued-or-running sync.
-            type:
-              type: string
-              enum:
-              - FULL
-              - DELTA
-              description: The type of the triggered sync. May differ from request, if the integration does not support delta syncs or if another sync is already running.
-          required:
-          - already_queued
-          - sync_id
-          - type
-          examples:
-          - already_queued: false
-            sync_id: 119ihtp91nA3dqRFiV67nXS6
-            type: DELTA
-      required:
-      - status
-      - data
-    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterIntegrationId:
-      type: string
-      description: The unique ID of the integration where the custom field mapping should be updated
-    PostPassthroughToolApiParameterTool:
-      type: string
-      description: The ID of the tool whose passthrough API you want to call (e.g., `personio`).
     GetIntegrationsIntegrationIdCustomFieldsParameterCursor:
       type: string
       description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    GetIntegrationsIntegrationIdIntegrationFieldsPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-          properties:
-            results:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    description: The unique ID of the field.
-                  key:
-                    type: string
-                    description: The key of the field in the remote system.
-                  model:
-                    type: string
-                    description: The model the field is associated with.
-                  type:
-                    type: string
-                    enum:
-                    - DEFAULT
-                    - CUSTOM
-                    description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
-                  label:
-                    type:
-                    - string
-                    - 'null'
-                    description: The label of the field in the remote system.
-                  is_passthrough_enabled:
-                    type: boolean
-                    description: Whether the field is included in the integrations_fields array of the corresponding model.
-                  is_writable:
-                    type: boolean
-                    const: false
-                    description: This field is related to a deprecated feature and means nothing, but is kept for backwards compatibility.
-                required:
-                - id
-                - key
-                - model
-                - type
-                - label
-                - is_passthrough_enabled
-                - is_writable
-                examples:
-                - id: 9suhxJU83Kon4kPTS47837uE
-                  key: tax_id
-                  model: hris_employees
-                  type: DEFAULT
-                  label: Tax ID
-                  is_passthrough_enabled: true
-                  is_writable: false
-            next_cursor:
-              type:
-              - string
-              - 'null'
-              description: '**(⚠️ Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.'
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
-          required:
-          - results
-          - next_cursor
-          - next
-          examples:
-          - results:
-            - id: FFpTK47GhXnU6QAopPq2bdos
-              key: tax_id
-              model: hris_employees
-              type: DEFAULT
-              label: Tax ID
-              is_passthrough_enabled: true
-              is_writable: false
-            next_cursor: null
-            next: null
-      required:
-      - status
-      - data
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterIntegrationId:
+      type: string
+      description: The unique ID of the integration where the custom field mapping should be updated
     PostIntegrationsIntegrationIdRelinkRequestBody:
       type: object
       properties:
@@ -1072,27 +902,275 @@ components:
 
 
             This defaults to `EMBEDDED`, which is our recommended method of implementing the connection flow for a seamless user experience.'
-    GetIntegrationsIntegrationIdCustomFieldsParameterPageSize:
-      type: integer
-      format: int64
-      minimum: 1
-      maximum: 250
-      default: 100
-      description: The number of results to return per page. Maximum is 250.
-    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdRequestBody:
+    GetToolsCategoryPositiveResponse:
       type: object
       properties:
-        enable_passthrough:
-          type:
-          - boolean
-          - 'null'
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            tools:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  label:
+                    type: string
+                  internal_label:
+                    type:
+                    - string
+                    - 'null'
+                    description: Internal label that can help you debug specific variants of the integration. Only show the `label` to your users.
+                  assets:
+                    type: object
+                    properties:
+                      logo_url:
+                        type: string
+                      icon_url:
+                        type: string
+                      icon_black_url:
+                        type: string
+                    required:
+                    - logo_url
+                    - icon_url
+                    - icon_black_url
+                  paid_api_details_markdown:
+                    type:
+                    - string
+                    - 'null'
+                    description: Markdown formatted text that describes details about the paid API. `null` if the tool is not paid.
+                  fast_track_details_markdown:
+                    type:
+                    - string
+                    - 'null'
+                    description: Markdown formatted text that describes details about the fast track process. `null` if the fast track process is not available.
+                  partner_only_details_markdown:
+                    type:
+                    - string
+                    - 'null'
+                    description: Markdown formatted text that describes partnership requirements. `null` if the tool does not require a partnership.
+                  connection_guide_url:
+                    type:
+                    - string
+                    - 'null'
+                    description: URL to the connection guide for this tool. `null` if no connection guide is available.
+                  coverage:
+                    type: object
+                    properties:
+                      read_models:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: ID of the model (e.g. hris_employees).
+                            label:
+                              type: string
+                              description: Label of the model (e.g. Employees).
+                            coverage_status:
+                              type: string
+                              enum:
+                              - SUPPORTED
+                              - UNSUPPORTED
+                              - NOT_IMPLEMENTED
+                              - UNKNOWN
+                              description: 'The status of a datapoint of an integrated tool:
+
+
+                                - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                            fields:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Key of the field in the model (e.g. first_name).
+                                  coverage_status:
+                                    type: string
+                                    enum:
+                                    - SUPPORTED
+                                    - UNSUPPORTED
+                                    - NOT_IMPLEMENTED
+                                    - UNKNOWN
+                                    description: 'The status of a datapoint of an integrated tool:
+
+
+                                      - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                      - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                      - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                      - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                                required:
+                                - id
+                                - coverage_status
+                          required:
+                          - id
+                          - label
+                          - coverage_status
+                          - fields
+                          description: List of models we can read for this tool.
+                      write_actions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            label:
+                              type: string
+                            coverage_status:
+                              type: string
+                              enum:
+                              - SUPPORTED
+                              - UNSUPPORTED
+                              - NOT_IMPLEMENTED
+                              - UNKNOWN
+                              description: 'The status of a datapoint of an integrated tool:
+
+
+                                - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                            fields:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Key of the input field (e.g. `candidate.first_name`).
+                                  coverage_status:
+                                    type: string
+                                    enum:
+                                    - SUPPORTED
+                                    - UNSUPPORTED
+                                    - NOT_IMPLEMENTED
+                                    - UNKNOWN
+                                    description: 'The status of a datapoint of an integrated tool:
+
+
+                                      - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                      - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                      - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                      - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                                required:
+                                - id
+                                - coverage_status
+                          required:
+                          - id
+                          - label
+                          - coverage_status
+                          - fields
+                          description: List of supported write actions for this tool.
+                      features:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            label:
+                              type: string
+                            coverage_status:
+                              type: string
+                              enum:
+                              - SUPPORTED
+                              - UNSUPPORTED
+                              - NOT_IMPLEMENTED
+                              - UNKNOWN
+                              description: 'The status of a datapoint of an integrated tool:
+
+
+                                - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                          required:
+                          - id
+                          - label
+                          - coverage_status
+                    required:
+                    - read_models
+                    - write_actions
+                    - features
+                    description: This describes the supported models and actions of this tool.
+                required:
+                - id
+                - label
+                - internal_label
+                - assets
+                - paid_api_details_markdown
+                - fast_track_details_markdown
+                - partner_only_details_markdown
+                - connection_guide_url
+                - coverage
+          required:
+          - tools
+          examples:
+          - tools:
+            - id: factorial
+              label: Factorial
+              internal_label: null
+              assets:
+                logo_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg
+                icon_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg
+                icon_black_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon-black.svg
+              paid_api_details_markdown: null
+              fast_track_details_markdown: null
+              partner_only_details_markdown: null
+              connection_guide_url: https://help.kombo.dev/hc/en-us/articles/18743884123409-Factorial-HR-How-do-I-link-my-account
+              coverage:
+                read_models:
+                - id: hris_employees
+                  label: Employees
+                  coverage_status: SUPPORTED
+                  fields:
+                  - id: date_of_birth
+                    coverage_status: SUPPORTED
+                - id: hris_teams
+                  label: Groups
+                  coverage_status: UNSUPPORTED
+                  fields:
+                  - id: parent_id
+                    coverage_status: UNSUPPORTED
+                write_actions:
+                - id: hris_create_employee
+                  label: Create employee
+                  coverage_status: SUPPORTED
+                  fields:
+                  - id: first_name
+                    coverage_status: SUPPORTED
+                features:
+                - id: automatic_source_writing
+                  label: Automatic Source Writing
+                  coverage_status: SUPPORTED
       required:
-      - enable_passthrough
-    PostIntegrationsIntegrationIdSetupLinkParameterIntegrationId:
-      type: string
-    DeleteIntegrationsIntegrationIdRequestBody:
-      type: object
-      properties: {}
+      - status
+      - data
     GetCheckApiKeyPositiveResponse:
       type: object
       properties:
@@ -1107,6 +1185,7 @@ components:
             customer_id:
               type: string
               description: '**(⚠️ Deprecated)** Renamed to `environment_id`.'
+              deprecated: true
           required:
           - environment_id
           - customer_id
@@ -1116,91 +1195,63 @@ components:
       required:
       - status
       - data
-    PostIntegrationsIntegrationIdRelinkPositiveResponse:
+    PostPassthroughToolApiParameterApi:
+      type: string
+      description: The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs.
+    GetIntegrationsIntegrationIdCustomFieldsParameterIntegrationId:
+      type: string
+    PostIntegrationsIntegrationIdSetupLinkRequestBody:
       type: object
       properties:
-        status:
+        language:
+          type:
+          - string
+          - 'null'
+          enum:
+          - en
+          - de
+          - fr
+          - it
+          - es
+          default: en
+          description: Language of the setup flow UI.
+        link_type:
           type: string
-          const: success
-        data:
-          type: object
-          properties:
-            link:
-              type: string
-              format: uri
-          required:
-          - link
+          enum:
+          - EMBEDDED
+          - MAGIC_LINK
+          description: The type of link you want to create. `EMBEDDED` is for the [embedded flow](../guides/connect/embedded-flow) using the Kombo Connect SDK (these links are valid for 1 hour) and `MAGIC_LINK` is for [magic links](../guides/connect/magic-links) which you send out manually to customers (these are valid for 1 year).
       required:
-      - status
-      - data
-    PostPassthroughToolApiPositiveResponse:
+      - link_type
+    GetIntegrationsIntegrationIdParameterIntegrationId:
+      type: string
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationFieldId:
+      type: string
+    PostForceSyncRequestBody:
       type: object
       properties:
-        status:
+        type:
           type: string
-          const: success
-        data:
-          type: object
-          properties:
-            url:
-              type: string
-              format: uri
-              description: The full URL of the request that we automatically assemble for you based on the specified `api`, the specified `path`, and the integration's auth credentials. You can use this to debug path-related issues (e.g., the API returning 404 errors).
-            status:
-              type: integer
-              format: int64
-              description: The HTTP status code returned from the remote system.
-            headers:
-              type: object
-              additionalProperties:
-                oneOf:
-                - type: string
-                - type: array
-                  items:
-                    type: string
-              description: The HTTP headers returned from the remote system.
-            data:
-              description: The HTTP body returned from the remote system. This will either be an array or object (in the case that JSON was returned) or a string (in any other case).
-          required:
-          - url
-          - status
-          - headers
-          examples:
-          - url: https://api.personio.de/v1/company/employees
-            status: 200
-            headers:
-              content-type: application/json
-            data:
-              success: true
-              data:
-              - id: 123
-                first_name: John
-                last_name: Doe
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-            required:
-            - message
-          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
-      required:
-      - status
-      - data
-      - warnings
-    PutIntegrationsIntegrationIdEnabledPositiveResponse:
+          enum:
+          - FULL
+          - DELTA
+          default: FULL
+          description: The type of the triggered sync.
+    PutIntegrationsIntegrationIdEnabledRequestBody:
       type: object
       properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
+        value:
+          type: boolean
+          description: The desired state of the integration (e.g., `true` for enabled, `false` for disabled).
       required:
-      - status
-      - data
+      - value
+    GetIntegrationsIntegrationIdCustomFieldsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
     GetIntegrationsIntegrationIdPositiveResponse:
       type: object
       properties:
@@ -1557,37 +1608,300 @@ components:
       required:
       - status
       - data
-    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody:
+    GetIntegrationsIntegrationIdIntegrationFieldsPositiveResponse:
       type: object
       properties:
-        integration_field_id:
-          type:
-          - string
-          - 'null'
-          description: The integration field's unique ID which the custom field should be mapped to. Null to remove a mapping.
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The unique ID of the field.
+                  key:
+                    type: string
+                    description: The key of the field in the remote system.
+                  model:
+                    type: string
+                    description: The model the field is associated with.
+                  type:
+                    type: string
+                    enum:
+                    - DEFAULT
+                    - CUSTOM
+                    description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
+                  label:
+                    type:
+                    - string
+                    - 'null'
+                    description: The label of the field in the remote system.
+                  is_passthrough_enabled:
+                    type: boolean
+                    description: Whether the field is included in the integrations_fields array of the corresponding model.
+                  is_writable:
+                    type: boolean
+                    const: false
+                    description: This field is related to a deprecated feature and means nothing, but is kept for backwards compatibility.
+                required:
+                - id
+                - key
+                - model
+                - type
+                - label
+                - is_passthrough_enabled
+                - is_writable
+                examples:
+                - id: 9suhxJU83Kon4kPTS47837uE
+                  key: tax_id
+                  model: hris_employees
+                  type: DEFAULT
+                  label: Tax ID
+                  is_passthrough_enabled: true
+                  is_writable: false
+            next_cursor:
+              type:
+              - string
+              - 'null'
+              description: '**(⚠️ Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.'
+              deprecated: true
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
+          required:
+          - results
+          - next_cursor
+          - next
+          examples:
+          - results:
+            - id: FFpTK47GhXnU6QAopPq2bdos
+              key: tax_id
+              model: hris_employees
+              type: DEFAULT
+              label: Tax ID
+              is_passthrough_enabled: true
+              is_writable: false
+            next_cursor: null
+            next: null
       required:
-      - integration_field_id
-    PostIntegrationsIntegrationIdRelinkParameterIntegrationId:
-      type: string
-    GetIntegrationsIntegrationIdIntegrationFieldsParameterCursor:
-      type: string
-      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
-    PutIntegrationsIntegrationIdEnabledRequestBody:
+      - status
+      - data
+    PostForceSyncPositiveResponse:
       type: object
       properties:
-        value:
-          type: boolean
-          description: The desired state of the integration (e.g., `true` for enabled, `false` for disabled).
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            already_queued:
+              type: boolean
+              description: We only allow 1 concurrent sync of the same type to be running or queued.
+            sync_id:
+              type: string
+              description: ID of the newly-created or already-queued-or-running sync.
+            type:
+              type: string
+              enum:
+              - FULL
+              - DELTA
+              description: The type of the triggered sync. May differ from request, if the integration does not support delta syncs or if another sync is already running.
+          required:
+          - already_queued
+          - sync_id
+          - type
+          examples:
+          - already_queued: false
+            sync_id: 119ihtp91nA3dqRFiV67nXS6
+            type: DELTA
       required:
-      - value
-    GetToolsCategoryParameterCategory:
+      - status
+      - data
+    GetIntegrationsIntegrationIdCustomFieldsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The unique ID of the field
+                  key:
+                    type: string
+                    description: The key of the custom field as it will be used in the custom_field object of the corresponding model
+                  integration_field:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      id:
+                        type: string
+                        description: The integration field's unique ID
+                      key:
+                        type: string
+                        description: The key of the integration field in the remote system
+                      type:
+                        type: string
+                        enum:
+                        - DEFAULT
+                        - CUSTOM
+                        description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
+                      label:
+                        type:
+                        - string
+                        - 'null'
+                        description: The label of the integration field in the remote system
+                    required:
+                    - id
+                    - key
+                    - type
+                    - label
+                    description: The integration field the custom field is mapped to. Null if not mapped.
+                  model:
+                    type: string
+                    description: The model the field is associated with
+                  label:
+                    type:
+                    - string
+                    - 'null'
+                    description: The label of the custom field
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: The description of the custom field
+                required:
+                - id
+                - key
+                - integration_field
+                - model
+                - label
+                - description
+                examples:
+                - id: EU3Bwa4iDfGspEELW71WDvvu
+                  key: tshirt_size
+                  integration_field:
+                    id: 3n6geaAmKL5tFonXVAtsMDmr
+                    key: custom.tshirt_size
+                    type: CUSTOM
+                    label: T-Shirt Size
+                  model: hris_employees
+                  label: T-Shirt Size
+                  description: Map this to the employee's tshirt size
+            next_cursor:
+              type:
+              - string
+              - 'null'
+              description: '**(⚠️ Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.'
+              deprecated: true
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
+          required:
+          - results
+          - next_cursor
+          - next
+          examples:
+          - results:
+            - id: D9CoSqqun6ix7uKEwb2kHBU1
+              key: unified_tax_id
+              integration_field:
+                id: FFpTK47GhXnU6QAopPq2bdos
+                key: tax_id
+                type: DEFAULT
+                label: The employee's tax ID
+              model: hris_employees
+              label: null
+              description: null
+            next_cursor: null
+            next: null
+      required:
+      - status
+      - data
+    PostPassthroughToolApiPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The full URL of the request that we automatically assemble for you based on the specified `api`, the specified `path`, and the integration's auth credentials. You can use this to debug path-related issues (e.g., the API returning 404 errors).
+            status:
+              type: integer
+              format: int64
+              description: The HTTP status code returned from the remote system.
+            headers:
+              type: object
+              additionalProperties:
+                oneOf:
+                - type: string
+                - type: array
+                  items:
+                    type: string
+              description: The HTTP headers returned from the remote system.
+            data:
+              description: The HTTP body returned from the remote system. This will either be an array or object (in the case that JSON was returned) or a string (in any other case).
+          required:
+          - url
+          - status
+          - headers
+          examples:
+          - url: https://api.personio.de/v1/company/employees
+            status: 200
+            headers:
+              content-type: application/json
+            data:
+              success: true
+              data:
+              - id: 123
+                first_name: John
+                last_name: Doe
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    GetIntegrationsIntegrationIdIntegrationFieldsParameterIntegrationId:
       type: string
-      enum:
-      - hris
-      - ats
-      - assessment
-      - lms
-    GetIntegrationsIntegrationIdParameterIntegrationId:
+    PostPassthroughToolApiParameterTool:
+      type: string
+      description: The ID of the tool whose passthrough API you want to call (e.g., `personio`).
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationId:
+      type: string
+    PostIntegrationsIntegrationIdSetupLinkParameterIntegrationId:
       type: string
     PostPassthroughToolApiRequestBody:
       type: object
@@ -1676,6 +1990,123 @@ components:
       required:
       - method
       - path
+    GetToolsCategoryParameterCategory:
+      type: string
+      enum:
+      - hris
+      - ats
+      - assessment
+      - lms
+    DeleteIntegrationsIntegrationIdPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+      required:
+      - status
+      - data
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody:
+      type: object
+      properties:
+        integration_field_id:
+          type:
+          - string
+          - 'null'
+          description: The integration field's unique ID which the custom field should be mapped to. Null to remove a mapping.
+      required:
+      - integration_field_id
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdRequestBody:
+      type: object
+      properties:
+        enable_passthrough:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - enable_passthrough
+    DeleteIntegrationsIntegrationIdParameterIntegrationId:
+      type: string
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique ID of the field.
+            key:
+              type: string
+              description: The key of the field in the remote system.
+            model:
+              type: string
+              description: The model the field is associated with.
+            type:
+              type: string
+              enum:
+              - DEFAULT
+              - CUSTOM
+              description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
+            label:
+              type:
+              - string
+              - 'null'
+              description: The label of the field in the remote system.
+            is_passthrough_enabled:
+              type: boolean
+              description: Whether the field is included in the integrations_fields array of the corresponding model.
+            is_writable:
+              type: boolean
+              const: false
+              description: This field is related to a deprecated feature and means nothing, but is kept for backwards compatibility.
+          required:
+          - id
+          - key
+          - model
+          - type
+          - label
+          - is_passthrough_enabled
+          - is_writable
+          examples:
+          - id: 9suhxJU83Kon4kPTS47837uE
+            key: tax_id
+            model: hris_employees
+            type: DEFAULT
+            label: Tax ID
+            is_passthrough_enabled: true
+            is_writable: false
+      required:
+      - status
+      - data
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterCustomFieldId:
+      type: string
+      description: The unique ID of the custom field that should be updated
+    PostIntegrationsIntegrationIdRelinkParameterIntegrationId:
+      type: string
+    PostIntegrationsIntegrationIdSetupLinkPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            link:
+              type: string
+              format: uri
+              description: The setup link URL to pass to the Kombo Connect SDK.
+          required:
+          - link
+      required:
+      - status
+      - data
     PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdPositiveResponse:
       type: object
       properties:
@@ -1753,21 +2184,17 @@ components:
       required:
       - status
       - data
-    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterCustomFieldId:
+    GetIntegrationsIntegrationIdIntegrationFieldsParameterCursor:
       type: string
-      description: The unique ID of the custom field that should be updated
-    DeleteIntegrationsIntegrationIdPositiveResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          const: success
-        data:
-          type: object
-      required:
-      - status
-      - data
-    GetToolsCategoryPositiveResponse:
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetIntegrationsIntegrationIdIntegrationFieldsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 2000
+      default: 100
+      description: The number of results to return per page. Maximum is 2000.
+    PostIntegrationsIntegrationIdRelinkPositiveResponse:
       type: object
       properties:
         status:
@@ -1776,263 +2203,11 @@ components:
         data:
           type: object
           properties:
-            tools:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  label:
-                    type: string
-                  internal_label:
-                    type:
-                    - string
-                    - 'null'
-                    description: Internal label that can help you debug specific variants of the integration. Only show the `label` to your users.
-                  assets:
-                    type: object
-                    properties:
-                      logo_url:
-                        type: string
-                      icon_url:
-                        type: string
-                      icon_black_url:
-                        type: string
-                    required:
-                    - logo_url
-                    - icon_url
-                    - icon_black_url
-                  paid_api_details_markdown:
-                    type:
-                    - string
-                    - 'null'
-                    description: Markdown formatted text that describes details about the paid API. `null` if the tool is not paid.
-                  fast_track_details_markdown:
-                    type:
-                    - string
-                    - 'null'
-                    description: Markdown formatted text that describes details about the fast track process. `null` if the fast track process is not available.
-                  partner_only_details_markdown:
-                    type:
-                    - string
-                    - 'null'
-                    description: Markdown formatted text that describes partnership requirements. `null` if the tool does not require a partnership.
-                  connection_guide_url:
-                    type:
-                    - string
-                    - 'null'
-                    description: URL to the connection guide for this tool. `null` if no connection guide is available.
-                  coverage:
-                    type: object
-                    properties:
-                      read_models:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                              description: ID of the model (e.g. hris_employees).
-                            label:
-                              type: string
-                              description: Label of the model (e.g. Employees).
-                            coverage_status:
-                              type: string
-                              enum:
-                              - SUPPORTED
-                              - UNSUPPORTED
-                              - NOT_IMPLEMENTED
-                              - UNKNOWN
-                              description: 'The status of a datapoint of an integrated tool:
-
-
-                                - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
-
-                                - `UNSUPPORTED`: the tool does not support the datapoint.
-
-                                - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
-
-                                - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
-                            fields:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                    description: Key of the field in the model (e.g. first_name).
-                                  coverage_status:
-                                    type: string
-                                    enum:
-                                    - SUPPORTED
-                                    - UNSUPPORTED
-                                    - NOT_IMPLEMENTED
-                                    - UNKNOWN
-                                    description: 'The status of a datapoint of an integrated tool:
-
-
-                                      - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
-
-                                      - `UNSUPPORTED`: the tool does not support the datapoint.
-
-                                      - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
-
-                                      - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
-                                required:
-                                - id
-                                - coverage_status
-                          required:
-                          - id
-                          - label
-                          - coverage_status
-                          - fields
-                          description: List of models we can read for this tool.
-                      write_actions:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                            label:
-                              type: string
-                            coverage_status:
-                              type: string
-                              enum:
-                              - SUPPORTED
-                              - UNSUPPORTED
-                              - NOT_IMPLEMENTED
-                              - UNKNOWN
-                              description: 'The status of a datapoint of an integrated tool:
-
-
-                                - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
-
-                                - `UNSUPPORTED`: the tool does not support the datapoint.
-
-                                - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
-
-                                - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
-                            fields:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id:
-                                    type: string
-                                    description: Key of the input field (e.g. `candidate.first_name`).
-                                  coverage_status:
-                                    type: string
-                                    enum:
-                                    - SUPPORTED
-                                    - UNSUPPORTED
-                                    - NOT_IMPLEMENTED
-                                    - UNKNOWN
-                                    description: 'The status of a datapoint of an integrated tool:
-
-
-                                      - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
-
-                                      - `UNSUPPORTED`: the tool does not support the datapoint.
-
-                                      - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
-
-                                      - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
-                                required:
-                                - id
-                                - coverage_status
-                          required:
-                          - id
-                          - label
-                          - coverage_status
-                          - fields
-                          description: List of supported write actions for this tool.
-                      features:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                            label:
-                              type: string
-                            coverage_status:
-                              type: string
-                              enum:
-                              - SUPPORTED
-                              - UNSUPPORTED
-                              - NOT_IMPLEMENTED
-                              - UNKNOWN
-                              description: 'The status of a datapoint of an integrated tool:
-
-
-                                - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
-
-                                - `UNSUPPORTED`: the tool does not support the datapoint.
-
-                                - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
-
-                                - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
-                          required:
-                          - id
-                          - label
-                          - coverage_status
-                    required:
-                    - read_models
-                    - write_actions
-                    - features
-                    description: This describes the supported models and actions of this tool.
-                required:
-                - id
-                - label
-                - internal_label
-                - assets
-                - paid_api_details_markdown
-                - fast_track_details_markdown
-                - partner_only_details_markdown
-                - connection_guide_url
-                - coverage
+            link:
+              type: string
+              format: uri
           required:
-          - tools
-          examples:
-          - tools:
-            - id: factorial
-              label: Factorial
-              internal_label: null
-              assets:
-                logo_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg
-                icon_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg
-                icon_black_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon-black.svg
-              paid_api_details_markdown: null
-              fast_track_details_markdown: null
-              partner_only_details_markdown: null
-              connection_guide_url: https://help.kombo.dev/hc/en-us/articles/18743884123409-Factorial-HR-How-do-I-link-my-account
-              coverage:
-                read_models:
-                - id: hris_employees
-                  label: Employees
-                  coverage_status: SUPPORTED
-                  fields:
-                  - id: date_of_birth
-                    coverage_status: SUPPORTED
-                - id: hris_teams
-                  label: Groups
-                  coverage_status: UNSUPPORTED
-                  fields:
-                  - id: parent_id
-                    coverage_status: UNSUPPORTED
-                write_actions:
-                - id: hris_create_employee
-                  label: Create employee
-                  coverage_status: SUPPORTED
-                  fields:
-                  - id: first_name
-                    coverage_status: SUPPORTED
-                features:
-                - id: automatic_source_writing
-                  label: Automatic Source Writing
-                  coverage_status: SUPPORTED
+          - link
       required:
       - status
       - data

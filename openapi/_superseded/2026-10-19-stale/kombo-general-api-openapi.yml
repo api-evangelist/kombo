@@ -1,0 +1,2115 @@
+openapi: 3.2.0
+info:
+  title: Kombo General API
+  version: 1.0.0
+servers:
+- url: https://api.kombo.dev/v1
+  description: Kombo EU API
+- url: https://api.us.kombo.dev/v1
+  description: Kombo US API
+security:
+- ApiKey: []
+tags:
+- name: General
+paths:
+  /check-api-key:
+    get:
+      operationId: GetCheckApiKey
+      summary: Check API key
+      description: Check whether your API key is working properly.
+      tags:
+      - General
+      responses:
+        '200':
+          description: GET /check-api-key Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCheckApiKeyPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      environment_id: 2Uev1YUTqLFdvMPD3Jtrg2FX
+                      customer_id: 2Uev1YUTqLFdvMPD3Jtrg2FX
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /force-sync:
+    post:
+      operationId: PostForceSync
+      summary: Trigger sync
+      description: 'Trigger a sync for a specific integration.
+
+
+        Please note that it is **not** necessary nor recommended to call this endpoint periodically on your side. Kombo already performs periodic syncs for you and you should only trigger syncs yourself in special cases (like when a user clicks on a "Sync" button in your app).'
+      tags:
+      - General
+      parameters:
+      - in: header
+        name: X-Integration-Id
+        schema:
+          type: string
+        description: ID of the integration you want to interact with.
+        example: workday:HWUTwvyx2wLoSUHphiWVrp28
+        required: true
+      requestBody:
+        description: POST /force-sync Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostForceSyncRequestBody'
+      responses:
+        '200':
+          description: POST /force-sync Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostForceSyncPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      already_queued: false
+                      sync_id: 119ihtp91nA3dqRFiV67nXS6
+                      type: DELTA
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /passthrough/{tool}/{api}:
+    post:
+      operationId: PostPassthroughToolApi
+      summary: Send passthrough request
+      description: Send a request to the specified integration's native API.
+      tags:
+      - General
+      parameters:
+      - in: header
+        name: X-Integration-Id
+        schema:
+          type: string
+        description: ID of the integration you want to interact with.
+        example: greenhouse:HWUTwvyx2wLoSUHphiWVrp28
+        required: true
+      - name: tool
+        in: path
+        required: true
+        description: The ID of the tool whose passthrough API you want to call (e.g., `personio`).
+        schema:
+          $ref: '#/components/schemas/PostPassthroughToolApiParameterTool'
+        examples:
+          example1:
+            value: personio
+      - name: api
+        in: path
+        required: true
+        description: The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs.
+        schema:
+          $ref: '#/components/schemas/PostPassthroughToolApiParameterApi'
+        examples:
+          example1:
+            value: personnel
+      requestBody:
+        description: POST /passthrough/:tool/:api Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostPassthroughToolApiRequestBody'
+            examples:
+              example1:
+                value:
+                  method: GET
+                  path: /company/employees
+      responses:
+        '200':
+          description: POST /passthrough/:tool/:api Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostPassthroughToolApiPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      url: https://api.personio.de/v1/company/employees
+                      status: 200
+                      headers:
+                        content-type: application/json
+                      data:
+                        success: true
+                        data:
+                        - id: 123
+                          first_name: John
+                          last_name: Doe
+                    warnings:
+                    - message: This is an example warning!
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /integrations/{integration_id}:
+    delete:
+      operationId: DeleteIntegrationsIntegrationId
+      summary: Delete integration
+      description: 'Delete the specified integration.
+
+        **⚠️ This can not be undone!**'
+      tags:
+      - General
+      parameters:
+      - name: integration_id
+        in: path
+        required: true
+        description: DELETE /integrations/:integration_id Parameter
+        schema:
+          $ref: '#/components/schemas/DeleteIntegrationsIntegrationIdParameterIntegrationId'
+      requestBody:
+        description: DELETE /integrations/:integration_id Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteIntegrationsIntegrationIdRequestBody'
+      responses:
+        '200':
+          description: DELETE /integrations/:integration_id Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteIntegrationsIntegrationIdPositiveResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+    get:
+      operationId: GetIntegrationsIntegrationId
+      summary: Get integration details
+      description: Get the specified integration with everything you need to display it to your customer.
+      tags:
+      - General
+      parameters:
+      - name: integration_id
+        in: path
+        required: true
+        description: GET /integrations/:integration_id Parameter
+        schema:
+          $ref: '#/components/schemas/GetIntegrationsIntegrationIdParameterIntegrationId'
+      responses:
+        '200':
+          description: GET /integrations/:integration_id Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetIntegrationsIntegrationIdPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      id: factorial:8d1hpPsbjxUkoCoa1veLZGe5
+                      tool:
+                        id: factorial
+                        label: Factorial
+                        internal_label: null
+                        logo_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg
+                        icon_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg
+                      category: HRIS
+                      status: ACTIVE
+                      setup_status: COMPLETED
+                      end_user:
+                        organization_name: Acme
+                        creator_email: example-integration-creator@acme.com
+                        origin_id: 2DQJAUtSzzzKP9buDTvUvPk3
+                      scope_config:
+                        id: B1hu5NGyhdjSq5X3hxEz4bAN
+                        name: Anonymous Scopes
+                      data_expired_at: null
+                      created_at: '2022-08-07T14:01:29.196Z'
+                      beta: false
+                      read_models:
+                      - id: hris_employees
+                        label: Employees
+                        is_available: true
+                        coverage_status: SUPPORTED
+                        scope_config_setting: ENABLED
+                        opted_out_by_customer: false
+                        fields:
+                        - id: date_of_birth
+                          is_available: false
+                          coverage_status: SUPPORTED
+                          scope_config_setting: OPTIONAL
+                          opted_out_by_customer: true
+                      write_actions:
+                      - id: hris_create_employee
+                        label: Create employee
+                        is_available: true
+                        coverage_status: SUPPORTED
+                        scope_config_setting: ENABLED
+                        opted_out_by_customer: false
+                        fields:
+                        - id: first_name
+                          is_available: true
+                          coverage_status: SUPPORTED
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /integrations/{integration_id}/enabled:
+    put:
+      operationId: PutIntegrationsIntegrationIdEnabled
+      summary: Set integration enabled
+      description: 'Enable or disable the specified integration. When disabling, all currently running syncs will be cancelled.
+
+
+        All authentication credentials and configuration are preserved. Syncs can be resumed by re-enabling the integration.
+
+
+        You may use this to, for example, pause syncing for customers that are temporarily not using the integration.'
+      tags:
+      - General
+      parameters:
+      - name: integration_id
+        in: path
+        required: true
+        description: PUT /integrations/:integration_id/enabled Parameter
+        schema:
+          $ref: '#/components/schemas/PutIntegrationsIntegrationIdEnabledParameterIntegrationId'
+      requestBody:
+        description: PUT /integrations/:integration_id/enabled Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutIntegrationsIntegrationIdEnabledRequestBody'
+      responses:
+        '200':
+          description: PUT /integrations/:integration_id/enabled Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutIntegrationsIntegrationIdEnabledPositiveResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /integrations/{integration_id}/relink:
+    post:
+      operationId: PostIntegrationsIntegrationIdRelink
+      summary: Create reconnection link
+      description: 'Create a link that will allow the user to reconnect an integration. This is useful if you want to allow your users to update the credentials if the old ones for example expired.
+
+
+        Embed this the same way you would embed the connect link. By default, the link will be valid for 1 hour.
+
+
+        ### Example Request Body
+
+
+        ```json
+
+        {
+
+        "language": "en",
+
+        "scope_config_id": "9Pv6aCFwNDEzPNmwjSsY9SQx",
+
+        "link_type": "EMBEDDED"
+
+        }
+
+        ```'
+      tags:
+      - General
+      parameters:
+      - name: integration_id
+        in: path
+        required: true
+        description: POST /integrations/:integration_id/relink Parameter
+        schema:
+          $ref: '#/components/schemas/PostIntegrationsIntegrationIdRelinkParameterIntegrationId'
+        examples:
+          example1:
+            value: personio:93fCvorjZ2jas7ZekX1V1n5d
+      requestBody:
+        description: POST /integrations/:integration_id/relink Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostIntegrationsIntegrationIdRelinkRequestBody'
+            examples:
+              example1:
+                value:
+                  language: en
+                  scope_config_id: 9Pv6aCFwNDEzPNmwjSsY9SQx
+                  link_type: EMBEDDED
+      responses:
+        '200':
+          description: POST /integrations/:integration_id/relink Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostIntegrationsIntegrationIdRelinkPositiveResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /integrations/{integration_id}/setup-link:
+    post:
+      operationId: PostIntegrationsIntegrationIdSetupLink
+      summary: Create Setup Flow link
+      description: 'Create a link that lets your customer run the Setup Flow for an integration. Use this to send customers back into setup steps like field mapping or employee filtering without having to go through the initial connection flow again. Pass the returned URL to `showKomboConnect` from the Kombo Connect SDK, the same way you do with a connection link.
+
+
+        The integration must have at least one Setup Flow step enabled (e.g. field mapping or employee filtering); otherwise this endpoint returns a `PLATFORM.INPUT_INVALID` error. Steps can be enabled from the Integration Settings tab in the dashboard or via the Create Connection Link endpoint.'
+      tags:
+      - General
+      parameters:
+      - name: integration_id
+        in: path
+        required: true
+        description: POST /integrations/:integration_id/setup-link Parameter
+        schema:
+          $ref: '#/components/schemas/PostIntegrationsIntegrationIdSetupLinkParameterIntegrationId'
+        examples:
+          example1:
+            value: personio:93fCvorjZ2jas7ZekX1V1n5d
+      requestBody:
+        description: POST /integrations/:integration_id/setup-link Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostIntegrationsIntegrationIdSetupLinkRequestBody'
+            examples:
+              example1:
+                value:
+                  language: en
+                  link_type: EMBEDDED
+      responses:
+        '200':
+          description: POST /integrations/:integration_id/setup-link Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostIntegrationsIntegrationIdSetupLinkPositiveResponse'
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /integrations/{integration_id}/integration-fields:
+    get:
+      operationId: GetIntegrationsIntegrationIdIntegrationFields
+      summary: Get integration fields
+      description: 'Get all fields available on the specified integration.
+
+        **This includes the mapping to your custom fields**'
+      tags:
+      - General
+      parameters:
+      - name: integration_id
+        in: path
+        required: true
+        description: GET /integrations/:integration_id/integration-fields Parameter
+        schema:
+          $ref: '#/components/schemas/GetIntegrationsIntegrationIdIntegrationFieldsParameterIntegrationId'
+      - name: cursor
+        in: query
+        required: false
+        description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+        schema:
+          $ref: '#/components/schemas/GetIntegrationsIntegrationIdIntegrationFieldsParameterCursor'
+      - name: page_size
+        in: query
+        required: false
+        description: The number of results to return per page. Maximum is 2000.
+        schema:
+          $ref: '#/components/schemas/GetIntegrationsIntegrationIdIntegrationFieldsParameterPageSize'
+      responses:
+        '200':
+          description: GET /integrations/:integration_id/integration-fields Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetIntegrationsIntegrationIdIntegrationFieldsPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      results:
+                      - id: FFpTK47GhXnU6QAopPq2bdos
+                        key: tax_id
+                        model: hris_employees
+                        type: DEFAULT
+                        label: Tax ID
+                        is_passthrough_enabled: true
+                        is_writable: false
+                      next_cursor: null
+                      next: null
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /integrations/{integration_id}/integration-fields/{integration_field_id}:
+    patch:
+      operationId: PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldId
+      summary: Updates an integration fields passthrough setting
+      description: When enabled, the integration field will be passed as part of the `integration_fields` array on the specific model endpoint. Providing false will disable the passthrough for the specified field.
+      tags:
+      - General
+      parameters:
+      - name: integration_id
+        in: path
+        required: true
+        description: PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter
+        schema:
+          $ref: '#/components/schemas/PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationId'
+        examples:
+          example1:
+            value: integration_id
+      - name: integration_field_id
+        in: path
+        required: true
+        description: PATCH /integrations/:integration_id/integration-fields/:integration_field_id Parameter
+        schema:
+          $ref: '#/components/schemas/PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationFieldId'
+        examples:
+          example1:
+            value: integration_field_id
+      requestBody:
+        description: PATCH /integrations/:integration_id/integration-fields/:integration_field_id Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdRequestBody'
+            examples:
+              example1:
+                value:
+                  enable_passthrough: true
+      responses:
+        '200':
+          description: PATCH /integrations/:integration_id/integration-fields/:integration_field_id Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      id: 9suhxJU83Kon4kPTS47837uE
+                      key: tax_id
+                      model: hris_employees
+                      type: DEFAULT
+                      label: Tax ID
+                      is_passthrough_enabled: true
+                      is_writable: false
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /integrations/{integration_id}/custom-fields:
+    get:
+      operationId: GetIntegrationsIntegrationIdCustomFields
+      summary: Get custom fields with current mappings
+      description: 'Get all custom fields available on the specified integration.
+
+        **This includes the mapping to the corresponding integration field if applicable*'
+      tags:
+      - General
+      parameters:
+      - name: integration_id
+        in: path
+        required: true
+        description: GET /integrations/:integration_id/custom-fields Parameter
+        schema:
+          $ref: '#/components/schemas/GetIntegrationsIntegrationIdCustomFieldsParameterIntegrationId'
+      - name: cursor
+        in: query
+        required: false
+        description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+        schema:
+          $ref: '#/components/schemas/GetIntegrationsIntegrationIdCustomFieldsParameterCursor'
+      - name: page_size
+        in: query
+        required: false
+        description: The number of results to return per page. Maximum is 250.
+        schema:
+          $ref: '#/components/schemas/GetIntegrationsIntegrationIdCustomFieldsParameterPageSize'
+      responses:
+        '200':
+          description: GET /integrations/:integration_id/custom-fields Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetIntegrationsIntegrationIdCustomFieldsPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      results:
+                      - id: D9CoSqqun6ix7uKEwb2kHBU1
+                        key: unified_tax_id
+                        integration_field:
+                          id: FFpTK47GhXnU6QAopPq2bdos
+                          key: tax_id
+                          type: DEFAULT
+                          label: The employee's tax ID
+                        model: hris_employees
+                        label: null
+                        description: null
+                      next_cursor: null
+                      next: null
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /integrations/{integration_id}/custom-fields/{custom_field_id}:
+    put:
+      operationId: PutIntegrationsIntegrationIdCustomFieldsCustomFieldId
+      summary: Put custom field mappings
+      description: Updates the mapping of a given custom field. If the custom field is already mapped, it will be updated.
+      tags:
+      - General
+      parameters:
+      - name: integration_id
+        in: path
+        required: true
+        description: The unique ID of the integration where the custom field mapping should be updated
+        schema:
+          $ref: '#/components/schemas/PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterIntegrationId'
+        examples:
+          example1:
+            value: integration_id
+      - name: custom_field_id
+        in: path
+        required: true
+        description: The unique ID of the custom field that should be updated
+        schema:
+          $ref: '#/components/schemas/PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterCustomFieldId'
+        examples:
+          example1:
+            value: custom_field_id
+      requestBody:
+        description: PUT /integrations/:integration_id/custom-fields/:custom_field_id Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody'
+            examples:
+              example1:
+                value:
+                  integration_field_id: integration_field_id
+      responses:
+        '200':
+          description: PUT /integrations/:integration_id/custom-fields/:custom_field_id Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      id: EU3Bwa4iDfGspEELW71WDvvu
+                      key: tshirt_size
+                      integration_field:
+                        id: 3n6geaAmKL5tFonXVAtsMDmr
+                        key: custom.tshirt_size
+                        type: CUSTOM
+                        label: T-Shirt Size
+                      model: hris_employees
+                      label: T-Shirt Size
+                      description: Map this to the employee's tshirt size
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+  /tools/{category}:
+    get:
+      operationId: GetToolsCategory
+      summary: Get tools
+      description: 'Get a list of the tools (i.e., integrations) enabled in your environment.
+
+        This can (in combination with the `integration_tool` parameter of the "Create Link" endpoint) be used to, for example, display a custom list or grid of available integrations to your end users instead of exposing Kombo Connect''s standard tool selector.'
+      tags:
+      - General
+      parameters:
+      - name: category
+        in: path
+        required: true
+        description: GET /tools/:category Parameter
+        schema:
+          $ref: '#/components/schemas/GetToolsCategoryParameterCategory'
+      responses:
+        '200':
+          description: GET /tools/:category Positive response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetToolsCategoryPositiveResponse'
+              examples:
+                example1:
+                  value:
+                    status: success
+                    data:
+                      tools:
+                      - id: factorial
+                        label: Factorial
+                        internal_label: null
+                        assets:
+                          logo_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg
+                          icon_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg
+                          icon_black_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon-black.svg
+                        paid_api_details_markdown: null
+                        fast_track_details_markdown: null
+                        partner_only_details_markdown: null
+                        connection_guide_url: https://help.kombo.dev/hc/en-us/articles/18743884123409-Factorial-HR-How-do-I-link-my-account
+                        coverage:
+                          read_models:
+                          - id: hris_employees
+                            label: Employees
+                            coverage_status: SUPPORTED
+                            fields:
+                            - id: date_of_birth
+                              coverage_status: SUPPORTED
+                          - id: hris_teams
+                            label: Groups
+                            coverage_status: UNSUPPORTED
+                            fields:
+                            - id: parent_id
+                              coverage_status: UNSUPPORTED
+                          write_actions:
+                          - id: hris_create_employee
+                            label: Create employee
+                            coverage_status: SUPPORTED
+                            fields:
+                            - id: first_name
+                              coverage_status: SUPPORTED
+                          features:
+                          - id: automatic_source_writing
+                            label: Automatic Source Writing
+                            coverage_status: SUPPORTED
+        default:
+          $ref: '#/components/responses/ErrorResponseGeneral'
+components:
+  schemas:
+    GetIntegrationsIntegrationIdIntegrationFieldsParameterIntegrationId:
+      type: string
+    PostIntegrationsIntegrationIdSetupLinkRequestBody:
+      type: object
+      properties:
+        language:
+          type:
+          - string
+          - 'null'
+          enum:
+          - en
+          - de
+          - fr
+          - it
+          - es
+          default: en
+          description: Language of the setup flow UI.
+        link_type:
+          type: string
+          enum:
+          - EMBEDDED
+          - MAGIC_LINK
+          description: The type of link you want to create. `EMBEDDED` is for the [embedded flow](../guides/connect/embedded-flow) using the Kombo Connect SDK (these links are valid for 1 hour) and `MAGIC_LINK` is for [magic links](../guides/connect/magic-links) which you send out manually to customers (these are valid for 1 year).
+      required:
+      - link_type
+    GetIntegrationsIntegrationIdCustomFieldsParameterIntegrationId:
+      type: string
+    GetIntegrationsIntegrationIdCustomFieldsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The unique ID of the field
+                  key:
+                    type: string
+                    description: The key of the custom field as it will be used in the custom_field object of the corresponding model
+                  integration_field:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      id:
+                        type: string
+                        description: The integration field's unique ID
+                      key:
+                        type: string
+                        description: The key of the integration field in the remote system
+                      type:
+                        type: string
+                        enum:
+                        - DEFAULT
+                        - CUSTOM
+                        description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
+                      label:
+                        type:
+                        - string
+                        - 'null'
+                        description: The label of the integration field in the remote system
+                    required:
+                    - id
+                    - key
+                    - type
+                    - label
+                    description: The integration field the custom field is mapped to. Null if not mapped.
+                  model:
+                    type: string
+                    description: The model the field is associated with
+                  label:
+                    type:
+                    - string
+                    - 'null'
+                    description: The label of the custom field
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                    description: The description of the custom field
+                required:
+                - id
+                - key
+                - integration_field
+                - model
+                - label
+                - description
+                examples:
+                - id: EU3Bwa4iDfGspEELW71WDvvu
+                  key: tshirt_size
+                  integration_field:
+                    id: 3n6geaAmKL5tFonXVAtsMDmr
+                    key: custom.tshirt_size
+                    type: CUSTOM
+                    label: T-Shirt Size
+                  model: hris_employees
+                  label: T-Shirt Size
+                  description: Map this to the employee's tshirt size
+            next_cursor:
+              type:
+              - string
+              - 'null'
+              description: '**(⚠️ Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.'
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
+          required:
+          - results
+          - next_cursor
+          - next
+          examples:
+          - results:
+            - id: D9CoSqqun6ix7uKEwb2kHBU1
+              key: unified_tax_id
+              integration_field:
+                id: FFpTK47GhXnU6QAopPq2bdos
+                key: tax_id
+                type: DEFAULT
+                label: The employee's tax ID
+              model: hris_employees
+              label: null
+              description: null
+            next_cursor: null
+            next: null
+      required:
+      - status
+      - data
+    PostIntegrationsIntegrationIdSetupLinkPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            link:
+              type: string
+              format: uri
+              description: The setup link URL to pass to the Kombo Connect SDK.
+          required:
+          - link
+      required:
+      - status
+      - data
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationFieldId:
+      type: string
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdParameterIntegrationId:
+      type: string
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique ID of the field.
+            key:
+              type: string
+              description: The key of the field in the remote system.
+            model:
+              type: string
+              description: The model the field is associated with.
+            type:
+              type: string
+              enum:
+              - DEFAULT
+              - CUSTOM
+              description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
+            label:
+              type:
+              - string
+              - 'null'
+              description: The label of the field in the remote system.
+            is_passthrough_enabled:
+              type: boolean
+              description: Whether the field is included in the integrations_fields array of the corresponding model.
+            is_writable:
+              type: boolean
+              const: false
+              description: This field is related to a deprecated feature and means nothing, but is kept for backwards compatibility.
+          required:
+          - id
+          - key
+          - model
+          - type
+          - label
+          - is_passthrough_enabled
+          - is_writable
+          examples:
+          - id: 9suhxJU83Kon4kPTS47837uE
+            key: tax_id
+            model: hris_employees
+            type: DEFAULT
+            label: Tax ID
+            is_passthrough_enabled: true
+            is_writable: false
+      required:
+      - status
+      - data
+    GetIntegrationsIntegrationIdIntegrationFieldsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 2000
+      default: 100
+      description: The number of results to return per page. Maximum is 2000.
+    PutIntegrationsIntegrationIdEnabledParameterIntegrationId:
+      type: string
+    PostForceSyncRequestBody:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FULL
+          - DELTA
+          default: FULL
+          description: The type of the triggered sync.
+    PostPassthroughToolApiParameterApi:
+      type: string
+      description: The ID of the passthrough API you want to call (some tools provide multiple). Check the endpoint description for a list of all available APIs.
+    DeleteIntegrationsIntegrationIdParameterIntegrationId:
+      type: string
+    PostForceSyncPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            already_queued:
+              type: boolean
+              description: We only allow 1 concurrent sync to be running or queued.
+            sync_id:
+              type: string
+              description: ID of the newly-created or already-queued-or-running sync.
+            type:
+              type: string
+              enum:
+              - FULL
+              - DELTA
+              description: The type of the triggered sync. May differ from request, if the integration does not support delta syncs or if another sync is already running.
+          required:
+          - already_queued
+          - sync_id
+          - type
+          examples:
+          - already_queued: false
+            sync_id: 119ihtp91nA3dqRFiV67nXS6
+            type: DELTA
+      required:
+      - status
+      - data
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterIntegrationId:
+      type: string
+      description: The unique ID of the integration where the custom field mapping should be updated
+    PostPassthroughToolApiParameterTool:
+      type: string
+      description: The ID of the tool whose passthrough API you want to call (e.g., `personio`).
+    GetIntegrationsIntegrationIdCustomFieldsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    GetIntegrationsIntegrationIdIntegrationFieldsPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            results:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: The unique ID of the field.
+                  key:
+                    type: string
+                    description: The key of the field in the remote system.
+                  model:
+                    type: string
+                    description: The model the field is associated with.
+                  type:
+                    type: string
+                    enum:
+                    - DEFAULT
+                    - CUSTOM
+                    description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
+                  label:
+                    type:
+                    - string
+                    - 'null'
+                    description: The label of the field in the remote system.
+                  is_passthrough_enabled:
+                    type: boolean
+                    description: Whether the field is included in the integrations_fields array of the corresponding model.
+                  is_writable:
+                    type: boolean
+                    const: false
+                    description: This field is related to a deprecated feature and means nothing, but is kept for backwards compatibility.
+                required:
+                - id
+                - key
+                - model
+                - type
+                - label
+                - is_passthrough_enabled
+                - is_writable
+                examples:
+                - id: 9suhxJU83Kon4kPTS47837uE
+                  key: tax_id
+                  model: hris_employees
+                  type: DEFAULT
+                  label: Tax ID
+                  is_passthrough_enabled: true
+                  is_writable: false
+            next_cursor:
+              type:
+              - string
+              - 'null'
+              description: '**(⚠️ Deprecated - Use `next` instead.)** Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.'
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor string that can be passed to the `cursor` query parameter to get the next page. If this is `null`, then there are no more pages.
+          required:
+          - results
+          - next_cursor
+          - next
+          examples:
+          - results:
+            - id: FFpTK47GhXnU6QAopPq2bdos
+              key: tax_id
+              model: hris_employees
+              type: DEFAULT
+              label: Tax ID
+              is_passthrough_enabled: true
+              is_writable: false
+            next_cursor: null
+            next: null
+      required:
+      - status
+      - data
+    PostIntegrationsIntegrationIdRelinkRequestBody:
+      type: object
+      properties:
+        language:
+          type:
+          - string
+          - 'null'
+          enum:
+          - en
+          - de
+          - fr
+          - it
+          - es
+          default: en
+          description: Language of the connection flow UI.
+        scope_config_id:
+          type:
+          - string
+          - 'null'
+          description: 'Specify a scope config which the integration will start using once the reconnection flow has been completed.
+
+
+            This can be useful if you want to update the permissions of an integration, but only want the change to take effect once the user has updated their API credentials to prevent sync issues.'
+        link_type:
+          type: string
+          enum:
+          - EMBEDDED
+          - MAGIC_LINK
+          default: EMBEDDED
+          description: 'The type of link you want to create. `EMBEDDED` is for the [embedded flow](../guides/connect/embedded-flow) using the Kombo Connect SDK (these links are valid for 1 hour) and `MAGIC_LINK` is for [magic links](../guides/connect/magic-links) which you send out manually to customers (there are valid for 1 year).
+
+
+            This defaults to `EMBEDDED`, which is our recommended method of implementing the connection flow for a seamless user experience.'
+    GetIntegrationsIntegrationIdCustomFieldsParameterPageSize:
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 250
+      default: 100
+      description: The number of results to return per page. Maximum is 250.
+    PatchIntegrationsIntegrationIdIntegrationFieldsIntegrationFieldIdRequestBody:
+      type: object
+      properties:
+        enable_passthrough:
+          type:
+          - boolean
+          - 'null'
+      required:
+      - enable_passthrough
+    PostIntegrationsIntegrationIdSetupLinkParameterIntegrationId:
+      type: string
+    DeleteIntegrationsIntegrationIdRequestBody:
+      type: object
+      properties: {}
+    GetCheckApiKeyPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            environment_id:
+              type: string
+            customer_id:
+              type: string
+              description: '**(⚠️ Deprecated)** Renamed to `environment_id`.'
+          required:
+          - environment_id
+          - customer_id
+          examples:
+          - environment_id: 2Uev1YUTqLFdvMPD3Jtrg2FX
+            customer_id: 2Uev1YUTqLFdvMPD3Jtrg2FX
+      required:
+      - status
+      - data
+    PostIntegrationsIntegrationIdRelinkPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            link:
+              type: string
+              format: uri
+          required:
+          - link
+      required:
+      - status
+      - data
+    PostPassthroughToolApiPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+              description: The full URL of the request that we automatically assemble for you based on the specified `api`, the specified `path`, and the integration's auth credentials. You can use this to debug path-related issues (e.g., the API returning 404 errors).
+            status:
+              type: integer
+              format: int64
+              description: The HTTP status code returned from the remote system.
+            headers:
+              type: object
+              additionalProperties:
+                oneOf:
+                - type: string
+                - type: array
+                  items:
+                    type: string
+              description: The HTTP headers returned from the remote system.
+            data:
+              description: The HTTP body returned from the remote system. This will either be an array or object (in the case that JSON was returned) or a string (in any other case).
+          required:
+          - url
+          - status
+          - headers
+          examples:
+          - url: https://api.personio.de/v1/company/employees
+            status: 200
+            headers:
+              content-type: application/json
+            data:
+              success: true
+              data:
+              - id: 123
+                first_name: John
+                last_name: Doe
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+            required:
+            - message
+          description: These are the interaction warnings that are shown in the dashboard. They are meant to provide debug information to you. We recommend logging them to the console.
+      required:
+      - status
+      - data
+      - warnings
+    PutIntegrationsIntegrationIdEnabledPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+      required:
+      - status
+      - data
+    GetIntegrationsIntegrationIdPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            tool:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: The ID of the connected tool in Kombo (e.g. `factorial`).
+                label:
+                  type: string
+                internal_label:
+                  type:
+                  - string
+                  - 'null'
+                  description: Internal label that can help you debug specific variants of the integration. Only show the `label` to your users.
+                logo_url:
+                  type: string
+                  format: uri
+                  description: URL to an SVG logo of the connected tool. The logo usually contains the tool name.
+                icon_url:
+                  type: string
+                  format: uri
+                  description: URL to a square SVG icon of the connected tool.
+              required:
+              - id
+              - label
+              - internal_label
+              - logo_url
+              - icon_url
+            category:
+              type: string
+              enum:
+              - HRIS
+              - ATS
+              - ASSESSMENT
+              - LMS
+            status:
+              type: string
+              enum:
+              - ACTIVE
+              - INVALID
+              - INACTIVE
+              description: 'The current status of the integration.
+
+
+                - `ACTIVE`: The integration is syncing data as expected.
+
+                - `INVALID`: The integration has stopped syncing data because of invalid credentials. To fix this, reach out to your customer to [reconnect the integration](../guides/integration-states#credentials-invalid).
+
+                - `INACTIVE`: The integration has stopped syncing as it''s been manually set to inactive. You can [enable it again](../guides/integration-states#inactive) in the integration''s page.'
+            setup_status:
+              type: string
+              enum:
+              - INCOMPLETE
+              - FINAL_SYNC_PENDING
+              - COMPLETED
+              description: 'The setup_status is used in conjunction with the filtering and field mapping features. If these are enabled in the connection flow, the integration will start in an "INCOMPLETE" state and move to "COMPLETE" once all steps are finished.
+
+
+                - `INCOMPLETE`: Setup is still in progress. Some steps aren’t finished, so no data is available yet. Syncs only run as needed for setup.
+
+                - `FINAL_SYNC_PENDING`: Setup is complete, and the final sync is running. Data will be available after this sync is done.
+
+                - `COMPLETED`: Setup is fully finished, and the integration is ready to use.'
+            end_user:
+              type: object
+              properties:
+                organization_name:
+                  type: string
+                creator_email:
+                  type:
+                  - string
+                  - 'null'
+                  pattern: ^(?!\.)(?!.*\.\.)([\w'+-.]*)[\w+-]@([\da-z][\da-z-]*\.)+[a-z]{2,}$
+                origin_id:
+                  type:
+                  - string
+                  - 'null'
+                  description: The ID you have passed initially to the connection flow to create this integration.
+              required:
+              - organization_name
+              - creator_email
+              - origin_id
+            scope_config:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - id
+              - name
+            data_expired_at:
+              description: The date when the integration configuration (e.g. filters, scope config) was changed, invalidating the synced data. It is cleared after a successful sync. If this field is `null` the data you fetch is valid to the state of the last sync or webhook event received. Otherwise it will be set to `null` with the next successful sync.
+              type:
+              - string
+              - 'null'
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            created_at:
+              description: YYYY-MM-DDTHH:mm:ss.sssZ
+              type: string
+              format: date-time
+              externalDocs:
+                url: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
+            beta:
+              type: boolean
+            read_models:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: ID of the model (e.g. hris_employees).
+                  label:
+                    type: string
+                    description: Label of the model (e.g. Employees).
+                  is_available:
+                    type: boolean
+                    description: Whether the datapoint is available and enabled and not opted out of.
+                  coverage_status:
+                    type: string
+                    enum:
+                    - SUPPORTED
+                    - UNSUPPORTED
+                    - NOT_IMPLEMENTED
+                    - UNKNOWN
+                    description: 'The status of a datapoint of an integrated tool:
+
+
+                      - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                      - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                      - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                      - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                  scope_config_setting:
+                    type: string
+                    enum:
+                    - ENABLED
+                    - DISABLED
+                    - OPTIONAL
+                    description: The setting of the datapoint in the scope config that you configured in the Kombo dashboard.
+                  opted_out_by_customer:
+                    type: boolean
+                    description: Whether the datapoint is opted out by your customer in the connection flow.
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Key of the field in the API (e.g. first_name).
+                        is_available:
+                          type: boolean
+                          description: Whether the datapoint is available and enabled and not opted out of.
+                        coverage_status:
+                          type: string
+                          enum:
+                          - SUPPORTED
+                          - UNSUPPORTED
+                          - NOT_IMPLEMENTED
+                          - UNKNOWN
+                          description: 'The status of a datapoint of an integrated tool:
+
+
+                            - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                            - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                            - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                            - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                        scope_config_setting:
+                          type: string
+                          enum:
+                          - ENABLED
+                          - DISABLED
+                          - OPTIONAL
+                          description: The setting of the datapoint in the scope config that you configured in the Kombo dashboard.
+                        opted_out_by_customer:
+                          type: boolean
+                          description: Whether the datapoint is opted out by your customer in the connection flow.
+                      required:
+                      - id
+                      - is_available
+                      - coverage_status
+                      - scope_config_setting
+                      - opted_out_by_customer
+                required:
+                - id
+                - label
+                - is_available
+                - coverage_status
+                - scope_config_setting
+                - opted_out_by_customer
+                - fields
+            write_actions:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: ID of the action (e.g. ats_create_candidate).
+                  label:
+                    type: string
+                    description: Label of the action (e.g. Create candidate).
+                  is_available:
+                    type: boolean
+                    description: Whether the datapoint is available and enabled and not opted out of.
+                  coverage_status:
+                    type: string
+                    enum:
+                    - SUPPORTED
+                    - UNSUPPORTED
+                    - NOT_IMPLEMENTED
+                    - UNKNOWN
+                    description: 'The status of a datapoint of an integrated tool:
+
+
+                      - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                      - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                      - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                      - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                  scope_config_setting:
+                    type: string
+                    enum:
+                    - ENABLED
+                    - DISABLED
+                    - OPTIONAL
+                    description: The setting of the datapoint in the scope config that you configured in the Kombo dashboard.
+                  opted_out_by_customer:
+                    type: boolean
+                    description: Whether the datapoint is opted out by your customer in the connection flow.
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Key of the input field (e.g. candidate.first_name).
+                        is_available:
+                          type: boolean
+                          description: Whether the datapoint is available and enabled and not opted out of.
+                        coverage_status:
+                          type: string
+                          enum:
+                          - SUPPORTED
+                          - UNSUPPORTED
+                          - NOT_IMPLEMENTED
+                          - UNKNOWN
+                          description: 'The status of a datapoint of an integrated tool:
+
+
+                            - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                            - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                            - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                            - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                      required:
+                      - id
+                      - is_available
+                      - coverage_status
+                    description: Field support status for the action. Please note that action fields can't be configured in the scope config or opted out by your customer.
+                required:
+                - id
+                - label
+                - is_available
+                - coverage_status
+                - scope_config_setting
+                - opted_out_by_customer
+                - fields
+          required:
+          - id
+          - tool
+          - category
+          - status
+          - setup_status
+          - end_user
+          - scope_config
+          - data_expired_at
+          - created_at
+          - beta
+          - read_models
+          - write_actions
+          examples:
+          - id: factorial:8d1hpPsbjxUkoCoa1veLZGe5
+            tool:
+              id: factorial
+              label: Factorial
+              internal_label: null
+              logo_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg
+              icon_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg
+            category: HRIS
+            status: ACTIVE
+            setup_status: COMPLETED
+            end_user:
+              organization_name: Acme
+              creator_email: example-integration-creator@acme.com
+              origin_id: 2DQJAUtSzzzKP9buDTvUvPk3
+            scope_config:
+              id: B1hu5NGyhdjSq5X3hxEz4bAN
+              name: Anonymous Scopes
+            data_expired_at: null
+            created_at: '2022-08-07T14:01:29.196Z'
+            beta: false
+            read_models:
+            - id: hris_employees
+              label: Employees
+              is_available: true
+              coverage_status: SUPPORTED
+              scope_config_setting: ENABLED
+              opted_out_by_customer: false
+              fields:
+              - id: date_of_birth
+                is_available: false
+                coverage_status: SUPPORTED
+                scope_config_setting: OPTIONAL
+                opted_out_by_customer: true
+            write_actions:
+            - id: hris_create_employee
+              label: Create employee
+              is_available: true
+              coverage_status: SUPPORTED
+              scope_config_setting: ENABLED
+              opted_out_by_customer: false
+              fields:
+              - id: first_name
+                is_available: true
+                coverage_status: SUPPORTED
+      required:
+      - status
+      - data
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdRequestBody:
+      type: object
+      properties:
+        integration_field_id:
+          type:
+          - string
+          - 'null'
+          description: The integration field's unique ID which the custom field should be mapped to. Null to remove a mapping.
+      required:
+      - integration_field_id
+    PostIntegrationsIntegrationIdRelinkParameterIntegrationId:
+      type: string
+    GetIntegrationsIntegrationIdIntegrationFieldsParameterCursor:
+      type: string
+      description: An optional cursor string used for pagination. This can be retrieved from the `next` property of the previous page response.
+    PutIntegrationsIntegrationIdEnabledRequestBody:
+      type: object
+      properties:
+        value:
+          type: boolean
+          description: The desired state of the integration (e.g., `true` for enabled, `false` for disabled).
+      required:
+      - value
+    GetToolsCategoryParameterCategory:
+      type: string
+      enum:
+      - hris
+      - ats
+      - assessment
+      - lms
+    GetIntegrationsIntegrationIdParameterIntegrationId:
+      type: string
+    PostPassthroughToolApiRequestBody:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - DELETE
+          - PUT
+          - PATCH
+          description: The HTTP method (e.g., `GET`) of the request.
+        path:
+          type: string
+          description: The path of the endpoint you want to call. We automatically prepend the base URL of the API (all base URLs are documented in the endpoint description).
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: The headers to send with the request. Note that we automatically supply any authentication-related headers.
+        params:
+          type: object
+          additionalProperties:
+            type: string
+          description: The query parameters to send in addition to the ones in the `path`.
+        data:
+          description: The data to submit as part of the request body. This can either be an array or object (in which case we will forward it as JSON) or a string (in which case we will forward it raw).
+        response_as_base64:
+          type: boolean
+          description: If set to `true`, the response will be returned as a base64-encoded string. This is useful for binary data (e.g., PDFs).
+        multipart_form_data:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The key of the form data
+              value:
+                oneOf:
+                - type: string
+                  description: The value of the form data (Can be an object if the field is of the type file)
+                - type: object
+                  properties:
+                    name:
+                      type: string
+                      description: File name of the file you want to upload. We recommend providing something human-readable with a valid file extension (like `Resume.pdf`), as this might be shown in your customer's system.
+                    content_type:
+                      type: string
+                      pattern: ^[\w.-]+\/[\w.-]+$
+                      description: 'Content/MIME type of the file (e.g., `application/pdf`).
+
+
+                        If you provide `data`, this is required. If you provide `data_url`, this is optional and we''ll attempt to use the `Content-Type` header of the response.
+
+
+                        **Note:** Please validate that the content type you provide is actually meaningful (and not something generic like [`application/octet-stream`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types#applicationoctet-stream)). Especially when using object storage (like AWS S3), it''s easy to accidentally discard the content types of user-provided files, so make sure to explicitly persist them when processing uploads from your users (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#SysMetadata), [Google Cloud](https://cloud.google.com/storage/docs/metadata#content-type), and [Azure](https://learn.microsoft.com/en-us/rest/api/storageservices/put-blob#request-headers-all-blob-types)).'
+                    data_url:
+                      type: string
+                      format: uri
+                      description: 'URL to the file you want to upload that can be accessed without authentication headers. We will download the content immediately when receiving the request, so the URL can be short-lived.
+
+
+                        If you''re using an object storage provider (like AWS S3), we strongly recommend providing a signed URL for secure access (see guides for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html), [Google Cloud](https://cloud.google.com/storage/docs/access-control/signed-urls), and [Azure](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
+
+
+                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+                    data:
+                      type: string
+                      description: 'Base64-encoded contents of the file you want to upload.
+
+
+                        **Note:** You must provide either this or `data_url`. We recommend `data_url` over `data` for most cases.'
+                  required:
+                  - name
+            required:
+            - name
+            - value
+            description: The data to submit as part of the request body if the request's `Content-Type` is `multipart/form-data`.
+        api_options:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom options interpreted by the passthrough API adapter you've selected. These options are not documented right now as they're only for very advanced use cases.
+      required:
+      - method
+      - path
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              description: The unique ID of the field
+            key:
+              type: string
+              description: The key of the custom field as it will be used in the custom_field object of the corresponding model
+            integration_field:
+              type:
+              - object
+              - 'null'
+              properties:
+                id:
+                  type: string
+                  description: The integration field's unique ID
+                key:
+                  type: string
+                  description: The key of the integration field in the remote system
+                type:
+                  type: string
+                  enum:
+                  - DEFAULT
+                  - CUSTOM
+                  description: The type of the integration field. There is a type to avoid collisions between DEFAULT fields and CUSTOM fields with the same key.
+                label:
+                  type:
+                  - string
+                  - 'null'
+                  description: The label of the integration field in the remote system
+              required:
+              - id
+              - key
+              - type
+              - label
+              description: The integration field the custom field is mapped to. Null if not mapped.
+            model:
+              type: string
+              description: The model the field is associated with
+            label:
+              type:
+              - string
+              - 'null'
+              description: The label of the custom field
+            description:
+              type:
+              - string
+              - 'null'
+              description: The description of the custom field
+          required:
+          - id
+          - key
+          - integration_field
+          - model
+          - label
+          - description
+          examples:
+          - id: EU3Bwa4iDfGspEELW71WDvvu
+            key: tshirt_size
+            integration_field:
+              id: 3n6geaAmKL5tFonXVAtsMDmr
+              key: custom.tshirt_size
+              type: CUSTOM
+              label: T-Shirt Size
+            model: hris_employees
+            label: T-Shirt Size
+            description: Map this to the employee's tshirt size
+      required:
+      - status
+      - data
+    PutIntegrationsIntegrationIdCustomFieldsCustomFieldIdParameterCustomFieldId:
+      type: string
+      description: The unique ID of the custom field that should be updated
+    DeleteIntegrationsIntegrationIdPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+      required:
+      - status
+      - data
+    GetToolsCategoryPositiveResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          const: success
+        data:
+          type: object
+          properties:
+            tools:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  label:
+                    type: string
+                  internal_label:
+                    type:
+                    - string
+                    - 'null'
+                    description: Internal label that can help you debug specific variants of the integration. Only show the `label` to your users.
+                  assets:
+                    type: object
+                    properties:
+                      logo_url:
+                        type: string
+                      icon_url:
+                        type: string
+                      icon_black_url:
+                        type: string
+                    required:
+                    - logo_url
+                    - icon_url
+                    - icon_black_url
+                  paid_api_details_markdown:
+                    type:
+                    - string
+                    - 'null'
+                    description: Markdown formatted text that describes details about the paid API. `null` if the tool is not paid.
+                  fast_track_details_markdown:
+                    type:
+                    - string
+                    - 'null'
+                    description: Markdown formatted text that describes details about the fast track process. `null` if the fast track process is not available.
+                  partner_only_details_markdown:
+                    type:
+                    - string
+                    - 'null'
+                    description: Markdown formatted text that describes partnership requirements. `null` if the tool does not require a partnership.
+                  connection_guide_url:
+                    type:
+                    - string
+                    - 'null'
+                    description: URL to the connection guide for this tool. `null` if no connection guide is available.
+                  coverage:
+                    type: object
+                    properties:
+                      read_models:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: ID of the model (e.g. hris_employees).
+                            label:
+                              type: string
+                              description: Label of the model (e.g. Employees).
+                            coverage_status:
+                              type: string
+                              enum:
+                              - SUPPORTED
+                              - UNSUPPORTED
+                              - NOT_IMPLEMENTED
+                              - UNKNOWN
+                              description: 'The status of a datapoint of an integrated tool:
+
+
+                                - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                            fields:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Key of the field in the model (e.g. first_name).
+                                  coverage_status:
+                                    type: string
+                                    enum:
+                                    - SUPPORTED
+                                    - UNSUPPORTED
+                                    - NOT_IMPLEMENTED
+                                    - UNKNOWN
+                                    description: 'The status of a datapoint of an integrated tool:
+
+
+                                      - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                      - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                      - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                      - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                                required:
+                                - id
+                                - coverage_status
+                          required:
+                          - id
+                          - label
+                          - coverage_status
+                          - fields
+                          description: List of models we can read for this tool.
+                      write_actions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            label:
+                              type: string
+                            coverage_status:
+                              type: string
+                              enum:
+                              - SUPPORTED
+                              - UNSUPPORTED
+                              - NOT_IMPLEMENTED
+                              - UNKNOWN
+                              description: 'The status of a datapoint of an integrated tool:
+
+
+                                - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                            fields:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    description: Key of the input field (e.g. `candidate.first_name`).
+                                  coverage_status:
+                                    type: string
+                                    enum:
+                                    - SUPPORTED
+                                    - UNSUPPORTED
+                                    - NOT_IMPLEMENTED
+                                    - UNKNOWN
+                                    description: 'The status of a datapoint of an integrated tool:
+
+
+                                      - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                      - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                      - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                      - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                                required:
+                                - id
+                                - coverage_status
+                          required:
+                          - id
+                          - label
+                          - coverage_status
+                          - fields
+                          description: List of supported write actions for this tool.
+                      features:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            label:
+                              type: string
+                            coverage_status:
+                              type: string
+                              enum:
+                              - SUPPORTED
+                              - UNSUPPORTED
+                              - NOT_IMPLEMENTED
+                              - UNKNOWN
+                              description: 'The status of a datapoint of an integrated tool:
+
+
+                                - `SUPPORTED`: the tool supports the datapoint and it can be used through Kombo.
+
+                                - `UNSUPPORTED`: the tool does not support the datapoint.
+
+                                - `NOT_IMPLEMENTED`: tool supports the datapoint but it was not integrated by Kombo for a given reason (see coverage grid).
+
+                                - `UNKNOWN`: the datapoint is not integrated yet and Kombo has no information about it''s availability in the tool.'
+                          required:
+                          - id
+                          - label
+                          - coverage_status
+                    required:
+                    - read_models
+                    - write_actions
+                    - features
+                    description: This describes the supported models and actions of this tool.
+                required:
+                - id
+                - label
+                - internal_label
+                - assets
+                - paid_api_details_markdown
+                - fast_track_details_markdown
+                - partner_only_details_markdown
+                - connection_guide_url
+                - coverage
+          required:
+          - tools
+          examples:
+          - tools:
+            - id: factorial
+              label: Factorial
+              internal_label: null
+              assets:
+                logo_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/logo.svg
+                icon_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon.svg
+                icon_black_url: https://storage.googleapis.com/kombo-assets/integrations/factorial/icon-black.svg
+              paid_api_details_markdown: null
+              fast_track_details_markdown: null
+              partner_only_details_markdown: null
+              connection_guide_url: https://help.kombo.dev/hc/en-us/articles/18743884123409-Factorial-HR-How-do-I-link-my-account
+              coverage:
+                read_models:
+                - id: hris_employees
+                  label: Employees
+                  coverage_status: SUPPORTED
+                  fields:
+                  - id: date_of_birth
+                    coverage_status: SUPPORTED
+                - id: hris_teams
+                  label: Groups
+                  coverage_status: UNSUPPORTED
+                  fields:
+                  - id: parent_id
+                    coverage_status: UNSUPPORTED
+                write_actions:
+                - id: hris_create_employee
+                  label: Create employee
+                  coverage_status: SUPPORTED
+                  fields:
+                  - id: first_name
+                    coverage_status: SUPPORTED
+                features:
+                - id: automatic_source_writing
+                  label: Automatic Source Writing
+                  coverage_status: SUPPORTED
+      required:
+      - status
+      - data
+  responses:
+    ErrorResponseGeneral:
+      description: The standard error response with just the platform error codes.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                enum:
+                - error
+              error:
+                type: object
+                properties:
+                  code:
+                    type:
+                    - string
+                    - 'null'
+                    enum:
+                    - PLATFORM.RATE_LIMIT_EXCEEDED
+                    - PLATFORM.CONCURRENCY_LIMIT_EXCEEDED
+                    - PLATFORM.INTEGRATION_NOT_FOUND
+                    - PLATFORM.INPUT_INVALID
+                    - PLATFORM.UNKNOWN_ERROR
+                    - PLATFORM.IP_NOT_WHITELISTED
+                    - PLATFORM.AUTHENTICATION_INVALID
+                    - PLATFORM.TASK_TIMED_OUT
+                    example: PLATFORM.RATE_LIMIT_EXCEEDED
+                    description: Some errors include an error code that can be used to identify their cause. See the [Error Handling Docs](https://docs.kombo.dev/guides/errors) for more information. For your error handling logic please use the error `code` instead of other properties (e.g. message, http status code, ...).
+                  title:
+                    type:
+                    - string
+                    - 'null'
+                    description: A static, human-readable label.
+                  message:
+                    type: string
+                    description: A dynamic, detailed description of what went wrong in this specific instance.
+                  log_url:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                    description: The log page in the Kombo UI lists every interaction with full details. If you need assistance, share that link with our support team.
+                required:
+                - code
+                - title
+                - message
+                - log_url
+                description: Error details with structured code for programmatic handling.
+            required:
+            - status
+            - error
+          examples:
+            Error Response:
+              description: When building error handling logic, always use the `code` field to identify specific error types programmatically. See the complete list of error codes in the [docs](https://docs.kombo.dev/guides/errors).
+              value:
+                status: error
+                error:
+                  code: INTEGRATION.MODEL_NOT_AVAILABLE
+                  title: This data model isn't supported for the selected integration.
+                  message: The "employees" model is not yet available for Greenhouse. Please reach out to Kombo if you need this functionality.
+                  log_url: https://app.kombo.dev/my-prod/logs?interactionId=123456
+            Minimal Error Response:
+              description: The "message" is always required while other fields can also be `null`. See the [docs](https://docs.kombo.dev/guides/errors) for more information.
+              value:
+                status: error
+                error:
+                  code: null
+                  title: null
+                  message: The message is always in the response.
+                  log_url: null
+  securitySchemes:
+    ApiKey:
+      type: http
+      scheme: bearer
+      description: Create an API key on the [Secrets](https://app.kombo.dev/secrets) page in the Kombo dashboard.
