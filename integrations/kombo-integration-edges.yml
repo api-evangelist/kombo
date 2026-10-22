@@ -24,7 +24,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: recruiterflow
   partner: null
   partner_match: null
@@ -38,7 +38,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: atlas
   partner: null
   partner_match: null
@@ -52,7 +52,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: greenhousev3
   partner: null
   partner_match: null
@@ -66,7 +66,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: teamtailorjobboards
   partner: null
   partner_match: null
@@ -80,7 +80,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: talentsoft
   partner: null
   partner_match: null
@@ -94,7 +94,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: concludis
   partner: null
   partner_match: null
@@ -108,7 +108,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: talention
   partner: null
   partner_match: null
@@ -122,7 +122,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: onlyfy
   partner: null
   partner_match: null
@@ -136,7 +136,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: taleo
   partner: null
   partner_match: null
@@ -150,7 +150,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: bullhorn4salesforce
   partner: null
   partner_match: null
@@ -164,21 +164,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
-- partner_name: workable
-  partner: null
-  partner_match: null
-  partner_candidate: workable
-  type: contract
-  channel: provider-built
-  relationship: system-coverage
-  direction: provider-built
-  evidence: https://www.kombo.dev/integrations
-  category: ats
-  operations:
-  - ats
-  detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: fountain
   partner: null
   partner_match: null
@@ -192,7 +178,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: softgarden
   partner: null
   partner_match: null
@@ -206,7 +192,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: pinpoint
   partner: null
   partner_match: null
@@ -220,7 +206,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: welcometothejungle
   partner: null
   partner_match: null
@@ -234,7 +220,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: dvinci
   partner: null
   partner_match: null
@@ -248,7 +234,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: dvinciadmin
   partner: null
   partner_match: null
@@ -262,7 +248,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: join
   partner: null
   partner_match: null
@@ -276,7 +262,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: traffit
   partner: null
   partner_match: null
@@ -290,7 +276,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: erecruiter
   partner: null
   partner_match: null
@@ -304,7 +290,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: abacusumantis
   partner: null
   partner_match: null
@@ -318,7 +304,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: taleez
   partner: null
   partner_match: null
@@ -332,7 +318,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: otys
   partner: null
   partner_match: null
@@ -346,7 +332,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: zohorecruit
   partner: null
   partner_match: null
@@ -360,7 +346,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: ceipal
   partner: null
   partner_match: null
@@ -374,7 +360,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: eploy
   partner: null
   partner_match: null
@@ -388,7 +374,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: jobdiva
   partner: null
   partner_match: null
@@ -402,7 +388,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: careerplug
   partner: null
   partner_match: null
@@ -416,7 +402,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: perview
   partner: null
   partner_match: null
@@ -430,7 +416,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: apploi
   partner: null
   partner_match: null
@@ -444,7 +430,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: phenom
   partner: null
   partner_match: null
@@ -458,7 +444,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: paradox
   partner: null
   partner_match: null
@@ -472,7 +458,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: heyrecruit
   partner: null
   partner_match: null
@@ -486,7 +472,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: recruhr
   partner: null
   partner_match: null
@@ -500,7 +486,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: recruitcrm
   partner: null
   partner_match: null
@@ -514,7 +500,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: bite
   partner: null
   partner_match: null
@@ -528,7 +514,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: brassring
   partner: null
   partner_match: null
@@ -542,7 +528,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: homerun
   partner: null
   partner_match: null
@@ -556,7 +542,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: mysolution
   partner: null
   partner_match: null
@@ -570,7 +556,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: carerixgraphql
   partner: null
   partner_match: null
@@ -584,7 +570,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: hroffice
   partner: null
   partner_match: null
@@ -598,7 +584,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: talentclue
   partner: null
   partner_match: null
@@ -612,7 +598,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: inrecruiting
   partner: null
   partner_match: null
@@ -626,7 +612,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: jobadder
   partner: null
   partner_match: null
@@ -640,7 +626,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: ubeeo
   partner: null
   partner_match: null
@@ -654,7 +640,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: connexys
   partner: null
   partner_match: null
@@ -668,7 +654,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: zvooverecruit
   partner: null
   partner_match: null
@@ -682,7 +668,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: odoo
   partner: null
   partner_match: null
@@ -696,7 +682,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: comeet
   partner: null
   partner_match: null
@@ -710,7 +696,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: compleetpitcher
   partner: null
   partner_match: null
@@ -724,7 +710,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: compleetpersy
   partner: null
   partner_match: null
@@ -738,7 +724,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: compleet
   partner: null
   partner_match: null
@@ -752,7 +738,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: gem
   partner: null
   partner_match: null
@@ -766,7 +752,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: laura
   partner: null
   partner_match: null
@@ -780,7 +766,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: covetorest
   partner: null
   partner_match: null
@@ -794,7 +780,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: coveto
   partner: null
   partner_match: null
@@ -808,7 +794,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: mercury
   partner: null
   partner_match: null
@@ -822,7 +808,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: crelate
   partner: null
   partner_match: null
@@ -836,7 +822,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: manatal
   partner: null
   partner_match: null
@@ -850,7 +836,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: avionte
   partner: null
   partner_match: null
@@ -864,7 +850,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: mhmhr
   partner: null
   partner_match: null
@@ -878,7 +864,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: asymbl
   partner: null
   partner_match: null
@@ -892,7 +878,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: breezyhr
   partner: null
   partner_match: null
@@ -906,7 +892,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: flatchr
   partner: null
   partner_match: null
@@ -920,7 +906,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: digitalrecruiters
   partner: null
   partner_match: null
@@ -934,7 +920,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: applicantstack
   partner: null
   partner_match: null
@@ -948,7 +934,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: reachmee
   partner: null
   partner_match: null
@@ -962,7 +948,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: talentadore
   partner: null
   partner_match: null
@@ -976,7 +962,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: guidecom
   partner: null
   partner_match: null
@@ -990,7 +976,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: spott
   partner: null
   partner_match: null
@@ -1004,7 +990,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: stardex
   partner: null
   partner_match: null
@@ -1018,7 +1004,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: logicmelon
   partner: null
   partner_match: null
@@ -1032,7 +1018,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: loxo
   partner: null
   partner_match: null
@@ -1046,7 +1032,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: kula
   partner: null
   partner_match: null
@@ -1060,7 +1046,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: trackerrms
   partner: null
   partner_match: null
@@ -1074,7 +1060,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: databites
   partner: null
   partner_match: null
@@ -1088,7 +1074,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: talent360
   partner: null
   partner_match: null
@@ -1102,7 +1088,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: emplypeople
   partner: null
   partner_match: null
@@ -1116,7 +1102,7 @@ edges:
   operations:
   - ats
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: ukgprowfm
   partner: null
   partner_match: null
@@ -1130,7 +1116,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: adpdecidium
   partner: null
   partner_match: null
@@ -1144,7 +1130,21 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
+- partner_name: adplink
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: contract
+  channel: provider-built
+  relationship: system-coverage
+  direction: provider-built
+  evidence: https://www.kombo.dev/integrations
+  category: hris
+  operations:
+  - hris
+  detected_by: sweep-hr-stores.py
+  detected: '2026-10-19'
 - partner_name: payfitcustomer
   partner: null
   partner_match: null
@@ -1158,7 +1158,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: employmenthero
   partner: null
   partner_match: null
@@ -1172,7 +1172,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: fourth
   partner: null
   partner_match: null
@@ -1186,7 +1186,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: kenjo
   partner: null
   partner_match: null
@@ -1200,7 +1200,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: heavenhr
   partner: null
   partner_match: null
@@ -1214,7 +1214,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: cezannehr
   partner: null
   partner_match: null
@@ -1228,7 +1228,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: entraid
   partner: null
   partner_match: null
@@ -1242,7 +1242,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: azuread
   partner: null
   partner_match: null
@@ -1256,7 +1256,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: googleworkspace
   partner: null
   partner_match: null
@@ -1270,7 +1270,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: nmbrs
   partner: null
   partner_match: null
@@ -1284,7 +1284,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: deel
   partner: null
   partner_match: null
@@ -1298,7 +1298,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: remotecom
   partner: null
   partner_match: null
@@ -1312,7 +1312,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: iriscascade
   partner: null
   partner_match: null
@@ -1326,7 +1326,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: okta
   partner: null
   partner_match: null
@@ -1340,7 +1340,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: sagepeople
   partner: null
   partner_match: null
@@ -1354,7 +1354,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: humaans
   partner: null
   partner_match: null
@@ -1368,7 +1368,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: eurecia
   partner: null
   partner_match: null
@@ -1382,7 +1382,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: oraclehcm
   partner: null
   partner_match: null
@@ -1396,7 +1396,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: officient
   partner: null
   partner_match: null
@@ -1410,7 +1410,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: sesamehr
   partner: null
   partner_match: null
@@ -1424,7 +1424,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: charliehr
   partner: null
   partner_match: null
@@ -1438,7 +1438,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: abacus
   partner: null
   partner_match: null
@@ -1452,7 +1452,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: zohopeople
   partner: null
   partner_match: null
@@ -1466,7 +1466,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: gusto
   partner: null
   partner_match: null
@@ -1480,7 +1480,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: breathehr
   partner: null
   partner_match: null
@@ -1494,7 +1494,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: catalystone
   partner: null
   partner_match: null
@@ -1508,7 +1508,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: mirus
   partner: null
   partner_match: null
@@ -1522,7 +1522,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: simployer
   partner: null
   partner_match: null
@@ -1536,7 +1536,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: peple
   partner: null
   partner_match: null
@@ -1550,7 +1550,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: youserve
   partner: null
   partner_match: null
@@ -1564,7 +1564,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: hansalog
   partner: null
   partner_match: null
@@ -1578,7 +1578,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: lattice
   partner: null
   partner_match: null
@@ -1592,7 +1592,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: latticetalent
   partner: null
   partner_match: null
@@ -1606,7 +1606,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: hoorayhr
   partner: null
   partner_match: null
@@ -1620,7 +1620,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: trinet
   partner: null
   partner_match: null
@@ -1634,7 +1634,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: trinetpeo
   partner: null
   partner_match: null
@@ -1648,7 +1648,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: namely
   partner: null
   partner_match: null
@@ -1662,7 +1662,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: paycom
   partner: null
   partner_match: null
@@ -1676,7 +1676,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: insperity
   partner: null
   partner_match: null
@@ -1690,7 +1690,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: paychex
   partner: null
   partner_match: null
@@ -1704,7 +1704,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: sapling
   partner: null
   partner_match: null
@@ -1718,7 +1718,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: peoplehr
   partner: null
   partner_match: null
@@ -1732,7 +1732,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: lucca
   partner: null
   partner_match: null
@@ -1746,7 +1746,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: zelt
   partner: null
   partner_match: null
@@ -1760,7 +1760,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: planday
   partner: null
   partner_match: null
@@ -1774,7 +1774,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: boondmanager
   partner: null
   partner_match: null
@@ -1788,7 +1788,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: haileyhr
   partner: null
   partner_match: null
@@ -1802,7 +1802,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: skello
   partner: null
   partner_match: null
@@ -1816,7 +1816,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: oysterhr
   partner: null
   partner_match: null
@@ -1830,7 +1830,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: kiwihr
   partner: null
   partner_match: null
@@ -1844,7 +1844,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: square
   partner: null
   partner_match: null
@@ -1858,7 +1858,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: leapsome
   partner: null
   partner_match: null
@@ -1872,7 +1872,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: loket
   partner: null
   partner_match: null
@@ -1886,7 +1886,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: workforcecom
   partner: null
   partner_match: null
@@ -1900,7 +1900,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: peoplefirst
   partner: null
   partner_match: null
@@ -1914,7 +1914,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: sdworx
   partner: null
   partner_match: null
@@ -1928,7 +1928,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: itrent
   partner: null
   partner_match: null
@@ -1942,7 +1942,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: absenceio
   partner: null
   partner_match: null
@@ -1956,7 +1956,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: a3innuvanomina
   partner: null
   partner_match: null
@@ -1970,7 +1970,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: scim
   partner: null
   partner_match: null
@@ -1984,7 +1984,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: datevlauds
   partner: null
   partner_match: null
@@ -1998,7 +1998,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: sympa
   partner: null
   partner_match: null
@@ -2012,7 +2012,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: youforce
   partner: null
   partner_match: null
@@ -2026,7 +2026,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: nibelis
   partner: null
   partner_match: null
@@ -2040,7 +2040,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: peoplexd
   partner: null
   partner_match: null
@@ -2054,7 +2054,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: zellis
   partner: null
   partner_match: null
@@ -2068,7 +2068,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: sftp
   partner: null
   partner_match: null
@@ -2082,7 +2082,7 @@ edges:
   operations:
   - hris
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: 360learning
   partner: null
   partner_match: null
@@ -2096,7 +2096,7 @@ edges:
   operations:
   - lms
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: talentlms
   partner: null
   partner_match: null
@@ -2110,7 +2110,7 @@ edges:
   operations:
   - lms
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: docebo
   partner: null
   partner_match: null
@@ -2124,7 +2124,7 @@ edges:
   operations:
   - lms
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: coursera
   partner: null
   partner_match: null
@@ -2138,7 +2138,7 @@ edges:
   operations:
   - lms
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: udemy
   partner: null
   partner_match: null
@@ -2152,7 +2152,7 @@ edges:
   operations:
   - lms
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: linkedinlearning
   partner: null
   partner_match: null
@@ -2166,7 +2166,7 @@ edges:
   operations:
   - lms
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
 - partner_name: moodle
   partner: null
   partner_match: null
@@ -2180,4 +2180,4 @@ edges:
   operations:
   - lms
   detected_by: sweep-hr-stores.py
-  detected: '2026-10-12'
+  detected: '2026-10-19'
