@@ -3893,3 +3893,9 @@ components:
       type: http
       scheme: bearer
       description: Create an API key on the [Secrets](https://app.kombo.dev/secrets) page in the Kombo dashboard.
+x-provenance:
+  method: harvested
+  publisher: Kombo
+  source: https://docs.kombo.dev/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
