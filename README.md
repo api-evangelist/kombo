@@ -1,4 +1,4 @@
-# Kombo (kombo)
+# Kombo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,139 +66,215 @@
 
 Kombo is a unified API for HR and ATS integrations, enabling B2B SaaS companies to connect with HRIS, payroll, recruiting, and learning systems through a single integration.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/kombo/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/kombo/refs/heads/main/apis.yml)
+**Areas:** Applicant Tracking · Embedded iPaaS · HRIS · LMS · Payroll · Unified API · Recruiting · Integration
 
-## Scope
+## Kombo on APIs.io
 
-- **Type:** Index
+Everything profiled for Kombo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kombo/](https://apis.io/providers/kombo/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (9)
 
-- ATS
-- Embedded iPaaS
-- HRIS
-- LMS
-- Payroll
-- Unified API
+- [Kombo AI Apply API](https://apis.io/apis/kombo/kombo-ai-apply-api/) — Endpoints for AI-powered job application features.
+- [Kombo Custom Endpoints API](https://apis.io/apis/kombo/kombo-custom-endpoints-api/) — Custom integration-specific endpoints.
+- [Kombo General API](https://apis.io/apis/kombo/kombo-general-api/) — The General API from Kombo — 12 operation(s) for general.
+- [Kombo Connect API](https://apis.io/apis/kombo/kombo-kombo-connect-api/) — Endpoints for Kombo Connect, our end-user-facing flow for setting up new integrations.
+- [Kombo Unified ATS API](https://apis.io/apis/kombo/kombo-unified-ats-api-api/) — Unified endpoints to access all the ATS concepts you might need.
+- [Kombo Unified ATS (Assessment & Background Check) API](https://apis.io/apis/kombo/kombo-unified-ats-assessment-background-check-api-api/) — Unified endpoints to operate Assessments and Background Checks for many applicant tracking systems.
+- [Kombo Unified HRIS API](https://apis.io/apis/kombo/kombo-unified-hris-api-api/) — Unified endpoints to access all the HR concepts you might need.
+- [Kombo Unified LMS API](https://apis.io/apis/kombo/kombo-unified-lms-api-api/) — Unified endpoints to access all the LMS concepts you might need.
+- [Kombo API](https://apis.io/apis/kombo/kombo-kombo-api-api/) — The Kombo API API from Kombo — 0 operation(s) for kombo api.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Kombo Unified API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Kombo provides a unified API that connects B2B SaaS products with HR, payroll, applicant tracking, and learning management systems through a single integration point, handling data normalization and authentication across 300+ HR and ATS tools.
+- [Kombo Agentic Access](https://apis.io/agentic-access/kombo/kombo-agentic-access/)
 
-- **Human URL:** [https://www.kombo.dev](https://www.kombo.dev)
-- **Base URL:** `https://api.kombo.dev`
+#### JSON Schema (535)
 
-#### Tags
+The data models the API reads and writes.
 
-- ATS
-- HRIS
-- Payroll
-- Unified API
+- [AiApplyApplicationStatusUpdatedWebhookPayload](https://apis.io/schemas/kombo/kombo-aiapplyapplicationstatusupdatedwebhookpayload/)
+- [AiApplyJobPostingStatusUpdatedWebhookPayload](https://apis.io/schemas/kombo/kombo-aiapplyjobpostingstatusupdatedwebhookpayload/)
+- [AssessmentOrderReceivedWebhookPayload](https://apis.io/schemas/kombo/kombo-assessmentorderreceivedwebhookpayload/)
+- [BulkImportJobPostingInput](https://apis.io/schemas/kombo/kombo-bulkimportjobpostinginput/)
+- [BulkImportJobPostingLocation](https://apis.io/schemas/kombo/kombo-bulkimportjobpostinglocation/)
+- [BulkImportResponse](https://apis.io/schemas/kombo/kombo-bulkimportresponse/)
+- [ConnectionFlowFailedWebhookPayload](https://apis.io/schemas/kombo/kombo-connectionflowfailedwebhookpayload/)
+- [DataChangedWebhookPayload](https://apis.io/schemas/kombo/kombo-datachangedwebhookpayload/)
+- [DeleteAtsCandidatesCandidateIdTagsParameterCandidateId](https://apis.io/schemas/kombo/kombo-deleteatscandidatescandidateidtagsparametercandidateid/)
+- [DeleteAtsCandidatesCandidateIdTagsPositiveResponse](https://apis.io/schemas/kombo/kombo-deleteatscandidatescandidateidtagspositiveresponse/)
+- [DeleteAtsCandidatesCandidateIdTagsRequestBody](https://apis.io/schemas/kombo/kombo-deleteatscandidatescandidateidtagsrequestbody/)
+- [DeleteAtsCustomAvionteSyncedJobsJobRemoteIdParameterJobRemoteId](https://apis.io/schemas/kombo/kombo-deleteatscustomaviontesyncedjobsjobremoteidparameterjobremot/)
+- [DeleteAtsCustomAvionteSyncedJobsJobRemoteIdPositiveResponse](https://apis.io/schemas/kombo/kombo-deleteatscustomaviontesyncedjobsjobremoteidpositiveresponse/)
+- [DeleteAtsCustomAvionteSyncedJobsJobRemoteIdRequestBody](https://apis.io/schemas/kombo/kombo-deleteatscustomaviontesyncedjobsjobremoteidrequestbody/)
+- [DeleteHrisAbsencesAbsenceIdParameterAbsenceId](https://apis.io/schemas/kombo/kombo-deletehrisabsencesabsenceidparameterabsenceid/)
+- [DeleteHrisAbsencesAbsenceIdPositiveResponse](https://apis.io/schemas/kombo/kombo-deletehrisabsencesabsenceidpositiveresponse/)
+- [DeleteHrisAbsencesAbsenceIdRequestBody](https://apis.io/schemas/kombo/kombo-deletehrisabsencesabsenceidrequestbody/)
+- [DeleteHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentIdParameterEmployeeSkillAssignmentId](https://apis.io/schemas/kombo/kombo-deletehrisemployeeskillassignmentsemployeeskillassignmentidp/)
+- [DeleteHrisEmployeeSkillAssignmentsEmployeeSkillAssignmentIdRequestBody](https://apis.io/schemas/kombo/kombo-deletehrisemployeeskillassignmentsemployeeskillassignmentidr/)
+- [DeleteHrisSkillsSkillIdParameterSkillId](https://apis.io/schemas/kombo/kombo-deletehrisskillsskillidparameterskillid/)
+- [DeleteHrisSkillsSkillIdPositiveResponse](https://apis.io/schemas/kombo/kombo-deletehrisskillsskillidpositiveresponse/)
+- [DeleteHrisSkillsSkillIdRequestBody](https://apis.io/schemas/kombo/kombo-deletehrisskillsskillidrequestbody/)
+- [DeleteIntegrationsIntegrationIdParameterIntegrationId](https://apis.io/schemas/kombo/kombo-deleteintegrationsintegrationidparameterintegrationid/)
+- [DeleteIntegrationsIntegrationIdPositiveResponse](https://apis.io/schemas/kombo/kombo-deleteintegrationsintegrationidpositiveresponse/)
+- [DeleteIntegrationsIntegrationIdRequestBody](https://apis.io/schemas/kombo/kombo-deleteintegrationsintegrationidrequestbody/)
+- …and 510 more published on APIs.io
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.kombo.dev)
-- [Getting Started](https://docs.kombo.dev/getting-started)
-- [OpenAPI](https://api.kombo.dev/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [S D Ks](https://kombo.dev/libraries-and-sdks)
-- [Integrations](https://www.kombo.dev/categories/all)
-- [Security](https://security.kombo.dev)
-- [Postman Collection](collections/kombo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kombo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### Kombo Unified HRIS API
+- [Kombo Structure](https://apis.io/json-structure/kombo/kombo-structure/)
 
-Unified HRIS API for accessing employee data, absence management, time-off tracking, document management, and provisioning workflows across HR systems.
+#### Vocabulary (1)
 
-- **Human URL:** [https://docs.kombo.dev](https://docs.kombo.dev)
+The provider's domain terms, defined.
 
-#### Tags
+- [Kombo Domain Vocabulary](https://apis.io/vocabularies/kombo/kombo-vocabulary/)
 
-- HRIS
-- Employees
-- Time Off
+#### Examples (108)
 
-#### Properties
+Example requests and responses.
 
-- [Documentation](https://docs.kombo.dev)
-- [OpenAPI](https://api.kombo.dev/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/kombo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kombo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Kombo Deleteatscandidatescandidateidtags Example](https://apis.io/examples/kombo/kombo-deleteatscandidatescandidateidtags-example/)
+- [Kombo Deleteatscustomaviontesyncedjobsjobremoteid Example](https://apis.io/examples/kombo/kombo-deleteatscustomaviontesyncedjobsjobremoteid-example/)
+- [Kombo Deletehrisabsencesabsenceid Example](https://apis.io/examples/kombo/kombo-deletehrisabsencesabsenceid-example/)
+- [Kombo Deletehrisemployeeskillassignmentsemployeeskillassignmentid Example](https://apis.io/examples/kombo/kombo-deletehrisemployeeskillassignmentsemployeeskillassignmentid-example/)
+- [Kombo Deletehrisskillsskillid Example](https://apis.io/examples/kombo/kombo-deletehrisskillsskillid-example/)
+- [Kombo Getaiapplyapplications Example](https://apis.io/examples/kombo/kombo-getaiapplyapplications-example/)
+- [Kombo Getaiapplycareersites Example](https://apis.io/examples/kombo/kombo-getaiapplycareersites-example/)
+- [Kombo Getaiapplyjobfeeds Example](https://apis.io/examples/kombo/kombo-getaiapplyjobfeeds-example/)
+- [Kombo Getaiapplypostings Example](https://apis.io/examples/kombo/kombo-getaiapplypostings-example/)
+- [Kombo Getassessmentpackages Example](https://apis.io/examples/kombo/kombo-getassessmentpackages-example/)
+- [Kombo Getatsactionsatsaddapplicationattachment Example](https://apis.io/examples/kombo/kombo-getatsactionsatsaddapplicationattachment-example/)
+- [Kombo Getatsactionsatsaddcandidateattachment Example](https://apis.io/examples/kombo/kombo-getatsactionsatsaddcandidateattachment-example/)
+- [Kombo Getatsactionsatscreateapplication Example](https://apis.io/examples/kombo/kombo-getatsactionsatscreateapplication-example/)
+- [Kombo Getatsactionsatscreatecandidate Example](https://apis.io/examples/kombo/kombo-getatsactionsatscreatecandidate-example/)
+- [Kombo Getatsapplications Example](https://apis.io/examples/kombo/kombo-getatsapplications-example/)
+- [Kombo Getatsapplicationsapplicationidattachments Example](https://apis.io/examples/kombo/kombo-getatsapplicationsapplicationidattachments-example/)
+- [Kombo Getatsapplicationstages Example](https://apis.io/examples/kombo/kombo-getatsapplicationstages-example/)
+- [Kombo Getatscandidates Example](https://apis.io/examples/kombo/kombo-getatscandidates-example/)
+- [Kombo Getatscandidatescandidateidattachments Example](https://apis.io/examples/kombo/kombo-getatscandidatescandidateidattachments-example/)
+- [Kombo Getatsinterviews Example](https://apis.io/examples/kombo/kombo-getatsinterviews-example/)
+- [Kombo Getatsjobs Example](https://apis.io/examples/kombo/kombo-getatsjobs-example/)
+- [Kombo Getatsoffers Example](https://apis.io/examples/kombo/kombo-getatsoffers-example/)
+- [Kombo Getatsrejectionreasons Example](https://apis.io/examples/kombo/kombo-getatsrejectionreasons-example/)
+- [Kombo Getatsroles Example](https://apis.io/examples/kombo/kombo-getatsroles-example/)
+- [Kombo Getatstags Example](https://apis.io/examples/kombo/kombo-getatstags-example/)
+- …and 83 more published on APIs.io
 
-### Kombo Unified ATS API
+#### Collections (9)
 
-Unified ATS API for managing job postings, candidates, applications, and recruitment pipelines across applicant tracking systems.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://docs.kombo.dev](https://docs.kombo.dev)
+- [Kombo API](https://apis.io/collections/kombo/open-kombo/)
+- [Kombo AI Apply API](https://apis.io/collections/kombo/open-kombo-ai-apply-api/)
+- [Kombo AI Apply Custom Endpoints API](https://apis.io/collections/kombo/open-kombo-custom-endpoints-api/)
+- [Kombo AI Apply General API](https://apis.io/collections/kombo/open-kombo-general-api/)
+- [Kombo AI Apply Kombo Connect API](https://apis.io/collections/kombo/open-kombo-kombo-connect-api/)
+- [Kombo AI Apply Unified ATS API API](https://apis.io/collections/kombo/open-kombo-unified-ats-api-api/)
+- [Kombo AI Apply Unified ATS (Assessment & Background Check) API API](https://apis.io/collections/kombo/open-kombo-unified-ats-assessment-background-check-api-api/)
+- [Kombo AI Apply Unified HRIS API API](https://apis.io/collections/kombo/open-kombo-unified-hris-api-api/)
+- [Kombo AI Apply Unified LMS API API](https://apis.io/collections/kombo/open-kombo-unified-lms-api-api/)
 
-#### Tags
+#### Governance rules (1)
 
-- ATS
-- Recruiting
+Spectral rulesets for the provider's contracts.
 
-#### Properties
+- [Kombo — jsonschema rules](https://apis.io/rules/kombo/kombo-jsonschema-spectral-rules/)
 
-- [Documentation](https://docs.kombo.dev)
-- [OpenAPI](https://api.kombo.dev/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/kombo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kombo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Security (3)
 
-### Kombo Unified ATS-Assessment API
+Authentication, trust centre, and vulnerability disclosure.
 
-Unified ATS-Assessment API for assessment writing, notifications, and result submission across ATS platforms.
+- [Kombo Authentication](https://apis.io/security/kombo/kombo-authentication/)
+- [Kombo Domain Security](https://apis.io/security/kombo/kombo-domain-security/)
+- [Kombo Trust Center](https://apis.io/security/kombo/kombo-trust-center/)
 
-- **Human URL:** [https://docs.kombo.dev](https://docs.kombo.dev)
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- ATS
-- Assessments
+- [Kombo Plans Pricing](https://apis.io/plans/kombo/kombo-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://docs.kombo.dev)
-- [OpenAPI](https://api.kombo.dev/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/kombo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kombo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published request limits.
 
-### Kombo Unified LMS API
+- [Kombo Rate Limits](https://apis.io/rate-limits/kombo/kombo-rate-limits/)
 
-Unified LMS API for user management, courses, and learning progress tracking across learning management systems.
+#### FinOps (1)
 
-- **Human URL:** [https://docs.kombo.dev](https://docs.kombo.dev)
+What the API costs to run, by operation.
 
-#### Tags
+- [Kombo Finops](https://apis.io/finops/kombo/kombo-finops/)
 
-- LMS
-- Learning
+## Where to find this API
 
-#### Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [Documentation](https://docs.kombo.dev)
-- [OpenAPI](https://api.kombo.dev/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/kombo.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kombo.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/kombo-api)
 - [Website](https://www.kombo.dev)
 - [Documentation](https://docs.kombo.dev)
-- [OpenAPI](https://api.kombo.dev/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [S D Ks](https://kombo.dev/libraries-and-sdks)
+- [Blog](https://www.kombo.dev/blog)
 - [Security](https://security.kombo.dev)
-- [Support](mailto:support@kombo.dev)
-- [GitHub Organization](https://github.com/kombo-api)
-- [L L Ms Txt](https://docs.kombo.dev/llms.txt)
+- [GitHub](https://github.com/kombo-api)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 40.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 51.6 |
+| Contract governance | 9.8 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 47.6 |
+| Access clarity | 15.8 |
+
+**Agent readiness 27.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 16.7** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kombo/](https://apis.io/providers/kombo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Kombo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kombo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
